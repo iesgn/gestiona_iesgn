@@ -7,9 +7,9 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+    <!--<link rel="icon" href="../../favicon.ico">-->
 
-    <title>Justified Nav Template for Bootstrap</title>
+    <title>Gestiona</title>
 
     <!-- Bootstrap core CSS -->
     <link href="static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
