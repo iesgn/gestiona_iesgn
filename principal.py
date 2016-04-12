@@ -6,7 +6,7 @@ import sesion
 @route('/')
 def index():
 
-    return my_template("index.tpl",info=info)
+    return sesion.my_template("index.tpl",info=info)
 
 @route('/login',method="post")
 def do_login():
