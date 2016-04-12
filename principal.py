@@ -16,9 +16,9 @@ def do_login():
         sesion.set(username)
         redirect('/')
     else:
-        info={"login":sesion.get()}
+        
         info["error"]=True
-        return template('index.tpl',info=info)
+        return sesion.my_template('index.tpl',info=info)
 
 @route('/logout')
 def do_logout():
