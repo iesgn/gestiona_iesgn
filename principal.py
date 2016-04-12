@@ -1,5 +1,8 @@
 from bottle import route, template, run, static_file, error,request,response,redirect,error
 import sesion
+
+
+
 @route('/')
 def index():
     info={"login":sesion.get()}
@@ -13,7 +16,8 @@ def do_login():
         sesion.set(username)
         redirect('/')
     else:
-        info={"login":sesion.get(),"error":True}
+        info={"login":sesion.get()}
+        info["error"]=True
         return template('index.tpl',info=info)
 
 @route('/logout')
@@ -21,13 +25,13 @@ def do_logout():
     sesion.delete()
     redirect('/')
 
-@route('/restricted')
-def restricted_area():
-    username = sesion.get()
-    if username:
-        return template("Hello {{name}}. Welcome back.", name=username)
+@route('/usuarios')
+def usuarios():
+    if sesion.islogin():
+        info={"login":sesion.get()}
+        return template('usuarios.tpl',info=info)
     else:
-        return "You are not logged in. Access denied."
+        redirect('/')
 
 @route('/static/<filepath:path>')
 def server_static(filepath):

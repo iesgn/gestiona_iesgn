@@ -1,7 +1,7 @@
+</div>
 <div class="col-md-4">
   <%
-  import sesion
-  
+   
   if info["login"]==None:
     include('login.tpl',info=info)
   else:
