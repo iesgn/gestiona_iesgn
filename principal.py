@@ -18,7 +18,7 @@ def do_login():
     else:
         info={"login":sesion.get()}
         info["error"]=True
-        return template('index.tpl',info=info)
+        return template('index.tpl')
 
 @route('/logout')
 def do_logout():
