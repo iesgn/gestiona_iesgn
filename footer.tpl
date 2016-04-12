@@ -2,10 +2,10 @@
   <%
   import sesion
   
-  if not sesion.islogin():
-    include('login.tpl')
+  if info["login"]==None:
+    include('login.tpl',info=info)
   else:
-    include('menu.tpl')
+    include('menu.tpl',info=info)
   end
   %>
 	</div>

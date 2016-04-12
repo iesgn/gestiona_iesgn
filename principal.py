@@ -1,8 +1,9 @@
-from bottle import route, template, run, static_file, error,request,response
+from bottle import route, template, run, static_file, error,request,response,redirect,error
 import sesion
 @route('/')
 def index():
-    return template("index.tpl")
+    info={"login":sesion.get()}
+    return template("index.tpl",info=info)
 
 @route('/login',method="post")
 def do_login():
@@ -10,9 +11,15 @@ def do_login():
     password = request.forms.get('password')
     if username=="pepe" and  password=="asdasd":
         sesion.set(username)
-        return template("<p>Welcome {{name}}! You are now logged in.</p>", name=username)
+        redirect('/')
     else:
-        return "<p>Login failed.</p>"
+        info={"login":sesion.get(),"error":True}
+        return template('index.tpl',info=info)
+
+@route('/logout')
+def do_logout():
+    sesion.delete()
+    redirect('/')
 
 @route('/restricted')
 def restricted_area():
@@ -22,9 +29,12 @@ def restricted_area():
     else:
         return "You are not logged in. Access denied."
 
-
 @route('/static/<filepath:path>')
 def server_static(filepath):
     return static_file(filepath, root='static')
+
+@error(404)
+def error404(error):
+    return "Nada"
 
 run(host='0.0.0.0', port=8080)

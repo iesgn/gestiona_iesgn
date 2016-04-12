@@ -7,4 +7,6 @@ def get():
 
 def islogin():
 	return request.get_cookie("account", secret='some-secret-key')!=None
-		
+
+def delete():
+	response.set_cookie("account", "", max_age=-1)

@@ -1,5 +1,8 @@
 <form action="/login" method="post" class="form-signin">
   <h2 class="form-signin-heading">Login</h2>
+  % if info.has_key("error"):
+    <h3 class="bg-danger">Error en login.</h3>
+  % end
   <label for="inputEmail" class="sr-only">Usuario</label>
   <input type="text" name="username" id="inputText" class="form-control" placeholder="Usuario" required autofocus>
   <label for="inputPassword" class="sr-only">Password</label>
