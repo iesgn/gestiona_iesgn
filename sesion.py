@@ -16,6 +16,6 @@ def comprobar(username,password):
 	try:
 		con=ldap.initialize("ldap://papion.gonzalonazareno.org")
 		con.protocol_version = ldap.VERSION3
-		return con.simple_bind_s()[0]==97
+		return con.simple_bind_s(username,password)[0]==97
 	except ldap.LDAPError, e:
 		return False
