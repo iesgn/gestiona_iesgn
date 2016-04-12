@@ -12,7 +12,7 @@ def index():
 def do_login():
     username = request.forms.get('username')
     password = request.forms.get('password')
-    if username=="pepe" and  password=="asdasd":
+    if sesion.comprobar(username,password):
         sesion.set(username)
         redirect('/')
     else:
