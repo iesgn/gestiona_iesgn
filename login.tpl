@@ -1,5 +1,5 @@
 <form action="/login" method="post" class="form-signin">
-  <h2 class="form-signin-heading">Login</h2>
+  <h4 class="form-signin-heading">Login</h4>
   % if info.has_key("error"):
     <h3 class="bg-danger">Error en login.</h3>
   % end
