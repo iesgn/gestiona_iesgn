@@ -13,9 +13,13 @@ def delete():
 	response.set_cookie("account", "", max_age=-1)
 
 def comprobar(username,password):
+	username="uid=%s,ou=People,dc=gonzalonazareno,dc=org" % username
 	try:
 		con=ldap.initialize("ldap://papion.gonzalonazareno.org")
 		con.protocol_version = ldap.VERSION3
-		return con.simple_bind_s(username,password)[0]==97
+		if con.simple_bind_s(username,password)[0]==97:
+			return True
+		else:
+			return False
 	except ldap.LDAPError, e:
 		return False
