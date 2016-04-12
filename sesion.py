@@ -25,5 +25,5 @@ def comprobar(username,password):
 		return False
 
 def my_template(name,info={}):
-	info={"login":get()}
+	info["login"]=get()
 	return template(name,info=info)
