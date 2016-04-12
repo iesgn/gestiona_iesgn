@@ -1,3 +1,12 @@
+<div class="col-md-4">
+  <%
+  a=False
+  if a:
+    include('login.tpl')
+  else:
+    include('menu.tpl')
+  end
+  %>
 	</div>
 	</div>
       
