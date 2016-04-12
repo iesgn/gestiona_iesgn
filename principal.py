@@ -5,8 +5,8 @@ import sesion
 
 @route('/')
 def index():
-    info={"login":sesion.get()}
-    return template("index.tpl",info=info)
+
+    return my_template("index.tpl",info=info)
 
 @route('/login',method="post")
 def do_login():
