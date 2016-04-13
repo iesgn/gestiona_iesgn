@@ -48,7 +48,7 @@ def usuarios():
     else:
         redirect('/')
 
-@route('/ususarios/add')
+@route('/usuarios/add')
 def add():
     if sesion.islogin():
         return my_template('add.tpl')
