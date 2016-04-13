@@ -1,4 +1,5 @@
 % include('header.tpl',info=info)
+% from gestiona import tipos
  <h3>Búsqueda</h3>
  <form action="/usuarios" method="get" class="form-horizontal">
         <div class="form-group">
@@ -32,7 +33,7 @@
 
 <table class="table table-bordered">
     <tr><td>N.</td><td>A/P</td><td>Usuario (Login)</td><td>Tipo</td><td>Mod.</td><td>Borrar</td></tr>
-    <% from gestiona import tipos
+    <% 
     cont=0
     for r in info["resultados"]:
     cont=cont+1 %>

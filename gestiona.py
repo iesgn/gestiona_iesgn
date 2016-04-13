@@ -9,6 +9,8 @@ def tipos(tipo):
 		tipo="8"
 	return vtipos[tipo]
 
+
+
 def getFiltro(filtro):
 	print filtro.dict
 	respuesta={}
