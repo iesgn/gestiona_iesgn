@@ -9,9 +9,11 @@
 
 <table class="table table-bordered">
     <tr><td>N.</td><td>A/P</td><td>Uusario (Nombre de usuario) - Tipo</td><td>Mod.</td><td>Borrar</td></tr>
+    % cont=0
     % for r in info["resultados"]:
+    % cont=cont+1
     <tr>
-      <td></td>
+      <td>{{cont}}</td>
       % if r.get_attr_values("gidnumber")[0]=="2001":
         <td><span class="glyphicon glyphicon-user" aria-hidden="true"></td>
       % else:
