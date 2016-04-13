@@ -10,7 +10,7 @@
         <div class="form-group">
             <label for="inputPassword" class="control-label col-xs-2">Tipo:</label>
             <div class="col-xs-4">
-                <select class="form-control">
+                <select name="tipo" class="form-control">
         <option>1</option>
         <option>2</option>
         <option selected="selected">3</option>
