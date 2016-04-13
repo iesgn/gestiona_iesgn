@@ -7,7 +7,7 @@
     </div>
     
       <label  class="col-sm-2 control-label">Tipo:</label>
-      <div class="col-sm-offset-2 col-sm-10">
+      <div class="col-sm-16">
       <select class="form-control">
         <option>1</option>
         <option>2</option>
