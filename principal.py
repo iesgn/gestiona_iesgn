@@ -30,10 +30,9 @@ def usuarios():
     if sesion.islogin():
         lldap=LibLDAP()
         resultados=lldap.buscar('(givenname=*)')
-        for r in resultados:
-            print r.get_attr_names()
+        info={"resultados":resultados}
 
-        return my_template('usuarios.tpl')
+        return my_template('usuarios.tpl',info=info)
     else:
         redirect('/')
 
