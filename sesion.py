@@ -1,4 +1,4 @@
-from bottle import response,request,template
+from bottle import response,request
 import ldap
 def set(username):
 	response.set_cookie("account", username, secret='some-secret-key')
@@ -24,6 +24,4 @@ def comprobar(username,password):
 	except ldap.LDAPError, e:
 		return False
 
-def my_template(name,info={}):
-	info["login"]=get()
-	return template(name,info=info)
+

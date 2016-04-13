@@ -1,9 +1,9 @@
 from bottle import route, template, run, static_file, error,request,response,redirect,error
 import sesion
-
+from gestiona import my_template
 @route('/')
 def index():
-    return sesion.my_template("index.tpl")
+    return my_template("index.tpl")
 
 @route('/login',method="post")
 def do_login():
@@ -14,7 +14,7 @@ def do_login():
         redirect('/')
     else:
         info={"error":True}
-        return sesion.my_template('index.tpl',info=info)
+        return my_template('index.tpl',info=info)
 
 @route('/logout')
 def do_logout():
