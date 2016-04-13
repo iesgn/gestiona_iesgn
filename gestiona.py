@@ -10,7 +10,7 @@ def tipos(tipo):
 	return vtipos[tipo]
 
 def getFiltro(filtro):
-	print filtro
+	print filtro.dict
 	respuesta={}
 	for key,value in filtro.dict:
 		print key,value
