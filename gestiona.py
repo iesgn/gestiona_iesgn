@@ -9,6 +9,15 @@ def tipos(tipo):
 		tipo="8"
 	return vtipos[tipo]
 
+def getFiltro(dict):
+	respuesta={}
+	for key,value in dict:
+		if values!=None:
+			respuesta[key]=value
+		else:
+			repuesta[key]=""
+	return respuesta
+
 def my_template(name,info={}):
 	info["login"]=get()
 	return template(name,info=info)

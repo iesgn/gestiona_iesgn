@@ -1,6 +1,6 @@
 from bottle import route, template, run, static_file, error,request,response,redirect,error
 import sesion
-from gestiona import my_template
+from gestiona import *
 from libldap import LibLDAP
 
 
@@ -30,13 +30,11 @@ def do_logout():
 @route('/usuarios')
 def usuarios():
     if sesion.islogin():
-        filtro = request.GET.get('search')
-        if filtro==None:
-            filtro=""
+        filtro = getFiltro(request.GET)
         lldap=LibLDAP()
         resultados=lldap.buscar('(givenname=%s*)'%filtro)
         info={"resultados":resultados}
-        info["params"]={"search":filtro}
+        info["params"]=filtro
         return my_template('usuarios.tpl',info=info)
     else:
         redirect('/')
