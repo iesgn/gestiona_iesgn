@@ -13,7 +13,7 @@
             <div class="col-xs-4">
                 <select name="tipo" class="form-control">
                 % for i in xrange(0,9):
-                  <option value="{{i}}">{{tipos(i)}}</option>
+                  <option value="{{i}}">{{tipos(str(i))}}</option>
                 % end
                 </select>
                 
