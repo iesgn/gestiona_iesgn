@@ -3,9 +3,21 @@
  <h3>Nuevo usuario</h3>
  <form action="/usuarios/add" method="post" class="form-horizontal">
         <div class="form-group">
-            <label for="nombre" class="control-label col-xs-2">Nombre:</label>
+            <label for="nombre" class="control-label col-xs-2">Usuario:</label>
             <div class="col-xs-4">
-                <input name="q" type="text" class="form-control" id="q" placeholder="Nombre...">
+                <input name="uid" type="text" class="form-control" id="uid" placeholder="Usuario" required autofocus>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="nombre" class="control-label col-xs-2">Contraseña:</label>
+            <div class="col-xs-4">
+                <input name="password" type="password" class="form-control" id="password" placeholder="Password" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="nombre" class="control-label col-xs-2">Email:</label>
+            <div class="col-xs-4">
+                <input name="email" type="email" class="form-control" id="email" placeholder="Email" required>
             </div>
         </div>
         <div class="form-group">
