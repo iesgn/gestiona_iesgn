@@ -48,6 +48,12 @@ def usuarios():
     else:
         redirect('/')
 
+@route('/ususarios/add')
+def add():
+    if sesion.islogin():
+        return my_template('add.tpl')
+    else:
+        redirect('/')
 
 
 @route('/static/<filepath:path>')
