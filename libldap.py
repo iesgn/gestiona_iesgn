@@ -31,11 +31,6 @@ class LibLDAP:
         except ldap.LDAPError, e:
             self.isbind=False
 
-"""        a=con.search_s( base_dn, ldap.SCOPE_SUBTREE, filter)      $
-        ld=helpldap.get_search_results(a)
-        for l in ld:
-                print l.get_attr_values("uid")[0]
-"""
     def buscar(filter):
         result=self.con.search_s(self.base_dn, ldap.SCOPE_SUBTREE, filter)
         return get_search_results(result)
