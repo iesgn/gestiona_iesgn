@@ -8,9 +8,9 @@ class LibLDAP:
     con=""
     isbind=False
 
-    def __init__(self):
+    """def __init__(self):
         self.conectar()
-
+"""
     def __init__(self,username,password):
         self.conectar(username,password)        
  
