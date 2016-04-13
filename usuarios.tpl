@@ -13,7 +13,11 @@
             <div class="col-xs-4">
                 <select name="t" class="form-control">
                 % for i in xrange(0,9):
+                % if info["params"].get("t")==str(i):
+                  <option selected="selected" value="{{i}}">{{tipos(str(i))}}</option>
+                %else:
                   <option value="{{i}}">{{tipos(str(i))}}</option>
+                % end
                 % end
                 </select>
                 
