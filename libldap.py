@@ -1,6 +1,19 @@
+import ldap
 import ldif
 from StringIO import StringIO
 from ldap.cidict import cidict
+
+def comprobar(username,password):
+    username="uid=%s,ou=People,dc=gonzalonazareno,dc=org" % username
+    try:
+        con=ldap.initialize("ldap://papion.gonzalonazareno.org")
+        con.protocol_version = ldap.VERSION3
+        if con.simple_bind_s(username,password)[0]==97:
+            return True
+        else:
+            return False
+    except ldap.LDAPError, e:
+        return False
 
 def get_search_results(results):
     """Given a set of results, return a list of LDAPSearchResult

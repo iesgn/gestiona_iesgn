@@ -1,6 +1,8 @@
 from bottle import route, template, run, static_file, error,request,response,redirect,error
 import sesion
 from gestiona import my_template
+import libldap
+
 @route('/')
 def index():
     return my_template("index.tpl")
@@ -9,7 +11,7 @@ def index():
 def do_login():
     username = request.forms.get('username')
     password = request.forms.get('password')
-    if sesion.comprobar(username,password):
+    if libldap.comprobar(username,password):
         sesion.set(username)
         redirect('/')
     else:
@@ -24,6 +26,7 @@ def do_logout():
 @route('/usuarios')
 def usuarios():
     if sesion.islogin():
+
         return my_template('usuarios.tpl')
     else:
         redirect('/')
