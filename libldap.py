@@ -29,7 +29,7 @@ class LibLDAP:
         except ldap.LDAPError, e:
             self.isbind=False
 
-    def buscar(filter):
+    def buscar(self,filter):
         result=self.con.search_s(self.base_dn, ldap.SCOPE_SUBTREE, filter)
         return get_search_results(result)
         
