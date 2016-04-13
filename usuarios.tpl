@@ -1,5 +1,5 @@
 % include('header.tpl',info=info)
- 
+ <h3>Búsqueda</h3>
  <form action="/usuarios" method="get" class="form-horizontal">
         <div class="form-group">
             <label for="nombre" class="control-label col-xs-2">Nombre:</label>
