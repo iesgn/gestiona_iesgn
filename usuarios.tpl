@@ -1,7 +1,7 @@
 % include('header.tpl',info=info)
  <form action="/usuarios" method="get" class="navbar-form navbar-left" role="search">
  	<div class="form-group">
-    	<input name="search" type="text" class="form-control" placeholder="Search">
+    	<input name="search" type="text" text={{info["params"].get("search")}} class="form-control" placeholder="Search">
     </div>
     <button type="submit" class="btn btn-default">Submit</button>
 </form>
