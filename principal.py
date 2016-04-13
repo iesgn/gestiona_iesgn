@@ -26,12 +26,11 @@ def do_logout():
     sesion.delete()
     redirect('/')
 
+
 @route('/usuarios')
-@route('/usuarios/<filtro>')
-def usuarios(filtro="*"):
+def usuarios():
     if sesion.islogin():
-        if filtro!="*":
-            filtro=filtro+"*"
+        filtro = request.forms.get('search')
         lldap=LibLDAP()
         resultados=lldap.buscar('(givenname=%s)'%filtro)
         info={"resultados":resultados}
