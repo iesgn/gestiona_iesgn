@@ -13,9 +13,9 @@ def getFiltro(filtro):
 	print filtro.dict
 	respuesta={}
 	for key,value in filtro.dict:
-		print key,value
-		if value!=None:
-			respuesta[key]=value
+		
+		if value[0]!=None:
+			respuesta[key]=value[0]
 		else:
 			repuesta[key]=""
 	return respuesta
