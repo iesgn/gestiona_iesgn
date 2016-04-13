@@ -1,10 +1,37 @@
 % include('header.tpl',info=info)
  
+ <form class="form-horizontal">
+        <div class="form-group">
+            <label for="nombre" class="control-label col-xs-2">Nombre:</label>
+            <div class="col-xs-4">
+                <input name="givenname" type="email" class="form-control" id="inputEmail" placeholder="Search...">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword" class="control-label col-xs-2">Tipo:</label>
+            <div class="col-xs-4">
+                <select class="form-control">
+        <option>1</option>
+        <option>2</option>
+        <option selected="selected">3</option>
+        <option>4</option>
+        <option>5</option>
+      </select>
+                
+        </div>
+        </div>
+        
+        <div class="form-group">
+            <div class="col-xs-offset-2 col-xs-10">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+        </div>
+    </form>
+
  <form action="/usuarios" method="get" role="form-horizontal">
   <div class="form-group">
      <label for="givenname">Nombre:</label>
-     
-      <input name="givenname" type="text" value="{{info["params"].get("givenname")}}" class="form-control col-xs-4" placeholder="Search">
+     <input name="givenname" type="text" value="{{info["params"].get("givenname")}}" class="form-control" placeholder="Search">
      
   </div>
   <div class="form-group col-xs-4">
