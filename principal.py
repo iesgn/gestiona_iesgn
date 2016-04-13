@@ -33,7 +33,10 @@ def usuarios():
     if sesion.islogin():
         info={}
         if(request.GET):
-            pass
+            tipo="*" if request.GET.get("t")=="0" else request.GET.get("t")
+            givenname="*" if request.GET.get("q") is None else request.GET.get("q")
+            busqueda='(&(givenname=%s)(description=%s))'%(givenname,tipo)
+            info["params"]={"q":givenname,"t":tipo}
         else:
             busqueda='(givenname=*)'
             info["params"]={"q":"","t":""}
