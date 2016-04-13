@@ -12,9 +12,7 @@ def do_login():
     username = request.forms.get('username')
     password = request.forms.get('password')
     lldap=LibLDAP(username,password)
-    print lldap.isbind
-    print lldap.con
-    print lldap.con.simple_bind_s(username,password)
+   
     if lldap.isbind:
         sesion.set(username)
         redirect('/')

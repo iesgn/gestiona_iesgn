@@ -20,6 +20,7 @@ class LibLDAP:
             self.con.protocol_version = ldap.VERSION3
             if username!="":
                 username="uid=%s,ou=People,dc=gonzalonazareno,dc=org" % username
+                print username
                 respuesta=self.con.simple_bind_s(username,password)[0]
             else:
                 respuesta=self.con.simple_bind_s()[0]
