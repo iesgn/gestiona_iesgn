@@ -6,10 +6,15 @@
     <button type="submit" class="btn btn-default">Submit</button>
 </form>
 <br/><h2>Usuarios</h2>
-{{info["resultados"]}}
+
 <table class="table table-bordered">
     <tr><td>N.</td><td>A/P</td><td>Uusario (Nombre de usuario) - Tipo</td><td>Mod.</td><td>Borrar</td></tr>
-    
+    % for r in info["resultados"]:
+    <tr>
+      <td></td>
+      {{r.get_attr_values("uid")[0]}}
+      
+    % end
     </table>
 
 	
