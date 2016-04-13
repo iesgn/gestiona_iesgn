@@ -1,7 +1,7 @@
 % include('header.tpl',info=info)
  
- <form action="/usuarios" method="get" role="form">
-  <div class="form-group col-xs-4">
+ <form action="/usuarios" method="get" role="form-horizontal">
+  <div class="form-group">
      <label for="givenname">Nombre:</label>
      <input name="givenname" type="text" value="{{info["params"].get("givenname")}}" class="form-control" placeholder="Search">
   </div>
