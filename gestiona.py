@@ -12,7 +12,7 @@ def tipos(tipo):
 def getFiltro(filtro):
 	print filtro
 	respuesta={}
-	for key,value in filtro:
+	for key,value in filtro.dict:
 		print key,value
 		if value!=None:
 			respuesta[key]=value
