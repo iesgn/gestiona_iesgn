@@ -29,9 +29,9 @@ def do_logout():
 def usuarios():
     if sesion.islogin():
         lldap=LibLDAP()
-        resultados=lldap.buscar('(uid=*)')
+        resultados=lldap.buscar('(givenname=*)')
         for r in resultados:
-            print r.get_attr_values("uid")[0]
+            print r.get_attr_names()
 
         return my_template('usuarios.tpl')
     else:
