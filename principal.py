@@ -26,7 +26,7 @@ def do_logout():
     redirect('/')
 
 @route('/usuarios')
-@route('usuarios/<filter>')
+@route('/usuarios/<filter>')
 def usuarios(filter="*"):
     if sesion.islogin():
         lldap=LibLDAP()
