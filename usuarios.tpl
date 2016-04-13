@@ -30,7 +30,8 @@
             </div>
         </div>
     </form>
-
+    <hr/>
+    <a href="/usuarios/add"><button type="submit" class="btn btn-primary">Nuevo usuario</button></a>
  
 
  <br/><h2>Usuarios</h2>
