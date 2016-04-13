@@ -8,7 +8,7 @@
 <br/><h2>Usuarios</h2>
 
 <table class="table table-bordered">
-    <tr><td>N.</td><td>A/P</td><td>Login - Usuario</td><td>Tipo</td><td>Mod.</td><td>Borrar</td></tr>
+    <tr><td>N.</td><td>A/P</td><td>Usuario (Login)</td><td>Tipo</td><td>Mod.</td><td>Borrar</td></tr>
     % cont=0
     % for r in info["resultados"]:
     % cont=cont+1
@@ -19,7 +19,7 @@
       % else:
         <td><span class="glyphicon glyphicon-education" aria-hidden="true"></td>
       % end  
-      <td>{{r.get_attr_values("uid")[0]}} - {{r.get_attr_values("sn")[0]+" "+r.get_attr_values("givenname")[0]}}</td>
+      <td>{{r.get_attr_values("sn")[0]+" "+r.get_attr_values("givenname")[0]}} ({{r.get_attr_values("uid")[0]}})</td>
       <td></td>
       <td><a href="usuarios/modificar/{{r.get_attr_values('uid')[0]}}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
       <td><a href="usuarios/borrar/{{r.get_attr_values('uid')[0]}}"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span></a></td>
