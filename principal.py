@@ -36,7 +36,7 @@ def usuarios():
         lldap=LibLDAP()
         resultados=lldap.buscar('(givenname=%s*)'%filtro)
         info={"resultados":resultados}
-        info["params"]=request.GET
+        info["params"]={"search":filtro}
         return my_template('usuarios.tpl',info=info)
     else:
         redirect('/')
