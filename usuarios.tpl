@@ -3,7 +3,9 @@
  <form action="/usuarios" method="get" role="form-horizontal">
   <div class="form-group">
      <label for="givenname">Nombre:</label>
-     <input name="givenname" type="text" value="{{info["params"].get("givenname")}}" class="form-control" placeholder="Search">
+     <div class="col-xs-4">
+      <input name="givenname" type="text" value="{{info["params"].get("givenname")}}" class="form-control" placeholder="Search">
+     </div>
   </div>
   <div class="form-group col-xs-4">
   <label for="tipo">Nombre:</label>
