@@ -3,9 +3,6 @@ import sesion
 from gestiona import my_template
 from libldap import LibLDAP
 
-@route('/static/<filepath:path>')
-def server_static(filepath):
-    return static_file(filepath, root='static')
 
 @route('/')
 def index():
@@ -41,6 +38,9 @@ def usuarios(filtro="*"):
     else:
         redirect('/')
 
+@route('/static/<filepath:path>')
+def server_static(filepath):
+    return static_file(filepath, root='static')
 
 
 @error(404)
