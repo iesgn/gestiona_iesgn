@@ -11,12 +11,10 @@
             <label for="inputPassword" class="control-label col-xs-2">Tipo:</label>
             <div class="col-xs-4">
                 <select name="tipo" class="form-control">
-        <option>1</option>
-        <option>2</option>
-        <option selected="selected">3</option>
-        <option>4</option>
-        <option>5</option>
-      </select>
+                % for i in xrange(0,9):
+                  <option value="{{i}}">{{tipos[i]}}</option>
+                % end
+                </select>
                 
         </div>
         </div>
