@@ -32,7 +32,7 @@ def usuarios():
     if sesion.islogin():
         filtro = getFiltro(request.GET)
         lldap=LibLDAP()
-        resultados=lldap.buscar('(givenname=%s*)'%filtro)
+        resultados=lldap.buscar('(givenname=%s*)'%filtro.get("givenname"))
         info={"resultados":resultados}
         info["params"]=filtro
         return my_template('usuarios.tpl',info=info)
