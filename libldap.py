@@ -8,13 +8,11 @@ class LibLDAP:
     con=""
     isbind=False
 
-    def __init__(self):
-        self.conectar()
-
-    def __init__(self,username,password):
+    
+    def __init__(self,username="",password=""):
         self.conectar(username,password)        
  
-    def conectar(self,username="",password=""):
+    def conectar(self,username,password):
         try:
             self.con=ldap.initialize("ldap://papion.gonzalonazareno.org")
             self.con.protocol_version = ldap.VERSION3
