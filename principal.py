@@ -1,7 +1,7 @@
 from bottle import route, template, run, static_file, error,request,response,redirect,error
 import sesion
 from gestiona import my_template
-import libldap
+from libldap import LibLDAP
 
 @route('/')
 def index():
