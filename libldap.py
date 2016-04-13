@@ -3,18 +3,42 @@ import ldif
 from StringIO import StringIO
 from ldap.cidict import cidict
 
-def comprobar(username,password):
-    username="uid=%s,ou=People,dc=gonzalonazareno,dc=org" % username
-    try:
-        con=ldap.initialize("ldap://papion.gonzalonazareno.org")
-        con.protocol_version = ldap.VERSION3
-        if con.simple_bind_s(username,password)[0]==97:
-            return True
-        else:
-            return False
-    except ldap.LDAPError, e:
-        return False
+class LibLDAP:
+    base_dn="ou=People,dc=gonzalonazareno,dc=org"
+    con=""
+    isbind=False
 
+    def __init__(self):
+        try:
+            this.con=ldap.initialize("ldap://papion.gonzalonazareno.org")
+            this.con.protocol_version = ldap.VERSION3
+            if con.simple_bind_s()[0]==97:
+                this.isbind=True
+            else:
+                this.isbind=False
+        except ldap.LDAPError, e:
+            this.isbind=False
+
+    def __init__(self,username,password):
+        try:
+            this.con=ldap.initialize("ldap://papion.gonzalonazareno.org")
+            this.con.protocol_version = ldap.VERSION3
+            if con.simple_bind_s(username,password)[0]==97:
+                this.isbind=True
+            else:
+                this.isbind=False
+        except ldap.LDAPError, e:
+            this.isbind=False
+ 
+
+"""        a=con.search_s( base_dn, ldap.SCOPE_SUBTREE, filter)      $
+        ld=helpldap.get_search_results(a)
+        for l in ld:
+                print l.get_attr_values("uid")[0]
+"""
+
+    
+        
 def get_search_results(results):
     """Given a set of results, return a list of LDAPSearchResult
     objects.
