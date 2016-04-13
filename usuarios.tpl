@@ -1,5 +1,5 @@
 % include('header.tpl',info=info)
- <form class="navbar-form navbar-left" role="search">
+ <form action="/usuarios" method="get" class="navbar-form navbar-left" role="search">
  	<div class="form-group">
     	<input type="text" class="form-control" placeholder="Search">
     </div>

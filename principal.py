@@ -30,8 +30,10 @@ def do_logout():
 @route('/usuarios/<filtro>')
 def usuarios(filtro="*"):
     if sesion.islogin():
+        if filtro!="*":
+            filtro=filtro+"*"
         lldap=LibLDAP()
-        resultados=lldap.buscar('(givenname=%s*)'%filtro)
+        resultados=lldap.buscar('(givenname=%s)'%filtro)
         info={"resultados":resultados}
 
         return my_template('usuarios.tpl',info=info)
