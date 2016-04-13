@@ -12,8 +12,13 @@
     % for r in info["resultados"]:
     <tr>
       <td></td>
-      {{r.get_attr_values("gidnumber")[0]}}
+      % if r.get_attr_values("gidnumber")[0]=="2001":
+        <td><span class="glyphicon glyphicon-user" aria-hidden="true"></td>
+      % else:
+        <td><span class="glyphicon glyphicon-education" aria-hidden="true"></td>
+      % end  
       
+    </tr>
     % end
     </table>
 
