@@ -30,7 +30,7 @@ def do_logout():
 @route('/usuarios')
 def usuarios():
     if sesion.islogin():
-        filtro = request.GET('search')
+        filtro = request.GET.get('search')
         print request.forms.get('search')
         lldap=LibLDAP()
         resultados=lldap.buscar('(givenname=%s*)'%filtro)
