@@ -36,7 +36,7 @@ def usuarios():
         else:
             busqueda='(givenname=*)'
         lldap=LibLDAP()
-        resultados=lldap.buscar('(givenname=%s*)'%filtro.get("givenname"))
+        resultados=lldap.buscar(busqueda)
         info={"resultados":resultados}
         return my_template('usuarios.tpl',info=info)
     else:
