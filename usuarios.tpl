@@ -5,13 +5,13 @@
         <div class="form-group">
             <label for="nombre" class="control-label col-xs-2">Nombre:</label>
             <div class="col-xs-4">
-                <input name="givenname" type="text" class="form-control" id="inputEmail" placeholder="Search...">
+                <input name="q" type="text" value="{{info["params"].get("q")}}" class="form-control" id="q" placeholder="Nombre...">
             </div>
         </div>
         <div class="form-group">
             <label for="inputPassword" class="control-label col-xs-2">Tipo:</label>
             <div class="col-xs-4">
-                <select name="tipo" class="form-control">
+                <select name="t" class="form-control">
                 % for i in xrange(0,9):
                   <option value="{{i}}">{{tipos(str(i))}}</option>
                 % end
@@ -22,7 +22,7 @@
         
         <div class="form-group">
             <div class="col-xs-offset-2 col-xs-10">
-                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="submit" class="btn btn-primary">Buscar</button>
             </div>
         </div>
     </form>

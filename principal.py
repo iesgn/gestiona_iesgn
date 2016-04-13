@@ -31,13 +31,16 @@ def do_logout():
 @route('/usuarios')
 def usuarios():
     if sesion.islogin():
+        info={}
         if(request.GET):
             pass
         else:
             busqueda='(givenname=*)'
+            info["params"]={"q":"","t":""}
         lldap=LibLDAP()
         resultados=lldap.buscar(busqueda)
-        info={"resultados":resultados}
+        info["resultados"]=resultados
+        
         return my_template('usuarios.tpl',info=info)
     else:
         redirect('/')
