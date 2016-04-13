@@ -11,7 +11,7 @@
     <tr><td>N.</td><td>A/P</td><td>Usuario (Login)</td><td>Tipo</td><td>Mod.</td><td>Borrar</td></tr>
     <% import gestiona
     cont=0
-    % for r in info["resultados"]:
+    for r in info["resultados"]:
     cont=cont+1 %>
     <tr>
       <td>{{cont}}</td>
