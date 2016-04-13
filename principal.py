@@ -24,7 +24,7 @@ def do_logout():
 @route('/usuarios')
 def usuarios():
     if sesion.islogin():
-        return my_template('usuarios.tpl',info=info)
+        return my_template('usuarios.tpl')
     else:
         redirect('/')
 
