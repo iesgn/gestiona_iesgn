@@ -12,7 +12,7 @@
     % for r in info["resultados"]:
     <tr>
       <td></td>
-      {{r.get_attr_values("uid")[0]}}
+      {{r.get_attr_values("gidnumber")[0]}}
       
     % end
     </table>
