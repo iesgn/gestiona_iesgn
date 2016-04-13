@@ -2,9 +2,11 @@
  
  <form action="/usuarios" method="get" role="form">
   <div class="form-group">
-     <label  class="col-sm-2 control-label">Nombre:</label>
+     <label for="givenname">Nombre:</label>
      <input name="givenname" type="text" value="{{info["params"].get("givenname")}}" class="form-control" placeholder="Search">
   </div>
+  <div class="form-group">
+  <label for="tipo">Nombre:</label>
   <select class="form-control">
         <option>1</option>
         <option>2</option>
