@@ -40,16 +40,6 @@ def usuarios():
     else:
         redirect('/')
 
-@route('/prueba')
-def prueba():
-    class RegistrationForm(Form):
-        username     = StringField('Username', [validators.Length(min=4, max=25)])
-        email        = StringField('Email Address', [validators.Length(min=6, max=35)])
-        accept_rules = BooleanField('I accept the site rules', [validators.InputRequired()])
-
-    form=RegistrationForm()
-    info={"form":form}
-    return my_template('prueba.tpl',info=info)
 
 
 @route('/static/<filepath:path>')
