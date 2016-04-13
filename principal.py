@@ -12,7 +12,7 @@ def do_login():
     username = request.forms.get('username')
     password = request.forms.get('password')
     lldap=LibLDAP(username,password)
-   
+
     if lldap.isbind:
         sesion.set(username)
         redirect('/')
@@ -28,6 +28,10 @@ def do_logout():
 @route('/usuarios')
 def usuarios():
     if sesion.islogin():
+        lldap=LibLDAP()
+        resultados=lldap.buscar('(uid=*)')
+        for r in resultados:
+            print r.get_attr_values("uid")[0]
 
         return my_template('usuarios.tpl')
     else:

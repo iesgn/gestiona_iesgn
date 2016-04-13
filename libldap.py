@@ -36,8 +36,9 @@ class LibLDAP:
         for l in ld:
                 print l.get_attr_values("uid")[0]
 """
-
-    
+    def buscar(filter):
+        result=self.con.search_s(self.base_dn, ldap.SCOPE_SUBTREE, filter)
+        return get_search_results(result)
         
 def get_search_results(results):
     """Given a set of results, return a list of LDAPSearchResult
