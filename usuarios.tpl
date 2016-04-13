@@ -1,11 +1,11 @@
 % include('header.tpl',info=info)
  
  <form action="/usuarios" method="get" role="form">
-  <div class="form-group">
+  <div class="form-group col-xs-4">
      <label for="givenname">Nombre:</label>
      <input name="givenname" type="text" value="{{info["params"].get("givenname")}}" class="form-control" placeholder="Search">
   </div>
-  <div class="form-group">
+  <div class="form-group col-xs-4">
   <label for="tipo">Nombre:</label>
   <select class="form-control">
         <option>1</option>
