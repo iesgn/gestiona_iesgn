@@ -3,6 +3,10 @@ import sesion
 from gestiona import my_template
 from libldap import LibLDAP
 
+@route('/static/<filepath:path>')
+def server_static(filepath):
+    return static_file(filepath, root='static')
+
 @route('/')
 def index():
     return my_template("index.tpl")
@@ -30,16 +34,14 @@ def do_logout():
 def usuarios(fil="*"):
     if sesion.islogin():
         lldap=LibLDAP()
-        resultados=lldap.buscar('(givenname=%s)'%fil)
+        resultados=lldap.buscar('(givenname=%s)'%filepath)
         info={"resultados":resultados}
 
         return my_template('usuarios.tpl',info=info)
     else:
         redirect('/')
 
-@route('/static/<filepath:path>')
-def server_static(filepath):
-    return static_file(filepath, root='static')
+
 
 @error(404)
 def error404(error):
