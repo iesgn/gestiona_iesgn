@@ -18,7 +18,12 @@ class LibLDAP:
         try:
             self.con=ldap.initialize("ldap://papion.gonzalonazareno.org")
             self.con.protocol_version = ldap.VERSION3
-            if self.con.simple_bind_s(username,password)[0]==97:
+            if username!="":
+                username="uid=%s,ou=People,dc=gonzalonazareno,dc=org" % username
+                respuesta=self.con.simple_bind_s(username,password)[0]
+            else:
+                respuesta=self.con.simple_bind_s()[0]
+            if respuesta==97:
                 self.isbind=True
             else:
                 self.isbind=False
