@@ -4,9 +4,9 @@
         % for field in info["form"]:
         <div class="form-group">
             
-            {{field.label}}
+            {{!field.label}}
             <div class="col-xs-4">
-                {{field(class_="form-control")}}
+                {{!field(class_="form-control")}}
             </div>
         </div>
         % end
