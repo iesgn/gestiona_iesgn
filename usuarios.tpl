@@ -9,7 +9,7 @@
 
 <table class="table table-bordered">
     <tr><td>N.</td><td>A/P</td><td>Usuario (Login)</td><td>Tipo</td><td>Mod.</td><td>Borrar</td></tr>
-    <% import gestiona
+    <% from gestiona import tipo
     cont=0
     for r in info["resultados"]:
     cont=cont+1 %>
@@ -21,7 +21,7 @@
         <td><span class="glyphicon glyphicon-education" aria-hidden="true"></td>
       % end  
       <td>{{r.get_attr_values("sn")[0]+" "+r.get_attr_values("givenname")[0]}} ({{r.get_attr_values("uid")[0]}})</td>
-      <td>{{gestiona.tipo(r.get_attr_values("description")[0])}}</td>
+      <td>{{tipo(r.get_attr_values("description")[0])}}</td>
       <td><a href="usuarios/modificar/{{r.get_attr_values('uid')[0]}}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
       <td><a href="usuarios/borrar/{{r.get_attr_values('uid')[0]}}"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span></a></td>
     </tr>
