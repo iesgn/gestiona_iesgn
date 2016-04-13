@@ -31,7 +31,7 @@ def do_logout():
 def usuarios(filtro="*"):
     if sesion.islogin():
         lldap=LibLDAP()
-        resultados=lldap.buscar('(givenname=%s)'%filtro)
+        resultados=lldap.buscar('(givenname=%s*)'%filtro)
         info={"resultados":resultados}
 
         return my_template('usuarios.tpl',info=info)
