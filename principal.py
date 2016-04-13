@@ -14,6 +14,7 @@ def do_login():
     lldap=LibLDAP(username,password)
     print lldap.isbind
     print lldap.con
+    print lldap.con.simple_bind_s(username,password)
     if lldap.isbind:
         sesion.set(username)
         redirect('/')
