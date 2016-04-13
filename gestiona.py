@@ -9,9 +9,9 @@ def tipos(tipo):
 		tipo="8"
 	return vtipos[tipo]
 
-def getFiltro(dict):
+def getFiltro(filtro):
 	respuesta={}
-	for key,value in dict:
+	for key,value in filtro:
 		print key,value
 		if value!=None:
 			respuesta[key]=value
