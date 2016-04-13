@@ -12,7 +12,7 @@ class LibLDAP:
         self.conectar()
 """
     def __init__(self,username,password):
-        self.conectar(username,password)        
+        conectar(username,password)        
  
     def conectar(username="",password=""):
         try:
