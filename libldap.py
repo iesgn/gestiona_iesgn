@@ -10,25 +10,25 @@ class LibLDAP:
 
     def __init__(self):
         try:
-            this.con=ldap.initialize("ldap://papion.gonzalonazareno.org")
-            this.con.protocol_version = ldap.VERSION3
+            self.con=ldap.initialize("ldap://papion.gonzalonazareno.org")
+            self.con.protocol_version = ldap.VERSION3
             if con.simple_bind_s()[0]==97:
-                this.isbind=True
+                self.isbind=True
             else:
-                this.isbind=False
+                self.isbind=False
         except ldap.LDAPError, e:
-            this.isbind=False
+            self.isbind=False
 
     def __init__(self,username,password):
         try:
-            this.con=ldap.initialize("ldap://papion.gonzalonazareno.org")
-            this.con.protocol_version = ldap.VERSION3
+            self.con=ldap.initialize("ldap://papion.gonzalonazareno.org")
+            self.con.protocol_version = ldap.VERSION3
             if con.simple_bind_s(username,password)[0]==97:
-                this.isbind=True
+                self.isbind=True
             else:
-                this.isbind=False
+                self.isbind=False
         except ldap.LDAPError, e:
-            this.isbind=False
+            self.isbind=False
  
 
 """        a=con.search_s( base_dn, ldap.SCOPE_SUBTREE, filter)      $
