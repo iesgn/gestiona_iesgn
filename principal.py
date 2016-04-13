@@ -26,11 +26,11 @@ def do_logout():
     redirect('/')
 
 @route('/usuarios')
-@route('/usuarios/<filter>')
-def usuarios(filter="*"):
+@route('/usuarios/<fil>')
+def usuarios(fil="*"):
     if sesion.islogin():
         lldap=LibLDAP()
-        resultados=lldap.buscar('(givenname=%s)'%filter)
+        resultados=lldap.buscar('(givenname=%s)'%fil)
         info={"resultados":resultados}
 
         return my_template('usuarios.tpl',info=info)
