@@ -11,7 +11,8 @@ def index():
 def do_login():
     username = request.forms.get('username')
     password = request.forms.get('password')
-    if libldap.comprobar(username,password):
+    lldap=libldap(username,password)
+    if lldap.isbind:
         sesion.set(username)
         redirect('/')
     else:
