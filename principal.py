@@ -32,7 +32,7 @@ def do_logout():
 def usuarios():
     if sesion.islogin():
         info={}
-        tipo="*" if request.forms.get("t")=="0" else request.forms.get("t")
+        tipo="*" if request.forms.get("t")=="0" or not request.forms.get("t") else request.forms.get("t")
         givenname="*" if request.forms.get("q") is None else request.forms.get("q")
         busqueda='(&(givenname=%s*)(description=%s))'%(givenname,tipo)
         info["params"]={"q":givenname,"t":tipo}
