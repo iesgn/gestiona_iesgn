@@ -23,13 +23,19 @@
         <div class="form-group">
             <label for="nombre" class="control-label col-xs-2">Nombre:</label>
             <div class="col-xs-4">
-                <input name="nombre" type="text" class="form-control" id="nombre" placeholder="Usuario" required autofocus>
+                <input name="nombre" type="text" class="form-control" id="nombre" placeholder="" required>
             </div>
         </div>
          <div class="form-group">
             <label for="apellidos" class="control-label col-xs-2">Apellidos:</label>
             <div class="col-xs-4">
-                <input name="apellidos" type="text" class="form-control" id="apellidos" placeholder="Usuario" required autofocus>
+                <input name="apellidos" type="text" class="form-control" id="apellidos" placeholder="" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ciudad" class="control-label col-xs-2">Ciudad:</label>
+            <div class="col-xs-4">
+                <input name="ciudad" type="text" class="form-control" id="ciudad" placeholder="" required>
             </div>
         </div>
         <div class="form-group">
