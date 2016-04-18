@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from bottle import template
-from sesion import get
+from sesion import Sesion
 
 def tipos(tipo):
 
@@ -23,5 +23,7 @@ def getFiltro(filtro):
 	return respuesta
 
 def my_template(name,info={}):
-	info["login"]=get()
+	s=Sesion()
+	s.load()
+	info["login"]=s.get("user")
 	return template(name,info=info)

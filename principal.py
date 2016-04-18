@@ -1,21 +1,25 @@
 from bottle import route, template, run, static_file, error,request,response,redirect,error
-import sesion
+from sesion import Sesion
 from gestiona import *
 from libldap import LibLDAP
 
 
 @route('/')
 def index():
+    s=Sesion()
+    s.start()
     return my_template("index.tpl")
 
 @route('/login',method="post")
 def do_login():
+    s=Sesion()
+    s.load()
     username = request.forms.get('username')
     password = request.forms.get('password')
     lldap=LibLDAP(username,password)
 
     if lldap.isbind:
-        sesion.set(username)
+        s.set("user",username)
         redirect('/')
     else:
         info={"error":True}
@@ -23,7 +27,8 @@ def do_login():
 
 @route('/logout')
 def do_logout():
-    sesion.delete()
+    s=Sesion()
+    s.delete()
     redirect('/')
 
 
