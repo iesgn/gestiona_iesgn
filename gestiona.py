@@ -24,7 +24,6 @@ def getFiltro(filtro):
 
 def my_template(name,info={}):
 	
-	if sesion.islogin():
-		info["login"]=sesion.get("user")
-	
+	info["login"]=sesion.get("user") if sesion.islogin() else ""
+
 	return template(name,info=info)

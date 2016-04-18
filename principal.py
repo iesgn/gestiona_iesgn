@@ -26,7 +26,8 @@ def do_login():
 
     #if lldap.isbind:
     if True:
-        sesion.set("user",username)    
+        sesion.set("user",username) 
+        sesion.set("pass",password)    
         redirect('/')
     else:
         info={"error":True}
@@ -46,7 +47,6 @@ def usuarios():
         tipo="*" if request.forms.get("t")=="0" or request.forms.get("t") is None else request.forms.get("t")
         givenname="*" if request.forms.get("q") is None else request.forms.get("q")+"*"
         busqueda='(&(givenname=%s)(description=%s))'%(givenname,tipo)
-        print busqueda
         info["params"]={"q":givenname,"t":tipo}
         
         lldap=LibLDAP()
@@ -74,4 +74,4 @@ def server_static(filepath):
 def error404(error):
     return "Nada"
 
-run(app=app,host='0.0.0.0', port=8080)
+run(app=app,host='0.0.0.0', port=8080,reloader=True)
