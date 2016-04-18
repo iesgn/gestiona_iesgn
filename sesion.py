@@ -1,4 +1,4 @@
-from bottle import response,request
+from bottle import request
 
 def set(key,value):
 	s = request.environ.get('beaker.session')
