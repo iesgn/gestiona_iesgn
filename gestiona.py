@@ -23,9 +23,8 @@ def getFiltro(filtro):
 	return respuesta
 
 def my_template(name,info={}):
-	#s=Sesion()
-	#s.load()
-	s = request.environ.get('beaker.session')
-	info["login"]=s.get("user")
-	#info["login"]=""
+	
+	if sesion.islogin():
+		info["login"]=sesion.get("user")
+	
 	return template(name,info=info)
