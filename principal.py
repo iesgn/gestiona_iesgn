@@ -1,25 +1,37 @@
-from bottle import route, template, run, static_file, error,request,response,redirect,error
-from sesion import Sesion
+from bottle import app, route, template, run, static_file, error,request,response,redirect,error
+#from sesion import Sesion
 from gestiona import *
 from libldap import LibLDAP
+from beaker.middleware import SessionMiddleware
+
+session_opts = {
+    'session.type': 'file',
+    'session.cookie_expires': 300,
+    'session.data_dir': './data',
+    'session.auto': True
+}
+app = SessionMiddleware(app(), session_opts)
 
 
 @route('/')
 def index():
-    s=Sesion()
-    s.start()
+    #s=Sesion()
+    #s.start()
+
     return my_template("index.tpl")
 
 @route('/login',method="post")
 def do_login():
-    s=Sesion()
-    s.load()
+    #s=Sesion()
+    #s.load()
     username = request.forms.get('username')
     password = request.forms.get('password')
     lldap=LibLDAP(username,password)
 
     if lldap.isbind:
-        s.set("user",username)
+        s = request.environ.get('beaker.session')
+        s["user"]=username
+        #s.set("user",username)
         redirect('/')
     else:
         info={"error":True}
@@ -27,8 +39,8 @@ def do_login():
 
 @route('/logout')
 def do_logout():
-    s=Sesion()
-    s.delete()
+    #s=Sesion()
+    #s.delete()
     redirect('/')
 
 
