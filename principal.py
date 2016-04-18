@@ -1,5 +1,5 @@
 from bottle import app, route, template, run, static_file, error,request,response,redirect,error
-#from sesion import Sesion
+import sesion
 from gestiona import *
 from libldap import LibLDAP
 from beaker.middleware import SessionMiddleware
@@ -15,23 +15,18 @@ app = SessionMiddleware(app(), session_opts)
 
 @route('/')
 def index():
-    #s=Sesion()
-    #s.start()
-
     return my_template("index.tpl")
 
 @route('/login',method="post")
 def do_login():
-    #s=Sesion()
-    #s.load()
+    
     username = request.forms.get('username')
     password = request.forms.get('password')
-    lldap=LibLDAP(username,password)
+    #lldap=LibLDAP(username,password)
 
-    if lldap.isbind:
-        s = request.environ.get('beaker.session')
-        s["user"]=username
-        #s.set("user",username)
+    #if lldap.isbind:
+    if True:
+        sesion.set("user",username)    
         redirect('/')
     else:
         info={"error":True}
@@ -39,8 +34,8 @@ def do_login():
 
 @route('/logout')
 def do_logout():
-    #s=Sesion()
-    #s.delete()
+    
+    sesion.delete()
     redirect('/')
 
 
@@ -79,4 +74,4 @@ def server_static(filepath):
 def error404(error):
     return "Nada"
 
-run(host='0.0.0.0', port=8080)
+run(app=app,host='0.0.0.0', port=8080)

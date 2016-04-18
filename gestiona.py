@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from bottle import template,request
-from sesion import Sesion
+import sesion
 
 def tipos(tipo):
 
@@ -26,6 +26,6 @@ def my_template(name,info={}):
 	#s=Sesion()
 	#s.load()
 	s = request.environ.get('beaker.session')
-	#info["login"]=s.get("user")
-	info["login"]=""
+	info["login"]=s.get("user")
+	#info["login"]=""
 	return template(name,info=info)
