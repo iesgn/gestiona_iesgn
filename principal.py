@@ -39,29 +39,20 @@ def do_logout():
     redirect('/')
 
 
-@route('/usuarios')
-def usuarios():
-    if sesion.islogin():
-        info={}
-        busqueda='(givenname=*)'
-        info["params"]={"q":"","t":"0"}
-        
-        lldap=LibLDAP()
-        resultados=lldap.buscar(busqueda)
-        info["resultados"]=resultados
-        
-        return my_template('usuarios.tpl',info=info)
-    else:
-        redirect('/')
 
-@route('/usuarios',method='post')
-def usuarios2():
+
+@route('/usuarios',method=['get','post'])
+def usuarios():
     if sesion.islogin():
         info={}
         tipo="*" if request.forms.get("t")=="0" or request.forms.get("t") is None else request.forms.get("t")
         givenname="*" if request.forms.get("q") is None else request.forms.get("q")+"*"
         busqueda='(&(givenname=%s)(description=%s))'%(givenname,tipo)
+        
         givenname=givenname[:-1]
+        if tipo=="*":
+            tipo="0"
+
         info["params"]={"q":givenname,"t":tipo}
         lldap=LibLDAP()
         resultados=lldap.buscar(busqueda)
