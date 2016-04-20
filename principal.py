@@ -75,6 +75,14 @@ def add():
             attrs['objectclass']=["inetOrgPerson","posixAccount","top"]
             attrs['uid']=request.forms.get("uid")
             attrs['sn']=request.forms.get("sn")
+            attrs["cn"]=request.forms.get("givenname")+" "+request.forms.get("sn");
+            attrs["givenname"]=request.forms.get("givenname");
+            attrs["mail"]=request.forms.get("mail");
+            attrs["gidnumber"]=request.forms.get("gidnumber");
+            attrs["localityname"]=request.forms.get("ciudad");
+            attrs["uidnumber"]=0;
+
+
             #attrs['objectclass'] = ['top','organizationalRole','simpleSecurityObject']
 #            attrs['cn'] = 'replica'
 #            attrs['userPassword'] = 'aDifferentSecret'
