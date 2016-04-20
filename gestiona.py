@@ -27,3 +27,10 @@ def my_template(name,info={}):
 	info["login"]=sesion.get("user") if sesion.islogin() else ""
 
 	return template(name,info=info)
+
+def lista_uid(resultados):
+	uid=[]
+	for r in resultados:
+		uid.append(r.get_attr_values('uidNumber')[0])
+	print uid
+	

@@ -64,10 +64,29 @@ def usuarios():
 
 
 
-@route('/usuarios/add')
+@route('/usuarios/add',method=['get','post'])
 def add():
     if sesion.islogin():
-        return my_template('add.tpl')
+        if request.POST:
+            lldap=LibLDAP(sesion.get("user"),sesion.get("pass"))
+            resultados=lldap.buscar('(uidNumber=*)')
+            lista_uid(resultados)
+            attrs = {}
+            attrs['objectclass']=["inetOrgPerson","posixAccount","top"]
+            attrs['uid']=request.forms.get("uid")
+            attrs['sn']=request.forms.get("sn")
+            #attrs['objectclass'] = ['top','organizationalRole','simpleSecurityObject']
+#            attrs['cn'] = 'replica'
+#            attrs['userPassword'] = 'aDifferentSecret'
+#            attrs['description'] = 'User object for replication using slurpd'
+            ldif = lldap.ldif(attrs)
+            print ldif
+            #ldap.add(ldif)
+        else:
+            lldap=LibLDAP(sesion.get("user"),sesion.get("pass"))
+            resultados=lldap.buscar('(uidNumber=*)')
+            lista_uid(resultados)
+            return my_template('add.tpl')
     else:
         redirect('/')
 

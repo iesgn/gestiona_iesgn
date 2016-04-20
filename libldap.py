@@ -1,4 +1,5 @@
 import ldap
+import ldap.modlist
 import ldif
 from StringIO import StringIO
 from ldap.cidict import cidict
@@ -32,6 +33,12 @@ class LibLDAP:
     def buscar(self,filter):
         result=self.con.search_s(self.base_dn, ldap.SCOPE_SUBTREE, filter)
         return get_search_results(result)
+    def add(self,ldif):
+        self.con.add_s(self.base_dn,ldif)
+        self.con.unbind_s()
+    def ldif(self,attrs):
+        return ldap.modlist.addModlist(attrs)
+
         
 def get_search_results(results):
     """Given a set of results, return a list of LDAPSearchResult
@@ -56,7 +63,7 @@ class LDAPSearchResult:
     """A class to model LDAP results.
     """
 
-    dn = ''
+    dn = 'ou=People,dc=gonzalonazareno,dc=org'
 
     def __init__(self, entry_tuple):
         """Create a new LDAPSearchResult object."""

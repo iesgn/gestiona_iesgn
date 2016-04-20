@@ -23,13 +23,13 @@
         <div class="form-group">
             <label for="nombre" class="control-label col-xs-2">Nombre:</label>
             <div class="col-xs-4">
-                <input name="nombre" type="text" class="form-control" id="nombre" placeholder="" required>
+                <input name="givenname" type="text" class="form-control" id="nombre" placeholder="" required>
             </div>
         </div>
          <div class="form-group">
             <label for="apellidos" class="control-label col-xs-2">Apellidos:</label>
             <div class="col-xs-4">
-                <input name="apellidos" type="text" class="form-control" id="apellidos" placeholder="" required>
+                <input name="sn" type="text" class="form-control" id="apellidos" placeholder="" required>
             </div>
         </div>
         <div class="form-group">
