@@ -32,5 +32,6 @@ def lista_uid(resultados):
 	uid=[]
 	for r in resultados:
 		uid.append(r.get_attr_values('uidNumber')[0])
-	print uid
+	print map(int,uid)
+	return max(map(int,uid))
 	

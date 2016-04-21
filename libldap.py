@@ -15,11 +15,11 @@ class LibLDAP:
  
     def conectar(self,username,password):
         try:
-            self.con=ldap.initialize("ldap://papion.gonzalonazareno.org")
+            #self.con=ldap.initialize("ldap://papion.gonzalonazareno.org")
+            self.con=ldap.initialize("ldap://192.168.122.72")
             self.con.protocol_version = ldap.VERSION3
             if username!="":
                 username="uid=%s,ou=People,dc=gonzalonazareno,dc=org" % username
-                print username
                 respuesta=self.con.simple_bind_s(username,password)[0]
             else:
                 respuesta=self.con.simple_bind_s()[0]
@@ -63,7 +63,7 @@ class LDAPSearchResult:
     """A class to model LDAP results.
     """
 
-    dn = 'ou=People,dc=gonzalonazareno,dc=org'
+    dn = 'dc=gonzalonazareno,dc=org'
 
     def __init__(self, entry_tuple):
         """Create a new LDAPSearchResult object."""

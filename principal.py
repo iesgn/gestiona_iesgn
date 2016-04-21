@@ -70,7 +70,8 @@ def add():
         if request.POST:
             lldap=LibLDAP(sesion.get("user"),sesion.get("pass"))
             resultados=lldap.buscar('(uidNumber=*)')
-            lista_uid(resultados)
+            ult_uid=lista_uid(resultados)
+
             attrs = {}
             attrs['objectclass']=["inetOrgPerson","posixAccount","top"]
             attrs['uid']=request.forms.get("uid")
@@ -91,9 +92,11 @@ def add():
             print ldif
             #ldap.add(ldif)
         else:
+            
+            
             lldap=LibLDAP(sesion.get("user"),sesion.get("pass"))
             resultados=lldap.buscar('(uidNumber=*)')
-            lista_uid(resultados)
+            ult_uid=lista_uid(resultados)
             return my_template('add.tpl')
     else:
         redirect('/')
