@@ -1,3 +1,6 @@
+import binascii
+import hashlib
+import base64
 from bottle import app, route, template, run, static_file, error,request,response,redirect,error
 import sesion
 from gestiona import *
@@ -70,33 +73,22 @@ def add():
         if request.POST:
             lldap=LibLDAP(sesion.get("user"),sesion.get("pass"))
             resultados=lldap.buscar('(uidNumber=*)')
-            ult_uid=lista_uid(resultados)
+            
 
-            attrs = {}
+            attrs=request.forms
             attrs['objectclass']=["inetOrgPerson","posixAccount","top"]
-            attrs['uid']=request.forms.get("uid")
-            attrs['sn']=request.forms.get("sn")
-            attrs["cn"]=request.forms.get("givenname")+" "+request.forms.get("sn");
-            attrs["givenname"]=request.forms.get("givenname");
-            attrs["mail"]=request.forms.get("mail");
-            attrs["gidnumber"]=request.forms.get("gidnumber");
-            attrs["localityname"]=request.forms.get("ciudad");
-            attrs["uidnumber"]=0;
-
-
-            #attrs['objectclass'] = ['top','organizationalRole','simpleSecurityObject']
-#            attrs['cn'] = 'replica'
-#            attrs['userPassword'] = 'aDifferentSecret'
-#            attrs['description'] = 'User object for replication using slurpd'
+            attrs['uidNumber']=str(lista_uid(resultados))
+            path="/home/alumnos/" if attrs["gidnumber"]=="2001" else "/home/profesores/" 
+            attrs["homedirectory"]=path+attrs["uid"]
+            attrs["userpassword"]=base64.b64encode(binascii.unhexlify(hashlib.md5(attrs["userpassword"]).hexdigest()))
+            attrs["cn"]=attrs["givenname"]+" "+attrs["sn"]
             ldif = lldap.ldif(attrs)
             print ldif
-            #ldap.add(ldif)
+            lldap.add(attrs["uid"],ldif)
+            redirect('/usuarios')
         else:
-            
-            
-            lldap=LibLDAP(sesion.get("user"),sesion.get("pass"))
-            resultados=lldap.buscar('(uidNumber=*)')
-            ult_uid=lista_uid(resultados)
+        
+
             return my_template('add.tpl')
     else:
         redirect('/')

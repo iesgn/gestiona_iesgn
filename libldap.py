@@ -33,8 +33,8 @@ class LibLDAP:
     def buscar(self,filter):
         result=self.con.search_s(self.base_dn, ldap.SCOPE_SUBTREE, filter)
         return get_search_results(result)
-    def add(self,ldif):
-        self.con.add_s(self.base_dn,ldif)
+    def add(self,uid,ldif):
+        self.con.add_s("cn="+uid+","+self.base_dn,ldif)
         self.con.unbind_s()
     def ldif(self,attrs):
         return ldap.modlist.addModlist(attrs)

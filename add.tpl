@@ -11,13 +11,13 @@
         <div class="form-group">
             <label for="password" class="control-label col-xs-2">Contraseña:</label>
             <div class="col-xs-4">
-                <input name="password" type="password" class="form-control" id="password" placeholder="Password" required>
+                <input name="userpassword" type="password" class="form-control" id="password" placeholder="Password" required>
             </div>
         </div>
         <div class="form-group">
             <label for="email" class="control-label col-xs-2">Email:</label>
             <div class="col-xs-4">
-                <input name="email" type="email" class="form-control" id="email" placeholder="Email" required>
+                <input name="mail" type="email" class="form-control" id="email" placeholder="Email" required>
             </div>
         </div>
         <div class="form-group">
@@ -35,13 +35,13 @@
         <div class="form-group">
             <label for="ciudad" class="control-label col-xs-2">Ciudad:</label>
             <div class="col-xs-4">
-                <input name="ciudad" type="text" class="form-control" id="ciudad" placeholder="" required>
+                <input name="localityname" type="text" class="form-control" id="ciudad" placeholder="" required>
             </div>
         </div>
         <div class="form-group">
             <label for="ap" class="control-label col-xs-2">Grupo:</label>
             <div class="col-xs-4">
-                <select name="ap" class="form-control">
+                <select name="gidnumber" class="form-control">
                     <option value="2001">Alumno</option>
                     <option value="2000">Profesor</option>
                
@@ -53,7 +53,7 @@
         <div class="form-group">
             <label for="t" class="control-label col-xs-2">Tipo:</label>
             <div class="col-xs-4">
-                <select name="t" class="form-control">
+                <select name="description" class="form-control">
                 % for i in xrange(0,9):
                
                   <option value="{{i}}">{{tipos(str(i))}}</option>
