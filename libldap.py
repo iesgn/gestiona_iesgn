@@ -38,7 +38,7 @@ class LibLDAP:
         self.con.unbind_s()
     def ldif(self,attrs):
         return ldap.modlist.addModlist(attrs)
-    def del(self,uid):
+    def delete(self,uid):
         self.con.delete_s("cn="+uid+","+self.base_dn)
         self.con.unbind_s()
 
