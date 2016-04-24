@@ -97,7 +97,7 @@ def add():
 def borrar(uid):
     if sesion.islogin():
         if request.POST:
-            return request.forms.GET("respuesta")
+            return str(request.forms.GET("respuesta"))
         else:
             info={"uid":uid}
             return my_template('borrar.tpl',info)
