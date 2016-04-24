@@ -100,7 +100,7 @@ def borrar(uid):
             pass
         else:
             info["uid"]=uid
-            retrun my_template('borrar.tpl')
+            return my_template('borrar.tpl')
 
 
 @route('/static/<filepath:path>')
