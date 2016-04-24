@@ -93,6 +93,15 @@ def add():
     else:
         redirect('/')
 
+@route('borrar/<uid>',method=['get','post'])
+def borrar(uid):
+    if sesion.islogin():
+        if request.POST:
+            pass
+        else:
+            info["uid"]=uid
+            retrun my_template('borrar.tpl')
+
 
 @route('/static/<filepath:path>')
 def server_static(filepath):
