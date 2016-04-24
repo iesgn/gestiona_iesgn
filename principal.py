@@ -17,6 +17,7 @@ app = SessionMiddleware(app(), session_opts)
 
 
 @route('/')
+@route('/login',method="get")
 def index():
     return my_template("index.tpl")
 
@@ -82,9 +83,7 @@ def add():
             attrs["homedirectory"]=path+attrs["uid"]
             attrs["userpassword"]=base64.b64encode(binascii.unhexlify(hashlib.md5(attrs["userpassword"]).hexdigest()))
             attrs["cn"]=attrs["givenname"]+" "+attrs["sn"]
-            ldif = lldap.ldif(attrs)
-            print ldif
-            lldap.add(attrs["uid"],ldif)
+            lldap.add(attrs["uid"],attrs)
             redirect('/usuarios')
         else:
         
@@ -97,7 +96,12 @@ def add():
 def borrar(uid):
     if sesion.islogin():
         if request.POST:
-            return str(request.forms.get("respuesta"))
+            if request.forms.get("respuesta")=="no":
+                redirect('/usuarios')
+            else:
+                lldap=LibLDAP(sesion.get("user"),sesion.get("pass"))
+                lldpap.del(uid)
+                redirect('/usuarios')
         else:
             info={"uid":uid}
             return my_template('borrar.tpl',info)

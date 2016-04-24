@@ -15,8 +15,8 @@ class LibLDAP:
  
     def conectar(self,username,password):
         try:
-            self.con=ldap.initialize("ldap://papion.gonzalonazareno.org")
-            #self.con=ldap.initialize("ldap://192.168.122.72")
+            #self.con=ldap.initialize("ldap://papion.gonzalonazareno.org")
+            self.con=ldap.initialize("ldap://192.168.122.72")
             self.con.protocol_version = ldap.VERSION3
             if username!="":
                 username="uid=%s,ou=People,dc=gonzalonazareno,dc=org" % username
@@ -33,11 +33,16 @@ class LibLDAP:
     def buscar(self,filter):
         result=self.con.search_s(self.base_dn, ldap.SCOPE_SUBTREE, filter)
         return get_search_results(result)
-    def add(self,uid,ldif):
-        self.con.add_s("cn="+uid+","+self.base_dn,ldif)
+    def add(self,uid,attrs):
+        self.con.add_s("cn="+uid+","+self.base_dn,self.ldif(attrs))
         self.con.unbind_s()
     def ldif(self,attrs):
         return ldap.modlist.addModlist(attrs)
+    def del(self,uid):
+        self.con.delete_s("cn="+uid+","+self.base_dn)
+        self.con.unbind_s()
+
+
 
         
 def get_search_results(results):
