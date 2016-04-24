@@ -1,7 +1,7 @@
 % include('header.tpl',info=info)
 
  <h3>Borrar usuario</h3>
- <form action="/borrar/{{info["uid"]}}" method="post" class="form-horizontal">
+ <form action="/usuarios/borrar/{{info["uid"]}}" method="post" class="form-horizontal">
         <div class="form-group">
             <p>¿Estás seguro de borrar el usuario {{info["uid"]}}?</p>
         </div>

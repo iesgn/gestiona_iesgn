@@ -93,7 +93,7 @@ def add():
     else:
         redirect('/')
 
-@route('borrar/<uid>',method=['get','post'])
+@route('/usuarios/borrar/<uid>',method=['get','post'])
 def borrar(uid):
     if sesion.islogin():
         if request.POST:
