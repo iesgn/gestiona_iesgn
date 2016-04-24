@@ -99,7 +99,7 @@ def borrar(uid):
         if request.POST:
             pass
         else:
-            info["uid"]=uid
+            info={"uid":uid}
             return my_template('borrar.tpl')
 
 
