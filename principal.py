@@ -29,8 +29,12 @@ def do_login():
     lldap=LibLDAP(username,password)
 
     if lldap.isbind:
+        busqueda='(uid=%s)'%username
+        resultados=lldap.buscar(busqueda)
+        info=resultados[0].get_attributes()
         sesion.set("user",username) 
         sesion.set("pass",password)    
+        sesion.set("grupo",info["gidNumber"][0])
         redirect('/')
     else:
         info={"error":True}
@@ -47,7 +51,7 @@ def do_logout():
 
 @route('/usuarios',method=['get','post'])
 def usuarios():
-    if sesion.islogin():
+    if sesion.islogin() and sesion.isprofesor():
         info={}
         tipo="*" if request.forms.get("t")=="0" or request.forms.get("t") is None else request.forms.get("t")
         givenname="*" if request.forms.get("q") is None else request.forms.get("q")+"*"
@@ -70,7 +74,7 @@ def usuarios():
 
 @route('/usuarios/add',method=['get','post'])
 def add():
-    if sesion.islogin():
+    if sesion.islogin() and sesion.isprofesor():
         if request.POST:
             lldap=LibLDAP(sesion.get("user"),sesion.get("pass"))
             resultados=lldap.buscar('(uidNumber=*)')
@@ -81,7 +85,7 @@ def add():
             attrs['uidNumber']=str(lista_uid(resultados))
             path="/home/alumnos/" if attrs["gidnumber"]=="2001" else "/home/profesores/" 
             attrs["homedirectory"]=path+attrs["uid"]
-            attrs["userpassword"]=base64.b64encode(binascii.unhexlify(hashlib.md5(attrs["userpassword"]).hexdigest()))
+            attrs["userpassword"]="{md5}"+base64.b64encode(binascii.unhexlify(hashlib.md5(attrs["userpassword"]).hexdigest()))
             attrs["cn"]=attrs["givenname"]+" "+attrs["sn"]
             lldap.add(attrs["uid"],attrs)
             redirect('/usuarios')
@@ -94,7 +98,7 @@ def add():
 
 @route('/usuarios/borrar/<uid>',method=['get','post'])
 def borrar(uid):
-    if sesion.islogin():
+    if sesion.islogin() and sesion.isprofesor():
         if request.POST:
             if request.forms.get("respuesta")=="no":
                 redirect('/usuarios')
@@ -105,6 +109,8 @@ def borrar(uid):
         else:
             info={"uid":uid}
             return my_template('borrar.tpl',info)
+    else:
+        redirect('/')
 
 @route('/usuarios/modificar/<uid>',method=['get','post'])
 def modificar(uid):
@@ -118,7 +124,9 @@ def modificar(uid):
             resultados=lldap.buscar(busqueda)
             print resultados[0].get_attributes()
             info=resultados[0].get_attributes()
-            return my_template('modificar.tpl',info)    
+            return my_template('modificar.tpl',info)
+    else:
+        redirect('/')    
 
 
 @route('/static/<filepath:path>')

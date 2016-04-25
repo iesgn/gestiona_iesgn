@@ -23,6 +23,13 @@ def islogin():
 	
 	return 'user' in s
 
+def isprofesor():
+	if get("grupo")=="2001":
+		return False
+	else:
+		return True
+
+
 
 
 
