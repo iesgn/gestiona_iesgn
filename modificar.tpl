@@ -11,7 +11,7 @@
         <div class="form-group">
             <label for="password" class="control-label col-xs-2">Contraseña:</label>
             <div class="col-xs-4">
-                <input name="userpassword" type="password" class="form-control" id="password" placeholder="Rellena si quieres cambiarla..." required>
+                <input name="userpassword" type="password" class="form-control" id="password" placeholder="Rellena para cambiarla...">
             </div>
         </div>
         <div class="form-group">
@@ -35,7 +35,7 @@
         <div class="form-group">
             <label for="ciudad" class="control-label col-xs-2">Ciudad:</label>
             <div class="col-xs-4">
-                <input name="localityname" value="{{info["l"][0]}}" type="text" class="form-control" id="ciudad" placeholder="" required>
+                <input name="l" value="{{info["l"][0]}}" type="text" class="form-control" id="ciudad" placeholder="" required>
             </div>
         </div>
         <div class="form-group">

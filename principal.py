@@ -115,15 +115,33 @@ def borrar(uid):
 @route('/usuarios/modificar/<uid>',method=['get','post'])
 def modificar(uid):
     if sesion.islogin():
+        lldap=LibLDAP(sesion.get("user"),sesion.get("pass"))
+        busqueda='(uid=%s)'%uid
+        resultados=lldap.buscar(busqueda)
+        info=resultados[0].get_attributes()
+
         if request.POST:
-            pass
+            attrs=request.forms
+            if attrs["userpassword"]=="":
+                del attrs["userpassword"]
+            else:
+                attrs["userpassword"]="{md5}"+base64.b64encode(binascii.unhexlify(hashlib.md5(attrs["userpassword"]).hexdigest()))
+            attrs["cn"]=attrs["givenname"]+" "+attrs["sn"]
+
+            old={}
+            new={}
+            for key,value in attrs.items():
+                print key,value
+                if value!=info[key][0]:
+                    new[key]=value
+                    old[key]=info[key][0]
+            print new
+            print old
+            lldap.modify(attrs["uid"],new,old)
+            redirect('/usuarios')
         else:
             
-            lldap=LibLDAP(sesion.get("user"),sesion.get("pass"))
-            busqueda='(uid=%s)'%uid
-            resultados=lldap.buscar(busqueda)
-            print resultados[0].get_attributes()
-            info=resultados[0].get_attributes()
+            
             return my_template('modificar.tpl',info)
     else:
         redirect('/')    

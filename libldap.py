@@ -34,15 +34,20 @@ class LibLDAP:
         result=self.con.search_s(self.base_dn, ldap.SCOPE_SUBTREE, filter)
         return get_search_results(result)
     def add(self,uid,attrs):
-        print self.ldif(attrs)
-        self.con.add_s("uid="+uid+","+self.base_dn,self.ldif(attrs))
+        self.con.add_s("uid="+uid+","+self.base_dn,self.addldif(attrs))
         self.con.unbind_s()
-    def ldif(self,attrs):
-        
+    def addldif(self,attrs):
         return ldap.modlist.addModlist(attrs)
     def delete(self,uid):
         self.con.delete_s("uid="+uid+","+self.base_dn)
         self.con.unbind_s()
+    def modify(self,uid,new,old):
+        print self.modldif(old,new)
+        self.con.modify_s("uid="+uid+","+self.base_dn,self.modldif(old,new))
+        self.con.unbind_s()
+    def modldif(self,old,new):
+        return ldap.modlist.modifyModlist(old,new)
+
 
 
 
