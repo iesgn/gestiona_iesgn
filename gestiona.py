@@ -36,3 +36,9 @@ def lista_uid(resultados):
 	
 	return max(map(int,uid))+1
 	
+def lista_usuarios_tipo(lista,tipo):
+	resultado=[]
+	for usu in lista:
+		if usu.get_attr_values("description")[0]==tipo:
+			resultado.append(usu.get_attr_values("sn")[0]+" "+usu.get_attr_values("givenname")[0]+","+usu.get_attr_values("uid")[0])
+	return sorted(resultado)

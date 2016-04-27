@@ -32,7 +32,7 @@
     </form>
     <hr/>
     <a href="/usuarios/add"><button type="submit" class="btn btn-primary">Nuevo usuario</button></a>
- 
+    <a href="/usuarios/tipo"><button type="submit" class="btn btn-primary">Asignar Tipo</button></a>
 
  <br/><h2>Usuarios</h2>
 

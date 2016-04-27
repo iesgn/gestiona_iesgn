@@ -144,7 +144,22 @@ def modificar(uid):
             
             return my_template('modificar.tpl',info)
     else:
-        redirect('/')    
+        redirect('/')
+
+@route('/usuarios/tipo')
+def tipo():
+    if sesion.islogin() and sesion.isprofesor():
+        lldap=LibLDAP(sesion.get("user"),sesion.get("pass"))
+        busqueda='(givenname=*)'
+        resultados1=lldap.buscar(busqueda)
+        
+        info={"no_asignado":lista_usuarios_tipo(resultados1," ")}
+        
+        return my_template('tipo.tpl',info)
+
+        
+    else:
+        redirect('/')
 
 
 @route('/static/<filepath:path>')
