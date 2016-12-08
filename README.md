@@ -1,2 +1,3 @@
 # gestiona_iesgn
-Programa para gestionar usuarios del LDAP del departamento de informática del IES Gonzalo Nazareno
+Programa desarrollado en django para gestionar usuarios del LDAP del departamento de informática del IES Gonzalo Nazareno
+
