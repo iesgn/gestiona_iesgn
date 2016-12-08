@@ -14,6 +14,8 @@ def index(request):
                 busqueda='(uid=%s)'%username
                 resultados=lldap.buscar(busqueda)
                 info=resultados[0].get_attributes()
+                print info["gidNumber"][0]
+                request.session["grupo"]=info["gidNumber"][0]
                 return render(request,"index.html")
         else:
                info={"error":True}
@@ -22,5 +24,6 @@ def index(request):
 def salir(request):
     del request.session["username"]
     del request.session["password"]
+    del request.session["grupo"]
     return redirect('/')
 
