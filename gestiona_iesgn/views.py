@@ -14,10 +14,11 @@ def index(request):
                 busqueda='(uid=%s)'%username
                 resultados=lldap.buscar(busqueda)
                 info=resultados[0].get_attributes()
-                return index2(request,username,info["sn"][0]+", "+info["givenname"][0])
+                info["login"]=True                
+                return render(request,"index.html",info)
         else:
                info={"error":True}
-               return render(request,"login.html",info)
+               return render(request,"index.html",info)
 
 def salir(request):
     del request.session["username"]
