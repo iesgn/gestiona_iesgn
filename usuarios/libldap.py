@@ -52,14 +52,6 @@ class LibLDAP:
         return ldap.modlist.modifyModlist(old,new)
 
 
-class myLDAP(LibLDAP):
-    def inicializar(self,request,username,password):
-        self.conectar(username,password)
-        if self.isbind:
-            request.session['user']=username
-            request.session['pass']=password
-    def islogin(self):
-        return not request,session.get("user")==None
 
 
         

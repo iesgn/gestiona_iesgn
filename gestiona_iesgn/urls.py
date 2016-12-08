@@ -15,7 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from gestiona_iesgn.views import index,salir
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$',index),
+    url(r'^logout/$',salir),
+
 ]
