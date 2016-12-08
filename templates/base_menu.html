@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 {% block login %}
-{% if login %}
+{% if request.session.username %}
           <form action="logout" class="navbar-form navbar-right">
               {% csrf_token %}
+              Usuario:<strong>{{request.session.username}}</strong>
+          
           <button type="submit" class="btn btn-danger">Salir</button>
          </form>
         
@@ -30,7 +32,7 @@
 </div><!--/.navbar-collapse -->
 {% endblock%}
 {% block menu %}
-{% if login %}
+{% if request.session.username %}
 <ul class="nav navbar-nav">
  <li class="active"><a href="#">Home</a></li>
  <li><a href="#about">About</a></li>

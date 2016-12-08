@@ -14,8 +14,7 @@ def index(request):
                 busqueda='(uid=%s)'%username
                 resultados=lldap.buscar(busqueda)
                 info=resultados[0].get_attributes()
-                info["login"]=True                
-                return render(request,"index.html",info)
+                return render(request,"index.html")
         else:
                info={"error":True}
                return render(request,"index.html",info)
