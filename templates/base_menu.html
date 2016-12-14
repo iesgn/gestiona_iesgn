@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block login %}
 {% if request.session.username %}
-          <form action="logout" class="navbar-form navbar-right">
+          <form action="/logout/" method="post" class="navbar-form navbar-right">
               {% csrf_token %}
               Usuario:<strong>{{request.session.username}}</strong>
 

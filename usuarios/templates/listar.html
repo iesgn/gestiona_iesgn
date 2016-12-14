@@ -6,8 +6,17 @@
 <div class="row">
   <div class="col-md-8">
     <table class="table table-bordered">
+      <tr>
+        <td class="text-center"><strong>N.</strong></td>
+        <td><strong>Usuario</strong></td>
+        <td><strong>Correo</strong></td>
+        <td><strong>A/P</strong></td>
+        <td><strong>Modificar</strong></td>
+        <td><strong>Borrar</strong></td>
+      </tr>
       {% for r in resultados %}
       <tr>
+        <td class="text-center">{{forloop.counter}}</td>
         <td>{{r.sn.0}},{{r.givenname.0}}</td>
         <td>{{r.mail.0}}</td>
         {% if r.gidnumber.0 == '2001' %}
@@ -15,6 +24,8 @@
         {% else %}
           <td class="text-center"><span class="glyphicon glyphicon-education"  aria-hidden="true"></span></td>
         {% endif%}
+        <td class="text-center"><a href="/usuarios/update/{{r.uidnumber.0}}"><span class="glyphicon glyphicon-edit" style="color:green" aria-hidden="true"></span></a></td>
+        <td class="text-center"><a href="/usuarios/del/{{r.uidnumber.0}}"><span class="glyphicon glyphicon-trash" style="color:red" aria-hidden="true"></span></a></td>
       </tr>
 
 {% endfor %}
