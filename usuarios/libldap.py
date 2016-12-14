@@ -4,7 +4,7 @@ import ldif
 from StringIO import StringIO
 from ldap.cidict import cidict
 
-    
+
 
 
 class LibLDAP:
@@ -12,10 +12,10 @@ class LibLDAP:
     con=""
     isbind=False
 
-    
+
     def __init__(self,username="",password=""):
-        self.conectar(username,password)        
- 
+        self.conectar(username,password)
+
     def conectar(self,username,password):
         try:
             #self.con=ldap.initialize("ldap://papion.gonzalonazareno.org")
@@ -54,7 +54,7 @@ class LibLDAP:
 
 
 
-        
+
 def get_search_results(results):
     """Given a set of results, return a list of LDAPSearchResult
     objects.
@@ -92,7 +92,7 @@ class LDAPSearchResult:
 
     def get_attributes(self):
         """Get a dictionary of all attributes.
-        get_attributes()->{'name1':['value1','value2',...], 
+        get_attributes()->{'name1':['value1','value2',...],
 				'name2: [value1...]}
         """
         return self.attrs
@@ -134,7 +134,7 @@ class LDAPSearchResult:
         """
         return self.dn
 
-                         
+
     def pretty_print(self):
         """Create a nice string representation of this object.
 
@@ -157,4 +157,3 @@ class LDAPSearchResult:
         ldif_out = ldif.LDIFWriter(out)
         ldif_out.unparse(self.dn, self.attrs)
         return out.getvalue()
-

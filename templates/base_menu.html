@@ -4,10 +4,10 @@
           <form action="logout" class="navbar-form navbar-right">
               {% csrf_token %}
               Usuario:<strong>{{request.session.username}}</strong>
-          
+
           <button type="submit" class="btn btn-danger">Salir</button>
          </form>
-        
+
 {% else %}
           <form action="/" method="post" class="navbar-form navbar-right">
               {% csrf_token %}
@@ -34,7 +34,7 @@
 {% block menu %}
 {% if request.session.username %}
 <ul class="nav navbar-nav">
-{% if request.session.grupo == '2000' %}
+{% if request.session.profesor %}
  <li class="dropdown">
  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Usuarios<span class="caret"></span></a>
  <ul class="dropdown-menu">

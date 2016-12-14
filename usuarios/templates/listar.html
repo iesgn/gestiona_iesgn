@@ -1,0 +1,26 @@
+{% extends "base_menu.html" %}
+
+
+{% block content %}
+<h2>Usuarios</h2>
+<div class="row">
+  <div class="col-md-8">
+    <table class="table table-bordered">
+      {% for r in resultados %}
+      <tr>
+        <td>{{r.sn.0}},{{r.givenname.0}}</td>
+        <td>{{r.mail.0}}</td>
+        {% if r.gidnumber.0 == '2001' %}
+          <td class="text-center"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></td>
+        {% else %}
+          <td class="text-center"><span class="glyphicon glyphicon-education"  aria-hidden="true"></span></td>
+        {% endif%}
+      </tr>
+
+{% endfor %}
+    </table>
+  </div>
+</div>
+
+
+{% endblock %}
