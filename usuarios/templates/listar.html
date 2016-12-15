@@ -2,23 +2,54 @@
 
 
 {% block content %}
-<h2>Usuarios</h2>
 <div class="row">
+<h3>Búsqueda</h3>
+<form action="/usuarios/" method="post" class="form-hotizontal">
+  <div class="col-md-6">
+
+
+
+    {% csrf_token %}
+    <div class="form-group">
+        <label>Nombre:</label>
+        {{ form.nombre}}
+    </div>
+    <div class="form-group">
+            <label>Apellidos:</label>
+            {{ form.apellidos}}
+    </div>
+
+    <div class="form-group">
+            <label>Clase:</label>
+            {{ form.clase}}
+    </div>
+
+
+    <button  type="submit" class="btn btn-primary">Buscar</button>
+
+</div>
+</form>
+</div>
+
+<div class="row">
+<h2>Usuarios</h2>
   <div class="col-md-8">
     <table class="table table-bordered">
       <tr>
         <td class="text-center"><strong>N.</strong></td>
-        <td><strong>Usuario</strong></td>
-        <td><strong>Correo</strong></td>
-        <td><strong>A/P</strong></td>
-        <td><strong>Modificar</strong></td>
-        <td><strong>Borrar</strong></td>
+        <td class="text-center"><strong>Usuario</strong></td>
+        <td class="text-center"><strong>Clase</strong></td>
+
+        <td class="text-center"><strong>A/P</strong></td>
+        <td class="text-center"><strong>Modificar</strong></td>
+        <td class="text-center"><strong>Borrar</strong></td>
       </tr>
       {% for r in resultados %}
       <tr>
         <td class="text-center">{{forloop.counter}}</td>
-        <td>{{r.sn.0}},{{r.givenname.0}}</td>
-        <td>{{r.mail.0}}</td>
+        <td>{{r.sn.0}}, {{r.givenname.0}}</td>
+        <td class="text-center">{{r.description.0}}</td>
+
         {% if r.gidnumber.0 == '2001' %}
           <td class="text-center"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></td>
         {% else %}
