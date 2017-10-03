@@ -3,8 +3,17 @@ from django.shortcuts import render,redirect
 from usuarios.libldap import LibLDAP
 from usuarios.forms import BuscarUsuario
 import operator
+from django.http import Http404  
+
+def is_profesor(function):
+    if not request.session["profesor"]:
+        raise Http404  
+    else:
+        return function
+
 
 # Create your views here.
+@is_profesor
 def listar(request):
     if request.session.get("profesor",False):
         if request.method=="GET":
@@ -54,3 +63,4 @@ def clase(lista):
             usuario["description"][0]="---"
         resultado.append(usuario)
     return resultado
+
