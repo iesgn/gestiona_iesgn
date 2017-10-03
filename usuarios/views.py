@@ -70,14 +70,14 @@ def add(request):
         lista=getLista("*","*","1","9")
         lista.sort(key=operator.itemgetter('uidnumber'))
         datos=dict(form.data)
-        daros["uidnumber"]=str(int(lista[-1]["uidnumber"][0])+1)
-        daros["cn"]=daros["givenname"]+" "+daros["sn"]
-        daros["loginshell"]="/bin/bash"
-        if daros["gidnumbres"]=="2000":
+        datos["uidnumber"]=str(int(lista[-1]["uidnumber"][0])+1)
+        datos["cn"]=datos["givenname"]+" "+datos["sn"]
+        datos["loginshell"]="/bin/bash"
+        if datos["gidnumbres"]=="2000":
             grupo="profesores"
         else:
             grupo="alumnos"
-        daros["homedirectory"]="/home/%s/%s"%(grupo,form.data["uid"])
+        datos["homedirectory"]="/home/%s/%s"%(grupo,form.data["uid"])
         print datos
         return redirect("/")
     
