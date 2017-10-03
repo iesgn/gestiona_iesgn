@@ -3,18 +3,8 @@ from django.shortcuts import render,redirect
 from usuarios.libldap import LibLDAP
 from usuarios.forms import BuscarUsuario
 import operator
-from django.http import Http404  
-
-def is_profesor(function):
-    def envoltura():
-        if not request.session["profesor"]:
-            raise Http404  
-        else:
-            return envoltura
 
 
-# Create your views here.
-@is_profesor
 def listar(request):
     if request.session.get("profesor",False):
         if request.method=="GET":
