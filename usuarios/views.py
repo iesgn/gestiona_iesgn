@@ -24,19 +24,10 @@ def listar(request):
             tipo2=str(int(request.POST["clase"])+1)
         givenname="*" if request.POST["nombre"]=="" else request.POST["nombre"]+"*"
         sn="*" if request.POST["apellidos"]=="" else request.POST["apellidos"]+"*"
-    lldap=LibLDAP()    
-    resultado=[]
-    for i in xrange(int (tipo1),int(tipo2)):
-        busqueda='(&(givenname=%s)(sn=%s)(description=%s))'%(givenname,sn,str(i))
-        r=lldap.buscar(busqueda)
-        resultado.extend(r)
-    busqueda='(&(givenname=%s)(sn=%s)(description=%s))'%(givenname,sn," ")
-    r=lldap.buscar(busqueda)
-    resultado.extend(r)
-    lista=[]
-    for res in resultado:
-        lista.append(res.get_attributes())
-    lista=clase(lista)
+    
+    lista=clase(getLista(givenname,sn))
+    lista.sort(key=operator.itemgetter('uid'))
+    print lista[0]["uid"][0]
     lista.sort(key=operator.itemgetter('sn'))
     info={"resultados":lista,'form':form}
     return render(request,"listar.html",info)
@@ -51,6 +42,23 @@ def clase(lista):
             usuario["description"][0]="---"
         resultado.append(usuario)
     return resultado
+
+
+def getLista(givename,sn):
+    lldap=LibLDAP()    
+    resultado=[]
+    for i in xrange(int (tipo1),int(tipo2)):
+        busqueda='(&(givenname=%s)(sn=%s)(description=%s))'%(givenname,sn,str(i))
+        r=lldap.buscar(busqueda)
+        resultado.extend(r)
+    busqueda='(&(givenname=%s)(sn=%s)(description=%s))'%(givenname,sn," ")
+    r=lldap.buscar(busqueda)
+    resultado.extend(r)
+    lista=[]
+    for res in resultado:
+        lista.append(res.get_attributes())
+    return lista
+
 
 def update(request):
     pass

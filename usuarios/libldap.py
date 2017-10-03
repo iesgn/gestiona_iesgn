@@ -18,6 +18,7 @@ class LibLDAP:
         try:
             self.con=ldap.initialize("ldap://papion.gonzalonazareno.org")
             self.con.protocol_version = ldap.VERSION3
+            self.con.opt_sizelimit=3000
             if username!="":
                 username="uid=%s,ou=People,dc=gonzalonazareno,dc=org" % username
                 respuesta=self.con.simple_bind_s(username,password)[0]
@@ -31,7 +32,7 @@ class LibLDAP:
             self.isbind=False
 
     def buscar(self,filter):
-        result=self.con.search_s(self.base_dn, ldap.SCOPE_SUBTREE, filter)
+        result=self.con.search_ext_s(self.base_dn, ldap.SCOPE_SUBTREE, filter,sizelimit=1000)
         return get_search_results(result)
     def add(self,uid,attrs):
         self.con.add_s("uid="+uid+","+self.base_dn,self.addldif(attrs))
