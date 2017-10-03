@@ -90,7 +90,8 @@ def add(request):
         the_hash = hashlib.md5(datos["userpassword"]).hexdigest()
         the_unhex = binascii.unhexlify(the_hash)
         datos["userpassword"]="{MD5}"+the_unhex.encode('base64')
-        print datos
+        lldap=LibLDAP()
+        lldap.add(datos["uid"],datos)
         return redirect("/")
     
     info={'form':form}
