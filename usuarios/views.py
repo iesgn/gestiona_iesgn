@@ -65,3 +65,6 @@ def clase(lista):
         resultado.append(usuario)
     return resultado
 
+def update(request):
+    pass
+
