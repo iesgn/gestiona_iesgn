@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render,redirect
 from usuarios.libldap import LibLDAP
-from usuarios.forms import BuscarUsuario
+from usuarios.forms import BuscarUsuario,newUserForm
 from gestiona_iesgn.views import test_profesor
 import operator
 
@@ -54,4 +54,12 @@ def clase(lista):
 
 def update(request):
     pass
+
+def add(request):
+    form=newUserForm(request.POST)
+    if form.is_valid():
+        pass
+    else:
+        info={'form':form}
+        return render(request,"new.html",info)
 

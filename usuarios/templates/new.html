@@ -1,0 +1,25 @@
+{% extends "base_menu.html" %}
+
+{% block content %}
+<div class="row">
+<h3>Nuevo usuario</h3>
+<form action="/usuarios/add" method="post" class="form-hotizontal">
+  <div class="col-md-6">
+    {% csrf_token %}
+    <div class="form-group">
+        <label>Nombre de usuario:</label>
+        {{ form.username}}
+    </div>
+    <div class="form-group">
+            <label>Contraseña:</label>
+            {{ form.contraseña}}
+    </div>
+
+    
+    <button  type="submit" class="btn btn-primary">Buscar</button>
+
+</div>
+</form>
+</div>
+
+{% endblock %}

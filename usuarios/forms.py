@@ -18,3 +18,7 @@ class BuscarUsuario(forms.Form):
     nombre=forms.CharField(max_length=100,required=False,widget=forms.TextInput(attrs={'class': "form-control"}))
     apellidos=forms.CharField(max_length=100,required=False,widget=forms.TextInput(attrs={'class': "form-control"}))
     clase=forms.ChoiceField(choices=clases,required=False,widget=forms.Select(attrs={'class': "form-control"}))
+
+class newUserForm(forms.Form):
+    username=forms.CharField(max_length=100,required=False,widget=forms.TextInput(attrs={'class': "form-control"}))
+    contraseña=forms.CharField(max_length=100,required=False,widget=forms.PasswordInput(attrs={'class': "form-control"}))
