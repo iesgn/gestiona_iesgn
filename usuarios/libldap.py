@@ -17,8 +17,6 @@ class LibLDAP:
     def conectar(self,username,password):
         try:
             #self.con=ldap.initialize("ldap://papion.gonzalonazareno.org")
-            #self.con=ldap.initialize("ldap://192.168.102.2")
-            self.con=ldap.initialize("ldap://192.168.1.139")
             self.con.protocol_version = ldap.VERSION3
             if username!="":
                 username="uid=%s,ou=People,dc=gonzalonazareno,dc=org" % username
