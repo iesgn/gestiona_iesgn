@@ -27,7 +27,7 @@ def listar(request):
     
     lista=clase(getLista(givenname,sn,tipo1,tipo2))
     lista.sort(key=operator.itemgetter('uidnumber'))
-    print lista[0]["uidnumber"][0]
+    print lista[-1]["uidnumber"][0]
     lista.sort(key=operator.itemgetter('sn'))
     info={"resultados":lista,'form':form}
     return render(request,"listar.html",info)
