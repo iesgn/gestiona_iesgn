@@ -59,7 +59,7 @@ def add(request):
     form=newUserForm(request.POST)
     if form.is_valid():
         pass
-    else:
-        info={'form':form}
-        return render(request,"new.html",info)
+    
+    info={'form':form}
+    return render(request,"new.html",info)
 
