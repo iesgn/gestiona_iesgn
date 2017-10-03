@@ -69,15 +69,16 @@ def add(request):
         # Calcular max uidnumbre
         lista=getLista("*","*","1","9")
         lista.sort(key=operator.itemgetter('uidnumber'))
-        form.data["uidnumber"]=str(int(lista[-1]["uidnumber"][0])+1)
-        form.data["cn"]=form.data["givenname"]+" "+form.data["sn"]
-        form.data["loginshell"]="/bin/bash"
-        if form.data["gidnumbres"]=="2000":
+        datos=dict(form.data)
+        daros["uidnumber"]=str(int(lista[-1]["uidnumber"][0])+1)
+        daros["cn"]=daros["givenname"]+" "+daros["sn"]
+        daros["loginshell"]="/bin/bash"
+        if daros["gidnumbres"]=="2000":
             grupo="profesores"
         else:
             grupo="alumnos"
-        form.data["homedirectory"]="/home/%s/%s"%(grupo,form.data["uid"])
-        print form
+        daros["homedirectory"]="/home/%s/%s"%(grupo,form.data["uid"])
+        print datos
         return redirect("/")
     
     info={'form':form}
