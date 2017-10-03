@@ -27,11 +27,8 @@ def listar(request):
 
 
         resultado=[]
-        for i in xrange(int (tipo1),int(tipo2)):
-            busqueda='(&(givenname=%s)(sn=%s)(description=%s))'%(givenname,sn,str(i))
-            r=lldap.buscar(busqueda)
-            resultado.extend(r)
-        busqueda='(&(givenname=%s)(sn=%s)(description=%s))'%(givenname,sn," ")
+        
+        busqueda='(&(givenname=%s)(sn=%s))'%(givenname,sn)
         r=lldap.buscar(busqueda)
         resultado.extend(r)
         lista=[]
