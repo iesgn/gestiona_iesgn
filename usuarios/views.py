@@ -66,7 +66,19 @@ def update(request):
 def add(request):
     form=newUserForm(request.POST)
     if form.is_valid():
-        pass
+        # Calcular max uidnumbre
+        lista=getLista(givenname,sn,tipo1,tipo2)
+        lista.sort(key=operator.itemgetter('uidnumber'))
+        form.data[uidnumber]=str(int(lista[-1]["uidnumber"][0])+1)
+        form.data["cn"]=form.data["givenname"]+" "+form.data["sn"]
+        form.data["loginshell"]="/bin/bash"
+        if form.data["gidnumbres"]=="2000":
+            grupo="profesores"
+        else:
+            grupo="alumnos"
+        form.data["homedirectory"]="/home/%s/%s"%(grupo,form.data["uid"])
+        print form
+        return redirect("/")
     
     info={'form':form}
     return render(request,"new.html",info)
