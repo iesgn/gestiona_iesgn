@@ -44,7 +44,7 @@ def clase(lista):
     return resultado
 
 
-def getLista(givename,sn,tipo1,tipo2):
+def getLista(givenname,sn,tipo1,tipo2):
     lldap=LibLDAP()    
     resultado=[]
     for i in xrange(int (tipo1),int(tipo2)):
