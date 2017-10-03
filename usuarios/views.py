@@ -88,7 +88,7 @@ def add(request):
             grupo="profesores"
         else:
             grupo="alumnos"
-        datos["homedirectory"]="/home/%s/%s"%(grupo,form.data["uid"])
+        datos["homedirectory"]="/home/%s/%s"%(grupo,datos["uid"])
         datos["objectclass"]= ['inetOrgPerson', 'posixAccount', 'top']
         the_hash = hashlib.md5(datos["userpassword"]).hexdigest()
         the_unhex = binascii.unhexlify(the_hash)
