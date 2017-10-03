@@ -67,10 +67,15 @@ def add(request):
     form=newUserForm(request.POST)
     if form.is_valid():
         # Calcular max uidnumbre
+        # Toda la lista desde clase 1 hasta 9
         lista=getLista("*","*","1","9")
         lista.sort(key=operator.itemgetter('uidnumber'))
         datos=dict(form.data)
-        print datos
+        del datos["csrfmiddlewaretoken"]
+        # Tengo un diccionario donde cada campo es una lista
+        # Quito las listas
+        for campo,valor in datos.items():
+            datos[campo]=valor[0]
         datos["uidnumber"]=str(int(lista[-1]["uidnumber"][0])+1)
         datos["cn"]=datos["givenname"]+" "+datos["sn"]
         datos["loginshell"]="/bin/bash"
