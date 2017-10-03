@@ -79,7 +79,7 @@ def add(request):
         datos["uidnumber"]=str(int(lista[-1]["uidnumber"][0])+1)
         datos["cn"]=datos["givenname"]+" "+datos["sn"]
         datos["loginshell"]="/bin/bash"
-        if datos["gidnumbres"]=="2000":
+        if datos["gidnumber"]=="2000":
             grupo="profesores"
         else:
             grupo="alumnos"
