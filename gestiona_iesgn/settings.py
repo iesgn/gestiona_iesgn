@@ -25,7 +25,7 @@ SECRET_KEY = 'g==5n6$*w+3xr+ge$vfj*v%ag!e(b4o6w3&u20s1tmpf50cqv2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["gesyiona.gonzalonazareno.org","localhost"]
+ALLOWED_HOSTS = ["gestiona.gonzalonazareno.org","localhost"]
 
 
 # Application definition
