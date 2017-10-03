@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from usuarios.libldap import LibLDAP
-
+from django.http import Http404
 def index(request):
     if request.method=="GET":
             return render(request,'index.html')
@@ -29,3 +29,7 @@ def salir(request):
     del request.session["password"]
     del request.session["profesor"]
     return redirect('/')
+
+def test_profesor(request):
+    if not request.session.get("profesor",False):
+        raise Http404  

@@ -2,47 +2,43 @@
 from django.shortcuts import render,redirect
 from usuarios.libldap import LibLDAP
 from usuarios.forms import BuscarUsuario
+from gestiona_iesgn.views import test_profesor
 import operator
 
 
 def listar(request):
-    if request.session.get("profesor",False):
-        if request.method=="GET":
-            form=BuscarUsuario()
+    test_profesor(request)
+    if request.method=="GET":
+        form=BuscarUsuario()
+        tipo1="1"
+        tipo2="9"
+        givenname="*"
+        sn="*"
+    else:
+        form=BuscarUsuario(request.POST)
+        if request.POST["clase"]=="0":
             tipo1="1"
             tipo2="9"
-            givenname="*"
-            sn="*"
         else:
-            form=BuscarUsuario(request.POST)
-            if request.POST["clase"]=="0":
-                tipo1="1"
-                tipo2="9"
-            else:
-                tipo1=request.POST["clase"]
-                tipo2=str(int(request.POST["clase"])+1)
-            givenname="*" if request.POST["nombre"]=="" else request.POST["nombre"]+"*"
-            sn="*" if request.POST["apellidos"]=="" else request.POST["apellidos"]+"*"
-        lldap=LibLDAP()
-
-
-        resultado=[]
-        for i in xrange(int (tipo1),int(tipo2)):
-            busqueda='(&(givenname=%s)(sn=%s)(description=%s))'%(givenname,sn,str(i))
-            r=lldap.buscar(busqueda)
-            resultado.extend(r)
-        busqueda='(&(givenname=%s)(sn=%s)(description=%s))'%(givenname,sn," ")
+            tipo1=request.POST["clase"]
+            tipo2=str(int(request.POST["clase"])+1)
+        givenname="*" if request.POST["nombre"]=="" else request.POST["nombre"]+"*"
+        sn="*" if request.POST["apellidos"]=="" else request.POST["apellidos"]+"*"
+    lldap=LibLDAP()    resultado=[]
+    for i in xrange(int (tipo1),int(tipo2)):
+        busqueda='(&(givenname=%s)(sn=%s)(description=%s))'%(givenname,sn,str(i))
         r=lldap.buscar(busqueda)
         resultado.extend(r)
-        lista=[]
-        for res in resultado:
-            lista.append(res.get_attributes())
-        lista=clase(lista)
-        lista.sort(key=operator.itemgetter('sn'))
-        info={"resultados":lista,'form':form}
-        return render(request,"listar.html",info)
-    else:
-        return redirect('/')
+    busqueda='(&(givenname=%s)(sn=%s)(description=%s))'%(givenname,sn," ")
+    r=lldap.buscar(busqueda)
+    resultado.extend(r)
+    lista=[]
+    for res in resultado:
+        lista.append(res.get_attributes())
+    lista=clase(lista)
+    lista.sort(key=operator.itemgetter('sn'))
+    info={"resultados":lista,'form':form}
+    return render(request,"listar.html",info)
 
 def clase(lista):
     resultado=[]
