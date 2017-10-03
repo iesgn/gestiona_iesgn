@@ -66,6 +66,7 @@ def update(request):
     pass
 
 def add(request):
+    test_profesor(request)
     form=newUserForm(request.POST)
     if form.is_valid():
         # Calcular max uidnumbre
