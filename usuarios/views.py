@@ -93,8 +93,15 @@ def add(request):
         the_hash = hashlib.md5(datos["userpassword"]).hexdigest()
         the_unhex = binascii.unhexlify(the_hash)
         datos["userpassword"]="{MD5}"+the_unhex.encode('base64')
-        lldap=LibLDAP()
-        lldap.add(datos["uid"],datos)
+        lldap=LibLDAP(request.session["username"],equest.session["password"])
+        if lldap.isbind:
+            try: 
+                lldap.add(datos["uid"],datos)
+            except:
+                return redirect("/error")
+        else:
+            return redirect("/error")
+
         return redirect("/")
     
     info={'form':form}

@@ -14,7 +14,7 @@ def index(request):
                 busqueda='(uid=%s)'%username
                 resultados=lldap.buscar(busqueda)
                 info=resultados[0].get_attributes()
-                print
+                
                 if info["gidNumber"][0]=="2000":
                     request.session["profesor"]=True
                 else:
