@@ -24,7 +24,8 @@ def listar(request):
             tipo2=str(int(request.POST["clase"])+1)
         givenname="*" if request.POST["nombre"]=="" else request.POST["nombre"]+"*"
         sn="*" if request.POST["apellidos"]=="" else request.POST["apellidos"]+"*"
-    lldap=LibLDAP()    resultado=[]
+    lldap=LibLDAP()    
+    resultado=[]
     for i in xrange(int (tipo1),int(tipo2)):
         busqueda='(&(givenname=%s)(sn=%s)(description=%s))'%(givenname,sn,str(i))
         r=lldap.buscar(busqueda)
