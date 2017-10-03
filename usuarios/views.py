@@ -14,7 +14,7 @@ def is_profesor(function):
 
 
 # Create your views here.
-@is_profesor
+
 def listar(request):
     if request.session.get("profesor",False):
         if request.method=="GET":
