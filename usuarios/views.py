@@ -6,10 +6,11 @@ import operator
 from django.http import Http404  
 
 def is_profesor(function):
-    if not request.session["profesor"]:
-        raise Http404  
-    else:
-        return function
+    def envoltura():
+        if not request.session["profesor"]:
+            raise Http404  
+        else:
+            return function
 
 
 # Create your views here.
