@@ -22,3 +22,8 @@ class BuscarUsuario(forms.Form):
 class newUserForm(forms.Form):
     username=forms.CharField(max_length=100,required=True,widget=forms.TextInput(attrs={'class': "form-control"}))
     contrasena=forms.CharField(max_length=100,required=True,widget=forms.PasswordInput(attrs={'class': "form-control"}))
+    nombre=forms.CharField(max_length=100,required=True,widget=forms.TextInput(attrs={'class': "form-control"}))
+    apellidos=forms.CharField(max_length=100,required=True,widget=forms.TextInput(attrs={'class': "form-control"}))
+    email=form.EmailField(help_text='A valid email address, please.')
+    ciudad=forms.CharField(max_length=100,required=True,widget=forms.TextInput(attrs={'class': "form-control"}))
+    
