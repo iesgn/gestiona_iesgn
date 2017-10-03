@@ -10,7 +10,7 @@ def is_profesor(function):
         if not request.session["profesor"]:
             raise Http404  
         else:
-            return function
+            return envoltura
 
 
 # Create your views here.
