@@ -4,6 +4,8 @@ from usuarios.libldap import LibLDAP
 from usuarios.forms import BuscarUsuario,newUserForm
 from gestiona_iesgn.views import test_profesor
 import operator
+import binascii
+import hashlib
 
 
 def listar(request):
@@ -84,6 +86,10 @@ def add(request):
         else:
             grupo="alumnos"
         datos["homedirectory"]="/home/%s/%s"%(grupo,form.data["uid"])
+        datos["objectclass"]= ['inetOrgPerson', 'posixAccount', 'top']
+        the_hash = hashlib.md5(datos["userpassword"]).hexdigest()
+        the_unhex = binascii.unhexlify(the_hash)
+        datos["userpassword"]="{MD5}"+the_unhex.encode('base64')
         print datos
         return redirect("/")
     
