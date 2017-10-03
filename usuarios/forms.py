@@ -12,7 +12,7 @@ clases = (
     ('8', 'Otros'),
 )
 
-
+grupos=(('2000','Profesores'),('2001','Alumnos'))
 
 class BuscarUsuario(forms.Form):
     nombre=forms.CharField(max_length=100,required=False,widget=forms.TextInput(attrs={'class': "form-control"}))
@@ -26,3 +26,5 @@ class newUserForm(forms.Form):
     apellidos=forms.CharField(max_length=100,required=True,widget=forms.TextInput(attrs={'class': "form-control"}))
     email=forms.CharField(max_length=100,required=True,widget=forms.EmailInput(attrs={'class': "form-control"}))
     ciudad=forms.CharField(max_length=100,required=True,widget=forms.TextInput(attrs={'class': "form-control"}))
+    grupo=forms.ChoiceField(choices=grupos,required=True,widget=forms.Select(attrs={'class': "form-control"}))    
+    clase=forms.ChoiceField(choices=clases[1:],required=False,widget=forms.Select(attrs={'class': "form-control"}))
