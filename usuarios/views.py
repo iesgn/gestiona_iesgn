@@ -67,9 +67,9 @@ def add(request):
     form=newUserForm(request.POST)
     if form.is_valid():
         # Calcular max uidnumbre
-        lista=getLista(givenname,sn,tipo1,tipo2)
+        lista=getLista("*","*","1","9")
         lista.sort(key=operator.itemgetter('uidnumber'))
-        form.data[uidnumber]=str(int(lista[-1]["uidnumber"][0])+1)
+        form.data["uidnumber"]=str(int(lista[-1]["uidnumber"][0])+1)
         form.data["cn"]=form.data["givenname"]+" "+form.data["sn"]
         form.data["loginshell"]="/bin/bash"
         if form.data["gidnumbres"]=="2000":
