@@ -25,7 +25,7 @@ def listar(request):
         givenname="*" if request.POST["nombre"]=="" else request.POST["nombre"]+"*"
         sn="*" if request.POST["apellidos"]=="" else request.POST["apellidos"]+"*"
     
-    lista=clase(getLista(givenname,sn))
+    lista=clase(getLista(givenname,sn,tipo1,tipo2))
     lista.sort(key=operator.itemgetter('uid'))
     print lista[0]["uid"][0]
     lista.sort(key=operator.itemgetter('sn'))
@@ -44,7 +44,7 @@ def clase(lista):
     return resultado
 
 
-def getLista(givename,sn):
+def getLista(givename,sn,tipo1,tipo2):
     lldap=LibLDAP()    
     resultado=[]
     for i in xrange(int (tipo1),int(tipo2)):
