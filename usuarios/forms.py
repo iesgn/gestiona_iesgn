@@ -24,5 +24,5 @@ class newUserForm(forms.Form):
     contrasena=forms.CharField(max_length=100,required=True,widget=forms.PasswordInput(attrs={'class': "form-control"}))
     nombre=forms.CharField(max_length=100,required=True,widget=forms.TextInput(attrs={'class': "form-control"}))
     apellidos=forms.CharField(max_length=100,required=True,widget=forms.TextInput(attrs={'class': "form-control"}))
-    email=max_length=100,required=True,widget=forms.EmailField(help_text='A valid email address, please.',attrs={'class': "form-control"})
+    email=forms.CharField(max_length=100,required=True,widget=forms.EmailField(help_text='A valid email address, please.',attrs={'class': "form-control"}))
     ciudad=forms.CharField(max_length=100,required=True,widget=forms.TextInput(attrs={'class': "form-control"}))
