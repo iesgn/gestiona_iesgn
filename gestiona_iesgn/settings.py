@@ -25,7 +25,7 @@ SECRET_KEY = 'g==5n6$*w+3xr+ge$vfj*v%ag!e(b4o6w3&u20s1tmpf50cqv2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["gesyiona.gonzalonazareno.org","localhost"]
 
 
 # Application definition
@@ -55,7 +55,7 @@ ROOT_URLCONF = 'gestiona_iesgn.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
