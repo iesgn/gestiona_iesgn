@@ -77,7 +77,7 @@ def add(request):
         # Tengo un diccionario donde cada campo es una lista
         # Quito las listas
         for campo,valor in datos.items():
-            datos[campo]=valor[0]
+            datos[campo]=valor[0].encode('utf-8')
         datos["uidnumber"]=str(int(lista[-1]["uidnumber"][0])+1)
         datos["cn"]=datos["givenname"]+" "+datos["sn"]
         datos["loginshell"]="/bin/bash"
