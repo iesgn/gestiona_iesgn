@@ -98,9 +98,10 @@ def add(request):
                 lldap.add(datos["uid"],datos)
             except:
                 messages.add_message(request, messages.INFO, 'Hello world.')
-                return redirect("/error")
+                return redirect("/usuarios")
         else:
-            return redirect("/error")
+            messages.add_message(request, messages.INFO, 'Hello world2.')
+            return redirect("/usuarios")
 
         return redirect("/")
     
