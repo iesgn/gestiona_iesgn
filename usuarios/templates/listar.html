@@ -56,7 +56,7 @@
           <td class="text-center"><span class="glyphicon glyphicon-education"  aria-hidden="true"></span></td>
         {% endif%}
         <td class="text-center"><a href="/usuarios/update/{{r.uidnumber.0}}"><span class="glyphicon glyphicon-edit" style="color:green" aria-hidden="true"></span></a></td>
-        <td><a href="#" data-href="/usuarios/del/{{r.uidnumber.0}}" data-toggle="modal" data-target="#confirm-delete"><span class="glyphicon glyphicon-trash" style="color:red" aria-hidden="true"></span></a></td>
+        <td class="text-center"><a href="#" data-href="/usuarios/del/{{r.uidnumber.0}}" data-toggle="modal" datos="{{r.sn.0}}, {{r.givenname.0}}" data-target="#confirm-delete"><span class="glyphicon glyphicon-trash" style="color:red" aria-hidden="true"></span></a></td>
       </tr>
 
 {% endfor %}
@@ -71,18 +71,18 @@
             
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+                    <h4 class="modal-title" id="myModalLabel">Borrar Usuario</h4>
                 </div>
             
                 <div class="modal-body">
-                    <p>You are about to delete one track, this procedure is irreversible.</p>
-                    <p>Do you want to proceed?</p>
+                    <p>Estás a punto de borrar un usuario. Este procedimiento es irreversible.</p>
+                    <p>¿Estás seguro?</p>
                     <p class="debug-url"></p>
                 </div>
                 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-danger btn-ok">Delete</a>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <a class="btn btn-danger btn-ok">Borrar</a>
                 </div>
             </div>
         </div>
@@ -96,7 +96,7 @@
         $('#confirm-delete').on('show.bs.modal', function(e) {
             $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
             
-            $('.debug-url').html('Borrar usuario: <strong>' + $(this).find('.btn-ok').attr('href') + '</strong>');
+            $('.debug-url').html('Borrar usuario: <strong>' + $(e.relatedTarget).data('datos') + '</strong>');
         });
     </script>
 {% endblock%}
