@@ -4,12 +4,10 @@
 {% block content %}
 <div class="row">
   {% if messages %}
-<ul class="messages">
     {% for message in messages %}
-    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %}
+      <div class="alert alert-success">{{ message }}</div>
+    {% endfor%}
+  {% endif %}
 <h3>Búsqueda</h3>
 <form action="/usuarios/" method="post" class="form-hotizontal">
   <div class="col-md-6">
