@@ -3,6 +3,7 @@ from django.shortcuts import render,redirect
 from usuarios.libldap import LibLDAP
 from usuarios.forms import BuscarUsuario,newUserForm
 from gestiona_iesgn.views import test_profesor
+from django.contrib import messages
 import operator
 import binascii
 import hashlib
@@ -96,6 +97,7 @@ def add(request):
             try: 
                 lldap.add(datos["uid"],datos)
             except:
+                messages.add_message(request, messages.INFO, 'Hello world.')
                 return redirect("/error")
         else:
             return redirect("/error")
