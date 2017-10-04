@@ -97,10 +97,10 @@ def add(request):
             try: 
                 lldap.add(datos["uid"],datos)
             except:
-                messages.add_message(request, messages.INFO, 'Hello world.')
+                messages.add_message(request, messages.INFO, 'No se ha podido añadir el nuevo usuario. Quizás no tengas privilegios, o el nombre de usuario está duplicado.')
                 return redirect("/usuarios")
         else:
-            messages.add_message(request, messages.INFO, 'Hello world2.')
+            messages.add_message(request, messages.INFO, 'No se ha podido añadir el nuevo usuario. Usuario autentificado incorrecto.')
             return redirect("/usuarios")
 
         return redirect("/")
