@@ -62,9 +62,6 @@ def getLista(givenname,sn,tipo1,tipo2):
     return lista
 
 
-def update(request):
-    pass
-
 def add(request):
     test_profesor(request)
     form=newUserForm(request.POST)
@@ -108,3 +105,8 @@ def add(request):
     info={'form':form}
     return render(request,"new.html",info)
 
+def update(request):
+    pass
+
+def delete(request):
+    pass

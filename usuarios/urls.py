@@ -6,6 +6,7 @@ urlpatterns = [
 	url(r'^$', views.listar),
 	url(r'^error$', views.listar),
 	url(r'^update/(?P<usuario>[0-9]+)$', views.update),
+	url(r'^del/(?P<usuario>[0-9]+)$', views.delete),
 	url(r'^add$', views.add),
 
   ]
