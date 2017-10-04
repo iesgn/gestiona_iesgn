@@ -5,7 +5,11 @@
 <div class="row">
   {% if messages %}
     {% for message in messages %}
-      <div class="alert alert-danger alert-dismissable fade in">{{ message }}</div>
+      <div class="alert alert-danger alert-dismissable fade in">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      {{ message }}</div>
     {% endfor%}
   {% endif %}
 <h3>Búsqueda</h3>
