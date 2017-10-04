@@ -56,7 +56,7 @@
       {% for r in resultados %}
       <tr>
         <td class="text-center">{{forloop.counter}}</td>
-        <td>{{r.sn.0}}, {{r.givenname.0}}</td>
+        <td>{{r.sn.0}}, {{r.givenname.0}} ({{r.uid}})</td>
         <td class="text-center">{{r.description.0}}</td>
 
         {% if r.gidnumber.0 == '2001' %}
