@@ -32,7 +32,10 @@ def index(request):
 def salir(request):
     del request.session["username"]
     del request.session["password"]
-    del request.session["profesor"]
+    try:
+        del request.session["profesor"]
+    except:
+        pass
     return redirect('/')
 
 def test_profesor(request):
