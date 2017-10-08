@@ -30,7 +30,7 @@ def listarUsuarios(request,configuracion):
     test_profesor(request)
     if request.method=="GET":
         form=BuscarUsuario(configuracion["AP"])
-        tipos=configuracion["tipo"]
+        tipos=configuracion["tipos"]
         givenname="*"
         sn="*"
     else:
