@@ -26,8 +26,10 @@ class BuscarUsuario(forms.Form):
     def __init__(self, *args, **kwargs):
         super(BuscarUsuario, self).__init__(*args, **kwargs)
         if args[0].has_key("AP") and args[0]["AP"]=="profesores":
+            print "profesores"
             self.fields['clase'].choice=clasesProfesores
         else:
+            print "alumnos"
             self.fields['clase'].choice=clasesAlumnos   
 
 class newUserForm(forms.Form):
