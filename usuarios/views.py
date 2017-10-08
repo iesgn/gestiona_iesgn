@@ -75,10 +75,7 @@ def add(request):
         del datos["csrfmiddlewaretoken"]
         # Tengo un diccionario donde cada campo es una lista
         # Quito las listas
-        for campo,valor in datos.items():
-            resultado=valor[0].encode('utf-8')
-            del datos[campo]
-            datos[campo.encode('utf-8')]=resultado
+        datos=quito_listas_en_resultado(datos)
 
         datos["uidnumber"]=str(int(lista[-1]["uidnumber"][0])+1)
         datos["cn"]=datos["givenname"]+" "+datos["sn"]
@@ -108,8 +105,31 @@ def add(request):
     info={'form':form}
     return render(request,"new.html",info)
 
-def update(request):
-    pass
+def update(request,usuario):
+    test_profesor(request)
+    lldap=LibLDAP()
+    busqueda='(uidnumber=%s)'%(usuario)
+    print busqueda
+    r=lldap.buscar(busqueda)
+    datos=r[0].get_attributes()
+    datos=quito_listas_en_resultado(datos,utf8=False)
+    if not request.POST:
+        form=newUserForm(datos)
+    else:
+        form=newUserForm(request.POST)
+    info={'form':form}
+
+    return render(request,"new.html",info)
 
 def delete(request):
     pass
+
+def quito_listas_en_resultado(datos,utf8=True):
+    for campo,valor in datos.items():
+        if utf8:
+            resultado=valor[0].encode('utf-8')
+        else:
+            resultado=valor[0]
+        del datos[campo]
+        datos[campo.encode('utf-8')]=resultado
+    return datos
