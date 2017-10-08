@@ -22,10 +22,10 @@ class BuscarUsuario(forms.Form):
     nombre=forms.CharField(max_length=100,required=False,widget=forms.TextInput(attrs={'class': "form-control"}))
     apellidos=forms.CharField(max_length=100,required=False,widget=forms.TextInput(attrs={'class': "form-control"}))
     clase=forms.ChoiceField(choices=clasesAlumnos,required=False,widget=forms.Select(attrs={'class': "form-control",'onchange': 'this.form.submit();'}))
-
+    AP=forms.HiddenField()
     def __init__(self, *args, **kwargs):
         super(BuscarUsuario, self).__init__(*args, **kwargs)
-        if args[0]=="profesores" or args[1]=="profesores":
+        if args[0].has_key("AP") and args[0]["AP"]=="profesores":
             self.fields['clase'].choice=clasesProfesores
                 
 

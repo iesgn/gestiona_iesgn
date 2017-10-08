@@ -35,12 +35,12 @@ def listarAlumnos(request):
 def listarProfesores(request):
     test_profesor(request)
     if request.method=="GET":
-        form=BuscarUsuario("profesores")
+        form=BuscarUsuario({"AP":"profesores"})
         tipos=[5,7]
         givenname="*"
         sn="*"
     else:
-        form=BuscarUsuario(request.POST,"profesores")
+        form=BuscarUsuario(request.POST)
         tipo1=request.POST["clase"]
         if tipo1=='0':
             tipos=[5,7]
