@@ -9,8 +9,6 @@ def index(request):
         password = request.POST["password"].encode('utf-8')
         lldap=LibLDAP(username,password)
         if lldap.isbind:
-                request.session["username"]=username
-                request.session["password"]=password
                 busqueda='(uid=%s)'%username
                 resultados=lldap.buscar(busqueda)
                 info=resultados[0].get_attributes()
@@ -20,7 +18,8 @@ def index(request):
                 if info["description"][0] not in tipos:
                     info={"error":True}
                     return render(request,"index.html",info)
-                
+                request.session["username"]=username
+                request.session["password"]=password
                 if info["gidNumber"][0]=="2000":
                     request.session["profesor"]=True
                 else:
