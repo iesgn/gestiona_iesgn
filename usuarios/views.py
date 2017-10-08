@@ -28,7 +28,7 @@ def listarAlumnos(request):
     lista=clase(getLista(givenname,sn,tipos))
     lista.sort(key=operator.itemgetter('uidnumber'))
     lista.sort(key=operator.itemgetter('sn'))
-    info={"resultados":lista,'form':form}
+    info={"titulo":"Alumnos","resultados":lista,'form':form}
     return render(request,"listar.html",info)
 
 
