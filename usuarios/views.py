@@ -35,12 +35,12 @@ def listarAlumnos(request):
 def listarProfesores(request):
     test_profesor(request)
     if request.method=="GET":
-        form=BuscarUsuario()
+        form=BuscarUsuario("profesores")
         tipos=[5,7]
         givenname="*"
         sn="*"
     else:
-        form=BuscarUsuario(request.POST)
+        form=BuscarUsuario(request.POST,"profesores")
         tipo1=request.POST["clase"]
         if tipo1=='0':
             tipos=[5,7]
@@ -48,7 +48,6 @@ def listarProfesores(request):
             tipos=[int(tipo1)]
         givenname="*" if request.POST["nombre"]=="" else request.POST["nombre"]+"*"
         sn="*" if request.POST["apellidos"]=="" else request.POST["apellidos"]+"*"    
-    form.fields["clase"].choice=clasesProfesores
     lista=clase(getLista(givenname,sn,tipos))
     lista.sort(key=operator.itemgetter('uidnumber'))
     lista.sort(key=operator.itemgetter('sn'))

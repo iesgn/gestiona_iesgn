@@ -25,7 +25,7 @@ class BuscarUsuario(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super(BuscarUsuario, self).__init__(*args, **kwargs)
-        if args[0]=="profesores"
+        if args[0]=="profesores" or args[1]=="profesores":
             self.fields['clase'].choice=clasesProfesores
                 
 
