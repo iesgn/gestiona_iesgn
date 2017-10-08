@@ -73,6 +73,9 @@ def getLista(givenname,sn,tipos):
     return lista
 
 
+
+#############################################################################################################
+
 def add(request):
     test_profesor(request)
     form=newUserForm(request.POST)
