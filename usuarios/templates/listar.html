@@ -13,7 +13,7 @@
     {% endfor%}
   {% endif %}
 <h3>Búsqueda</h3>
-<form action="/usuarios/" method="post" class="form-hotizontal">
+<form action="/usuarios/alumnos" method="post" class="form-hotizontal">
   <div class="col-md-6">
 
 
@@ -34,9 +34,6 @@
             <label>Clase:</label>
             {{ form.clase}}
     </div>
-
-
-
 
 </div>
 </form>
@@ -65,39 +62,5 @@
   </div>
 </div>
 
-
-<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-            
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">Borrar Usuario</h4>
-                </div>
-            
-                <div class="modal-body">
-                    <p>Estás a punto de borrar un usuario. Este procedimiento es irreversible.</p>
-                    <p>¿Estás seguro?</p>
-                    <p class="debug-url"></p>
-                </div>
-                
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                    <a class="btn btn-danger btn-ok">Borrar</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
 {% endblock %}
 
-{% block js%}
-
-    <script>
-        $('#confirm-delete').on('show.bs.modal', function(e) {
-            $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
-            
-            $('.debug-url').html('Borrar usuario: <strong>' + $(e.relatedTarget).data('datos') + '</strong>');
-        });
-    </script>
-{% endblock%}
