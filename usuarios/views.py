@@ -113,8 +113,6 @@ def update(request,usuario):
 
     return render(request,"new.html",info)
 
-def delete(request):
-    pass
 
 def quito_listas_en_resultado(datos,utf8=True):
     for campo,valor in datos.items():
