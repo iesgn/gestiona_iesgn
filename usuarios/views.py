@@ -12,7 +12,7 @@ import hashlib
 def listarAlumnos(request):
     test_profesor(request)
     if request.method=="GET":
-        form=BuscarUsuario()
+        form=BuscarUsuario({"AP":"alumnos"})
         tipos=list(xrange(1,5))+[6]
         givenname="*"
         sn="*"
