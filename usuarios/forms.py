@@ -23,6 +23,12 @@ class BuscarUsuario(forms.Form):
     apellidos=forms.CharField(max_length=100,required=False,widget=forms.TextInput(attrs={'class': "form-control"}))
     clase=forms.ChoiceField(choices=clasesAlumnos,required=False,widget=forms.Select(attrs={'class': "form-control",'onchange': 'this.form.submit();'}))
 
+    def __init__(self, *args, **kwargs):
+        super(BuscarUsuario, self).__init__(*args, **kwargs)
+        if args[0]=="profesores"
+            self.fields['clase'].choice=clasesProfesores
+                
+
 class newUserForm(forms.Form):
     uid=forms.CharField(max_length=100,required=True,widget=forms.TextInput(attrs={'class': "form-control"}))
     userpassword=forms.CharField(max_length=100,required=True,widget=forms.PasswordInput(attrs={'class': "form-control"}))
