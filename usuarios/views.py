@@ -11,7 +11,7 @@ import hashlib
 
 def listarAlumnos(request):
     configuracion={
-        "tipos"=list(xrange(1,5))+[6],
+        "tipos":list(xrange(1,5))+[6],
         "AP":configuracion["AP"],
         "titulo":"Alumnos"
     }
@@ -19,7 +19,7 @@ def listarAlumnos(request):
 
 def listarProfesores(request):
     configuracion={
-        "tipos"=[5,7],
+        "tipos":[5,7],
         "AP":{"AP":"profesores"},
         "titulo":"Profesores"
     }
