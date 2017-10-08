@@ -24,13 +24,14 @@ def listarAlumnos(request):
         else:
             tipos=[int(tipo1)]
         givenname="*" if request.POST["nombre"]=="" else request.POST["nombre"]+"*"
-        sn="*" if request.POST["apellidos"]=="" else request.POST["apellidos"]+"*"
-    
+        sn="*" if request.POST["apellidos"]=="" else request.POST["apellidos"]+"*"    
     lista=clase(getLista(givenname,sn,tipos))
     lista.sort(key=operator.itemgetter('uidnumber'))
     lista.sort(key=operator.itemgetter('sn'))
     info={"resultados":lista,'form':form}
     return render(request,"listar.html",info)
+
+
 
 def clase(lista):
     resultado=[]
