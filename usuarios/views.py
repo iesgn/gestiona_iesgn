@@ -22,7 +22,7 @@ def listarAlumnos(request):
         if tipo1==0:
             tipos=list(xrange(1,5))+[6]
         else:
-            tipos=[int(tipo1),int(tipo1)+1]
+            tipos=[int(tipo1)]
         givenname="*" if request.POST["nombre"]=="" else request.POST["nombre"]+"*"
         sn="*" if request.POST["apellidos"]=="" else request.POST["apellidos"]+"*"
     
