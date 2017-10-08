@@ -37,12 +37,9 @@ def listarAlumnos(request):
 
 def clase(lista):
     resultado=[]
-    clase=["","1º ASIR","2º ASIR","1º SMR","2º SMR","Profesor","A.A.","A.P.","Otros"]
+    clase=["","1º ASIR","2º ASIR","1º SMR","2º SMR","","A.A."]
     for usuario in lista:
-        try:
-            usuario["description"][0]=clase[int(usuario["description"][0])]
-        except:
-            usuario["description"][0]="---"
+        usuario["description"][0]=clase[int(usuario["description"][0])]
         resultado.append(usuario)
     return resultado
 
@@ -54,9 +51,6 @@ def getLista(givenname,sn,tipo1,tipo2):
         busqueda='(&(givenname=%s)(sn=%s)(description=%s))'%(givenname,sn,str(i))
         r=lldap.buscar(busqueda)
         resultado.extend(r)
-    busqueda='(&(givenname=%s)(sn=%s)(description=%s))'%(givenname,sn," ")
-    r=lldap.buscar(busqueda)
-    resultado.extend(r)
     lista=[]
     for res in resultado:
         lista.append(res.get_attributes())

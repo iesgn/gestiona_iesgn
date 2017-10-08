@@ -9,7 +9,6 @@ clases = (
     ('5', 'Profesor'),
     ('6', 'Antiguo Alumno'),
     ('7', 'Antiguo Porfesor'),
-    ('8', 'Otros'),
 )
 
 grupos=(('2000','Profesores'),('2001','Alumnos'))
