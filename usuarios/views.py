@@ -37,7 +37,7 @@ def listarUsuarios(request,configuracion):
         form=BuscarUsuario(request.POST)
         tipo1=request.POST["clase"]
         if tipo1=='0':
-            tipos=configuracion["tipo"]
+            tipos=configuracion["tipos"]
         else:
             tipos=[int(tipo1)]
         givenname="*" if request.POST["nombre"]=="" else request.POST["nombre"]+"*"
