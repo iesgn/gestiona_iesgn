@@ -15,7 +15,7 @@ def listarAlumnos(request):
         "AP":{"AP":"alumnos"},
         "titulo":"Alumnos"
     }
-    listarUsuarios(request,configuracion)
+    return listarUsuarios(request,configuracion)
 
 def listarProfesores(request):
     configuracion={
@@ -23,7 +23,7 @@ def listarProfesores(request):
         "AP":{"AP":"profesores"},
         "titulo":"Profesores"
     }
-    listarUsuarios(request,configuracion)
+    return listarUsuarios(request,configuracion)
 
 
 def listarUsuarios(request,configuracion):
