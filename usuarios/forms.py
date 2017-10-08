@@ -12,8 +12,8 @@ clases = (
 grupos=(('2000','Profesores'),('2001','Alumnos'))
 
 class BuscarUsuario(forms.Form):
-    nombre=forms.CharField(max_length=100,required=False,widget=forms.TextInput(attrs={'class': "form-control",'onkeyup': 'this.form.submit();'}))
-    apellidos=forms.CharField(max_length=100,required=False,widget=forms.TextInput(attrs={'class': "form-control",'onkeyup': 'this.form.submit();'}))
+    nombre=forms.CharField(max_length=100,required=False,widget=forms.TextInput(attrs={'class': "form-control"}))
+    apellidos=forms.CharField(max_length=100,required=False,widget=forms.TextInput(attrs={'class': "form-control"}))
     clase=forms.ChoiceField(choices=clases,required=False,widget=forms.Select(attrs={'class': "form-control",'onchange': 'this.form.submit();'}))
 
 class newUserForm(forms.Form):
