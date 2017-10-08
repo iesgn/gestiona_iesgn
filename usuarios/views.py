@@ -12,7 +12,7 @@ import hashlib
 def listarAlumnos(request):
     configuracion={
         "tipos":list(xrange(1,5))+[6],
-        "AP":configuracion["AP"],
+        "AP":{"AP":"alumnos"},
         "titulo":"Alumnos"
     }
     listarUsuarios(request,configuracion)
