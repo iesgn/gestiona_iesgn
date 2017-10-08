@@ -13,18 +13,17 @@ def listarAlumnos(request):
     test_profesor(request)
     if request.method=="GET":
         form=BuscarUsuario()
-        tipo1="1"
-        tipo2="2"
+        tipos=xrange(1,5)+[6]
         givenname="*"
         sn="*"
     else:
         form=BuscarUsuario(request.POST)
         tipo1=request.POST["clase"]
-        tipo2=str(int(request.POST["clase"])+1)
+        tipos=[tipos,tipo1+1]
         givenname="*" if request.POST["nombre"]=="" else request.POST["nombre"]+"*"
         sn="*" if request.POST["apellidos"]=="" else request.POST["apellidos"]+"*"
     
-    lista=clase(getLista(givenname,sn,tipo1,tipo2))
+    lista=clase(getLista(givenname,sn,tipos))
     lista.sort(key=operator.itemgetter('uidnumber'))
     print lista[-1]["uidnumber"][0]
     lista.sort(key=operator.itemgetter('sn'))
@@ -40,10 +39,10 @@ def clase(lista):
     return resultado
 
 
-def getLista(givenname,sn,tipo1,tipo2):
+def getLista(givenname,sn,tipos):
     lldap=LibLDAP()    
     resultado=[]
-    for i in xrange(int (tipo1),int(tipo2)):
+    for i in tipos:
         busqueda='(&(givenname=%s)(sn=%s)(description=%s))'%(givenname,sn,str(i))
         r=lldap.buscar(busqueda)
         resultado.extend(r)
@@ -59,7 +58,7 @@ def add(request):
     if form.is_valid():
         # Calcular max uidnumbre
         # Toda la lista desde clase 1 hasta 9
-        lista=getLista("*","*","1","9")
+        lista=getLista("*","*",xrange(1,10))
         lista.sort(key=operator.itemgetter('uidnumber'))
         datos=dict(form.data)
         del datos["csrfmiddlewaretoken"]
