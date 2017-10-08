@@ -14,17 +14,13 @@ def listarAlumnos(request):
     if request.method=="GET":
         form=BuscarUsuario()
         tipo1="1"
-        tipo2="4"
+        tipo2="2"
         givenname="*"
         sn="*"
     else:
         form=BuscarUsuario(request.POST)
-        if request.POST["clase"]=="0":
-            tipo1="1"
-            tipo2="4"
-        else:
-            tipo1=request.POST["clase"]
-            tipo2=str(int(request.POST["clase"])+1)
+        tipo1=request.POST["clase"]
+        tipo2=str(int(request.POST["clase"])+1)
         givenname="*" if request.POST["nombre"]=="" else request.POST["nombre"]+"*"
         sn="*" if request.POST["apellidos"]=="" else request.POST["apellidos"]+"*"
     
