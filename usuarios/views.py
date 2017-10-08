@@ -9,19 +9,19 @@ import binascii
 import hashlib
 
 
-def listar(request):
+def listarAlumnos(request):
     test_profesor(request)
     if request.method=="GET":
         form=BuscarUsuario()
         tipo1="1"
-        tipo2="9"
+        tipo2="4"
         givenname="*"
         sn="*"
     else:
         form=BuscarUsuario(request.POST)
         if request.POST["clase"]=="0":
             tipo1="1"
-            tipo2="9"
+            tipo2="4"
         else:
             tipo1=request.POST["clase"]
             tipo2=str(int(request.POST["clase"])+1)
