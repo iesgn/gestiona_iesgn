@@ -32,7 +32,7 @@ def listarAlumnos(request):
     return render(request,"listar.html",info)
 
 
-def listarAlumnos(request):
+def listarProfesores(request):
     test_profesor(request)
     if request.method=="GET":
         form=BuscarUsuario()

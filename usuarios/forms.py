@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django import forms
-clases = (
+clasesAlumnos = (
     ('0','Todos'),
     ('1', '1º ASIR'),
     ('2', '2º ASIR'),
@@ -9,11 +9,19 @@ clases = (
     ('6', 'Antiguo Alumno'),
 )
 
+clasesProfesores = (
+    ('0','Todos'),
+    ('5', 'Profesor'),
+    ('7', 'Antiguo Profesor'),
+)
+
+
 grupos=(('2000','Profesores'),('2001','Alumnos'))
 
-class BuscarUsuario(forms.Form):
+class BuscarUsuario(forms.Form,AP):
     nombre=forms.CharField(max_length=100,required=False,widget=forms.TextInput(attrs={'class': "form-control"}))
     apellidos=forms.CharField(max_length=100,required=False,widget=forms.TextInput(attrs={'class': "form-control"}))
+    if AP="alumnos" clases=clasesAlumnos else clase=clasesProfesores
     clase=forms.ChoiceField(choices=clases,required=False,widget=forms.Select(attrs={'class': "form-control",'onchange': 'this.form.submit();'}))
 
 class newUserForm(forms.Form):
