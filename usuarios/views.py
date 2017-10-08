@@ -32,6 +32,29 @@ def listarAlumnos(request):
     return render(request,"listar.html",info)
 
 
+def listarAlumnos(request):
+    test_profesor(request)
+    if request.method=="GET":
+        form=BuscarUsuario()
+        tipos=[5,7]
+        givenname="*"
+        sn="*"
+    else:
+        form=BuscarUsuario(request.POST)
+        tipo1=request.POST["clase"]
+        if tipo1=='0':
+            tipos=[5,7]
+        else:
+            tipos=[int(tipo1)]
+        givenname="*" if request.POST["nombre"]=="" else request.POST["nombre"]+"*"
+        sn="*" if request.POST["apellidos"]=="" else request.POST["apellidos"]+"*"    
+    lista=clase(getLista(givenname,sn,tipos))
+    lista.sort(key=operator.itemgetter('uidnumber'))
+    lista.sort(key=operator.itemgetter('sn'))
+    info={"titulo":"Profesores","resultados":lista,'form':form}
+    return render(request,"listar.html",info)
+
+
 
 def clase(lista):
     resultado=[]
