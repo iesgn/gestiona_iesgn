@@ -12,12 +12,12 @@ import hashlib
 def listarAlumnos(request):
     test_profesor(request)
     if request.method=="GET":
-        form=BuscarUsuario()
+        form=BuscarUsuario(AP="alumnos")
         tipos=list(xrange(1,5))+[6]
         givenname="*"
         sn="*"
     else:
-        form=BuscarUsuario(request.POST)
+        form=BuscarUsuario(request.POST,AP="alumnos")
         tipo1=request.POST["clase"]
         if tipo1=='0':
             tipos=list(xrange(1,5))+[6]
@@ -35,12 +35,12 @@ def listarAlumnos(request):
 def listarProfesores(request):
     test_profesor(request)
     if request.method=="GET":
-        form=BuscarUsuario()
+        form=BuscarUsuario(AP="profesores")
         tipos=[5,7]
         givenname="*"
         sn="*"
     else:
-        form=BuscarUsuario(request.POST)
+        form=BuscarUsuario(request.POST,AP="profesores")
         tipo1=request.POST["clase"]
         if tipo1=='0':
             tipos=[5,7]
