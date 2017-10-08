@@ -13,7 +13,7 @@ def listarAlumnos(request):
     test_profesor(request)
     if request.method=="GET":
         form=BuscarUsuario()
-        tipos=xrange(1,5)+[6]
+        tipos=list(xrange(1,5))+[6]
         givenname="*"
         sn="*"
     else:
