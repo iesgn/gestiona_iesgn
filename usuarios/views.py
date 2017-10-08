@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render,redirect
 from usuarios.libldap import LibLDAP
-from usuarios.forms import BuscarUsuario,newUserForm
+from usuarios.forms import BuscarUsuario,newUserForm,claseProfesores
 from gestiona_iesgn.views import test_profesor
 from django.contrib import messages
 import operator
@@ -25,7 +25,6 @@ def listarAlumnos(request):
             tipos=[int(tipo1)]
         givenname="*" if request.POST["nombre"]=="" else request.POST["nombre"]+"*"
         sn="*" if request.POST["apellidos"]=="" else request.POST["apellidos"]+"*"    
-    form.clase.choice=usuarios.forms.claseAlumnos
     lista=clase(getLista(givenname,sn,tipos))
     lista.sort(key=operator.itemgetter('uidnumber'))
     lista.sort(key=operator.itemgetter('sn'))
@@ -49,7 +48,7 @@ def listarProfesores(request):
             tipos=[int(tipo1)]
         givenname="*" if request.POST["nombre"]=="" else request.POST["nombre"]+"*"
         sn="*" if request.POST["apellidos"]=="" else request.POST["apellidos"]+"*"    
-    form.clase.choice=usuarios.forms.claseProfesores
+    form.clase.choice=claseProfesores
     lista=clase(getLista(givenname,sn,tipos))
     lista.sort(key=operator.itemgetter('uidnumber'))
     lista.sort(key=operator.itemgetter('sn'))
