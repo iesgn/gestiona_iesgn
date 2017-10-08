@@ -10,40 +10,34 @@ import hashlib
 
 
 def listarAlumnos(request):
-    test_profesor(request)
-    if request.method=="GET":
-        form=BuscarUsuario({"AP":"alumnos"})
-        tipos=list(xrange(1,5))+[6]
-        givenname="*"
-        sn="*"
-    else:
-        form=BuscarUsuario(request.POST)
-        tipo1=request.POST["clase"]
-        if tipo1=='0':
-            tipos=list(xrange(1,5))+[6]
-        else:
-            tipos=[int(tipo1)]
-        givenname="*" if request.POST["nombre"]=="" else request.POST["nombre"]+"*"
-        sn="*" if request.POST["apellidos"]=="" else request.POST["apellidos"]+"*"    
-    lista=clase(getLista(givenname,sn,tipos))
-    lista.sort(key=operator.itemgetter('uidnumber'))
-    lista.sort(key=operator.itemgetter('sn'))
-    info={"titulo":"Alumnos","resultados":lista,'form':form}
-    return render(request,"listar.html",info)
-
+    configuracion={
+        "tipos"=list(xrange(1,5))+[6],
+        "AP":configuracion["AP"],
+        "titulo":"Alumnos"
+    }
+    listarUsuarios(request,configuracion)
 
 def listarProfesores(request):
+    configuracion={
+        "tipos"=[5,7],
+        "AP":{"AP":"profesores"},
+        "titulo":"Profesores"
+    }
+    listarUsuarios(request,configuracion)
+
+
+def listarUsuarios(request,configuracion):
     test_profesor(request)
     if request.method=="GET":
-        form=BuscarUsuario({"AP":"profesores"})
-        tipos=[5,7]
+        form=BuscarUsuario(configuracion["AP"])
+        tipos=configuracion["tipo"]
         givenname="*"
         sn="*"
     else:
         form=BuscarUsuario(request.POST)
         tipo1=request.POST["clase"]
         if tipo1=='0':
-            tipos=[5,7]
+            tipos=configuracion["tipo"]
         else:
             tipos=[int(tipo1)]
         givenname="*" if request.POST["nombre"]=="" else request.POST["nombre"]+"*"
@@ -51,9 +45,8 @@ def listarProfesores(request):
     lista=clase(getLista(givenname,sn,tipos))
     lista.sort(key=operator.itemgetter('uidnumber'))
     lista.sort(key=operator.itemgetter('sn'))
-    info={"titulo":"Profesores","resultados":lista,'form':form}
+    info={"titulo":configuracion["titulo"],"resultados":lista,'form':form}
     return render(request,"listar.html",info)
-
 
 
 def clase(lista):
