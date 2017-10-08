@@ -14,6 +14,12 @@ def index(request):
                 busqueda='(uid=%s)'%username
                 resultados=lldap.buscar(busqueda)
                 info=resultados[0].get_attributes()
+                # Solo dejamos loguearse a los alumnos y profesores
+                # No dejamos a los AA y a los AP
+                tipos=[1,2,3,4,5]
+                if info["description"][0] not in tipos:
+                    info={"error":True}
+                    return render(request,"index.html",info)
                 
                 if info["gidNumber"][0]=="2000":
                     request.session["profesor"]=True
