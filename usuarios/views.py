@@ -19,7 +19,10 @@ def listarAlumnos(request):
     else:
         form=BuscarUsuario(request.POST)
         tipo1=request.POST["clase"]
-        tipos=[int(tipo1),int(tipo1)+1]
+        if tipo1==0:
+            tipos=list(xrange(1,5))+[6]
+        else:
+            tipos=[int(tipo1),int(tipo1)+1]
         givenname="*" if request.POST["nombre"]=="" else request.POST["nombre"]+"*"
         sn="*" if request.POST["apellidos"]=="" else request.POST["apellidos"]+"*"
     
