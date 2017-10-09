@@ -164,24 +164,21 @@ def update(request,usuario):
         # Tengo un diccionario donde cada campo es una lista
         # Quito las listas
         new=quito_listas_en_resultado(new)
-        new["cn"]=new["givenname"]+" "+new["sn"]
         old={}
+        new["cn"]=new["givenname"]+" "+new["sn"]
+        if new["userpassword"]!='':
+            the_hash = hashlib.md5(new[campo]).hexdigest()
+            the_unhex = binascii.unhexlify(the_hash)
+            new[campo]="{MD5}"+the_unhex.encode('base64')
+        the_hash = hashlib.md5(request.session["password"]).hexdigest()
+        the_unhex = binascii.unhexlify(the_hash)
+        datos[campo]="{MD5}"+the_unhex.encode('base64')
+        
         for campo in new.keys():
-            if  campo!="userpassword" and new[campo]==datos[campo]:
+            if new[campo]==datos[campo]:
                 del new[campo]
         for campo in new:
-            if campo=="userpassword":
-                    if new[campo]!="":
-                        the_hash = hashlib.md5(new[campo]).hexdigest()
-                        the_unhex = binascii.unhexlify(the_hash)
-                        new[campo]="{MD5}"+the_unhex.encode('base64')
-                        the_hash = hashlib.md5(request.session["password"]).hexdigest()
-                        the_unhex = binascii.unhexlify(the_hash)
-                        old[campo]="{MD5}"+the_unhex.encode('base64')
-                    else:
-                        del new[campo]
-            else:
-                old[campo]=datos[campo]
+            old[campo]=datos[campo]
         print new
         print "........"
         print old
