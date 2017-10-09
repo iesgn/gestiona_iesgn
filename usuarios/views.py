@@ -174,7 +174,7 @@ def update(request,usuario):
                         the_hash = hashlib.md5(new[campo]).hexdigest()
                         the_unhex = binascii.unhexlify(the_hash)
                         new[campo]="{MD5}"+the_unhex.encode('base64')
-                        the_hash = hashlib.md5(request.sesion["password"]).hexdigest()
+                        the_hash = hashlib.md5(request.session["password"]).hexdigest()
                         the_unhex = binascii.unhexlify(the_hash)
                         old[campo]="{MD5}"+the_unhex.encode('base64')
 
