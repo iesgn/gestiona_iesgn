@@ -165,7 +165,7 @@ def update(request,usuario):
         # Quito las listas
         new=quito_listas_en_resultado(new)
         for campo in new.keys():
-            if new[campo]==datos[campo]:
+            if new[campo]==datos[campo] and campo!="userpassword":
                 del new[campo]
                 del datos[campo]
         print new
