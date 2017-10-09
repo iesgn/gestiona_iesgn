@@ -108,11 +108,12 @@ def add(request,configuracion):
         datos["uidnumber"]=str(int(lista[-1]["uidnumber"][0])+1)
         datos["cn"]=datos["givenname"]+" "+datos["sn"]
         datos["loginshell"]="/bin/bash"
-        if datos["gidnumber"]=="2000":
-            grupo="profesores"
+        
+        if configuracion["AP"]=="profesores":
+            datos["gidnumber"]="2000"
         else:
-            grupo="alumnos"
-        datos["homedirectory"]="/home/%s/%s"%(grupo,datos["uid"])
+            datos["gidnumber"]="2001"
+        datos["homedirectory"]="/home/%s/%s"%(configuracion["AP"],datos["uid"])
         datos["objectclass"]= ['inetOrgPerson', 'posixAccount', 'top']
         the_hash = hashlib.md5(datos["userpassword"]).hexdigest()
         the_unhex = binascii.unhexlify(the_hash)
@@ -120,13 +121,14 @@ def add(request,configuracion):
         lldap=LibLDAP(request.session["username"],request.session["password"])
         if lldap.isbind:
             try: 
-                lldap.add(datos["uid"],datos)
+                #lldap.add(datos["uid"],datos)
+                print datos
             except:
                 messages.add_message(request, messages.INFO, 'No se ha podido añadir el nuevo usuario. Quizás no tengas privilegios, o el nombre de usuario está duplicado.')
-                return redirect("/usuarios/alumnos")
+                return redirect("/usuarios/%s" % configuracion["AP"])
         else:
             messages.add_message(request, messages.INFO, 'No se ha podido añadir el nuevo usuario. Usuario autentificado incorrecto.')
-            return redirect("/usuarios/alumnos")
+            return redirect("/usuarios/%s" % configuracion["AP"])
 
         return redirect("/")
     
