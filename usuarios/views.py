@@ -164,6 +164,7 @@ def update(request,usuario):
         # Quito las listas
         new=quito_listas_en_resultado(datos)
         print new
+        print "------------"
         print datos
 
     configuracion["titulo2"]="Si no escribes ninguna contraseña se mantendrá la que el usuario posee actualmente."
