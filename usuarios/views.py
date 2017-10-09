@@ -90,6 +90,7 @@ def addProfesores(request):
 
 def add(request,configuracion):
     test_profesor(request)
+    print request.method
     if request.method=='GET':
         form=newUserForm(configuracion["AP"])
     else:    
