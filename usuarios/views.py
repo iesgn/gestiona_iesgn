@@ -165,9 +165,9 @@ def update(request,usuario):
         # Quito las listas
         new=quito_listas_en_resultado(new)
         for campo in new.keys():
-            if new["campo"]==datos["campo"]:
-                del new["campo"]
-                del datos["campo"]
+            if new[campo]==datos[campo]:
+                del new[campo]
+                del datos[campo]
         print new
         print "........"
         print datos
