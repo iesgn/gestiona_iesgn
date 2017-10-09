@@ -164,8 +164,12 @@ def update(request,usuario):
         # Tengo un diccionario donde cada campo es una lista
         # Quito las listas
         new=quito_listas_en_resultado(new)
+        for campo in new.keys():
+            if new["campo"]==datos["campo"]:
+                del new["campo"]
+                del datos["campo"]
         print new
-        print "------------"
+        print "........"
         print datos
 
     configuracion["titulo2"]="Si no escribes ninguna contraseña se mantendrá la que el usuario posee actualmente."
