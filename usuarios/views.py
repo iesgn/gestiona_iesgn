@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render,redirect
 from usuarios.libldap import LibLDAP
-from usuarios.forms import BuscarUsuario,newUserForm,clasesProfesores
+from usuarios.forms import BuscarUsuario,newUserForm,updateUserForm
 from gestiona_iesgn.views import test_profesor
 from django.contrib import messages
 import operator
