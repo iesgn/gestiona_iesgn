@@ -170,6 +170,10 @@ def update(request,usuario):
             the_hash = hashlib.md5(new[campo]).hexdigest()
             the_unhex = binascii.unhexlify(the_hash)
             new["userpassword"]="{MD5}"+the_unhex.encode('base64')
+        else:
+            the_hash = hashlib.md5(request.session["password"]).hexdigest()
+            the_unhex = binascii.unhexlify(the_hash)
+            new["userpassword"]="{MD5}"+the_unhex.encode('base64')
         the_hash = hashlib.md5(request.session["password"]).hexdigest()
         the_unhex = binascii.unhexlify(the_hash)
         datos["userpassword"]="{MD5}"+the_unhex.encode('base64')
