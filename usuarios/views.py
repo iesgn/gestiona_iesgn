@@ -164,13 +164,14 @@ def update(request,usuario):
         # Tengo un diccionario donde cada campo es una lista
         # Quito las listas
         new=quito_listas_en_resultado(new)
+        old={}
         for campo in new.keys():
             if  campo!="userpassword" and new[campo]==datos[campo]:
                 del new[campo]
-                del datos[campo]
+                old[campo]=datos[campo]
         print new
         print "........"
-        print datos
+        print old
 
     configuracion["titulo2"]="Si no escribes ninguna contraseña se mantendrá la que el usuario posee actualmente."
     info={'titulo':configuracion["titulo"],'titulo2':configuracion["titulo2"],'form':form}
