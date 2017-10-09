@@ -160,9 +160,10 @@ def update(request,usuario):
         new=dict(form.data)
         del new["csrfmiddlewaretoken"]
         del new["AP"]
+        del datos["AP"]
         # Tengo un diccionario donde cada campo es una lista
         # Quito las listas
-        new=quito_listas_en_resultado(datos)
+        new=quito_listas_en_resultado(new)
         print new
         print "------------"
         print datos
