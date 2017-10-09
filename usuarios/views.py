@@ -169,10 +169,10 @@ def update(request,usuario):
         if new["userpassword"]!='':
             the_hash = hashlib.md5(new[campo]).hexdigest()
             the_unhex = binascii.unhexlify(the_hash)
-            new[campo]="{MD5}"+the_unhex.encode('base64')
+            new["userpassword"]="{MD5}"+the_unhex.encode('base64')
         the_hash = hashlib.md5(request.session["password"]).hexdigest()
         the_unhex = binascii.unhexlify(the_hash)
-        datos[campo]="{MD5}"+the_unhex.encode('base64')
+        datos["userpassword"]="{MD5}"+the_unhex.encode('base64')
         
         for campo in new.keys():
             if new[campo]==datos[campo]:
