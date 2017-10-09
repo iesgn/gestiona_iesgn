@@ -151,8 +151,8 @@ def update(request,usuario):
         configuracion={
         "titulo":"Modificar Alumno"
         }
-    form=newUserForm(datos) if request.method=="GET" else newUserForm(request.POST)
-    info={'titulo':configuracion["titulo"],form':form}
+    form=updateUserForm(datos) if request.method=="GET" else updateUserForm(request.POST)
+    info={'titulo':configuracion["titulo"],'form':form}
     return render(request,"new.html",info)
 
 
