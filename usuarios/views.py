@@ -129,8 +129,8 @@ def add(request,configuracion):
         else:
             messages.add_message(request, messages.INFO, 'No se ha podido añadir el nuevo usuario. Usuario autentificado incorrecto.')
             return redirect("/usuarios/%s" % configuracion["AP"])
-
-        return redirect("/")
+        messages.add_message(request, messages.INFO, 'Se ha alñadido el nuevo usuario.')
+        return redirect("/usuarios/%s" % configuracion["AP"])
     
     info={"titulo":configuracion["titulo"],'form':form}
     return render(request,"new.html",info)
