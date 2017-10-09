@@ -100,6 +100,7 @@ def add(request,configuracion):
         lista=getLista("*","*",xrange(1,10))
         lista.sort(key=operator.itemgetter('uidnumber'))
         datos=dict(form.data)
+        print datos
         del datos["csrfmiddlewaretoken"]
         # Tengo un diccionario donde cada campo es una lista
         # Quito las listas
