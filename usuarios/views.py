@@ -90,9 +90,7 @@ def addProfesores(request):
 
 def add(request,configuracion):
     test_profesor(request)
-    print request.method
-    form=newUserForm(request.POST)
-    print form.is_valid()
+    form=newUserForm(configuracion["AP"]) if request.method=="GET" else newUserForm(request.POST)
     if form.is_valid():
         # Calcular max uidnumbre
         # Toda la lista desde clase 1 hasta 9
@@ -129,7 +127,7 @@ def add(request,configuracion):
         else:
             messages.add_message(request, messages.INFO, 'No se ha podido añadir el nuevo usuario. Usuario autentificado incorrecto.')
             return redirect("/usuarios/%s" % configuracion["AP"]["AP"])
-        messages.add_message(request, messages.INFO, 'Se ha alñadido el nuevo usuario.')
+        messages.add_message(request, messages.INFO, 'Se ha añadido el nuevo usuario.')
         return redirect("/usuarios/%s" % configuracion["AP"]["AP"])
     
     info={"titulo":configuracion["titulo"],'form':form}
