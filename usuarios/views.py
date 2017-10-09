@@ -90,7 +90,7 @@ def addProfesores(request):
 
 def add(request,configuracion):
     test_profesor(request)
-    form=newUserForm(configuracion["AP"]) if request.method=="GET" else newUserForm(request.POST)
+    form=newUserForm(request.POST)
     if form.is_valid():
         # Calcular max uidnumbre
         # Toda la lista desde clase 1 hasta 9
