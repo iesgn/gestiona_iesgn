@@ -156,6 +156,16 @@ def update(request,usuario):
         }
     datos["AP"]=configuracion["AP"]
     form=updateUserForm(datos) if request.method=="GET" else updateUserForm(request.POST)
+    if form.is_valid():
+        new=dict(form.data)
+        del new["csrfmiddlewaretoken"]
+        del new["AP"]
+        # Tengo un diccionario donde cada campo es una lista
+        # Quito las listas
+        new=quito_listas_en_resultado(datos)
+        print new
+        print datos
+
     configuracion["titulo2"]="Si no escribes ninguna contraseña se mantendrá la que el usuario posee actualmente."
     info={'titulo':configuracion["titulo"],'titulo2':configuracion["titulo2"],'form':form}
     return render(request,"new.html",info)
