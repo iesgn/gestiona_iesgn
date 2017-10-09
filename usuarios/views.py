@@ -152,6 +152,7 @@ def update(request,usuario):
         "titulo":"Modificar Alumno"
         }
     form=updateUserForm(datos) if request.method=="GET" else updateUserForm(request.POST)
+    configuracion["titulo"]+="<br/><small>Si no escribes ninguna contraseña se mantendrá la que el usuario posee actualmente.</small>"
     info={'titulo':configuracion["titulo"],'form':form}
     return render(request,"new.html",info)
 
