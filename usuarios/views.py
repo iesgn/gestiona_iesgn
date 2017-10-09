@@ -13,7 +13,6 @@ def listarAlumnos(request):
     configuracion={
         "tipos":list(xrange(1,5))+[6],
         "AP":{"AP":"alumnos"},
-        "url":"alumnos",
         "titulo":"Listado de Alumnos"
     }
     return listarUsuarios(request,configuracion)
@@ -22,7 +21,6 @@ def listarProfesores(request):
     configuracion={
         "tipos":[5,7],
         "AP":{"AP":"profesores"},
-        "url":"profesores",
         "titulo":"Listado de Profesores"
     }
     return listarUsuarios(request,configuracion)
@@ -47,7 +45,7 @@ def listarUsuarios(request,configuracion):
     lista=clase(getLista(givenname,sn,tipos))
     lista.sort(key=operator.itemgetter('uidnumber'))
     lista.sort(key=operator.itemgetter('sn'))
-    info={"url":configuracion["url"],"titulo":configuracion["titulo"],"resultados":lista,'form':form}
+    info={"titulo":configuracion["titulo"],"resultados":lista,'form':form}
     return render(request,"listar.html",info)
 
 
