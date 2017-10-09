@@ -3,7 +3,9 @@
 {% block content %}
 <div class="row">
 <h3>{{titulo}}</h3>
-<strong>{{titulo2}}</strong>
+{% if titulo2 %}
+    <strong>{{titulo2}}</strong><br/>
+{% end if %}
 <form  method="post" class="form-hotizontal">
   <div class="col-md-6">
     {% csrf_token %}
