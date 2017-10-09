@@ -41,10 +41,10 @@ class newUserForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super(newUserForm, self).__init__(*args, **kwargs)
         if args[0].has_key("AP") and args[0]["AP"]=="profesores":
-            self.fields['descripcion']=forms.ChoiceField(choices=clasesProfesores[1:],required=False,widget=forms.Select(attrs={'class': "form-control"}))
+            self.fields['description']=forms.ChoiceField(choices=clasesProfesores[1:],required=False,widget=forms.Select(attrs={'class': "form-control"}))
 
         else:
-            self.fields['descripcion']=forms.ChoiceField(choices=clasesAlumnos[1:],required=False,widget=forms.Select(attrs={'class': "form-control"}))
+            self.fields['description']=forms.ChoiceField(choices=clasesAlumnos[1:],required=False,widget=forms.Select(attrs={'class': "form-control"}))
 
 
 class updateUserForm(forms.Form):
