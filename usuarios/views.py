@@ -53,7 +53,7 @@ def listarUsuarios(request,configuracion):
 
 def clase(lista):
     resultado=[]
-    clase=["","1º ASIR","2º ASIR","1º SMR","2º SMR","Profesores","A.A.","A.P."]
+    clase=["","1º ASIR","2º ASIR","1º SMR","2º SMR","Profesor","A.A.","A.P."]
     for usuario in lista:
         usuario["description"][0]=clase[int(usuario["description"][0])]
         resultado.append(usuario)

@@ -27,8 +27,7 @@ class BuscarUsuario(forms.Form):
         super(BuscarUsuario, self).__init__(*args, **kwargs)
         if args[0].has_key("AP") and args[0]["AP"]=="profesores":
             self.fields['clase']=forms.ChoiceField(choices=clasesProfesores,required=False,widget=forms.Select(attrs={'class': "form-control",'onchange': 'this.form.submit();'}))
-            self.fields['clase']="5"
-
+            
         else:
             self.fields['clase']=forms.ChoiceField(choices=clasesAlumnos,required=False,widget=forms.Select(attrs={'class': "form-control",'onchange': 'this.form.submit();'}))
 
