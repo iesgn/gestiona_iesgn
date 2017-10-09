@@ -170,3 +170,10 @@ def quito_listas_en_resultado(datos,utf8=True):
         del datos[campo]
         datos[campo.encode('utf-8')]=resultado
     return datos
+
+def perfil(request):
+    lldap=LibLDAP()
+    busqueda='(uid=%s)'%(request.session["username"])
+    r=lldap.buscar(busqueda)
+    datos=r[0].get_attributes()
+    return update(request,datos["uidnumber"][0])
