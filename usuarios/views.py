@@ -91,10 +91,7 @@ def addProfesores(request):
 def add(request,configuracion):
     test_profesor(request)
     print request.method
-    if request.method=='GET':
-        form=newUserForm(configuracion["AP"])
-    else:    
-        form=newUserForm(request.POST)
+    form=newUserForm(request.POST)
     print form.is_valid()
     if form.is_valid():
         # Calcular max uidnumbre

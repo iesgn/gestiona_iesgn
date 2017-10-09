@@ -36,7 +36,6 @@ class newUserForm(forms.Form):
     sn=forms.CharField(max_length=100,required=True,widget=forms.TextInput(attrs={'class': "form-control"}))
     mail=forms.CharField(max_length=100,required=True,widget=forms.EmailInput(attrs={'class': "form-control"}))
     l=forms.CharField(max_length=100,required=True,widget=forms.TextInput(attrs={'class': "form-control"}))
-    AP=forms.CharField(widget=forms.HiddenInput())
     #description=forms.ChoiceField(choices=clasesAlumnos[1:],required=False,widget=forms.Select(attrs={'class': "form-control"}))
     def __init__(self, *args, **kwargs):
         super(newUserForm, self).__init__(*args, **kwargs)
