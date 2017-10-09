@@ -94,6 +94,7 @@ def add(request,configuracion):
         form=newUserForm(configuracion["AP"])
     else:    
         form=newUserForm(request.POST)
+    print form.is_valid()
     if form.is_valid():
         # Calcular max uidnumbre
         # Toda la lista desde clase 1 hasta 9
