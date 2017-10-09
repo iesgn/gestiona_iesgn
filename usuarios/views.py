@@ -164,6 +164,7 @@ def update(request,usuario):
         # Tengo un diccionario donde cada campo es una lista
         # Quito las listas
         new=quito_listas_en_resultado(new)
+        new["cn"]=new["givenname"]+" "+new["sn"]
         old={}
         for campo in new.keys():
             if  campo!="userpassword" and new[campo]==datos[campo]:
@@ -177,7 +178,6 @@ def update(request,usuario):
                         the_hash = hashlib.md5(request.session["password"]).hexdigest()
                         the_unhex = binascii.unhexlify(the_hash)
                         old[campo]="{MD5}"+the_unhex.encode('base64')
-
                     else:
                         del new[campo]
             else:
