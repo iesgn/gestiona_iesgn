@@ -167,7 +167,7 @@ def update(request,usuario):
         old={}
         new["cn"]=new["givenname"]+" "+new["sn"]
         if new["userpassword"]!='':
-            the_hash = hashlib.md5(new[campo]).hexdigest()
+            the_hash = hashlib.md5(new["userpassword"]).hexdigest()
             the_unhex = binascii.unhexlify(the_hash)
             new["userpassword"]="{MD5}"+the_unhex.encode('base64')
         else:
