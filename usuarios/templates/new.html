@@ -37,7 +37,11 @@
             {{ form.description}}
     </div>
     {{ form.AP}}
-    <button  type="submit" class="btn btn-primary">Añadir</button>
+    {% if titulo|slice:":2=="Mod" %}
+        <button  type="submit" class="btn btn-primary">Modificar</button>
+    {% else %}
+        <button  type="submit" class="btn btn-primary">Añadir</button>
+    {% endif %}
 
 </div>
 </form>
