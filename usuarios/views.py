@@ -169,7 +169,18 @@ def update(request,usuario):
             if  campo!="userpassword" and new[campo]==datos[campo]:
                 del new[campo]
         for campo in new:
-            if  campo!="userpassword":
+            if campo=="userpassword":
+                    if new["campo"]!="":
+                        the_hash = hashlib.md5(new[campo]).hexdigest()
+                        the_unhex = binascii.unhexlify(the_hash)
+                        new[campo]="{MD5}"+the_unhex.encode('base64')
+                        the_hash = hashlib.md5(request.sesion["password"]).hexdigest()
+                        the_unhex = binascii.unhexlify(the_hash)
+                        old[campo]="{MD5}"+the_unhex.encode('base64')
+
+                    else:
+                        del new[campo]
+            else:
                 old[campo]=datos[campo]
         print new
         print "........"
