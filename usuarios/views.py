@@ -113,7 +113,7 @@ def add(request,configuracion):
             datos["gidnumber"]="2000"
         else:
             datos["gidnumber"]="2001"
-        datos["homedirectory"]="/home/%s/%s"%(configuracion["AP"],datos["uid"])
+        datos["homedirectory"]="/home/%s/%s"%(configuracion["AP"]["AP"],datos["uid"])
         datos["objectclass"]= ['inetOrgPerson', 'posixAccount', 'top']
         the_hash = hashlib.md5(datos["userpassword"]).hexdigest()
         the_unhex = binascii.unhexlify(the_hash)
@@ -125,12 +125,12 @@ def add(request,configuracion):
                 print datos
             except:
                 messages.add_message(request, messages.INFO, 'No se ha podido añadir el nuevo usuario. Quizás no tengas privilegios, o el nombre de usuario está duplicado.')
-                return redirect("/usuarios/%s" % configuracion["AP"])
+                return redirect("/usuarios/%s" % configuracion["AP"]["AP"])
         else:
             messages.add_message(request, messages.INFO, 'No se ha podido añadir el nuevo usuario. Usuario autentificado incorrecto.')
-            return redirect("/usuarios/%s" % configuracion["AP"])
+            return redirect("/usuarios/%s" % configuracion["AP"]["AP"])
         messages.add_message(request, messages.INFO, 'Se ha alñadido el nuevo usuario.')
-        return redirect("/usuarios/%s" % configuracion["AP"])
+        return redirect("/usuarios/%s" % configuracion["AP"]["AP"])
     
     info={"titulo":configuracion["titulo"],'form':form}
     return render(request,"new.html",info)
