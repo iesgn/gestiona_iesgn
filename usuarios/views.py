@@ -136,22 +136,23 @@ def add(request,configuracion):
 ####################################################################################################
 
 
-
-
-
 def update(request,usuario):
     test_profesor(request)
     lldap=LibLDAP()
     busqueda='(uidnumber=%s)'%(usuario)
-    print busqueda
     r=lldap.buscar(busqueda)
     datos=r[0].get_attributes()
     datos=quito_listas_en_resultado(datos,utf8=False)
-    if not request.POST:
-        form=newUserForm(datos)
+    if datos["gidnumber"]=='2000':
+        configuracion={
+        "titulo":"Modificar Profesor"
+        }
     else:
-        form=newUserForm(request.POST)
-    info={'form':form}
+        configuracion={
+        "titulo":"Modificar Alumno"
+        }
+    form=newUserForm(datos) if request.method=="GET" else newUserForm(request.POST)
+    info={'titulo':configuracion["titulo"],form':form}
     return render(request,"new.html",info)
 
 
