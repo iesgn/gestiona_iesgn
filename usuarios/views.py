@@ -77,6 +77,14 @@ def getLista(givenname,sn,tipos):
 def addAlumnos(request):
     configuracion={
         "AP":{"AP":"alumnos"},
+        "titulo":"Nuevo Alumno"
+    }
+    return add(request,configuracion)
+
+def addProfesores(request):
+    configuracion={
+        "AP":{"AP":"profesores"},
+        "titulo":"Nuevo Profesor"
     }
     return add(request,configuracion)
 
@@ -122,7 +130,7 @@ def add(request,configuracion):
 
         return redirect("/")
     
-    info={'form':form}
+    info={"titulo":configuracion["titulo"],'form':form}
     return render(request,"new.html",info)
 
 def update(request,usuario):
