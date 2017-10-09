@@ -137,7 +137,8 @@ def add(request,configuracion):
 
 
 def update(request,usuario):
-    test_profesor(request)
+    if not "perfil" in request.path: 
+        test_profesor(request)
     lldap=LibLDAP()
     busqueda='(uidnumber=%s)'%(usuario)
     r=lldap.buscar(busqueda)
