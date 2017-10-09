@@ -100,6 +100,7 @@ def add(request,configuracion):
         datos=dict(form.data)
         print datos
         del datos["csrfmiddlewaretoken"]
+        del datos["AP"]
         # Tengo un diccionario donde cada campo es una lista
         # Quito las listas
         datos=quito_listas_en_resultado(datos)
