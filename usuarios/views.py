@@ -98,7 +98,6 @@ def add(request,configuracion):
         lista=getLista("*","*",xrange(1,10))
         lista.sort(key=operator.itemgetter('uidnumber'))
         datos=dict(form.data)
-        print datos
         del datos["csrfmiddlewaretoken"]
         del datos["AP"]
         # Tengo un diccionario donde cada campo es una lista
@@ -121,8 +120,7 @@ def add(request,configuracion):
         lldap=LibLDAP(request.session["username"],request.session["password"])
         if lldap.isbind:
             try: 
-                #lldap.add(datos["uid"],datos)
-                print datos
+                lldap.add(datos["uid"],datos)
             except:
                 messages.add_message(request, messages.INFO, 'No se ha podido añadir el nuevo usuario. Quizás no tengas privilegios, o el nombre de usuario está duplicado.')
                 return redirect("/usuarios/%s" % configuracion["AP"]["AP"])
@@ -134,6 +132,12 @@ def add(request,configuracion):
     
     info={"titulo":configuracion["titulo"],'form':form}
     return render(request,"new.html",info)
+
+####################################################################################################
+
+
+
+
 
 def update(request,usuario):
     test_profesor(request)
@@ -148,7 +152,6 @@ def update(request,usuario):
     else:
         form=newUserForm(request.POST)
     info={'form':form}
-
     return render(request,"new.html",info)
 
 
