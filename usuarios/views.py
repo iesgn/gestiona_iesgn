@@ -156,7 +156,7 @@ def update(request,usuario):
         }
     datos["AP"]=configuracion["AP"]
     form=updateUserForm(datos) if request.method=="GET" else updateUserForm(request.POST)
-    if form.is_valid():
+    if request.method=="POST" and form.is_valid():
         new=dict(form.data)
         del new["csrfmiddlewaretoken"]
         del new["AP"]
