@@ -189,6 +189,8 @@ def update(request,usuario):
 
     configuracion["titulo2"]="Si no escribes ninguna contraseña se mantendrá la que el usuario posee actualmente."
     info={'titulo':configuracion["titulo"],'titulo2':configuracion["titulo2"],'form':form}
+    if "perfil" in request.path:
+        info["perfil"]=True
     return render(request,"new.html",info)
 
 
