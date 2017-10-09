@@ -145,15 +145,16 @@ def update(request,usuario):
     datos=quito_listas_en_resultado(datos,utf8=False)
     if datos["gidnumber"]=='2000':
         configuracion={
-        "titulo":"Modificar Profesor"
-        "AP":{"AP":"profesores"},
+        "titulo":"Modificar Profesor",
+        "AP":"profesores",
         }
 
     else:
         configuracion={
         "titulo":"Modificar Alumno",
-        "AP":{"AP":"alumnos"},
+        "AP":"alumnos",
         }
+    datos["AP"]=configuracion["AP"]
     form=updateUserForm(datos) if request.method=="GET" else updateUserForm(request.POST)
     configuracion["titulo2"]="Si no escribes ninguna contraseña se mantendrá la que el usuario posee actualmente."
     info={'titulo':configuracion["titulo"],'titulo2':configuracion["titulo2"],'form':form}
