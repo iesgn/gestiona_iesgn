@@ -57,7 +57,7 @@ class updateUserForm(forms.Form):
     homedirectory=forms.CharField(widget=forms.HiddenInput())
     #description=forms.ChoiceField(choices=clasesAlumnos[1:],required=False,widget=forms.Select(attrs={'class': "form-control"}))
     def __init__(self, *args, **kwargs):
-        super(newUserForm, self).__init__(*args, **kwargs)
+        super(updateUserForm, self).__init__(*args, **kwargs)
         if args[0].has_key("AP") and args[0]["AP"]=="profesores":
             self.fields['description']=forms.ChoiceField(choices=clasesProfesores[1:],required=False,widget=forms.Select(attrs={'class': "form-control"}))
 
