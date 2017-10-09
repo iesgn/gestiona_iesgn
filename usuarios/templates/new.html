@@ -5,7 +5,7 @@
 <h3>{{titulo}}</h3>
 {% if form.errors %}
     {% for field in form %}
-        <strong>field.name</strong>
+        <strong>{{field.name}}</strong>
         {% for error in field.errors %}
             <div class="alert alert-danger">
                 <strong>{{ error|escape }}</strong>
