@@ -76,9 +76,15 @@ def getLista(givenname,sn,tipos):
 
 #############################################################################################################
 
-def add(request):
+ef addAlumnos(request):
+    configuracion={
+        "AP":{"AP":"alumnos"},
+    }
+    return add(request,configuracion)
+
+def add(request,configuracion):
     test_profesor(request)
-    form=newUserForm(request.POST)
+    form=newUserForm(request.POST+configuracion["AP"])
     if form.is_valid():
         # Calcular max uidnumbre
         # Toda la lista desde clase 1 hasta 9

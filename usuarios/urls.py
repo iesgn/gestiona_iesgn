@@ -6,6 +6,6 @@ urlpatterns = [
 	url(r'^alumnos$', views.listarAlumnos),
 	url(r'^profesores$', views.listarProfesores),
 	url(r'^update/(?P<usuario>[0-9]+)$', views.update),
-	url(r'^add$', views.add),
+	url(r'^alumnos/add$', views.addAlumnos),
 
   ]
