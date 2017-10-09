@@ -168,6 +168,8 @@ def update(request,usuario):
         for campo in new.keys():
             if  campo!="userpassword" and new[campo]==datos[campo]:
                 del new[campo]
+        for campo in new:
+            if  campo!="userpassword":
                 old[campo]=datos[campo]
         print new
         print "........"
