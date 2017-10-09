@@ -146,10 +146,13 @@ def update(request,usuario):
     if datos["gidnumber"]=='2000':
         configuracion={
         "titulo":"Modificar Profesor"
+        "AP":{"AP":"profesores"},
         }
+
     else:
         configuracion={
-        "titulo":"Modificar Alumno"
+        "titulo":"Modificar Alumno",
+        "AP":{"AP":"alumnos"},
         }
     form=updateUserForm(datos) if request.method=="GET" else updateUserForm(request.POST)
     configuracion["titulo2"]="Si no escribes ninguna contraseña se mantendrá la que el usuario posee actualmente."
