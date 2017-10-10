@@ -22,5 +22,6 @@ urlpatterns = [
     url(r'^$',index),
     url(r'^logout/$',salir),
     url(r'^usuarios/', include('usuarios.urls')),
+    url(r'^cursos/', include('cursos.urls')),
 
 ]
