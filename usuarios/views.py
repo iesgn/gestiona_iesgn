@@ -121,8 +121,8 @@ def add(request,configuracion):
         if lldap.isbind:
             try: 
                 lldap.add(datos["uid"],datos)
-            except:
-                messages.add_message(request, messages.INFO, 'No se ha podido añadir el nuevo usuario. Quizás no tengas privilegios, o el nombre de usuario está duplicado.')
+            except Exception as err:
+                messages.add_message(request, messages.INFO, 'No se ha podido añadir el nuevo usuario. Error:' + str(err))
                 return redirect("/usuarios/%s" % configuracion["AP"]["AP"])
         else:
             messages.add_message(request, messages.INFO, 'No se ha podido añadir el nuevo usuario. Usuario autentificado incorrecto.')
@@ -184,9 +184,27 @@ def update(request,usuario):
                 del new[campo]
         for campo in new:
             old[campo]=datos[campo]
-        print new
-        print "........"
-        print old
+        
+        ### Obtengo path de retorno
+        if "perfil" in request.path:
+            url="/"
+        else:
+            url="/usuarios/"+configuracion["AP"]
+
+        ##3 Hago la modificación
+        lldap=LibLDAP(request.session["username"],request.session["password"])
+        if lldap.isbind:
+            try: 
+                lldap.modify(datos["uid"],new,old)
+            except Exception as err:
+                messages.add_message(request, messages.INFO, 'No se ha podido modificar el usuario. Error'+str(err))
+                return redirect("%s" % url)
+        else:
+            messages.add_message(request, messages.INFO, 'No se ha podido modificar el usuario. Usuario autentificado incorrecto.')
+            return redirect("%s" % url)
+
+        messages.add_message(request, messages.INFO, 'Se ha modificado el usuario.')
+        return redirect("%s" % url)
 
     configuracion["titulo2"]="Si no escribes ninguna contraseña se mantendrá la que el usuario posee actualmente."
     info={'titulo':configuracion["titulo"],'titulo2':configuracion["titulo2"],'form':form}
