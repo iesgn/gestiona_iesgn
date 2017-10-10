@@ -1,0 +1,29 @@
+{% extends "base_menu.html" %}
+
+
+{% block content %}
+<div class="row">
+  
+<div class="row">
+<h2>{{titulo}}</h2>
+  <div class="col-md-8">
+    <table class="table table-bordered table-hover">
+      <tr>
+        <td class="text-center"><strong>N.</strong></td>
+        <td class="text-center"><strong>Usuario</strong></td>
+        
+      </tr>
+      {% for r in resultados %}
+      <tr>
+        <td class="text-center">{{forloop.counter}}</td>
+        <td>{{r.sn.0}}, {{r.givenname.0}} ({{r.uid.0}})</td>
+        
+      </tr>
+
+{% endfor %}
+    </table>
+  </div>
+</div>
+
+{% endblock %}
+
