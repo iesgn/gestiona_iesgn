@@ -9,4 +9,4 @@ def cursos(request,curso):
 	lista=getLista("*","*",[int(curso)])
 	lista.sort(key=operator.itemgetter('sn'))
 	info={"titulo":clases[int(curso)],"resultados":lista}
-	return render(request,"listar.html",info)
+	return render(request,"listar_cursos.html",info)
