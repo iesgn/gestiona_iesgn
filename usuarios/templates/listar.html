@@ -12,12 +12,11 @@
       {{ message }}</div>
     {% endfor%}
   {% endif %}
+</div>
+<div class="row">
 <h3>Búsqueda</h3>
 <form method="post" class="form-hotizontal">
   <div class="col-md-6">
-
-
-
     {% csrf_token %}
     <div class="form-group">
         <label>Nombre:</label>
@@ -34,11 +33,9 @@
             <label>Clase:</label>
             {{ form.clase}}
     </div>
-
 </div>
 </form>
 </div>
-
 <div class="row">
 <h2>{{titulo}}</h2>
   <div class="col-md-8">

@@ -2,15 +2,14 @@
 
 
 {% block content %}
-<div class="row">
-  
+ 
 <div class="row">
 <h2>{{titulo}}</h2>
-  <div class="col-md-8">
+  <div class="col-md-6">
     <table class="table table-bordered table-hover">
       <tr>
         <td class="text-center"><strong>N.</strong></td>
-        <td class="text-center"><strong>Usuario</strong></td>
+        <td class="text-center"><strong>Alumno</strong></td>
         
       </tr>
       {% for r in resultados %}
@@ -23,7 +22,13 @@
 {% endfor %}
     </table>
   </div>
+  <div class="col-md-4">
+    <strong>Selecciona alumno:</strong>
+    
+  </div>
+
 </div>
+
 
 {% endblock %}
 
