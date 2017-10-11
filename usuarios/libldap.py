@@ -97,7 +97,7 @@ class gnLDAP(LibLDAP):
         else:
             return
         self.con.modify_s("cn=%s,ou=Group,dc=gonzalonazareno,dc=org"%grupo,modlist)
-        self.con.unbind_s()
+       
         
 
     
