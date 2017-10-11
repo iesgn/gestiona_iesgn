@@ -86,7 +86,7 @@ class gnLDAP(LibLDAP):
                 if not key:
                     return self.grupo[clave]
                 else:
-                    return calve
+                    return clave
 
     def addUserGroup(self,uid,grupo):
         
