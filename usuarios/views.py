@@ -85,13 +85,13 @@ def add(request,configuracion):
         # Calcular max uidnumbre
         # Toda la lista desde clase 1 hasta 9
 
-        ldap=gnLDAP()
+        ldap=gnLDAP(request.session["username"],request.session["password"])
         lista=ldap.gnBuscar(ordenarpor="udinumber")
         datos=dict(form.data)
-        grupo=datos["description"]
+        grupo=datos["grupo"]
         del datos["csrfmiddlewaretoken"]
         del datos["AP"]
-        del datos["description"]
+        del datos["grupo"]
 
         # Tengo un diccionario donde cada campo es una lista
         # Quito las listas
@@ -110,10 +110,11 @@ def add(request,configuracion):
         the_hash = hashlib.md5(datos["userpassword"]).hexdigest()
         the_unhex = binascii.unhexlify(the_hash)
         datos["userpassword"]="{MD5}"+the_unhex.encode('base64')
-        lldap=LibLDAP(request.session["username"],request.session["password"])
+        
         if lldap.isbind:
             try: 
-                #lldap.add(datos["uid"],datos)
+                #ldap.add(datos["uid"],datos)
+                ldap.addUserGroup(datos["uid"],grupo)
                 print datos
             except Exception as err:
                 messages.add_message(request, messages.INFO, 'No se ha podido añadir el nuevo usuario. Error:' + str(err))
