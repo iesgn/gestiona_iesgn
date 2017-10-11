@@ -53,9 +53,9 @@ class LibLDAP:
 
 class gnLDAP(LibLDAP):
     def __init__(self,username="",password="",base_dn=""):
-        super().__init__(LibLDAP,self,username,password)
+        super(LibLDAP,self).__init__(username,password)
         if base_dn!="":
-            super.base_dn = base_dn 
+            super(LibLDAP,self).base_dn = base_dn 
 
     def gnBuscar(filtro):
         filtro="(&(objectClass=inetOrgPerson)"
