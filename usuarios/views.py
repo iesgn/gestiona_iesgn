@@ -111,7 +111,6 @@ def add(request,configuracion):
         the_hash = hashlib.md5(datos["userpassword"]).hexdigest()
         the_unhex = binascii.unhexlify(the_hash)
         datos["userpassword"]="{MD5}"+the_unhex.encode('base64')
-        
         if ldap.isbind:
             ldap.modUserGroup(datos["uid"],grupo,"add")
             try: 
