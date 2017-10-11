@@ -236,4 +236,4 @@ def perfil(request):
     busqueda='(uid=%s)'%(request.session["username"])
     r=lldap.buscar(busqueda)
     datos=r[0].get_attributes()
-    return update(request,datos["uidnumber"][0])
+    return update(request,datos["uid"][0])
