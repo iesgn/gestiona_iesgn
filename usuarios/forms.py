@@ -10,7 +10,7 @@ gruposAlumnos = (
 )
 
 gruposProfesores = (
-    ('profesores','Todos'),
+    ('allprofesores','Todos'),
     ('profesores', 'Profesor'),
     ('antiguosprofesores', 'Antiguo Profesor'),
 )

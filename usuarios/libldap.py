@@ -68,7 +68,7 @@ class gnLDAP(LibLDAP):
                         cadena2+="(memberOf=cn=%s,ou=Group,dc=gonzalonazareno,dc=org)" % grupos
                     cadena2+=")"
                     cadena+=cadena2
-                elif campo=="grupo" and valor=="profesores":
+                elif campo=="grupo" and valor=="allprofesores":
                     cadena2="(|"
                     for grupos in ["profesores","antiguosprofesores"]:
                         cadena2+="(memberOf=cn=%s,ou=Group,dc=gonzalonazareno,dc=org)" % grupos
