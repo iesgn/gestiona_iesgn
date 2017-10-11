@@ -64,7 +64,7 @@ class gnLDAP(LibLDAP):
                 cadena+="(memberOf=cn=%s,ou=Group,dc=gonzalonazareno,dc=org)" % valor
             else:
                 cadena+="(%s=%s*)" % (campo,valor)
-        return buscar(cadena)
+        return LibLDAP.buscar(cadena)
 
 def get_search_results(results):
     """Given a set of results, return a list of LDAPSearchResult
