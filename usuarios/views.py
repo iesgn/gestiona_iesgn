@@ -114,9 +114,9 @@ def add(request,configuracion):
         if ldap.isbind:
             ldap.modUserGroup(datos["uid"],grupo,"add")
             try: 
-                #ldap.add(datos["uid"],datos)
+                ldap.add(datos["uid"],datos)
                 
-                print datos
+                
             except Exception as err:
                 messages.add_message(request, messages.INFO, 'No se ha podido añadir el nuevo usuario. Error:' + str(err))
                 return redirect("/usuarios/%s" % configuracion["AP"]["AP"])
