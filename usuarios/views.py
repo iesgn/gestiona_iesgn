@@ -115,7 +115,7 @@ def add(request,configuracion):
         if ldap.isbind:
             ldap.modUserGroup(datos["uid"],grupo,"add")
             try: 
-                print datos
+                
                 ldap.add(datos["uid"],datos)
       
                 
