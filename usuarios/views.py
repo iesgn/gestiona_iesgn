@@ -112,7 +112,7 @@ def add(request,configuracion):
         datos["userpassword"]="{MD5}"+the_unhex.encode('base64')
         
         if ldap.isbind:
-            ldap.addUserGroup(datos["uid"],grupo)
+            ldap.modUserGroup(datos["uid"],grupo,"add")
             try: 
                 #ldap.add(datos["uid"],datos)
                 
@@ -194,8 +194,8 @@ def update(request,usuario):
         if ldap.isbind:
             oldgrupo=ldap.memberOfGroup(datos["uid"],key=True)
             if grupo!=oldgrupo:
-                ldap.addUserGroup(datos["uid"],grupo[0])
-                ldap.delUserGroup(datos["uid"],oldgrupo)
+                ldap.modUserGroup(datos["uid"],grupo[0],"add")
+                ldap.modUserGroup(datos["uid"],oldgrupo,"del")
             try: 
                 ldap.modify(datos["uid"],new,old)
                 

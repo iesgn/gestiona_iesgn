@@ -88,26 +88,19 @@ class gnLDAP(LibLDAP):
                 else:
                     return clave
 
-    def addUserGroup(self,uid,grupo):
-        
-        old={}
-        new={}
-        old["member"]=self.grupos[grupo]
-        self.grupos[grupo].append("uid=%s,ou=People,dc=gonzalonazareno,dc=org" % uid)
-        new["member"]=self.grupos[grupo]
-        self.con.modify_s("cn=%s,ou=Group,dc=gonzalonazareno,dc=org"%grupo,self.modldif(old,new))
+    def modUserGroup(self,uid,grupo,adddel):
+        modlist = []
+        if adddel="add":
+            modlist.append((ldap.MOD_ADD, "member", "uid=%s,ou=People,dc=gonzalonazareno,dc=org" % uid ))
+        elif adddel="del":
+            modlist.append((ldap.MOD_DELETE, "member", "uid=%s,ou=People,dc=gonzalonazareno,dc=org" % uid ))
+        else:
+            return
+        self.con.modify_s("cn=%s,ou=Group,dc=gonzalonazareno,dc=org"%grupo,modlist)
         self.con.unbind_s()
         
 
-    def delUserGroup(self,uid,grupo):
-        old={}
-        new={}
-        old["member"]=self.grupos[grupo]
-        self.grupos[grupo].remove("uid=%s,ou=People,dc=gonzalonazareno,dc=org" % uid)
-        new["member"]=self.grupos[grupo]
-        self.con.modify_s("cn=%s,ou=Group,dc=gonzalonazareno,dc=org"%grupo,self.modldif(old,new))
-        self.con.unbind_s()
-
+    
 
     def gnBuscar(self,filtro={},cadena="",ordenarpor="sn"):
         if len(filtro)>0:
