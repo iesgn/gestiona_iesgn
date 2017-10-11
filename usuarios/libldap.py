@@ -5,7 +5,7 @@ from StringIO import StringIO
 from ldap.cidict import cidict
 
 
-class LibLDAP:
+class LibLDAP(object):
     base_dn="ou=People,dc=gonzalonazareno,dc=org"
     con=""
     isbind=False
@@ -53,9 +53,9 @@ class LibLDAP:
 
 class gnLDAP(LibLDAP):
     def __init__(self,username="",password="",base_dn=""):
-        super(LibLDAP,self).__init__(username,password)
+        LibLDAP.__init__(username,password)
         if base_dn!="":
-            super(LibLDAP,self).base_dn = base_dn 
+            LibLDAP.base_dn = base_dn 
 
     def gnBuscar(filtro):
         filtro="(&(objectClass=inetOrgPerson)"
