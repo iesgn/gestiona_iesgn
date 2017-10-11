@@ -89,6 +89,8 @@ class gnLDAP(LibLDAP):
         print self.grupos["profesores"]
         print self.grupos["asir1"]
         #print self.grupos[str(grupo)]
+        old={}
+        new={}
         old["member"]=self.grupos[grupo]
         self.grupos[grupo].append("uid=%s,ou=People,dc=gonzalonazareno,dc=org" % uid)
         new["member"]=self.grupos[grupo]
