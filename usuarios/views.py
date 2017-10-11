@@ -135,7 +135,7 @@ def add(request,configuracion):
 def update(request,usuario):
     if not "perfil" in request.path: 
         test_profesor(request)
-    lldap=gnLDAP(request.session["username"],request.session["password"])
+    ldap=gnLDAP(request.session["username"],request.session["password"])
     lista=ldap.gnBuscar(cadena="('(uidnumber=%s)')"%usuario)
     datos=quito_listas_en_resultado(datos,utf8=False)
     if datos["gidnumber"]=='2000':
