@@ -86,8 +86,7 @@ class gnLDAP(LibLDAP):
                 return self.grupo[clave]
 
     def addUserGroup(self,uid,grupo):
-        print self.grupos[grupo]
-        #print self.grupos[str(grupo)]
+        
         old={}
         new={}
         old["member"]=self.grupos[grupo]
@@ -95,9 +94,16 @@ class gnLDAP(LibLDAP):
         new["member"]=self.grupos[grupo]
         #LibLDAP.con.modify_s("cn=%s,ou=Group,dc=gonzalonazareno,dc=org"%grupo,LibLDAP.modldif(old,new))
         #LibLDAP.con.unbind_s()
-        print old
-        print new
-        print "cn=%s,ou=Group,dc=gonzalonazareno,dc=org"%grupo
+        
+
+    def delUserGroup(self,uid,grupo):
+        old={}
+        new={}
+        old["member"]=self.grupos[grupo]
+        self.grupos[grupo].remove("uid=%s,ou=People,dc=gonzalonazareno,dc=org" % uid)
+        new["member"]=self.grupos[grupo]
+        LibLDAP.con.modify_s("cn=%s,ou=Group,dc=gonzalonazareno,dc=org"%grupo,LibLDAP.modldif(old,new))
+        LibLDAP.con.unbind_s()
 
 
     def gnBuscar(self,filtro={},cadena="",ordenarpor="sn"):

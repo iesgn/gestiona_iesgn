@@ -54,11 +54,10 @@ class updateUserForm(forms.Form):
     mail=forms.CharField(max_length=100,required=True,widget=forms.EmailInput(attrs={'class': "form-control"}))
     l=forms.CharField(max_length=100,required=True,widget=forms.TextInput(attrs={'class': "form-control"}))
     AP=forms.CharField(widget=forms.HiddenInput())
-    #description=forms.ChoiceField(choices=gruposAlumnos[1:],required=False,widget=forms.Select(attrs={'class': "form-control"}))
     def __init__(self, *args, **kwargs):
         super(updateUserForm, self).__init__(*args, **kwargs)
         if args[0].has_key("AP") and args[0]["AP"]=="profesores":
-            self.fields['description']=forms.ChoiceField(choices=gruposProfesores[1:],required=False,widget=forms.Select(attrs={'class': "form-control"}))
+            self.fields['grupo']=forms.ChoiceField(choices=gruposProfesores[1:],required=False,widget=forms.Select(attrs={'class': "form-control"}))
 
         else:
-            self.fields['description']=forms.ChoiceField(choices=gruposAlumnos[1:],required=False,widget=forms.Select(attrs={'class': "form-control"}))
+            self.fields['grupo']=forms.ChoiceField(choices=gruposAlumnos[1:],required=False,widget=forms.Select(attrs={'class': "form-control"}))

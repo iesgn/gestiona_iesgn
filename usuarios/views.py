@@ -135,10 +135,8 @@ def add(request,configuracion):
 def update(request,usuario):
     if not "perfil" in request.path: 
         test_profesor(request)
-    lldap=LibLDAP()
-    busqueda='(uidnumber=%s)'%(usuario)
-    r=lldap.buscar(busqueda)
-    datos=r[0].get_attributes()
+    lldap=gnLDAP(request.session["username"],request.session["password"])
+    lista=ldap.gnBuscar(cadena="('(uidnumber=%s)')"%usuario)
     datos=quito_listas_en_resultado(datos,utf8=False)
     if datos["gidnumber"]=='2000':
         configuracion={
@@ -155,9 +153,12 @@ def update(request,usuario):
     form=updateUserForm(datos) if request.method=="GET" else updateUserForm(request.POST)
     if request.method=="POST" and form.is_valid():
         new=dict(form.data)
+        grupo=new["grupo"]
         del new["csrfmiddlewaretoken"]
         del new["AP"]
+        del new["grupo"]
         del datos["AP"]
+
         # Tengo un diccionario donde cada campo es una lista
         # Quito las listas
         new=quito_listas_en_resultado(new)
@@ -188,10 +189,14 @@ def update(request,usuario):
             url="/usuarios/"+configuracion["AP"]
 
         ##3 Hago la modificación
-        lldap=LibLDAP(request.session["username"],request.session["password"])
-        if lldap.isbind:
+        
+        if ldap.isbind:
             try: 
-                lldap.modify(datos["uid"],new,old)
+                ldap.modify(datos["uid"],new,old)
+                oldgrupo=ldap.memberOfGroup(datos["uid"])
+                if grupo!=oldgrupo:
+                    ldap.addUserGroup(datos["uid"],grupo)
+                    ldap.delUserGroup(datos["uid"],oldgrupo)
             except Exception as err:
                 messages.add_message(request, messages.INFO, 'No se ha podido modificar el usuario. Error'+str(err))
                 return redirect("%s" % url)
