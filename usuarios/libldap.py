@@ -86,8 +86,7 @@ class gnLDAP(LibLDAP):
                 return self.grupo[clave]
 
     def addUserGroup(self,uid,grupo):
-        print self.grupos["profesores"]
-        print self.grupos["asir1"]
+        print self.grupos[grupo]
         #print self.grupos[str(grupo)]
         old={}
         new={}
