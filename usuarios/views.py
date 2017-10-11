@@ -88,7 +88,7 @@ def add(request,configuracion):
         ldap=gnLDAP(request.session["username"],request.session["password"])
         lista=ldap.gnBuscar(cadena="(cn=*)",ordenarpor="udinumber")
         datos=dict(form.data)
-        grupo=datos["grupo"]
+        grupo=datos["grupo"][0]
         del datos["csrfmiddlewaretoken"]
         del datos["AP"]
         del datos["grupo"]
