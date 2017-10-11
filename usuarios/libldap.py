@@ -45,7 +45,6 @@ class LibLDAP(object):
         self.con.delete_s("uid="+uid+","+self.base_dn)
         self.con.unbind_s()
     def modify(self,uid,new,old):
-        print self.modldif(old,new)
         self.con.modify_s("uid="+uid+","+self.base_dn,self.modldif(old,new))
         self.con.unbind_s()
     def modldif(self,old,new):
@@ -72,9 +71,7 @@ class gnLDAP(LibLDAP):
 
 
     def getGrupos(self):
-        
-        
-
+       
         LibLDAP.base_dn="ou=Group,dc=gonzalonazareno,dc=org"
         self.grupos={}
         for clave,valor in self.grupo.items():
@@ -88,7 +85,15 @@ class gnLDAP(LibLDAP):
             if "uid=%s,ou=People,dc=gonzalonazareno,dc=org" % uid in valor:
                 return self.grupo[clave]
 
-    def gnBuscar(self,filtro={},cadena=""):
+    def addUserGroup(self,uid,grupo):
+        old["member"]=self.grupos[grupo]
+        self.grupos[grupo].append("uid=%s,ou=People,dc=gonzalonazareno,dc=org" % uid)
+        new["member"]=self.grupos[grupo]
+        LibLDAP.con.modify_s("cn=%s,ou=Group,dc=gonzalonazareno,dc=org"%grupo,LibLDAP.modldif(old,new))
+        LibLDAP.con.unbind_s()
+
+
+    def gnBuscar(self,filtro={},cadena="",ordenarpor="sn"):
         if len(filtro)>0:
             cadena="(&(objectClass=inetOrgPerson)"
             for campo,valor in filtro.items():
@@ -116,7 +121,7 @@ class gnLDAP(LibLDAP):
         for elem in lista:
             resultado.append(elem.get_attributes())
         try:
-            resultado.sort(key=operator.itemgetter('sn'))
+            resultado.sort(key=operator.itemgetter(ordenarpor))
         except:
             pass
         return resultado

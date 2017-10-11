@@ -57,7 +57,7 @@ def getGrupo(lista):
     'antiguosprofesores':'A.P.'}
     ldap=gnLDAP()
     for usuario in lista:
-        usuario["description"][0]=ldap.memberOfGroup(usuario["uid"][0])
+        usuario["grupo"]=ldap.memberOfGroup(usuario["uid"][0])
         resultado.append(usuario)
     return resultado
 
@@ -85,12 +85,14 @@ def add(request,configuracion):
         # Calcular max uidnumbre
         # Toda la lista desde clase 1 hasta 9
 
-        #lista=getLista("*","*",xrange(1,10))
-        #lista.sort(key=operator.itemgetter('uidnumber'))
-        
+        ldap=gnLDAP()
+        lista=ldap.gnBuscar(ordenarpor="udinumber")
         datos=dict(form.data)
+        grupo=datos["description"]
         del datos["csrfmiddlewaretoken"]
         del datos["AP"]
+        del datos["description"]
+
         # Tengo un diccionario donde cada campo es una lista
         # Quito las listas
         datos=quito_listas_en_resultado(datos)
@@ -111,7 +113,8 @@ def add(request,configuracion):
         lldap=LibLDAP(request.session["username"],request.session["password"])
         if lldap.isbind:
             try: 
-                lldap.add(datos["uid"],datos)
+                #lldap.add(datos["uid"],datos)
+                print datos
             except Exception as err:
                 messages.add_message(request, messages.INFO, 'No se ha podido añadir el nuevo usuario. Error:' + str(err))
                 return redirect("/usuarios/%s" % configuracion["AP"]["AP"])
