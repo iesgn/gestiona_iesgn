@@ -86,7 +86,7 @@ def add(request,configuracion):
         # Toda la lista desde clase 1 hasta 9
 
         ldap=gnLDAP(request.session["username"],request.session["password"])
-        lista=ldap.gnBuscar(ordenarpor="udinumber")
+        lista=ldap.gnBuscar(cadena="(cn=*)",ordenarpor="udinumber")
         datos=dict(form.data)
         grupo=datos["grupo"]
         del datos["csrfmiddlewaretoken"]
