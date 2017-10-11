@@ -196,11 +196,11 @@ def update(request,usuario):
 
             
             try: 
-                ldap.modify(datos["uid"],new,old)
+                
                 if str(grupo[0])!=oldgrupo:
                     ldap.modUserGroup(datos["uid"],grupo[0],"add")
                     ldap.modUserGroup(datos["uid"],oldgrupo,"del")
-                
+                ldap.modify(datos["uid"],new,old)
                 
             except Exception as err:
                 messages.add_message(request, messages.INFO, 'No se ha podido modificar el usuario. Error'+str(err))
