@@ -11,7 +11,7 @@ import hashlib
 
 def listarAlumnos(request):
     configuracion={
-        "grupo":"alumnos"
+        "grupo":"alumnos",
         "AP":{"AP":"alumnos"},
         "titulo":"Listado de Alumnos"
     }
@@ -19,7 +19,7 @@ def listarAlumnos(request):
 
 def listarProfesores(request):
     configuracion={
-        "grupo":"allprofesores"
+        "grupo":"allprofesores",
         "AP":{"AP":"profesores"},
         "titulo":"Listado de Profesores"
     }
