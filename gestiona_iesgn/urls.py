@@ -23,5 +23,6 @@ urlpatterns = [
     url(r'^logout/$',salir),
     url(r'^usuarios/', include('usuarios.urls')),
     url(r'^cursos/', include('cursos.urls')),
+    url(r'^documentacion/', include('documentacion.urls')),
 
 ]
