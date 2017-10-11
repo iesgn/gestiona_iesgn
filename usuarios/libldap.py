@@ -71,7 +71,10 @@ class gnLDAP(LibLDAP):
         resultado=[]
         for elem in lista:
             resultado.append(elem.get_attributes())
-        resultado.sort(key=operator.itemgetter('sn'))
+        try:
+            resultado.sort(key=operator.itemgetter('sn'))
+        except
+            pass
         return resultado
 
 def get_search_results(results):
