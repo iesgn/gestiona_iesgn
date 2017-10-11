@@ -150,6 +150,7 @@ def update(request,usuario):
         "AP":"alumnos",
         }
     datos["AP"]=configuracion["AP"]
+    datos["grupo"]=ldap.memberOfGroup(usuario)
     form=updateUserForm(datos) if request.method=="GET" else updateUserForm(request.POST)
     if request.method=="POST" and form.is_valid():
         new=dict(form.data)
