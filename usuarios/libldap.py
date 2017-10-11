@@ -56,7 +56,7 @@ class LibLDAP(object):
 class gnLDAP(LibLDAP):
     def __init__(self,username="",password="",base_dn=""):
         LibLDAP.__init__(self,username,password)
-        #self.getGrupos()
+        self.getGrupos()
         if base_dn!="":
             LibLDAP.base_dn = base_dn 
         else:
@@ -72,7 +72,7 @@ class gnLDAP(LibLDAP):
         'profesores':'Profesor',
         'antiguosprofesores':'A.P.'}
 
-        self.base_dn="ou=Group,dc=gonzalonazareno,dc=org"
+        LibLDAP.base_dn="ou=Group,dc=gonzalonazareno,dc=org"
         self.grupos={}
         for clave,valor in grupo.items():
             lista2=self.gnBuscar(cadena="(cn=%s)" % clave)
