@@ -53,7 +53,7 @@ class LibLDAP(object):
 
 class gnLDAP(LibLDAP):
     def __init__(self,username="",password="",base_dn=""):
-        LibLDAP.__init__(username,password)
+        LibLDAP.__init__(self,username,password)
         if base_dn!="":
             LibLDAP.base_dn = base_dn 
 
