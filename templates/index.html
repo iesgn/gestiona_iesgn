@@ -11,12 +11,89 @@
       {{ message }}</div>
     {% endfor%}
   {% endif %}
-<div class="jumbotron">
-<h1>
-    IES Gonzalo Nazareno
-</h1>
-<h2>Gestión de usuarios</h2>
-<p>Esta aplicación Web permite a los usuarios de los servicios ofrecidos por el Deparatamento de Informática del IES Gonzalo Nazareno (alumnos y profesores de los Ciclos Formátivos de Informática) a gestionar los datos de las cuentas. Antes de continuar introduce tu nombre de usuario y contraseña.</p>
-</div>
+
+<!-- Jumbotron Header -->
+        <header class="page-header">
+            <h1>IES Gonzalo Nazareno</h1>
+            <h3>Departamento de Informática</h3>
+	    <!--p><a class="btn btn-primary btn-large">Call to action!</a>-->
+            </p>
+        </header>
+
+
+        <!-- Title -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>Enlaces</h3>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Page Features -->
+        <div class="row text-center">
+
+            <div class="col-md-3 col-sm-6 hero-feature">
+                <div class="thumbnail">
+                    <img src="static/img/moodle.png" alt="">
+                    <div class="caption">
+                        <h3>Moodle</h3>
+                        <p>Plataforma Educativa</p>
+                        <p>
+			<a href="http://dit.gonzalonazareno.org/moodle#" class="btn btn-primary">Entra</a> 
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6 hero-feature">
+                <div class="thumbnail">
+                    <img src="static/img/redmine.png" alt="">
+                    <div class="caption">
+                        <h3>redmine</h3>
+                        <p>Gestor de proyectos</p>
+                        <p>
+                            <a href="http://dit.gonzalonazareno.org/redmine" class="btn btn-primary">Entra</a> 
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6 hero-feature">
+                <div class="thumbnail">
+                    <img src="static/img/openstack.png" alt="">
+                    <div class="caption">
+                        <h3>OpenStack</h3>
+                        <p>Nuestro Cloud Computing</p>
+                        <p>
+                            <a href="https://jupiter.gonzalonazareno.org" class="btn btn-primary">Entra</a> 
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6 hero-feature">
+                <div class="thumbnail">
+                    <img src="static/img/gestiona.png" alt="">
+                    <div class="caption">
+                        <h3>Gestiona</h3>
+                        <p>Configura tu perfil</p>
+                        <p>
+                            <a href="http://dit.gonzalonazareno.org/gestiona" class="btn btn-primary">Entra</a> 
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+	<div classs="row">
+		<h3>Otros elaces...</h3>
+		<div class="list-group">
+			<a href="http://informatica.gonzalonazareno.org" class="list-group-item list-group-item-action">Blog del departamento</a>
+			<a href="http://informatica.gonzalonazareno.org/plataforma" class="list-group-item list-group-item-action">Antiguos cursos (moodle)</a>
+			<a href="http://informatica.gonzalonazareno.org/proyectos" class="list-group-item list-group-item-action">Proyectos integrados</a>
+			<a href="http://www.gonzalonazareno.org" class="list-group-item list-group-item-action ">Web del IES Gonzalo Nazareno</a>
+		</div>
+	</div>
+
 {% endblock %}
 

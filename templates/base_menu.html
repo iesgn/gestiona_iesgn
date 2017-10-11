@@ -32,8 +32,9 @@
 </div><!--/.navbar-collapse -->
 {% endblock%}
 {% block menu %}
-{% if request.session.username %}
 <ul class="nav navbar-nav">
+{% if request.session.username %}
+
 {% if request.session.profesor %}
  <li class="dropdown">
  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Alumnos<span class="caret"></span></a>
@@ -62,6 +63,15 @@
 
 {% endif %}
  <li><a href="/usuarios/perfil">Tu perfil</a></li>
-</ul>
+
 {% endif %}
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Documentación<span class="caret"></span></a>
+ <ul class="dropdown-menu">
+    <li><a href="###">Repsoitorios</a></li>
+    
+  </ul>
+</li>
+
+</ul>
 {% endblock  %}
