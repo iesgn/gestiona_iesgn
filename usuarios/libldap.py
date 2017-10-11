@@ -57,7 +57,7 @@ class gnLDAP(LibLDAP):
         if base_dn!="":
             LibLDAP.base_dn = base_dn 
 
-    def gnBuscar(filtro):
+    def gnBuscar(self,filtro):
         filtro="(&(objectClass=inetOrgPerson)"
         for campo,valor in filtro.items():
             if campo=="grupo":
