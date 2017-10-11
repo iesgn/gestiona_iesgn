@@ -62,8 +62,15 @@ class gnLDAP(LibLDAP):
         if len(filtro)>0:
             cadena="(&(objectClass=inetOrgPerson)"
             for campo,valor in filtro.items():
-                if campo=="grupo" and valor!="":
+                if campo=="grupo" and valor=="alumnos":
+                    for grupos in ["asir1","asir2","smr1","smr2","antiguosalumnos"]:
+                        cadena+="(memberOf=cn=%s,ou=Group,dc=gonzalonazareno,dc=org)" % grupos
+                elif campo=="grupo" and valor=="profesores":
+                    for grupos in ["profesores","antiguosprofesores"]:
+                        cadena+="(memberOf=cn=%s,ou=Group,dc=gonzalonazareno,dc=org)" % grupos
+                elif campo=="grupo":
                     cadena+="(memberOf=cn=%s,ou=Group,dc=gonzalonazareno,dc=org)" % valor
+
                 else:
                     cadena+="(%s=%s*)" % (campo,valor)
             cadena+=")"

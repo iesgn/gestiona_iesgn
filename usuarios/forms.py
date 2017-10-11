@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django import forms
 gruposAlumnos = (
-    ('','Todos'),
+    ('alumnos','Todos'),
     ('asir1', '1º ASIR'),
     ('asir2', '2º ASIR'),
     ('smr1', '1º SMR'),
@@ -10,7 +10,7 @@ gruposAlumnos = (
 )
 
 gruposProfesores = (
-    ('','Todos'),
+    ('profesores','Todos'),
     ('profesores', 'Profesor'),
     ('antiguosprofesores', 'Antiguo Profesor'),
 )

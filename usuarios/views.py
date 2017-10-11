@@ -30,6 +30,7 @@ def listarUsuarios(request,configuracion):
     ldap=gnLDAP()
     if request.method=="GET":
         form=BuscarUsuario(configuracion["AP"])
+        filtro["grupo"]=configuracion["AP"]["AP"]
         filtro["givenname"]=""
         filtro["sn"]=""
     else:
