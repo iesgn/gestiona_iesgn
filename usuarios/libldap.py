@@ -77,7 +77,10 @@ class gnLDAP(LibLDAP):
             self.grupos[clave]=lista2[0]["member"]
             print self.grupos
 
-
+    def memberOfGroup(self,uid):
+        for clave,valor in self.grupos.items():
+            if "uid=%s,ou=People,dc=gonzalonazareno,dc=org" % usuario["uid"][0] in valor:
+                return grupo[clave]
 
     def gnBuscar(self,filtro={},cadena=""):
         if len(filtro)>0:

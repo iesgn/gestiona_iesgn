@@ -53,12 +53,9 @@ def getGrupo(lista):
     'antiguosalumnos':'A.A.',
     'profesores':'Profesor',
     'antiguosprofesores':'A.P.'}
-    ldap=gnLDAP(base_dn="ou=Group,dc=gonzalonazareno,dc=org")
+    ldap=gnLDAP()
     for usuario in lista:
-        for clave,valor in grupo.items():
-            lista2=ldap.gnBuscar(cadena="(cn=%s)" % clave)
-            if "uid=%s,ou=People,dc=gonzalonazareno,dc=org" % usuario["uid"][0] in lista2[0]["member"]:
-                usuario["description"][0]=valor
+        usuario["description"][0]=ldap.memberOfGroup(usuario["udi"][0])
         
     return lista
 
