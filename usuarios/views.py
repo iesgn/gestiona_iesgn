@@ -194,7 +194,7 @@ def update(request,usuario):
         if ldap.isbind:
             oldgrupo=ldap.memberOfGroup(datos["uid"])
             if grupo!=oldgrupo:
-                ldap.addUserGroup(datos["uid"],grupo)
+                ldap.addUserGroup(datos["uid"],grupo[0])
                 ldap.delUserGroup(datos["uid"],oldgrupo)
             try: 
                 ldap.modify(datos["uid"],new,old)
