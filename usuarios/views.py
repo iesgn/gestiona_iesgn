@@ -193,7 +193,7 @@ def update(request,usuario):
         
         if ldap.isbind:
             oldgrupo=ldap.memberOfGroup(datos["uid"],key=True)
-            if grupo!=oldgrupo:
+            if str(grupo)!=oldgrupo:
                 ldap.modUserGroup(datos["uid"],grupo[0],"add")
                 ldap.modUserGroup(datos["uid"],oldgrupo,"del")
             try: 
