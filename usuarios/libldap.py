@@ -96,7 +96,7 @@ class gnLDAP(LibLDAP):
         print "cn=%s,ou=Group,dc=gonzalonazareno,dc=org"%grupo
 
 
-    def gnBuscar(self,filtro={},cadena="",ordenarpor="sn"):
+    def gnBuscar(self,filtro={},cadena="()",ordenarpor="sn"):
         if len(filtro)>0:
             cadena="(&(objectClass=inetOrgPerson)"
             for campo,valor in filtro.items():
@@ -118,7 +118,6 @@ class gnLDAP(LibLDAP):
                 else:
                     cadena+="(%s=%s*)" % (campo,valor)
             cadena+=")"
-        print cadena
         lista = LibLDAP.buscar(self,cadena)
         resultado=[]
         for elem in lista:
