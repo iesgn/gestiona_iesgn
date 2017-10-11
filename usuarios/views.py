@@ -196,7 +196,7 @@ def update(request,usuario):
 
             if str(grupo[0])!=oldgrupo:
                 #ldap.modUserGroup(datos["uid"],grupo[0],"add")
-                dap.modUserGroup(datos["uid"],oldgrupo,"del")
+                ldap.modUserGroup(datos["uid"],oldgrupo,"del")
             try: 
                 ldap.modify(datos["uid"],new,old)
                 
