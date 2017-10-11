@@ -111,7 +111,7 @@ def add(request,configuracion):
         the_unhex = binascii.unhexlify(the_hash)
         datos["userpassword"]="{MD5}"+the_unhex.encode('base64')
         
-        if lldap.isbind:
+        if ldap.isbind:
             try: 
                 #ldap.add(datos["uid"],datos)
                 ldap.addUserGroup(datos["uid"],grupo)
