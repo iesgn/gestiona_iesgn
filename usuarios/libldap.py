@@ -73,7 +73,7 @@ class gnLDAP(LibLDAP):
             resultado.append(elem.get_attributes())
         try:
             resultado.sort(key=operator.itemgetter('sn'))
-        except
+        except:
             pass
         return resultado
 
