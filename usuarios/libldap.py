@@ -79,11 +79,14 @@ class gnLDAP(LibLDAP):
             self.grupos[clave]=lista2[0]["member"]
             
 
-    def memberOfGroup(self,uid):
+    def memberOfGroup(self,uid,key=False):
         
         for clave,valor in self.grupos.items():
             if "uid=%s,ou=People,dc=gonzalonazareno,dc=org" % uid in valor:
-                return self.grupo[clave]
+                if not key:
+                    return self.grupo[clave]
+                else:
+                    return calve
 
     def addUserGroup(self,uid,grupo):
         

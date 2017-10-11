@@ -5,7 +5,7 @@ from . import views
 urlpatterns = [
 	url(r'^alumnos$', views.listarAlumnos),
 	url(r'^profesores$', views.listarProfesores),
-	url(r'^update/(?P<usuario>[a-z.]+)$', views.update),
+	url(r'^update/(?P<usuario>[0-9a-z.]+)$', views.update),
 	url(r'^alumnos/add$', views.addAlumnos),
 	url(r'^profesores/add$', views.addProfesores),
 	url(r'^perfil$', views.perfil),
