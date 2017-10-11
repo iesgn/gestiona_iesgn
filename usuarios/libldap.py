@@ -59,6 +59,8 @@ class gnLDAP(LibLDAP):
         self.getGrupos()
         if base_dn!="":
             LibLDAP.base_dn = base_dn 
+        else:
+            LibLDAP.base_dn = "ou=People,dc=gonzalonazareno,dc=org"
 
 
     def getGrupos(self):
