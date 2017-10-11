@@ -57,7 +57,7 @@ def getGrupo(lista):
         lista=ldap.gnBuscar(cadena="(member=uid=%s,ou=People,dc=gonzalonazareno,dc=org)" % usuario["uid"][0])
         usuario["description"][0]=[]
         for elem in lista:
-            usuario["description"].append(elem["cn"][0])
+            usuario["description"].append(elem["cn"])
         resultado.append(usuario)
     return resultado
 
