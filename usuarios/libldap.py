@@ -58,13 +58,13 @@ class gnLDAP(LibLDAP):
             LibLDAP.base_dn = base_dn 
 
     def gnBuscar(self,filtro):
-        filtro="(&(objectClass=inetOrgPerson)"
+        cadena="(&(objectClass=inetOrgPerson)"
         for campo,valor in filtro.items():
             if campo=="grupo":
-                filtro+="(memberOf=cn=%s,ou=Group,dc=gonzalonazareno,dc=org)" % valor
+                cadena+="(memberOf=cn=%s,ou=Group,dc=gonzalonazareno,dc=org)" % valor
             else:
-                filtro+="(%s=%s*)" % (campo,valor)
-        return buscar(filtro)
+                cadena+="(%s=%s*)" % (campo,valor)
+        return buscar(cadena)
 
 def get_search_results(results):
     """Given a set of results, return a list of LDAPSearchResult
