@@ -84,7 +84,7 @@ def add(request,configuracion):
     
     if form.is_valid():
         # Calcular max uidnumbre
-        # Toda la lista desde clase 1 hasta 9
+        # Toda la lista desde clase 1 hasta 9 ####
 
         ldap=gnLDAP(request.session["username"],request.session["password"])
         lista=ldap.gnBuscar(cadena="(cn=*)",ordenarpor="udinumber")
