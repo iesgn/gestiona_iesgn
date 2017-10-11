@@ -55,9 +55,12 @@ def getGrupo(lista):
     'antiguosprofesores':'A.P.'}
     ldap=gnLDAP()
     for usuario in lista:
+
         usuario["description"][0]=ldap.memberOfGroup(usuario["udi"][0])
+        resultado.append(usuario)
         
-    return lista
+        
+    return resultado
 
 
 
