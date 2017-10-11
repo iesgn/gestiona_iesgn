@@ -54,7 +54,7 @@ class LibLDAP(object):
 
 
 class gnLDAP(LibLDAP):
-    self.grupo={'asir1':'1º ASIR',
+    grupo={'asir1':'1º ASIR',
         'asir2':'2º ASIR',
         'smr1':'1º SMR',
         'smr2':'2º SMR',
