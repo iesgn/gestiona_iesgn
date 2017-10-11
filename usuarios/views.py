@@ -43,7 +43,7 @@ def listarUsuarios(request,configuracion):
     lista=ldap.gnBuscar(filtro=filtro)
     lista=getGrupo(lista)
     info={"titulo":configuracion["titulo"],"resultados":lista,'form':form}
-    
+
     return render(request,"listar.html",info)
 
 
@@ -115,8 +115,9 @@ def add(request,configuracion):
         if ldap.isbind:
             ldap.modUserGroup(datos["uid"],grupo,"add")
             try: 
+                print datos
                 ldap.add(datos["uid"],datos)
-                
+      
                 
             except Exception as err:
                 messages.add_message(request, messages.INFO, 'No se ha podido añadir el nuevo usuario. Error:' + str(err))
