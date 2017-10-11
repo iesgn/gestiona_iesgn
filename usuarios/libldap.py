@@ -54,6 +54,14 @@ class LibLDAP(object):
 
 
 class gnLDAP(LibLDAP):
+    self.grupo={'asir1':'1º ASIR',
+        'asir2':'2º ASIR',
+        'smr1':'1º SMR',
+        'smr2':'2º SMR',
+        'antiguosalumnos':'A.A.',
+        'profesores':'Profesor',
+        'antiguosprofesores':'A.P.'}
+
     def __init__(self,username="",password="",base_dn=""):
         LibLDAP.__init__(self,username,password)
         self.getGrupos()
@@ -64,25 +72,21 @@ class gnLDAP(LibLDAP):
 
 
     def getGrupos(self):
-        grupo={'asir1':'1º ASIR',
-        'asir2':'2º ASIR',
-        'smr1':'1º SMR',
-        'smr2':'2º SMR',
-        'antiguosalumnos':'A.A.',
-        'profesores':'Profesor',
-        'antiguosprofesores':'A.P.'}
+        
+        
 
         LibLDAP.base_dn="ou=Group,dc=gonzalonazareno,dc=org"
         self.grupos={}
-        for clave,valor in grupo.items():
+        for clave,valor in self.grupo.items():
             lista2=self.gnBuscar(cadena="(cn=%s)" % clave)
             self.grupos[clave]=lista2[0]["member"]
             
 
     def memberOfGroup(self,uid):
+        
         for clave,valor in self.grupos.items():
             if "uid=%s,ou=People,dc=gonzalonazareno,dc=org" % uid in valor:
-                return grupo[clave]
+                return self.grupo[clave]
 
     def gnBuscar(self,filtro={},cadena=""):
         if len(filtro)>0:
