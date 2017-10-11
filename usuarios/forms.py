@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
 from django import forms
 clasesAlumnos = (
-    ('0','Todos'),
-    ('1', '1º ASIR'),
-    ('2', '2º ASIR'),
-    ('3', '1º SMR'),
-    ('4', '2º SMR'),
-    ('6', 'Antiguo Alumno'),
+    ('','Todos'),
+    ('asir1', '1º ASIR'),
+    ('asir2', '2º ASIR'),
+    ('smr1', '1º SMR'),
+    ('smr2', '2º SMR'),
+    ('', 'Antiguo Alumno'),
 )
 
 clasesProfesores = (
-    ('0','Todos'),
-    ('5', 'Profesor'),
-    ('7', 'Antiguo Profesor'),
+    ('','Todos'),
+    ('profesores', 'Profesor'),
+    ('antiguosprofesores', 'Antiguo Profesor'),
 )
 
 
@@ -24,10 +24,10 @@ class BuscarUsuario(forms.Form):
     def __init__(self, *args, **kwargs):
         super(BuscarUsuario, self).__init__(*args, **kwargs)
         if args[0].has_key("AP") and args[0]["AP"]=="profesores":
-            self.fields['clase']=forms.ChoiceField(choices=clasesProfesores,required=False,widget=forms.Select(attrs={'class': "form-control",'onchange': 'this.form.submit();'}))
+            self.fields['grupo']=forms.ChoiceField(choices=clasesProfesores,required=False,widget=forms.Select(attrs={'class': "form-control",'onchange': 'this.form.submit();'}))
 
         else:
-            self.fields['clase']=forms.ChoiceField(choices=clasesAlumnos,required=False,widget=forms.Select(attrs={'class': "form-control",'onchange': 'this.form.submit();'}))
+            self.fields['grupo']=forms.ChoiceField(choices=clasesAlumnos,required=False,widget=forms.Select(attrs={'class': "form-control",'onchange': 'this.form.submit();'}))
 
 class newUserForm(forms.Form):
     uid=forms.CharField(max_length=100,required=True,widget=forms.TextInput(attrs={'class': "form-control"}))

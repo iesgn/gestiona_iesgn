@@ -11,18 +11,14 @@ import hashlib
 
 def listarAlumnos(request):
     configuracion={
-        "tipos":list(xrange(1,5))+[6],
         "AP":{"AP":"alumnos"},
         "titulo":"Listado de Alumnos"
     }
-    lldap=gnLDAP() 
-    r=lldap.gnBuscar({"givenname":"A"})
-    print r
+
     #return listarUsuarios(request,configuracion)
 
 def listarProfesores(request):
     configuracion={
-        "tipos":[5,7],
         "AP":{"AP":"profesores"},
         "titulo":"Listado de Profesores"
     }
@@ -31,23 +27,18 @@ def listarProfesores(request):
 
 def listarUsuarios(request,configuracion):
     test_profesor(request)
+    filtro={}
+    ldap=gnLDAP()
     if request.method=="GET":
         form=BuscarUsuario(configuracion["AP"])
-        tipos=configuracion["tipos"]
-        givenname="*"
-        sn="*"
+        filtro["givenname"]=""
+        filtro["sn"]=""
     else:
         form=BuscarUsuario(request.POST)
-        tipo1=request.POST["clase"]
-        if tipo1=='0':
-            tipos=configuracion["tipos"]
-        else:
-            tipos=[int(tipo1)]
-        givenname="*" if request.POST["nombre"]=="" else request.POST["nombre"]+"*"
-        sn="*" if request.POST["apellidos"]=="" else request.POST["apellidos"]+"*"    
-    lista=clase(getLista(givenname,sn,tipos))
-    lista.sort(key=operator.itemgetter('uidnumber'))
-    lista.sort(key=operator.itemgetter('sn'))
+        filtro["grupo"]=request.POST["grupo"]
+        filtro["givenname"]="" if request.POST["nombre"]=="" else request.POST["nombre"]
+        filtro["sn"]="" if request.POST["apellidos"]=="" else request.POST["apellidos"]    
+    lista=ldap.gnBuscar(filtro)
     info={"titulo":configuracion["titulo"],"resultados":lista,'form':form}
     return render(request,"listar.html",info)
 
@@ -61,17 +52,6 @@ def clase(lista):
     return resultado
 
 
-def getLista(givenname,sn,tipos):
-    lldap=LibLDAP()    
-    resultado=[]
-    for i in tipos:
-        busqueda='(&(givenname=%s)(sn=%s)(description=%s))'%(givenname,sn,str(i))
-        r=lldap.buscar(busqueda)
-        resultado.extend(r)
-    lista=[]
-    for res in resultado:
-        lista.append(res.get_attributes())
-    return lista
 
 
 
@@ -98,7 +78,7 @@ def add(request,configuracion):
     if form.is_valid():
         # Calcular max uidnumbre
         # Toda la lista desde clase 1 hasta 9
-        lista=getLista("*","*",xrange(1,10))
+        #lista=getLista("*","*",xrange(1,10))
         lista.sort(key=operator.itemgetter('uidnumber'))
         datos=dict(form.data)
         del datos["csrfmiddlewaretoken"]
