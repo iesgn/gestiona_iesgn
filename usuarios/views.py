@@ -4,7 +4,7 @@ from usuarios.libldap import LibLDAP,gnLDAP
 from usuarios.forms import BuscarUsuario,newUserForm,updateUserForm
 from gestiona_iesgn.views import test_profesor
 from django.contrib import messages
-import operator
+
 import binascii
 import hashlib
 
@@ -77,8 +77,10 @@ def add(request,configuracion):
     if form.is_valid():
         # Calcular max uidnumbre
         # Toda la lista desde clase 1 hasta 9
+
         #lista=getLista("*","*",xrange(1,10))
-        lista.sort(key=operator.itemgetter('uidnumber'))
+        #lista.sort(key=operator.itemgetter('uidnumber'))
+        
         datos=dict(form.data)
         del datos["csrfmiddlewaretoken"]
         del datos["AP"]

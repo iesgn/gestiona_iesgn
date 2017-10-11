@@ -3,6 +3,7 @@ import ldap.modlist
 import ldif
 from StringIO import StringIO
 from ldap.cidict import cidict
+import operator
 
 
 class LibLDAP(object):
