@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 from django import forms
-clasesAlumnos = (
+gruposAlumnos = (
     ('','Todos'),
     ('asir1', '1º ASIR'),
     ('asir2', '2º ASIR'),
     ('smr1', '1º SMR'),
     ('smr2', '2º SMR'),
-    ('', 'Antiguo Alumno'),
+    ('antiguosalumnos', 'Antiguo Alumno'),
 )
 
-clasesProfesores = (
+gruposProfesores = (
     ('','Todos'),
     ('profesores', 'Profesor'),
     ('antiguosprofesores', 'Antiguo Profesor'),
@@ -24,10 +24,10 @@ class BuscarUsuario(forms.Form):
     def __init__(self, *args, **kwargs):
         super(BuscarUsuario, self).__init__(*args, **kwargs)
         if args[0].has_key("AP") and args[0]["AP"]=="profesores":
-            self.fields['grupo']=forms.ChoiceField(choices=clasesProfesores,required=False,widget=forms.Select(attrs={'class': "form-control",'onchange': 'this.form.submit();'}))
+            self.fields['grupo']=forms.ChoiceField(choices=gruposProfesores,required=False,widget=forms.Select(attrs={'class': "form-control",'onchange': 'this.form.submit();'}))
 
         else:
-            self.fields['grupo']=forms.ChoiceField(choices=clasesAlumnos,required=False,widget=forms.Select(attrs={'class': "form-control",'onchange': 'this.form.submit();'}))
+            self.fields['grupo']=forms.ChoiceField(choices=gruposAlumnos,required=False,widget=forms.Select(attrs={'class': "form-control",'onchange': 'this.form.submit();'}))
 
 class newUserForm(forms.Form):
     uid=forms.CharField(max_length=100,required=True,widget=forms.TextInput(attrs={'class': "form-control"}))
@@ -37,14 +37,14 @@ class newUserForm(forms.Form):
     mail=forms.CharField(max_length=100,required=True,widget=forms.EmailInput(attrs={'class': "form-control"}))
     l=forms.CharField(max_length=100,required=True,widget=forms.TextInput(attrs={'class': "form-control"}))
     AP=forms.CharField(widget=forms.HiddenInput())
-    #description=forms.ChoiceField(choices=clasesAlumnos[1:],required=False,widget=forms.Select(attrs={'class': "form-control"}))
+    #description=forms.ChoiceField(choices=gruposAlumnos[1:],required=False,widget=forms.Select(attrs={'class': "form-control"}))
     def __init__(self, *args, **kwargs):
         super(newUserForm, self).__init__(*args, **kwargs)
         if args[0].has_key("AP") and args[0]["AP"]=="profesores":
-            self.fields['description']=forms.ChoiceField(choices=clasesProfesores[1:],required=False,widget=forms.Select(attrs={'class': "form-control"}))
+            self.fields['description']=forms.ChoiceField(choices=gruposProfesores[1:],required=False,widget=forms.Select(attrs={'class': "form-control"}))
 
         else:
-            self.fields['description']=forms.ChoiceField(choices=clasesAlumnos[1:],required=False,widget=forms.Select(attrs={'class': "form-control"}))
+            self.fields['description']=forms.ChoiceField(choices=gruposAlumnos[1:],required=False,widget=forms.Select(attrs={'class': "form-control"}))
 
 
 class updateUserForm(forms.Form):
@@ -55,11 +55,11 @@ class updateUserForm(forms.Form):
     mail=forms.CharField(max_length=100,required=True,widget=forms.EmailInput(attrs={'class': "form-control"}))
     l=forms.CharField(max_length=100,required=True,widget=forms.TextInput(attrs={'class': "form-control"}))
     AP=forms.CharField(widget=forms.HiddenInput())
-    #description=forms.ChoiceField(choices=clasesAlumnos[1:],required=False,widget=forms.Select(attrs={'class': "form-control"}))
+    #description=forms.ChoiceField(choices=gruposAlumnos[1:],required=False,widget=forms.Select(attrs={'class': "form-control"}))
     def __init__(self, *args, **kwargs):
         super(updateUserForm, self).__init__(*args, **kwargs)
         if args[0].has_key("AP") and args[0]["AP"]=="profesores":
-            self.fields['description']=forms.ChoiceField(choices=clasesProfesores[1:],required=False,widget=forms.Select(attrs={'class': "form-control"}))
+            self.fields['description']=forms.ChoiceField(choices=gruposProfesores[1:],required=False,widget=forms.Select(attrs={'class': "form-control"}))
 
         else:
-            self.fields['description']=forms.ChoiceField(choices=clasesAlumnos[1:],required=False,widget=forms.Select(attrs={'class': "form-control"}))
+            self.fields['description']=forms.ChoiceField(choices=gruposAlumnos[1:],required=False,widget=forms.Select(attrs={'class': "form-control"}))

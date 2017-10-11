@@ -58,14 +58,15 @@ class gnLDAP(LibLDAP):
         if base_dn!="":
             LibLDAP.base_dn = base_dn 
 
-    def gnBuscar(self,filtro):
-        cadena="(&(objectClass=inetOrgPerson)"
-        for campo,valor in filtro.items():
-            if campo=="grupo" and valor!="":
-                cadena+="(memberOf=cn=%s,ou=Group,dc=gonzalonazareno,dc=org)" % valor
-            else:
-                cadena+="(%s=%s*)" % (campo,valor)
-        cadena+=")"
+    def gnBuscar(self,filtro={},cadena=""):
+        if len(filtro)>0:
+            cadena="(&(objectClass=inetOrgPerson)"
+            for campo,valor in filtro.items():
+                if campo=="grupo" and valor!="":
+                    cadena+="(memberOf=cn=%s,ou=Group,dc=gonzalonazareno,dc=org)" % valor
+                else:
+                    cadena+="(%s=%s*)" % (campo,valor)
+            cadena+=")"
         lista = LibLDAP.buscar(self,cadena)
         resultado=[]
         for elem in lista:

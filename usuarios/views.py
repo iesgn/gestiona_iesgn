@@ -37,16 +37,24 @@ def listarUsuarios(request,configuracion):
         filtro["grupo"]=request.POST["grupo"]
         filtro["givenname"]="" if request.POST["nombre"]=="" else request.POST["nombre"]
         filtro["sn"]="" if request.POST["apellidos"]=="" else request.POST["apellidos"]    
-    lista=ldap.gnBuscar(filtro)
+    lista=ldap.gnBuscar(filtro=filtro)
     info={"titulo":configuracion["titulo"],"resultados":lista,'form':form}
     return render(request,"listar.html",info)
 
 
-def clase(lista):
+def getGrupo(lista):
     resultado=[]
-    clase=["","1º ASIR","2º ASIR","1º SMR","2º SMR","Profesor","A.A.","A.P."]
+    grupo={'asir1':'1º ASIR',
+    'asir2':'2º ASIR',
+    'smr1':'1º SMR',
+    'smr2':'2º SMR',
+    'antiguosalumnos':'A.A.',
+    'profesores':'Profesor',
+    'antiguosprofesores':'A.P.'}
+    ldap=gnLDAP()
     for usuario in lista:
-        usuario["description"][0]=clase[int(usuario["description"][0])]
+        lista=ldap.gnBuscar(cadena="(member=uid=%s,ou=People,dc=gonzalonazareno,dc=org)" % usuario["uid"][0])
+        usuario["description"][0]=lista[0]["cn"]
         resultado.append(usuario)
     return resultado
 
