@@ -137,7 +137,7 @@ def update(request,usuario):
         test_profesor(request)
     ldap=gnLDAP(request.session["username"],request.session["password"])
     lista=ldap.gnBuscar(cadena="(uidnumber=%s)"%usuario)
-    datos=quito_listas_en_resultado(datos,utf8=False)
+    datos=quito_listas_en_resultado(lista,utf8=False)
     if datos["gidnumber"]=='2000':
         configuracion={
         "titulo":"Modificar Profesor",
