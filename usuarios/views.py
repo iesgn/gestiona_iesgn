@@ -11,6 +11,7 @@ import hashlib
 
 def listarAlumnos(request):
     configuracion={
+        "grupo":"alumnos"
         "AP":{"AP":"alumnos"},
         "titulo":"Listado de Alumnos"
     }
@@ -18,6 +19,7 @@ def listarAlumnos(request):
 
 def listarProfesores(request):
     configuracion={
+        "grupo":"allprofesores"
         "AP":{"AP":"profesores"},
         "titulo":"Listado de Profesores"
     }
@@ -30,7 +32,7 @@ def listarUsuarios(request,configuracion):
     ldap=gnLDAP()
     if request.method=="GET":
         form=BuscarUsuario(configuracion["AP"])
-        filtro["grupo"]=configuracion["AP"]["AP"]
+        filtro["grupo"]=configuracion["grupo"]
         filtro["givenname"]=""
         filtro["sn"]=""
     else:
