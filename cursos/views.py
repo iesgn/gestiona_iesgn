@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render
-from usuarios.views import getLista
+#from usuarios.views import getLista
 import operator
 # Create your views here.
 
@@ -10,7 +10,7 @@ def cursos(request,curso):
 	tipos.remove(int(curso))
 	lista=getLista("*","*",[int(curso)])
 	lista.sort(key=operator.itemgetter('sn'))
-	lista2=getLista("*","*",tipos)
+	#lista2=getLista("*","*",tipos)
 	lista2.sort(key=operator.itemgetter('sn'))
 	todos=[]
 	#for alum in lista2:
