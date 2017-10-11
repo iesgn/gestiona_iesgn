@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render,redirect
-from usuarios.libldap import LibLDAP
+from usuarios.libldap import LibLDAP,gnLDAP
 from usuarios.forms import BuscarUsuario,newUserForm,updateUserForm
 from gestiona_iesgn.views import test_profesor
 from django.contrib import messages
@@ -15,7 +15,10 @@ def listarAlumnos(request):
         "AP":{"AP":"alumnos"},
         "titulo":"Listado de Alumnos"
     }
-    return listarUsuarios(request,configuracion)
+    lldap=gnLDAP() 
+    r=lldap.gnBuscar({"givenname":"A"})
+    print r
+    #return listarUsuarios(request,configuracion)
 
 def listarProfesores(request):
     configuracion={

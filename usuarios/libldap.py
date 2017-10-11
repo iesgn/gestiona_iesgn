@@ -51,7 +51,19 @@ class LibLDAP:
 
 
 
+class gnLDAP(LibLDAP):
+    def __init__(self,username="",password="",base_dn=""):
+        super(username,password)
+        slef.base_dn = base_dn if base_dn!=""
 
+    def gnBuscar(filtro):
+        filtro="(&(objectClass=inetOrgPerson)"
+        for campo,valor in filtro.items():
+            if campo=="grupo":
+                filtro+="(memberOf=cn=%s,ou=Group,dc=gonzalonazareno,dc=org)" % valor
+            else:
+                filtro+="(%s=%s*)" % (campo,valor)
+        return buscar(filtro)
 
 def get_search_results(results):
     """Given a set of results, return a list of LDAPSearchResult
