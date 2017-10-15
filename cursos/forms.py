@@ -10,7 +10,7 @@ def getSelect(grupo):
 
 class BuscarUsuario(forms.Form):
 	alumno=forms.ChoiceField(choices=(),required=False,widget=forms.FilteredSelectMultiple(attrs={'class': "form-control"}))
-    grupo=forms.CharField(widget=forms.HiddenInput())
+	grupo=forms.CharField(widget=forms.HiddenInput())
     class Media:
         css = {'all':('admin/css/widgets.css','css/overrides.css'),}
         js = ('admin/js/vendor/jquery/jquery.js','/admin/jsi18n/','admin/js/jquery.init.js')
