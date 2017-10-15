@@ -1,12 +1,24 @@
 # -*- coding: utf-8 -*-
+from usuarios.libldap import gnLDAP
 
-class BuscarUsuario(forms.Form):
-    alumno=forms.ChoiceField(choices=(),required=False,widget=forms.MultipleChoiceField(attrs={'class': "form-control"}))
-    
-    def __init__(self, *args, **kwargs):
+def getSelect(grupo):
+	ldap=gnLDAP()
+	filtro={"grupo":curso}
+	lista=ldap.gnBuscar(filtro=filtro)
+	return lista
+
+
+class BuscarUsusario(forms.Form):
+	alumno=forms.ChoiceField(choices=(),required=False,widget=forms.FilteredSelectMultiple(attrs={'class': "form-control"}))
+    grupo=forms.CharField(widget=forms.HiddenInput())
+    class Media:
+        css = {'all':('admin/css/widgets.css','css/overrides.css'),}
+        js = ('admin/js/vendor/jquery/jquery.js','/admin/jsi18n/','admin/js/jquery.init.js')
+	def __init__(self, *args, **kwargs):
         super(BuscarUsuario, self).__init__(*args, **kwargs)
-        if args[0].has_key("AP") and args[0]["AP"]=="profesores":
-            self.fields['clase']=forms.ChoiceField(choices=clasesProfesores,required=False,widget=forms.Select(attrs={'class': "form-control",'onchange': 'this.form.submit();'}))
+        if args[0].has_key("grupo") 
+            self.fields['grupo']=forms.ChoiceField(choices=getSelect(args[0]["grupo"]),required=False,widget=forms.Select(attrs={'class': "form-control",'onchange': 'this.form.submit();'}))
 
-        else:
-            self.fields['clase']=forms.ChoiceField(choices=clasesAlumnos,required=False,widget=forms.Select(attrs={'class': "form-control",'onchange': 'this.form.submit();'}))
+        
+
+
