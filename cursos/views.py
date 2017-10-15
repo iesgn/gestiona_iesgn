@@ -6,6 +6,7 @@ import operator
 # Create your views here.
 
 def cursos(request,curso):
+	test_profesor(request)
 	if request.method=="POST":
 		print request.POST.getlist("usuarios")
 
@@ -15,3 +16,6 @@ def cursos(request,curso):
 	form=BuscarUsuario(filtro)
 	info={"titulo":ldap.grupo[curso],"resultados":lista,"form":form}
 	return render(request,"listar_cursos.html",info)
+
+def delete(request,usuario):
+	pass
