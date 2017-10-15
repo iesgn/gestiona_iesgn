@@ -10,8 +10,37 @@ url_base="https://dit.gonzalonazareno.org/redmine/"
 @csrf_exempt
 def inicio(request):
 	test_profesor(request)
-	r=requests.get(url_base+'projects.json',auth=(request.session["username"],request.session["password"]),verify=False)
-	if r.status_code == 200:
-		doc=r.json()
-		info={"proyectos":doc["projects"]}
-		return render(request,"proyectos.html",info)
+	if request.method=="POST":
+		if request.POST["paso"]=="step2":
+			info={}
+			info["idproyecto"]=request.POST("proyecto")
+			#Nombre del proyecto
+			r=requests.get(url_base+'projects/'+idproyecto+'.json',auth=(username,password),verify=False)
+			if r.status_code == 200:
+				doc=r.json()
+				info["nombreproyecto"]=doc["project"]["name"]
+			
+			#Lista de grupos
+			r=requests.get(url_base+'groups.json',auth=(username,password),verify=False)
+			if r.status_code == 200:
+				doc=r.json()
+				info["grupos"]=doc["groups"]
+			#Lista de usuarios del proyecto
+			r=requests.get(url_base+'projects/'+idproyecto+'/memberships.json',auth=(username,password),verify=False)
+			if r.status_code == 200:
+				doc=r.json()
+				info["usuarios"]=doc["memberships"]
+			#Lista Categorias
+
+        	r=requests.get(url_base+'/projects/'+idproyecto+'/issue_categories.json',auth=(username,password),verify=False)
+        	if r.status_code == 200:
+        		doc=r.json()
+        		info["categorias"]=doc["issue_categories"]
+
+        	return render("tarea.html",info)
+    else:
+		r=requests.get(url_base+'projects.json',auth=(request.session["username"],request.session["password"]),verify=False)
+		if r.status_code == 200:
+			doc=r.json()
+			info={"proyectos":doc["projects"]}
+			return render(request,"proyectos.html",info)
