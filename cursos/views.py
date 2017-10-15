@@ -18,5 +18,9 @@ def cursos(request,curso):
 	info={"titulo":ldap.grupo[curso],"resultados":lista,"form":form}
 	return render(request,"listar_cursos.html",info)
 
-def eliminar(request,usuario):
-	pass
+def eliminar(request,curso,usuario):
+	test_profesor(request)
+	ldap=gnLDAP()
+    ldap.modUserGroup(usuario,curso,"del")
+    ldap.modUserGroup(usuario,"antiguosalumnos","add")
+    return redirect("/cursos/"+curso)
