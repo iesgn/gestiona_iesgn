@@ -42,10 +42,9 @@ def inicio(request):
 
         	return render(request,"tarea.html",info)
     	elif request.POST["paso"]=="step3":
-    		
     		opcion=request.POST["opcion"]
-			grupo=request.POST["grupo"]
-			alumnos=request.POST.getlist("alumnos")
+    		grupo=request.POST["grupo"]
+    		alumnos=request.POST.getlist("alumnos")
         	idproyecto=sesion.POST["idproyecto"]
         	nombreproyecto=sesion.POST["nombreproyecto"]
         	tittle=request.POST["tittle"]
