@@ -23,7 +23,7 @@ class BuscarUsuario(forms.Form):
     AP=forms.CharField(widget=forms.HiddenInput())
     def __init__(self, *args, **kwargs):
         super(BuscarUsuario, self).__init__(*args, **kwargs)
-        if AP and AP=="profesores":
+        if args[0].has_key("AP") and args[0]["AP"]=="profesores":
             self.fields['grupo']=forms.ChoiceField(choices=gruposProfesores,required=False,widget=forms.Select(attrs={'class': "form-control",'onchange': 'this.form.submit();'}))
 
         else:
