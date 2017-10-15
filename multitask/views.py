@@ -15,24 +15,24 @@ def inicio(request):
 			info={}
 			info["idproyecto"]=request.POST["proyecto"]
 			#Nombre del proyecto
-			r=requests.get(url_base+'projects/'+idproyecto+'.json',auth=(username,password),verify=False)
+			r=requests.get(url_base+'projects/'+info["idproyecto"]+'.json',auth=(request.session["username"],request.session["password"]),verify=False)
 			if r.status_code == 200:
 				doc=r.json()
 				info["nombreproyecto"]=doc["project"]["name"]
 			
 			#Lista de grupos
-			r=requests.get(url_base+'groups.json',auth=(username,password),verify=False)
+			r=requests.get(url_base+'groups.json',auth=(request.session["username"],request.session["password"]),verify=False)
 			if r.status_code == 200:
 				doc=r.json()
 				info["grupos"]=doc["groups"]
 			#Lista de usuarios del proyecto
-			r=requests.get(url_base+'projects/'+idproyecto+'/memberships.json',auth=(username,password),verify=False)
+			r=requests.get(url_base+'projects/'+info["idproyecto"]+'/memberships.json',auth=(request.session["username"],request.session["password"]),verify=False)
 			if r.status_code == 200:
 				doc=r.json()
 				info["usuarios"]=doc["memberships"]
 			#Lista Categorias
 
-        	r=requests.get(url_base+'/projects/'+idproyecto+'/issue_categories.json',auth=(username,password),verify=False)
+        	r=requests.get(url_base+'/projects/'+info["idproyecto"]+'/issue_categories.json',auth=(request.session["username"],request.session["password"]),verify=False)
         	if r.status_code == 200:
         		doc=r.json()
         		info["categorias"]=doc["issue_categories"]
