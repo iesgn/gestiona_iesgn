@@ -5,7 +5,7 @@ from django.contrib.admin.widgets import FilteredSelectMultiple
 
 def getSelect(grupo):
 	ldap=gnLDAP()
-	filtro={"grupo":curso}
+	filtro={"grupo":grupo}
 	lista=ldap.gnBuscar(filtro=filtro)
 	return lista
 
