@@ -1,5 +1,16 @@
 {% extends "base_menu.html" %}
+{% block css%}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
+{% endblock %}
 
+{% block js%}
+<script>
+$(document).ready(function() {
+    $('.js-example-basic-multiple').select2();
+});
+</script>
+{% endblock %}
 
 {% block content %}
  
