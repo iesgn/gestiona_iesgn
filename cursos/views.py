@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render
 from usuarios.libldap import gnLDAP
+from cursos.forms import BuscarUsuario
 import operator
 # Create your views here.
 
