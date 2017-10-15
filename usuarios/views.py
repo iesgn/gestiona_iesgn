@@ -49,6 +49,7 @@ def listarUsuarios(request,configuracion):
     for usuario in lista:
         if ldap.memberOfGroup(usuario["uid"][0])=="":
             lista2.append(usuario)
+    info["lista2"]=lista2
     return render(request,"listar.html",info)
 
 
