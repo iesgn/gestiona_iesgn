@@ -6,6 +6,7 @@ import operator
 
 def cursos(request,curso):
 	ldap=gnLDAP()
+	filtro={}
 	filtro["grupo"]=curso
 	lista=ldap.gnBuscar(filtro=filtro)
 	clases=["","1º ASIR","2º ASIR","1º SMR","2º SMR"]
