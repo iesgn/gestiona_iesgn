@@ -13,7 +13,7 @@ def inicio(request):
 	if request.method=="POST":
 		if request.POST["paso"]=="step2":
 			info={}
-			info["idproyecto"]=request.POST("proyecto")
+			info["idproyecto"]=request.POST["proyecto"]
 			#Nombre del proyecto
 			r=requests.get(url_base+'projects/'+idproyecto+'.json',auth=(username,password),verify=False)
 			if r.status_code == 200:
