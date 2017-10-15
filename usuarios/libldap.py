@@ -88,7 +88,7 @@ class gnLDAP(LibLDAP):
                     return self.grupo[clave]
                 else:
                     return clave
-        return ""
+       
 
     def modUserGroup(self,uid,grupo,adddel):
         modlist = []
