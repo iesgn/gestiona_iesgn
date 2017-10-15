@@ -7,7 +7,11 @@ def getSelect(grupo):
 	ldap=gnLDAP()
 	filtro={"grupo":grupo}
 	lista=ldap.gnBuscar(filtro=filtro)
-	return lista
+	lista2=[]
+	for usuario in lista:
+		lista2.append(usuario["uid"][0],usuario["cn"][0])
+
+	return lista2
 
 
 class BuscarUsuario(forms.Form):
