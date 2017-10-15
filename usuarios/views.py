@@ -44,9 +44,9 @@ def listarUsuarios(request,configuracion):
     lista=getGrupo(lista)
     info={"titulo":configuracion["titulo"],"resultados":lista,'form':form}
 
-    lista=ldap.gnBuscar(cadena="(uid=*)")
+    lista3=ldap.gnBuscar(cadena="(uid=*)")
     lista2=[]
-    for usuario in lista:
+    for usuario in lista3:
         if ldap.memberOfGroup(usuario["uid"][0])=="":
             lista2.append(usuario)
     info["lista2"]=lista2
