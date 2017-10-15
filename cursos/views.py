@@ -3,11 +3,15 @@ from django.shortcuts import render,redirect
 from usuarios.libldap import gnLDAP
 from cursos.forms import BuscarUsuario
 from gestiona_iesgn.views import test_profesor
+from django.http import Http404
 import operator
 # Create your views here.
 
 def cursos(request,curso):
 	test_profesor(request)
+	ldap=gnLDAP()
+	if curso not in ldap.grupo.keys():
+		raise Http404  
 	if request.method=="POST":
 		ldap=gnLDAP(request.session["username"],request.session["password"])
 		for usuario in request.POST.getlist("usuarios"):
@@ -17,7 +21,7 @@ def cursos(request,curso):
 			except:
 				pass
 
-	ldap=gnLDAP()
+	
 	filtro={"grupo":curso}
 	lista=ldap.gnBuscar(filtro=filtro)
 	form=BuscarUsuario(filtro)
