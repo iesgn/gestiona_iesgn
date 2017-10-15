@@ -21,6 +21,6 @@ def cursos(request,curso):
 def eliminar(request,curso,usuario):
 	test_profesor(request)
 	ldap=gnLDAP()
-    ldap.modUserGroup(usuario,curso,"del")
-    ldap.modUserGroup(usuario,"antiguosalumnos","add")
-    return redirect("/cursos/"+curso)
+	ldap.modUserGroup(usuario,curso,"del")
+	ldap.modUserGroup(usuario,"antiguosalumnos","add")
+	return redirect("/cursos/"+curso)
