@@ -27,6 +27,7 @@ $(document).ready(function() {
       <tr>
         <td class="text-center">{{forloop.counter}}</td>
         <td>{{r.sn.0}}, {{r.givenname.0}} ({{r.uid.0}})</td>
+        <td class="text-center"><a href="/delete/{{r.uid.0}}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></a></td>
         
       </tr>
 
@@ -34,7 +35,7 @@ $(document).ready(function() {
 {% endfor %}
     </table>
   </div>
-  <div class="col-md-4">
+  <div class="col-md-6">
     <strong>Selecciona alumnos:</strong>
     <form method="post" class="form-hotizontal">
   
