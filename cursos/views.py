@@ -6,6 +6,9 @@ import operator
 # Create your views here.
 
 def cursos(request,curso):
+	if request.method=="POST":
+		print request.POST["usuarios"]
+		
 	ldap=gnLDAP()
 	filtro={"grupo":curso}
 	lista=ldap.gnBuscar(filtro=filtro)
