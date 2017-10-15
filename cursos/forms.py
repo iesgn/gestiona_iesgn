@@ -19,7 +19,7 @@ class BuscarUsuario(forms.Form):
 	def __init__(self, *args, **kwargs):
 		super(BuscarUsuario, self).__init__(*args, **kwargs)
 		if args[0].has_key("grupo"):
-			self.fields['usuarios']=forms.MultipleChoiceField(choices=getSelect("antiguosalumnos"),required=False,widget=forms.SelectMultiple(attrs={'class': "js-example-basic-multiple"}))
+			self.fields['usuarios']=forms.MultipleChoiceField(choices=getSelect("antiguosalumnos"),required=False,widget=forms.SelectMultiple(attrs={'class': "form-control js-example-basic-multiple"}))
 
         
 
