@@ -2,7 +2,7 @@
 from django.shortcuts import render,redirect
 from usuarios.libldap import LibLDAP,gnLDAP
 from usuarios.forms import BuscarUsuario,newUserForm,updateUserForm
-from gestiona_iesgn.views import test_profesor
+from gestiona_iesgn.views import test_profesor,test_login
 from django.contrib import messages
 
 import binascii
@@ -235,6 +235,7 @@ def quito_listas_en_resultado(datos,utf8=True):
     return datos
 
 def perfil(request):
+    test_login(request)
     lldap=LibLDAP()
     busqueda='(uid=%s)'%(request.session["username"])
     r=lldap.buscar(busqueda)

@@ -41,3 +41,8 @@ def salir(request):
 def test_profesor(request):
     if not request.session.get("profesor",False):
         raise Http404  
+
+
+def test_login(request):
+    if not request.session.get("username",False):
+        raise Http404  
