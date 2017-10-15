@@ -2,6 +2,7 @@
 from django.shortcuts import render
 from usuarios.libldap import gnLDAP
 from cursos.forms import BuscarUsuario
+from gestiona_iesgn.views import test_profesor
 import operator
 # Create your views here.
 
