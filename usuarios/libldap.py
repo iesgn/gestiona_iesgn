@@ -75,7 +75,7 @@ class gnLDAP(LibLDAP):
        
         LibLDAP.base_dn="ou=Group,dc=gonzalonazareno,dc=org"
         self.grupos={}
-        for clave,valor in self.grupo.items()[:-1]:
+        for clave,valor in self.grupo.items():
             lista2=self.gnBuscar(cadena="(cn=%s)" % clave)
             self.grupos[clave]=lista2[0]["member"]
             
