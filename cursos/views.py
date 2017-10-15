@@ -17,5 +17,5 @@ def cursos(request,curso):
 	info={"titulo":ldap.grupo[curso],"resultados":lista,"form":form}
 	return render(request,"listar_cursos.html",info)
 
-def delete(request,usuario):
+def eliminar(request,usuario):
 	pass
