@@ -13,4 +13,4 @@ def inicio(request):
 	if r.status_code == 200:
 		doc=r.json()
 		info={"proyectos":doc["projects"]}
-		return render("proyectos.html",info)
+		return render(request,"proyectos.html",info)
