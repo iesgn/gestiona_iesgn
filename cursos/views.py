@@ -10,7 +10,7 @@ import operator
 def cursos(request,curso):
 	test_profesor(request)
 	ldap=gnLDAP()
-	if curso not in ldap.grupo.keys():
+	if not curso in ldap.grupo.keys():
 		raise Http404  
 	if request.method=="POST":
 		ldap=gnLDAP(request.session["username"],request.session["password"])
