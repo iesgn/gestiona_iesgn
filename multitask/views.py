@@ -84,7 +84,7 @@ def inicio(request):
         	r = requests.post(url_base+'issues.json', auth=(request.session["username"],request.session["password"]), data=parameters_json, headers=headers,verify=False)
         	resultado=resultado+nombre+":"+r.reason+"<br/>"
         info={"idproyecto":idproyecto,"nombreproyecto":nombreproyecto,"resultado":resultado}
-        return template(request,"final.html",info)
+        return render(request,"final.html",info)
 	else:
 		r=requests.get(url_base+'projects.json',auth=(request.session["username"],request.session["password"]),verify=False)
 		if r.status_code == 200:
