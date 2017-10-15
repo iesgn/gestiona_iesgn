@@ -6,7 +6,7 @@
         
         <form class="form-signin" method="post">
          <fieldset>
-          <legend>Nueva Tarea -Proyecto:{{nombreproyecto}}</legend>
+          <legend>Nueva Tarea - Proyecto:{{nombreproyecto}}</legend>
 
           <label for="Tittle">Título:</label>
           
@@ -48,7 +48,7 @@
             
           {% endfor %}
 
-        
+        <input type="hidden" name="paso" value="step3"/>
         <button class="btn btn-lg btn-primary btn-block" type="submit" >Siguiente</button>
       </fieldset>
       </form>
