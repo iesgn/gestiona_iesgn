@@ -45,8 +45,8 @@ def inicio(request):
 			opcion=request.POST["opcion"]
 			grupo=request.POST["grupo"]
 			alumnos=request.POST.getlist("alumnos")
-			idproyecto=sesion.POST["idproyecto"]
-			nombreproyecto=sesion.POST["nombreproyecto"]
+			idproyecto=request.POST["idproyecto"]
+			nombreproyecto=request.POST["nombreproyecto"]
 			tittle=request.POST["tittle"]
 			desc=request.POST["desc"]
 			categoria=request.POST["categoria"]
