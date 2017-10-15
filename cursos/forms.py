@@ -8,7 +8,7 @@ def getSelect(grupo):
 	return lista
 
 
-class BuscarUsusario(forms.Form):
+class BuscarUsuario(forms.Form):
 	alumno=forms.ChoiceField(choices=(),required=False,widget=forms.FilteredSelectMultiple(attrs={'class': "form-control"}))
     grupo=forms.CharField(widget=forms.HiddenInput())
     class Media:
