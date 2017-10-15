@@ -9,5 +9,5 @@ def cursos(request,curso):
 	filtro={"grupo":curso}
 	lista=ldap.gnBuscar(filtro=filtro)
 	info={"titulo":ldap.grupo[curso],"resultados":lista}
-	form=BuscarUsusario()
+	form=BuscarUsuario()
 	return render(request,"listar_cursos.html",info,form=form)
