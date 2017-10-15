@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from usuarios.libldap import gnLDAP
+from django import forms
 
 def getSelect(grupo):
 	ldap=gnLDAP()
