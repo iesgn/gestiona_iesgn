@@ -85,7 +85,7 @@ def inicio(request):
 	        	resultado=resultado+nombre+":"+r.reason+"<br/>"
 	        info={"idproyecto":idproyecto,"nombreproyecto":nombreproyecto,"resultado":resultado}
 	        return render(request,"final.html",info)
-    else:
+	else:
 		r=requests.get(url_base+'projects.json',auth=(request.session["username"],request.session["password"]),verify=False)
 		if r.status_code == 200:
 			doc=r.json()
