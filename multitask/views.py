@@ -38,7 +38,7 @@ def inicio(request):
         		info["categorias"]=doc["issue_categories"]
 
         	return render("tarea.html",info)
-    else:
+	else:
 		r=requests.get(url_base+'projects.json',auth=(request.session["username"],request.session["password"]),verify=False)
 		if r.status_code == 200:
 			doc=r.json()
