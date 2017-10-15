@@ -9,7 +9,10 @@ import operator
 def cursos(request,curso):
 	test_profesor(request)
 	if request.method=="POST":
-		print request.POST.getlist("usuarios")
+		ldap=gnLDAP(request.session["username"],request.session["password"])
+		for usuario in request.POST.getlist("usuarios"):
+			ldap.modUserGroup(str(usuario),str(curso),"add")
+			ldap.modUserGroup(str(usuario),"antiguosalumnos","del")
 
 	ldap=gnLDAP()
 	filtro={"grupo":curso}
