@@ -44,11 +44,7 @@ def listarUsuarios(request,configuracion):
     lista=getGrupo(lista)
     info={"titulo":configuracion["titulo"],"resultados":lista,'form':form}
 
-    lista3=ldap.gnBuscar(cadena="(uid=*)")
-    ldap=gnLDAP(request.session["username"],request.session["password"])
-    for usuario in lista3:
-        if ldap.memberOfGroup(usuario["uid"][0])=="":
-            ldap.modUserGroup(usuario["uid"][0],"antiguosalumnos","add")
+    
     
     return render(request,"listar.html",info)
 
