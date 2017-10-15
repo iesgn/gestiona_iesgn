@@ -40,12 +40,12 @@
                 Alumnos:</label>
           </div>
           {% for p in usuarios %}
-            {% if p.roles[0].id==9 and p.has_key("user") %}
+            
             <div class="checkbox">
               <label>
                 <input  type="checkbox" name="alumnos" value="{{p.user.id}}"> 
                 {{p.user"].name"]}}</label></div>
-            {% endif %}
+            
           {% endfor %}
 
         
