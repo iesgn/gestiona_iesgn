@@ -14,10 +14,10 @@ class BuscarUsuario(forms.Form):
 	class Media:
 		css = {'all':('admin/css/widgets.css','css/overrides.css'),}
 		js = ('admin/js/vendor/jquery/jquery.js','/admin/jsi18n/','admin/js/jquery.init.js')
-    def __init__(self, *args, **kwargs):
-        super(BuscarUsuario, self).__init__(*args, **kwargs)
-        if args[0].has_key("grupo") 
-            self.fields['grupo']=forms.ChoiceField(choices=getSelect(args[0]["grupo"]),required=False,widget=forms.Select(attrs={'class': "form-control",'onchange': 'this.form.submit();'}))
+	def __init__(self, *args, **kwargs):
+		super(BuscarUsuario, self).__init__(*args, **kwargs)
+		if args[0].has_key("grupo"):
+			self.fields['grupo']=forms.ChoiceField(choices=getSelect(args[0]["grupo"]),required=False,widget=forms.Select(attrs={'class': "form-control",'onchange': 'this.form.submit();'}))
 
         
 
