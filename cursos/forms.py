@@ -15,7 +15,7 @@ class BuscarUsuario(forms.Form):
 	def __init__(self, *args, **kwargs):
 		super(BuscarUsuario, self).__init__(*args, **kwargs)
 		if args[0].has_key("grupo"):
-			self.fields['usuarios']=forms.MultipleChoiceField(choices=(),required=False)
+			self.fields['usuarios']=forms.MultipleChoiceField(choices=getSelect("antiguosalumnos"),required=False)
 
         
 
