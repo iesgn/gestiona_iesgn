@@ -7,8 +7,8 @@ import operator
 
 def cursos(request,curso):
 	if request.method=="POST":
-		print request.POST["usuarios"]
-		
+		print request.POST.getlist("usuarios")
+
 	ldap=gnLDAP()
 	filtro={"grupo":curso}
 	lista=ldap.gnBuscar(filtro=filtro)
