@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from usuarios.libldap import gnLDAP
 from cursos.forms import BuscarUsuario
 from gestiona_iesgn.views import test_profesor
