@@ -71,7 +71,7 @@ def inicio(request):
 						alumnos.append(str(user["id"]))
 				
 
-			resultado=""
+			resultado="<ul>"
 			for alum in alumnos:
 				r=requests.get(url_base+'/users/'+alum+'.json',auth=(request.session["username"],request.session["password"]),verify=False)
 				if r.status_code==200:
@@ -81,8 +81,9 @@ def inicio(request):
 			
 				parameters_json = json.dumps(payload)
 				headers = {'Content-Type': 'application/json'}
-				r = requests.post(url_base+'issues.json', auth=(request.session["username"],request.session["password"]), data=parameters_json, headers=headers,verify=False)
-				resultado=resultado+nombre+":"+r.reason+"<br/>"
+				#r = requests.post(url_base+'issues.json', auth=(request.session["username"],request.session["password"]), data=parameters_json, headers=headers,verify=False)
+				resultado=resultado+"<li>"+nombre+":"+r.reason+"</li>"
+			resultado=resultado+"</ul>"
 			info={"idproyecto":idproyecto,"nombreproyecto":nombreproyecto,"resultado":resultado}
 			return render(request,"final.html",info)
 
