@@ -29,7 +29,10 @@ def inicio(request):
 			r=requests.get(url_base+'projects/'+info["idproyecto"]+'/memberships.json',auth=(request.session["username"],request.session["password"]),verify=False)
 			if r.status_code == 200:
 				doc=r.json()
-				info["usuarios"]=doc["memberships"]
+				info["usuarios"]=[]
+				for usuario in doc["memberships"]:
+					if usuario["roles"][0]["id"]==9 and usuario.has_key("user"):
+						info["usuarios"].append(usuario)
 			#Lista Categorias
 
         	r=requests.get(url_base+'/projects/'+info["idproyecto"]+'/issue_categories.json',auth=(request.session["username"],request.session["password"]),verify=False)

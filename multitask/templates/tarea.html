@@ -30,9 +30,9 @@
           </label>
           </div>
           <select class="form-control" name="grupo">
-          {% for p in grupos:
+          {% for p in grupos%}
             <option value="{{p.id}}">{{p.name}}</option>
-          {% end
+          {% endfor %}
           </select>
           <div class="radio">
             <label>
