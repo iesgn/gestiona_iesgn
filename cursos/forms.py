@@ -10,7 +10,6 @@ def getSelect(grupo):
 	lista2=[]
 	for usuario in lista:
 		lista2.append((usuario["uid"][0],usuario["givenname"][0]+" "+usuario["sn"][0]))
-
 	return lista2
 
 
@@ -23,7 +22,9 @@ class BuscarUsuario(forms.Form):
 			lista=[]
 			for grupo in grupos:
 				lista.extend(getSelect(grupo))
-			self.fields['usuarios']=forms.MultipleChoiceField(choices=lista,required=False,widget=forms.SelectMultiple(attrs={'class': "form-control js-example-basic-multiple"}))
+			lista2=getSelect("openstackusers")
+			lista3 = [x for x in lista if x not in lista2]
+			self.fields['usuarios']=forms.MultipleChoiceField(choices=lista3,required=False,widget=forms.SelectMultiple(attrs={'class': "form-control js-example-basic-multiple"}))
 
 		elif args[0].has_key("grupo"):
 			self.fields['usuarios']=forms.MultipleChoiceField(choices=getSelect("antiguosalumnos"),required=False,widget=forms.SelectMultiple(attrs={'class': "form-control js-example-basic-multiple"}))
