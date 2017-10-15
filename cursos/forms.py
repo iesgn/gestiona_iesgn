@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from usuarios.libldap import gnLDAP
 from django import forms
-from django.contrib.admin.widgets import FilteredSelectMultiple
+
 
 def getSelect(grupo):
 	ldap=gnLDAP()
@@ -11,11 +11,8 @@ def getSelect(grupo):
 
 
 class BuscarUsuario(forms.Form):
-	alumno=forms.ChoiceField(choices=(),required=False,widget=FilteredSelectMultiple("Usuarios", is_stacked=False,attrs={'class': "form-control"}))
+	usuarios=forms.MultipleChoiceField(choices=(),required=False)
 	grupo=forms.CharField(widget=forms.HiddenInput())
-	class Media:
-		css = {'all':('admin/css/widgets.css','css/overrides.css'),}
-		js = ('admin/js/vendor/jquery/jquery.js','/admin/jsi18n/','admin/js/jquery.init.js')
 	def __init__(self, *args, **kwargs):
 		super(BuscarUsuario, self).__init__(*args, **kwargs)
 		if args[0].has_key("grupo"):
