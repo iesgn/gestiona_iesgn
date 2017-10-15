@@ -11,8 +11,11 @@ def cursos(request,curso):
 	if request.method=="POST":
 		ldap=gnLDAP(request.session["username"],request.session["password"])
 		for usuario in request.POST.getlist("usuarios"):
-			ldap.modUserGroup(str(usuario),str(curso),"add")
-			ldap.modUserGroup(str(usuario),"antiguosalumnos","del")
+			try:
+				ldap.modUserGroup(str(usuario),str(curso),"add")
+				ldap.modUserGroup(str(usuario),"antiguosalumnos","del")
+			except:
+				pass
 
 	ldap=gnLDAP()
 	filtro={"grupo":curso}
@@ -24,6 +27,9 @@ def cursos(request,curso):
 def eliminar(request,curso,usuario):
 	test_profesor(request)
 	ldap=gnLDAP(request.session["username"],request.session["password"])
-	ldap.modUserGroup(str(usuario),str(curso),"del")
-	ldap.modUserGroup(str(usuario),"antiguosalumnos","add")
+	try:
+		ldap.modUserGroup(str(usuario),str(curso),"del")
+		ldap.modUserGroup(str(usuario),"antiguosalumnos","add")
+	except:
+		pass
 	return redirect("/cursos/"+curso)
