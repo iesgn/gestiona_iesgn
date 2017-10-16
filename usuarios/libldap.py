@@ -131,7 +131,7 @@ class gnLDAP(LibLDAP):
         for elem in lista:
             resultado.append(elem.get_attributes())
         try:
-            resultado.sort(key=operator.itemgetter(ordenarpor))
+            resultado.sort(key=ordenarpor)
         except:
             pass
         return resultado
