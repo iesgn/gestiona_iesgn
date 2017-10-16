@@ -165,9 +165,11 @@ def update(request,usuario):
         old={}
         new["cn"]=new["givenname"]+" "+new["sn"]
         if new["userpassword"]!='':
+            nuevapass=new["userpassword"]
             the_hash = hashlib.md5(new["userpassword"]).hexdigest()
             the_unhex = binascii.unhexlify(the_hash)
             new["userpassword"]="{MD5}"+the_unhex.encode('base64')
+
         else:
             the_hash = hashlib.md5(request.session["password"]).hexdigest()
             the_unhex = binascii.unhexlify(the_hash)
@@ -201,7 +203,7 @@ def update(request,usuario):
                     ldap.modUserGroup(datos["uid"],oldgrupo,"del")
                 ldap.modify(datos["uid"],new,old)
                 try:
-                    request.session["password"]=new["userpassword"]
+                    request.session["password"]=nuevapass
                 except:
                     pass
                 
