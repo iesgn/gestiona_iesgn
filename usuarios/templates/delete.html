@@ -1,0 +1,21 @@
+{% extends "base_menu.html" %}
+
+{% block content %}
+<div class="row">
+<h3>Borrar usuario</h3>
+<strong>Este proceso es irreversible. Por favor, tenga cuidado al realizar esta operación.</strong><br/>
+{% endif %}
+<form  method="post" class="form-hotizontal">
+  <div class="col-md-6">
+    {% csrf_token %}
+    <div class="form-group">
+        <label>Nombre de usuario:</label>
+        {{ form.uid}}
+    </div>
+    <button  type="submit" class="btn btn-primary">Borrar</button>
+    
+</div>
+</form>
+</div>
+
+{% endblock %}

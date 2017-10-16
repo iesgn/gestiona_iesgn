@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render,redirect
 from usuarios.libldap import LibLDAP,gnLDAP
-from usuarios.forms import BuscarUsuario,newUserForm,updateUserForm
+from usuarios.forms import BuscarUsuario,newUserForm,updateUserForm,deleteUserForm
 from gestiona_iesgn.views import test_profesor,test_login
 from django.contrib import messages
 
@@ -235,3 +235,11 @@ def perfil(request):
     r=lldap.buscar(busqueda)
     datos=r[0].get_attributes()
     return update(request,datos["uid"][0])
+
+###########################################################################################################
+
+def delete(request):
+    test_login(request)
+    form=deleteUserForm()
+    info{'form':form}
+    return render(request,"delete.html",info)

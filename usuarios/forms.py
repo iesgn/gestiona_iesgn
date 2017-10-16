@@ -61,3 +61,7 @@ class updateUserForm(forms.Form):
 
         else:
             self.fields['grupo']=forms.ChoiceField(choices=gruposAlumnos[1:],required=False,widget=forms.Select(attrs={'class': "form-control"}))
+
+
+class deleteUserForm(forms.Form):
+    uid=forms.CharField(max_length=100,required=True,widget=forms.TextInput(attrs={'class': "form-control"}))
