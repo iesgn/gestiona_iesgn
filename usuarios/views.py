@@ -249,6 +249,7 @@ def delete(request):
             info={"error":"No se puede borrar un profesor."}
         if len(datos)==0:
             info={"error":"No existe ese usuario"}
+        info={}
         return render(request,"delete.html",info)
 
 
