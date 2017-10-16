@@ -4,7 +4,7 @@ import ldap.modlist
 import ldif
 from StringIO import StringIO
 from ldap.cidict import cidict
-import operator
+from unicodedata import lookup, name
 
 
 class LibLDAP(object):
@@ -130,8 +130,10 @@ class gnLDAP(LibLDAP):
         resultado=[]
         for elem in lista:
             resultado.append(elem.get_attributes())
+
         try:
-            resultado.sort(key=ordenarpor)
+        	resultado=sorted(resultado,key=lambda d: normalize(d[ordenarpor]))
+            
         except:
             pass
         return resultado
@@ -238,3 +240,19 @@ class LDAPSearchResult:
         ldif_out = ldif.LDIFWriter(out)
         ldif_out.unparse(self.dn, self.attrs)
         return out.getvalue()
+
+
+
+def normalize(s, encoding = "UTF-8"):
+    if not isinstance(s,unicode):
+        s = s.decode(encoding)
+
+    ret = u""
+    for c in s:
+        n = name(c)
+        pos = n.find("WITH")
+        if pos >= 0:
+            n = n[:pos]
+        n = lookup(n.strip())
+        ret += n
+    return ret
