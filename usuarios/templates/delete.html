@@ -3,6 +3,7 @@
 {% block content %}
 <div class="row">
 <h3>Borrar usuario</h3>
+{% if not error %}
 <strong>Este proceso es irreversible. Por favor, tenga cuidado al realizar esta operación.</strong><br/>
 
 <form  method="post" class="form-hotizontal">
@@ -13,7 +14,10 @@
         {{ form.uid}}
     </div>
     <button  type="submit" class="btn btn-primary">Borrar</button>
-    
+{% endif %}
+{% if error %}
+    <strong>{{error}}</strong><br/>
+{% endif %}
 </div>
 </form>
 </div>

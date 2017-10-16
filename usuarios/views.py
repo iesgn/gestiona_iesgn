@@ -230,16 +230,29 @@ def quito_listas_en_resultado(datos,utf8=True):
 
 def perfil(request):
     test_login(request)
-    lldap=LibLDAP()
+    lldap=gnLDAP()
     busqueda='(uid=%s)'%(request.session["username"])
-    r=lldap.buscar(busqueda)
-    datos=r[0].get_attributes()
+    datos=lldap.gnBuscar(busqueda)
     return update(request,datos["uid"][0])
 
 ###########################################################################################################
 
 def delete(request):
     test_login(request)
-    form=deleteUserForm()
-    info={'form':form}
-    return render(request,"delete.html",info)
+    if request.method=="POST":
+        uid=request.POST["uid"]
+        lldap=LibLDAP()
+        busqueda='(uid=%s)'%(uid)
+        datos=lldap.gnBuscar(busqueda)
+        grupo=lldap.memberOfGroup(uid)
+        if grupo=="profesores" or grupo=="antiguosprofesores":
+            info={"error":"No se puede borrar un profesor."}
+        if len(datos)==0:
+            info={"error":"No existe ese usuario"}
+        return render(request,"delete.html",info)
+
+
+    else:
+        form=deleteUserForm()
+        info={'form':form}
+        return render(request,"delete.html",info)
