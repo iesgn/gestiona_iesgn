@@ -256,8 +256,10 @@ def delete(request):
     elif request.method=="POST" and request.POST.get("uiddel",False):
         if request.POST["confirmar"]=="no":
             return redirect("/")
+        if request.POST["confirmar"]=="si":
             info={"error":"Usuario borrado con éxito."}
             return render(request,"delete.html",info)
+
 
     else:
         form=deleteUserForm()
