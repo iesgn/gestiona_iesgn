@@ -232,7 +232,7 @@ def perfil(request):
     test_login(request)
     lldap=gnLDAP()
     busqueda='(uid=%s)'%(request.session["username"])
-    datos=lldap.gnBuscar(busqueda)
+    datos=lldap.gnBuscar(cadena=busqueda)
     return update(request,datos["uid"][0])
 
 ###########################################################################################################
@@ -243,7 +243,7 @@ def delete(request):
         uid=request.POST["uid"]
         lldap=LibLDAP()
         busqueda='(uid=%s)'%(uid)
-        datos=lldap.gnBuscar(busqueda)
+        datos=lldap.gnBuscar(cadena=busqueda)
         grupo=lldap.memberOfGroup(uid)
         if grupo=="profesores" or grupo=="antiguosprofesores":
             info={"error":"No se puede borrar un profesor."}
