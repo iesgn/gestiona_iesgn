@@ -126,7 +126,7 @@ class gnLDAP(LibLDAP):
                 else:
                     cadena+="(%s=%s*)" % (campo,valor)
             cadena+=")"
-        lista = LibLDAP.buscar(self,cadena)
+        lista = LibLDAP.buscar(self,cadena.decode("utf-8"))
         resultado=[]
         for elem in lista:
             resultado.append(elem.get_attributes())
