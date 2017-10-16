@@ -252,6 +252,7 @@ def delete(request):
             info={"error":"No existe ese usuario"}
         else:
             info={}
+        print info
         return render(request,"delete.html",info)
 
 
