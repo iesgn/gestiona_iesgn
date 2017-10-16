@@ -246,6 +246,7 @@ def delete(request):
         datos=lldap.gnBuscar(cadena=busqueda)
         print datos
         grupo=lldap.memberOfGroup(uid)
+        print grupo
         if grupo=="profesores" or grupo=="antiguosprofesores":
             info={"error":"No se puede borrar un profesor."}
         if len(datos)==0:
