@@ -258,7 +258,7 @@ def delete(request):
             return redirect("/")
         if request.POST["confirmar"]=="si":
             ldap=gnLDAP(request.session["username"],request.session["password"])
-            grupo=ldap.memberOfGroup(request.POST["uiddel"])
+            grupo=ldap.memberOfGroup(request.POST["uiddel"],key=True)
             print grupo
             print request.POST["uiddel"]
             try:
