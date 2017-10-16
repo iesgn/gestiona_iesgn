@@ -258,8 +258,7 @@ def delete(request):
             return redirect("/")
         if request.POST["confirmar"]=="si":
             ldap=gnLDAP(request.session["username"],request.session["password"])
-            #ldap.modUserGroup(request.POST["uiddel"],ldap.memberOfGroup(request.POST["uiddel"]),"del")
-            ldap.modUserGroup("prueba","antiguosalumnos","del")
+            ldap.modUserGroup(request.POST["uiddel"],ldap.memberOfGroup(request.POST["uiddel"]),"del")
             #ldap.delete(request.POST["uiddel"])
             info={"error":"Usuario borrado con éxito."}
             
