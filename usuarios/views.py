@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render,redirect
 from usuarios.libldap import LibLDAP,gnLDAP
-from usuarios.forms import BuscarUsuario,newUserForm,updateUserForm,deleteUserForm
+from usuarios.forms import BuscarUsuario,newUserForm,updateUserForm,deleteUserForm,deleteUserForm2
 from gestiona_iesgn.views import test_profesor,test_login
 from django.contrib import messages
 
@@ -250,7 +250,8 @@ def delete(request):
         elif len(datos)==0:
             info={"error":"No existe ese usuario"}
         else:
-            info={}
+            form=deleteUserForm2({'uiddel':uid})
+            info={'grupo':grupo,nombre:datos[0]["cn"][0]}
         return render(request,"delete.html",info)
 
 

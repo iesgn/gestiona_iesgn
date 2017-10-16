@@ -65,3 +65,6 @@ class updateUserForm(forms.Form):
 
 class deleteUserForm(forms.Form):
     uid=forms.CharField(max_length=100,required=True,widget=forms.TextInput(attrs={'class': "form-control"}))
+
+class deleteUserForm2(forms.Form):
+    uiddel=forms.CharField(widget=forms.HiddenInput())

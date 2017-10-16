@@ -3,7 +3,7 @@
 {% block content %}
 <div class="row">
 <h3>Borrar usuario</h3>
-{% if not error %}
+{% if not error and not grupo%}
 <strong>Este proceso es irreversible. Por favor, tenga cuidado al realizar esta operación.</strong><br/>
 
 <form  method="post" class="form-hotizontal">
@@ -20,7 +20,20 @@
 {% if error %}
     <strong>{{error}}</strong><br/>
 {% endif %}
-
+{% if grupo %}
+    <strong>¿Quieres borrar a {{nombre}} ({{grupo}})?</strong><br/>
+    <form  method="post" class="form-hotizontal">
+    <div class="col-md-6">
+    {% csrf_token %}
+    <div class="form-group">
+        <label>Nombre de usuario:</label>
+        {{ form.uiddel}}
+    </div>
+    <button  type="submit" value="si" class="btn btn-primary">Si</button>
+    <button  type="submit" value="no" class="btn btn-primary">No</button>
+</div>
+    
+{% endif %}
 
 </div>
 
