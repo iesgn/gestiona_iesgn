@@ -89,7 +89,9 @@ def add(request,configuracion):
         del datos["grupo"]
 
         # Tengo un diccionario donde cada campo es una lista
-        
+        # Quito las listas
+        datos=quito_listas_en_resultado(datos)
+
         datos["uidnumber"]=str(int(lista[-1]["uidnumber"][0])+1)
         datos["cn"]=datos["givenname"]+" "+datos["sn"]
         datos["loginshell"]="/bin/bash"
@@ -132,7 +134,7 @@ def update(request,usuario):
     lista=ldap.gnBuscar(cadena="(uid=%s)"%usuario)
     if len(lista)==0:
         return redirect("/")
-    
+    datos=quito_listas_en_resultado(lista[0],utf8=False)
     if datos["gidnumber"]=='2000':
         configuracion={
         "titulo":"Modificar Profesor",
@@ -158,6 +160,8 @@ def update(request,usuario):
         del datos["AP"]
 
         # Tengo un diccionario donde cada campo es una lista
+        # Quito las listas
+        new=quito_listas_en_resultado(new)
         old={}
         new["cn"]=new["givenname"]+" "+new["sn"]
         if new["userpassword"]!='':
@@ -220,6 +224,15 @@ def update(request,usuario):
     return render(request,"new.html",info)
 
 
+def quito_listas_en_resultado(datos,utf8=True):
+    for campo,valor in datos.items():
+        if utf8:
+            resultado=valor[0].encode('utf-8')
+        else:
+            resultado=valor[0]
+        del datos[campo]
+        datos[campo.encode('utf-8')]=resultado
+    return datos
 
 def perfil(request):
     test_login(request)

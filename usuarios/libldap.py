@@ -135,7 +135,7 @@ class gnLDAP(LibLDAP):
         	resultado=sorted(resultado,key=lambda d: normalize(d[ordenarpor][0]))
             
         
-        return quito_listas_en_resultado(resultado)
+        return resultado
 
 def get_search_results(results):
     """Given a set of results, return a list of LDAPSearchResult
@@ -256,12 +256,3 @@ def normalize(s, encoding = "UTF-8"):
         ret += n
     return ret
 
-def quito_listas_en_resultado(datos,utf8=True):
-    for campo,valor in datos.items():
-        if utf8:
-            resultado=valor[0].encode('utf-8')
-        else:
-            resultado=valor[0]
-        del datos[campo]
-        datos[campo.encode('utf-8')]=resultado
-    return datos
