@@ -239,7 +239,7 @@ def perfil(request):
 
 def delete(request):
     test_login(request)
-    if request.method=="POST":
+    if request.method=="POST" and request.POST["uid"]:
         uid=request.POST["uid"]
         lldap=gnLDAP()
         busqueda='(uid=%s)'%(uid)
@@ -253,7 +253,11 @@ def delete(request):
             form=deleteUserForm2({'uiddel':uid})
             info={'grupo':lldap.memberOfGroup(uid),'nombre':datos[0]["cn"][0]}
         return render(request,"delete.html",info)
-
+    elif request.method=="POST" and request.POST["uiddel"]:
+        if request.POST["confirmar"]=="no":
+            return redirect("/")
+            info={"error":"Usuario borrado con éxito."}
+            return render(request,"delete.html",info)
 
     else:
         form=deleteUserForm()
