@@ -247,7 +247,7 @@ def delete(request):
         grupo=lldap.memberOfGroup(uid,key=True)
         if grupo=="profesores" or grupo=="antiguosprofesores":
             info={"error":"No se puede borrar un profesor."}
-        if len(datos)==0:
+        elif len(datos)==0:
             info={"error":"No existe ese usuario"}
         else:
             info={}
