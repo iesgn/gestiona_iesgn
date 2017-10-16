@@ -251,7 +251,7 @@ def delete(request):
             info={"error":"No existe ese usuario"}
         else:
             form=deleteUserForm2({'uiddel':uid})
-            info={'grupo':grupo,'nombre':datos[0]["cn"][0]}
+            info={'grupo':lldap.memberOfGroup(uid),'nombre':datos[0]["cn"][0]}
         return render(request,"delete.html",info)
 
 
