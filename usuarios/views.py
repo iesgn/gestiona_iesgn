@@ -43,9 +43,6 @@ def listarUsuarios(request,configuracion):
     lista=ldap.gnBuscar(filtro=filtro)
     lista=getGrupo(lista)
     info={"titulo":configuracion["titulo"],"resultados":lista,'form':form}
-
-    
-    
     return render(request,"listar.html",info)
 
 
@@ -151,6 +148,8 @@ def update(request,usuario):
     datos["AP"]=configuracion["AP"]
     datos["grupo"]=ldap.memberOfGroup(usuario,key=True)
     form=updateUserForm(datos) if request.method=="GET" else updateUserForm(request.POST)
+    if "perfil" in request.path: 
+        form.fields["grupo"].widget.attrs['readonly'] = "readonly"
     if request.method=="POST" and form.is_valid():
         new=dict(form.data)
         grupo=new["grupo"]

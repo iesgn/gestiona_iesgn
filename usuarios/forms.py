@@ -58,7 +58,6 @@ class updateUserForm(forms.Form):
         super(updateUserForm, self).__init__(*args, **kwargs)
         if args[0].has_key("AP") and args[0]["AP"]=="profesores":
             self.fields['grupo']=forms.ChoiceField(choices=gruposProfesores[1:],required=False,widget=forms.Select(attrs={'class': "form-control"}))
-
         else:
             self.fields['grupo']=forms.ChoiceField(choices=gruposAlumnos[1:],required=False,widget=forms.Select(attrs={'class': "form-control"}))
 
