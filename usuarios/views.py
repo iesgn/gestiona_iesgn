@@ -4,6 +4,7 @@ from usuarios.libldap import LibLDAP,gnLDAP
 from usuarios.forms import BuscarUsuario,newUserForm,updateUserForm,deleteUserForm,deleteUserForm2
 from gestiona_iesgn.views import test_profesor,test_login
 from django.contrib import messages
+from django import forms
 
 import binascii
 import hashlib
@@ -149,7 +150,7 @@ def update(request,usuario):
     datos["grupo"]=ldap.memberOfGroup(usuario,key=True)
     form=updateUserForm(datos) if request.method=="GET" else updateUserForm(request.POST)
     if "perfil" in request.path: 
-        form.fields["grupo"].widget.attrs['disabled'] = 'disabled'
+        form.fields["grupo"].widget=forms.HiddenInput()
     if request.method=="POST" and form.is_valid():
         new=dict(form.data)
         grupo=new["grupo"]
