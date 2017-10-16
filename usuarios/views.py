@@ -199,6 +199,7 @@ def update(request,usuario):
                 if str(grupo[0])!=oldgrupo:
                     ldap.modUserGroup(datos["uid"],grupo[0],"add")
                     ldap.modUserGroup(datos["uid"],oldgrupo,"del")
+                    print oldgrupo
                 ldap.modify(datos["uid"],new,old)
                 
             except Exception as err:
