@@ -25,10 +25,7 @@
     <form  method="post" class="form-hotizontal">
     <div class="col-md-6">
     {% csrf_token %}
-    <div class="form-group">
-        <label>Nombre de usuario:</label>
-        {{ form.uiddel}}
-    </div>
+    {{ form.uiddel}}
     <button  name="confirmar" type="submit" value="si" class="btn btn-primary">Si</button>
     <button  name="confirmar" type="submit" value="no" class="btn btn-primary">No</button>
 </div>

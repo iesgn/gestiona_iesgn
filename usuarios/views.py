@@ -251,9 +251,9 @@ def delete(request):
             info={"error":"No existe ese usuario"}
         else:
             form=deleteUserForm2({'uiddel':uid})
-            info={'grupo':lldap.memberOfGroup(uid),'nombre':datos[0]["cn"][0]}
+            info={'form':form,'grupo':lldap.memberOfGroup(uid),'nombre':datos[0]["cn"][0]}
         return render(request,"delete.html",info)
-    elif request.method=="POST" and request.POST.get("uiddel",False2):
+    elif request.method=="POST" and request.POST.get("uiddel",False):
         if request.POST["confirmar"]=="no":
             return redirect("/")
             info={"error":"Usuario borrado con éxito."}
