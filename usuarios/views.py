@@ -199,7 +199,6 @@ def update(request,usuario):
                 if str(grupo[0])!=oldgrupo:
                     ldap.modUserGroup(datos["uid"],grupo[0],"add")
                     ldap.modUserGroup(datos["uid"],oldgrupo,"del")
-                    print oldgrupo
                 ldap.modify(datos["uid"],new,old)
                 
             except Exception as err:
@@ -259,10 +258,13 @@ def delete(request):
             return redirect("/")
         if request.POST["confirmar"]=="si":
             ldap=gnLDAP(request.session["username"],request.session["password"])
+            grupo=ldap.memberOfGroup(request.POST["uiddel"])
+            print grupo
+            print request.POST["uiddel"]
             try:
-                #ldap.modUserGroup(request.POST["uiddel"],ldap.memberOfGroup(request.POST["uiddel"]),"del")
+                #ldap.modUserGroup(request.POST["uiddel"],grupo,"del")
                 #ldap.delete(request.POST["uiddel"])
-                ldap.modUserGroup("prueba","antiguosalumnos","del")
+                
                 info={"error":"Usuario borrado con éxito."}
             except Exception as err:
                 info={"error":'No se ha podido borrar el usuario. Error'+str(err)}
