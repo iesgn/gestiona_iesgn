@@ -233,7 +233,7 @@ def perfil(request):
     lldap=gnLDAP()
     busqueda='(uid=%s)'%(request.session["username"])
     datos=lldap.gnBuscar(cadena=busqueda)
-    return update(request,datos["uid"][0])
+    return update(request,datos[0]["uid"][0])
 
 ###########################################################################################################
 
