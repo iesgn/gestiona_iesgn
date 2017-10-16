@@ -241,7 +241,7 @@ def delete(request):
     test_login(request)
     if request.method=="POST":
         uid=request.POST["uid"]
-        lldap=LibLDAP()
+        lldap=gnLDAP()
         busqueda='(uid=%s)'%(uid)
         datos=lldap.gnBuscar(cadena=busqueda)
         grupo=lldap.memberOfGroup(uid)
