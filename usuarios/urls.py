@@ -9,6 +9,6 @@ urlpatterns = [
 	url(r'^alumnos/add$', views.addAlumnos),
 	url(r'^profesores/add$', views.addProfesores),
 	url(r'^perfil$', views.perfil),
-	url(r'^del$', views.delete),
+	url(r'^alumnos/del$', views.delete),
 
   ]
