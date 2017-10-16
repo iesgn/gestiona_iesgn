@@ -262,8 +262,9 @@ def delete(request):
             print grupo
             print request.POST["uiddel"]
             print type(grupo)
+            print type(request.POST["uiddel"])
             try:
-                ldap.modUserGroup(request.POST["uiddel"],str(grupo),"del")
+                ldap.modUserGroup(request.POST["uiddel"],grupo,"del")
                 #ldap.delete(request.POST["uiddel"])
                 
                 info={"error":"Usuario borrado con éxito."}
