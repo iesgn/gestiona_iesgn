@@ -132,7 +132,7 @@ class gnLDAP(LibLDAP):
             resultado.append(elem.get_attributes())
 
         if resultado[0].get(ordenarpor,False):
-        	resultado=sorted(resultado,key=lambda d: normalize(d[ordenarpor]))
+        	resultado=sorted(resultado,key=lambda d: normalize(d[ordenarpor][0]))
             
         
         return resultado
