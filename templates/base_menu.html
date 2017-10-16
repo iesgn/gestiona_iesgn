@@ -80,7 +80,9 @@
  <ul class="dropdown-menu">
     <li><a href="/documentacion/vpn">Repositorios</a></li>
     <li><a href="/documentacion/wifi">Conexión wifi</a></li>
-    
+    {% if request.session.username %}
+      <li><a href="/documentacion/ca">Certificado Gonzalo Nazareno</a></li>
+    {% endif %}
   </ul>
 </li>
 
