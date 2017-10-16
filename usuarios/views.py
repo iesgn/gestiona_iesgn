@@ -241,5 +241,5 @@ def perfil(request):
 def delete(request):
     test_login(request)
     form=deleteUserForm()
-    info{'form':form}
+    info={'form':form}
     return render(request,"delete.html",info)
