@@ -51,13 +51,6 @@ def listarUsuarios(request,configuracion):
 
 def getGrupo(lista):
     resultado=[]
-    grupo={'asir1':'1º ASIR',
-    'asir2':'2º ASIR',
-    'smr1':'1º SMR',
-    'smr2':'2º SMR',
-    'antiguosalumnos':'A.A.',
-    'profesores':'Profesor',
-    'antiguosprofesores':'A.P.'}
     ldap=gnLDAP()
     for usuario in lista:
         usuario["grupo"]=ldap.memberOfGroup(usuario["uid"][0])
