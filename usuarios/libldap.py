@@ -131,11 +131,10 @@ class gnLDAP(LibLDAP):
         for elem in lista:
             resultado.append(elem.get_attributes())
 
-        try:
-        	resultado=sorted(resultado,key=lambda d: normalize(d[ordenarpor]))
+        
+        resultado=sorted(resultado,key=lambda d: normalize(d[ordenarpor]))
             
-        except:
-            pass
+        
         return resultado
 
 def get_search_results(results):
