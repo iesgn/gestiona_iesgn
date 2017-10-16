@@ -149,7 +149,7 @@ def update(request,usuario):
     datos["grupo"]=ldap.memberOfGroup(usuario,key=True)
     form=updateUserForm(datos) if request.method=="GET" else updateUserForm(request.POST)
     if "perfil" in request.path: 
-        form.fields["grupo"].widget.attrs['readonly'] = "readonly"
+        form.fields["grupo"].widget.attrs['disabled'] = 'disabled'
     if request.method=="POST" and form.is_valid():
         new=dict(form.data)
         grupo=new["grupo"]
