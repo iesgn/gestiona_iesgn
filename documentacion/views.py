@@ -1,6 +1,10 @@
 from django.shortcuts import render
+from django.http import Http404
 
 # Create your views here.
 
-def vpn(request):
-	return render(request,"vpn.html")
+def doc(request,doc):
+	try:
+		return render(request,doc+".html")
+	except:
+		raise Http404 

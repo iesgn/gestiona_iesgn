@@ -1,0 +1,28 @@
+{% extends "base_menu.html" %}
+
+{% block content %}
+ 
+<h3>Conexión WIFI</h3>
+		<p>La configuración para conectarnos a la WIFI del departamento será la siguiente;</p>
+		
+		<ol>
+			<li>Seleccionamos la red (ASIR o SMR)</li>
+			<li>Configuramos los siguientes parámetros:</li>
+			<ul>
+				<li>Wireless Security: WPA & WPA2 Enterprise</li>
+				<li>Authentication: Tunneled TLS</li>
+				<li>CA certificate: (Ninguno)</li>
+				<li>Inner Authentication: PAP</li>
+				<li>Username: mi_usuario</li>
+				<li>Password: Contraseña</li>
+			</ul>
+			<li>Debemos introducir el nombre de usuario y contraseña de LDAP (con los que accedemos a la
+plataforma).
+			<li>Vamos a conectarnos sin CA (ca.pem) teniendo en cuenta que veremos un mensaje avisándonos de
+ello.</li>
+		</li>
+		<img src="/static/img/documentacion/wifi.png"/>
+
+
+
+{% endblock %}
