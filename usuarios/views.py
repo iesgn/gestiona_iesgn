@@ -106,11 +106,11 @@ def add(request,configuracion):
         the_unhex = binascii.unhexlify(the_hash)
         datos["userpassword"]="{MD5}"+the_unhex.encode('base64')
         if ldap.isbind:
-            ldap.modUserGroup(datos["uid"],grupo,"add")
+            
             try: 
                 
                 ldap.add(datos["uid"],datos)
-      
+                ldap.modUserGroup(datos["uid"],grupo,"add")
                 
             except Exception as err:
                 messages.add_message(request, messages.INFO, 'No se ha podido añadir el nuevo usuario. Error:' + str(err))
