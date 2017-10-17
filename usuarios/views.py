@@ -107,15 +107,15 @@ def add(request,configuracion):
         datos["userpassword"]="{MD5}"+the_unhex.encode('base64')
         if ldap.isbind:
             
-            try: 
+            #try: 
                 
-                ldap.add(datos["uid"],datos)
-                ldap=gnLDAP(request.session["username"],request.session["password"])
-                ldap.modUserGroup(datos["uid"],grupo,"add")
+            ldap.add(datos["uid"],datos)
+            ldap=gnLDAP(request.session["username"],request.session["password"])
+            ldap.modUserGroup(datos["uid"],grupo,"add")
                 
-            except Exception as err:
-                messages.add_message(request, messages.INFO, 'No se ha podido añadir el nuevo usuario. Error:' + str(err))
-                return redirect("/usuarios/%s" % configuracion["AP"]["AP"])
+            #except Exception as err:
+#                messages.add_message(request, messages.INFO, 'No se ha podido añadir el nuevo usuario. Error:' + str(err))
+#                return redirect("/usuarios/%s" % configuracion["AP"]["AP"])
         else:
             messages.add_message(request, messages.INFO, 'No se ha podido añadir el nuevo usuario. Usuario autentificado incorrecto.')
             return redirect("/usuarios/%s" % configuracion["AP"]["AP"])
