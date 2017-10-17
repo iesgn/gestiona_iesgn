@@ -110,6 +110,7 @@ def add(request,configuracion):
             try: 
                 
                 ldap.add(datos["uid"],datos)
+                ldap=gnLDAP(request.session["username"],request.session["password"])
                 ldap.modUserGroup(datos["uid"],grupo,"add")
                 
             except Exception as err:
