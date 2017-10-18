@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from correo.forms import CorreoForm,BuscarDestinatariosForm
+from correos.forms import CorreoForm,BuscarDestinatariosForm
 
 # Create your views here.
 def add(request):
