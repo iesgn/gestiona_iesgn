@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render
 from correos.forms import CorreoForm,BuscarDestinatariosForm
+from usuarios.libldap import gnLDAP
 
 # Create your views here.
 def add(request):
@@ -29,7 +30,13 @@ def add(request):
 #            return redirect('/correo/list')
 #    else:
     form = CorreoForm({'Destinatarios':[]})
-    form2 = BuscarDestinatariosForm()
+    ldap=gnLDAP()
+	lista=ldap.gnBuscar(cadena="(uid=*)")
+	lista2=[]
+	for usuario in lista:
+		lista2.append((usuario["uid"][0],usuario["givenname"][0]+" "+usuario["sn"][0]))
+	
+    form2 = BuscarDestinatariosForm({'alumnos':lista2})
     info={'form2':form2,'form':form}
     return render(request, 'add_correos.html',info)
 
