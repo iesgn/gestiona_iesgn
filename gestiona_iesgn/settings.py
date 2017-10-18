@@ -68,7 +68,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'gestiona_iesgn.context_processors.my_site_url',
+                'gestiona_iesgn.context_processor.my_site_url',
             ],
         },
     },
