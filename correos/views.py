@@ -31,7 +31,7 @@ def add(request):
 #    else:
     form = CorreoForm({'Destinatarios':[]})
     ldap=gnLDAP()
-	lista=ldap.gnBuscar(cadena="(uid=*)")
+    lista=ldap.gnBuscar(cadena="(uid=*)")
 	lista2=[]
 	for usuario in lista:
 		lista2.append((usuario["uid"][0],usuario["givenname"][0]+" "+usuario["sn"][0]))
