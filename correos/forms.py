@@ -4,13 +4,9 @@ from django.contrib.admin.widgets import FilteredSelectMultiple
 from django.forms.widgets import HiddenInput,Textarea,TextInput
 class CorreoForm(forms.Form):
     asunto=forms.CharField(max_length=100,required=False,widget=forms.TextInput(attrs={'class': "form-control"}))
-    destinatarios=forms.MultipleChoiceField(choices=[],required=False,widget=FilteredSelectMultiple("Profesores", is_stacked=False,attrs={'class': "form-control"}))
+    destinatarios=forms.MultipleChoiceField(choices=[],required=False,SelectMultiple(attrs={'class': "form-control js-example-basic-multiple"}))
     contenido=forms.CharField(max_length=100,required=False,widget=forms.Textarea(attrs={'class': "form-control",'cols': 100, 'rows': 15}))
 
-    
-    class Media:
-        css = {'all':('admin/css/widgets.css','css/overrides.css'),}
-        js = ('admin/js/vendor/jquery/jquery.js','admin/jsi18n/','admin/js/jquery.init.js')
 
 class BuscarDestinatariosForm(forms.Form):
     Profesores = forms.ChoiceField(choices=[],required=False,widget=forms.Select(attrs={'class': "form-control",'onchange': 'this.form.submit();'}))
