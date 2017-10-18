@@ -33,8 +33,8 @@ def add(request):
 		form = CorreoForm(dest=['gonzalo.abad'])
 		form2 = BuscarDestinatariosForm()
 
-		info={'form2':form2,'form':form}
-		return render(request, 'add_correos.html',info)
+	info={'form2':form2,'form':form}
+	return render(request, 'add_correos.html',info)
 
 def SelectUsuarios(grupo):
 	ldap=gnLDAP()
