@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 import os
 
 SITE_URL = 'https://gestiona.gonzalonazareno.org/gestiona'
+SITE_URL_STATIC = 'https://gestiona.gonzalonazareno.org/gestiona/static/'
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -123,7 +124,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
-STATIC_URL = 'static/'
+STATIC_URL = SITE_URL_STATIC
 STATICFILES_DIRS = (
             # Put strings here, like "/home/html/static" or "C:/www/django/static".
             # Always use forward slashes, even on Windows.
