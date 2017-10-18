@@ -8,7 +8,8 @@ from usuarios.libldap import gnLDAP
 def add(request):
     if request.method=='POST' and not request.POST.has_key("correo"):
         form2 = BuscarDestinatariosForm(request.POST)
-        form = CorreoForm(request.POST+{"dest":SelectUsuarios(request.POST.get("Alumnos"))})
+        request.POST["dest"]=SelectUsuarios(request.POST.get("Alumnos"))
+        form = CorreoForm(request.POST)
 #    elif request.method=='POST' and request.POST.has_key("correo"):
 #        form2 = BuscarDestinatariosForm(request.POST.get("Profesores")) 
 #        form = CorreoForm(request.POST)
