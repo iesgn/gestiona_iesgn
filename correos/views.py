@@ -15,7 +15,7 @@ def add(request):
 #            form.save()
 #            correos=[]
 #            for prof in request.POST["Destinatarios"]:
-#                correos.append(Profesores.objects.get(id=prof).Email)#
+#                correos.append(Profesores.objects.get(id=prof).Email)
 #
 
 #            #send_mail(
