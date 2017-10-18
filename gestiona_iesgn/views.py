@@ -2,7 +2,6 @@ from django.shortcuts import render,redirect
 from usuarios.libldap import gnLDAP
 from django.conf import settings
 from django.http import Http404
-from django.conf import settings
 def index(request):
     if request.method=="GET":
             return render(request,'index.html')
@@ -38,7 +37,7 @@ def salir(request):
         del request.session["profesor"]
     except:
         pass
-    return redirect(setting.SITE_URL)
+    return redirect(settings.SITE_URL)
 
 def test_profesor(request):
     if not request.session.get("profesor",False):
