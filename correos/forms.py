@@ -15,18 +15,13 @@ def getSelect():
 
 class CorreoForm(forms.Form):
     asunto=forms.CharField(max_length=100,required=False,widget=forms.TextInput(attrs={'class': "form-control"}))
-    destinatarios=forms.MultipleChoiceField()
     contenido=forms.CharField(max_length=100,required=False,widget=forms.Textarea(attrs={'class': "form-control",'cols': 100, 'rows': 15}))
-    def __init__(self, *args, **kwargs):
-        dest = kwargs.pop('dest')
-        print dest
-        super(CorreoForm, self).__init__(*args, **kwargs)
-        self.fields['destinatarios']=forms.MultipleChoiceField(initial=dest,choices=getSelect(),required=False,widget=forms.SelectMultiple(attrs={'class': "form-control js-example-basic-multiple"}))
-
 
 class BuscarDestinatariosForm(forms.Form):
-    Alumnos = forms.ChoiceField(choices=[],required=False,widget=forms.Select(attrs={'class': "form-control",'onchange': 'this.form.submit();'}))
+    alumnos = forms.ChoiceField(choices=[],required=False,widget=forms.Select(attrs={'class': "form-control",'onchange': 'this.form.submit();'}))
+    forms.MultipleChoiceField(required=False,widget=forms.SelectMultiple(attrs={'class': "form-control js-example-basic-multiple"}))
     def __init__(self, *args, **kwargs):
+            dest = kwargs.pop('dest')
             super(BuscarDestinatariosForm, self).__init__(*args, **kwargs)
             lista=["Ninguno","Todos","1º ASIR","Bilingüe","Consejo Escolar"]
             ldap=gnLDAP()
@@ -35,3 +30,7 @@ class BuscarDestinatariosForm(forms.Form):
                 if not "prof" in keys:
                     lista.append((keys,values))
             self.fields['Alumnos'].choices=sorted(lista)
+            self.fields['destinatarios'].initial=dest
+            self.fields['destinatarios'].choices=getSelect()
+    
+
