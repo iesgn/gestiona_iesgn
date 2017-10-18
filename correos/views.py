@@ -32,7 +32,8 @@ def add(request):
     
     
 	form = CorreoForm()
-	form2 = BuscarDestinatariosForm({'destinatarios':['gonzalo.abad']})
+	form2 = BuscarDestinatariosForm()
+	form2["destinatarios"].inital=['gonzalo.abad']
 	info={'form2':form2,'form':form}
 	return render(request, 'add_correos.html',info)
 
