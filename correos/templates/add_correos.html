@@ -1,0 +1,21 @@
+{% extends "base_menu.html" %}
+{% block title %}Correo{% endblock %}
+{% block js %}
+<script type="text/javascript" src="{{SITE_URL}}/static/admin/js/SelectBox.js"></script>
+<script type="text/javascript" src="{{SITE_URL}}/static/admin/js/SelectFilter2.js"></script>
+
+{% endblock %}
+{% block content %}
+<h3>Correo</h3>
+<form  method="post">
+
+    {% csrf_token %}
+    {{ form2.as_p}}
+    
+    {{ form.as_p}}
+    
+<br/><input name ="correo" type="submit" value="Enviar" />
+</form>
+<br/><br/>
+
+{% endblock %}

@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'cursos.apps.CursosConfig',
     'documentacion.apps.DocumentacionConfig',
     'multitask.apps.MultitaskConfig',
+    'correos.apps.CorreosConfig',
 ]
 
 MIDDLEWARE = [

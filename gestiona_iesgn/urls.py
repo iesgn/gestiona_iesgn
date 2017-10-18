@@ -25,5 +25,6 @@ urlpatterns = [
     url(r'^cursos/', include('cursos.urls')),
     url(r'^documentacion/', include('documentacion.urls')),
     url(r'^multitask/', include('multitask.urls')),
+    url(r'^correos/', include('correos.urls')),
 
 ]
