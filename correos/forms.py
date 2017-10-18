@@ -21,6 +21,7 @@ class BuscarDestinatariosForm(forms.Form):
     
     def __init__(self, *args, **kwargs):
             dest = kwargs.pop('dest')
+            alum = kwargs.pop('alum')
             print dest
             super(BuscarDestinatariosForm, self).__init__(*args, **kwargs)
             lista=["Ninguno","Todos","1º ASIR","Bilingüe","Consejo Escolar"]
@@ -29,7 +30,7 @@ class BuscarDestinatariosForm(forms.Form):
             for keys,values in ldap.grupo.items():
                 if not "prof" in keys:
                     lista.append((keys,values))
-            self.fields["alumnos"] = forms.ChoiceField(initial= kwargs.get('alum',""),choices=sorted(lista),required=False,widget=forms.Select(attrs={'class': "form-control",'onchange': 'this.form.submit();'}))
+            self.fields["alumnos"] = forms.ChoiceField(initial= alum,choices=sorted(lista),required=False,widget=forms.Select(attrs={'class': "form-control",'onchange': 'this.form.submit();'}))
             self.fields["destinatarios"]=forms.MultipleChoiceField(initial=dest,choices=getSelect(),required=False,widget=forms.SelectMultiple(attrs={'class': "form-control js-example-basic-multiple"}))
 
             
