@@ -21,7 +21,6 @@ class CorreoForm(forms.Form):
         dest = kwargs.pop('dest')
         print dest
         super(CorreoForm, self).__init__(*args, **kwargs)
-        del self.fields['destinatarios']
         self.fields['destinatarios']=forms.MultipleChoiceField(initial=dest,choices=getSelect(),required=False,widget=forms.SelectMultiple(attrs={'class': "form-control js-example-basic-multiple"}))
 
 
