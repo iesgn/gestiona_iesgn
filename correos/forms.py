@@ -27,7 +27,9 @@ class BuscarDestinatariosForm(forms.Form):
     Alumnos = forms.ChoiceField(choices=[],required=False,widget=forms.Select(attrs={'class': "form-control",'onchange': 'this.form.submit();'}))
     def __init__(self, *args, **kwargs):
             super(BuscarDestinatariosForm, self).__init__(*args, **kwargs)
-            lista=["Ninguno","Todos","ETCP","Bilingüe","Consejo Escolar"]
+            lista=["Ninguno","Todos","1º ASIR","Bilingüe","Consejo Escolar"]
             ldap=gnLDAP()
-            
-            self.fields['Alumnos'].choices=ldap.grupo[:-3]
+            lista=[]
+            for keys,values in ldap.grupo.items():
+                lista.append((keys,values))
+            self.fields['Alumnos'].choices=lista[:-3]
