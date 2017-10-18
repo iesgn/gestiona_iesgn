@@ -33,8 +33,8 @@ def add(request):
     
 	form = CorreoForm()
 	form2 = BuscarDestinatariosForm()
-    info={'form2':form2,'form':form}
-    return render(request, 'add_correos.html',info)
+	info={'form2':form2,'form':form}
+	return render(request, 'add_correos.html',info)
 
 #def SelectProfes(id):
 #    cursos=Cursos.objects.all().order_by("Curso")
