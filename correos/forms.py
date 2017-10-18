@@ -15,7 +15,7 @@ def getSelect():
 
 class CorreoForm(forms.Form):
     asunto=forms.CharField(max_length=100,required=False,widget=forms.TextInput(attrs={'class': "form-control"}))
-    #destinatarios=forms.MultipleChoiceField(choices=[],required=False,widget=forms.SelectMultiple(attrs={'class': "form-control js-example-basic-multiple"}))
+    destinatarios=forms.MultipleChoiceField()
     contenido=forms.CharField(max_length=100,required=False,widget=forms.Textarea(attrs={'class': "form-control",'cols': 100, 'rows': 15}))
     def __init__(self, *args, **kwargs):
         dest = kwargs.pop('dest')
