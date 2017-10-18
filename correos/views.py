@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render
 from correos.forms import CorreoForm,BuscarDestinatariosForm
+from usuarios.libldap import gnLDAP
 
 
 # Create your views here.
 def add(request):
-    #if request.method=='POST' and not request.POST.has_key("correo"):
-#        form2 = BuscarDestinatariosForm(request.POST)
-#        form = CorreoForm({'Asunto':request.POST.get("Asunto"),'Contenido':request.POST.get("Contenido"),'Destinatarios':SelectProfes(int(request.POST.get("Profesores"))),'Fecha':time.strftime("%d/%m/%Y")})#
-
+    if request.method=='POST' and not request.POST.has_key("correo"):
+        form2 = BuscarDestinatariosForm(request.POST)
+        form = CorreoForm({'Asunto':request.POST.get("Asunto"),'Contenido':request.POST.get("Contenido"),'Destinatarios':SelectUsuarios(request.POST.get("Alumnos"))})
 #    elif request.method=='POST' and request.POST.has_key("correo"):
 #        form2 = BuscarDestinatariosForm(request.POST.get("Profesores")) 
 #        form = CorreoForm(request.POST)
@@ -28,16 +28,23 @@ def add(request):
 #                   fail_silently=False,
 #                  )
 #            return redirect('/correo/list')
-#    else:
-    
-    
-	form = CorreoForm(dest=['gonzalo.abad'])
-	form2 = BuscarDestinatariosForm()
+    else:
+   
+		form = CorreoForm(dest=['gonzalo.abad'])
+		form2 = BuscarDestinatariosForm()
 
-	info={'form2':form2,'form':form}
-	return render(request, 'add_correos.html',info)
+		info={'form2':form2,'form':form}
+		return render(request, 'add_correos.html',info)
 
-#def SelectProfes(id):
+def SelectUsuarios(grupo):
+	ldap=gnLDAP()
+	filtro={"grupo":grupo}
+	lista=ldap.gnBuscar(filtro=filtro)
+	lista2=[]
+	for usuario in lista:
+		lista2.append(usuario["uid"][0])
+	return lista2
+
 #    cursos=Cursos.objects.all().order_by("Curso")
 #    departamentos=Departamentos.objects.all().order_by("Nombre")
 #    areas=Areas.objects.all().order_by("Nombre")

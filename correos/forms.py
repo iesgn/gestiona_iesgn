@@ -20,7 +20,7 @@ class CorreoForm(forms.Form):
     def __init__(self, *args, **kwargs):
         dest = kwargs.pop('dest')
         super(CorreoForm, self).__init__(*args, **kwargs)
-        self.fields['destinatarios']=forms.MultipleChoiceField(initial=getSelect(),choices=getSelect(),required=False,widget=forms.SelectMultiple(attrs={'class': "form-control js-example-basic-multiple"}))
+        self.fields['destinatarios']=forms.MultipleChoiceField(choices=getSelect(),required=False,widget=forms.SelectMultiple(attrs={'class': "form-control js-example-basic-multiple"}))
 
 
 class BuscarDestinatariosForm(forms.Form):
@@ -28,9 +28,6 @@ class BuscarDestinatariosForm(forms.Form):
     def __init__(self, *args, **kwargs):
             super(BuscarDestinatariosForm, self).__init__(*args, **kwargs)
             lista=["Ninguno","Todos","ETCP","Bilingüe","Consejo Escolar"]
+            ldap=gnLDAP()
             
-            lista2=[]
-            for i in xrange(0,len(lista)):
-                lista2.append((i,lista[i]))
-            
-            self.fields['Alumnos'].choices=lista2
+            self.fields['Alumnos'].choices=ldap.grupo[:-3]
