@@ -5,7 +5,7 @@ from gestiona_iesgn.views import test_profesor,test_login
 # Create your views here.
 
 def doc(request,doc):
-	islogin=["ca"]
+	islogin=[]
 	isprofesor=[]
 	if doc in islogin:
 		test_login(request)
