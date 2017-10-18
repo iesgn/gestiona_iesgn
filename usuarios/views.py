@@ -5,6 +5,7 @@ from usuarios.forms import BuscarUsuario,newUserForm,updateUserForm,deleteUserFo
 from gestiona_iesgn.views import test_profesor,test_login
 from django.contrib import messages
 from django import forms
+from django.conf import settings
 
 import binascii
 import hashlib
@@ -115,12 +116,12 @@ def add(request,configuracion):
                 
             except Exception as err:
                 messages.add_message(request, messages.INFO, 'No se ha podido añadir el nuevo usuario. Error:' + str(err))
-                return redirect("/usuarios/%s" % configuracion["AP"]["AP"])
+                return redirect(settings.SITE_URL+"/usuarios/%s" % configuracion["AP"]["AP"])
         else:
             messages.add_message(request, messages.INFO, 'No se ha podido añadir el nuevo usuario. Usuario autentificado incorrecto.')
-            return redirect("/usuarios/%s" % configuracion["AP"]["AP"])
+            return redirect(settings.SITE_URL+"/usuarios/%s" % configuracion["AP"]["AP"])
         messages.add_message(request, messages.INFO, 'Se ha añadido el nuevo usuario.')
-        return redirect("/usuarios/%s" % configuracion["AP"]["AP"])
+        return redirect(settings.SITE_URL+"/usuarios/%s" % configuracion["AP"]["AP"])
     
     info={"titulo":configuracion["titulo"],'form':form}
     return render(request,"new.html",info)
@@ -134,7 +135,7 @@ def update(request,usuario):
     ldap=gnLDAP(request.session["username"],request.session["password"])
     lista=ldap.gnBuscar(cadena="(uid=%s)"%usuario)
     if len(lista)==0:
-        return redirect("/")
+        return redirect(settings.SITE_URL+"/")
     datos=quito_listas_en_resultado(lista[0],utf8=False)
     if datos["gidnumber"]=='2000':
         configuracion={
@@ -189,7 +190,7 @@ def update(request,usuario):
         if "perfil" in request.path:
             url="/"
         else:
-            url="/usuarios/"+configuracion["AP"]
+            url=settings.SITE_URL+"/usuarios/"+configuracion["AP"]
 
         ##3 Hago la modificación
         
@@ -262,7 +263,7 @@ def delete(request):
         return render(request,"delete.html",info)
     elif request.method=="POST" and request.POST.get("uiddel",False):
         if request.POST["confirmar"]=="no":
-            return redirect("/")
+            return redirect(settings.SITE_URL+"/")
         if request.POST["confirmar"]=="si":
             ldap=gnLDAP(request.session["username"],request.session["password"])
             grupo=ldap.memberOfGroup(request.POST["uiddel"],key=True)

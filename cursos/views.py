@@ -4,6 +4,7 @@ from usuarios.libldap import gnLDAP
 from cursos.forms import BuscarUsuario
 from gestiona_iesgn.views import test_profesor
 from django.http import Http404
+from django.conf import settings
 import operator
 # Create your views here.
 
@@ -36,4 +37,4 @@ def eliminar(request,curso,usuario):
 		ldap.modUserGroup(str(usuario),"antiguosalumnos","add")
 	except:
 		pass
-	return redirect("/cursos/"+curso)
+	return redirect(settings.SITE_URL+"/cursos/"+curso)
