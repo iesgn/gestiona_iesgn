@@ -18,8 +18,7 @@ class CorreoForm(forms.Form):
     contenido=forms.CharField(max_length=100,required=False,widget=forms.Textarea(attrs={'class': "form-control",'cols': 100, 'rows': 15}))
 
 class BuscarDestinatariosForm(forms.Form):
-    alumnos = forms.ChoiceField(choices=[],required=False,widget=forms.Select(attrs={'class': "form-control",'onchange': 'this.form.submit();'}))
-    destinatarios=forms.MultipleChoiceField(required=False,widget=forms.SelectMultiple(attrs={'class': "form-control js-example-basic-multiple"}))
+    
     def __init__(self, *args, **kwargs):
             dest = kwargs.pop('dest')
             super(BuscarDestinatariosForm, self).__init__(*args, **kwargs)
@@ -29,8 +28,7 @@ class BuscarDestinatariosForm(forms.Form):
             for keys,values in ldap.grupo.items():
                 if not "prof" in keys:
                     lista.append((keys,values))
-            self.fields['alumnos'].choices=sorted(lista)
-            self.fields['destinatarios'].initial=dest
-            self.fields['destinatarios'].choices=getSelect()
-    
+            self.fields["alumnos"] = forms.ChoiceField(choices=sorted(lista),required=False,widget=forms.Select(attrs={'class': "form-control",'onchange': 'this.form.submit();'}))
+            self.fields["destinatarios"]=forms.MultipleChoiceField(initial=dest,choices=getSelect(),required=False,widget=forms.SelectMultiple(attrs={'class': "form-control js-example-basic-multiple"}))
 
+            
