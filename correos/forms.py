@@ -21,6 +21,7 @@ class BuscarDestinatariosForm(forms.Form):
     
     def __init__(self, *args, **kwargs):
             dest = kwargs.pop('dest')
+            print dest
             super(BuscarDestinatariosForm, self).__init__(*args, **kwargs)
             lista=["Ninguno","Todos","1º ASIR","Bilingüe","Consejo Escolar"]
             ldap=gnLDAP()
