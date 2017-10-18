@@ -20,9 +20,9 @@ class CorreoForm(forms.Form):
     def __init__(self, *args, **kwargs):
         dest = kwargs.pop('dest')
         print dest
-        
-        self.fields['destinatarios']=forms.MultipleChoiceField(initial=dest,choices=getSelect(),required=False,widget=forms.SelectMultiple(attrs={'class': "form-control js-example-basic-multiple"}))
         super(CorreoForm, self).__init__(*args, **kwargs)
+        del self.fields['destinatarios']
+        self.fields['destinatarios']=forms.MultipleChoiceField(initial=dest,choices=getSelect(),required=False,widget=forms.SelectMultiple(attrs={'class': "form-control js-example-basic-multiple"}))
 
 
 class BuscarDestinatariosForm(forms.Form):
