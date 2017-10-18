@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render
 from correos.forms import CorreoForm,BuscarDestinatariosForm
-from usuarios.libldap import gnLDAP
+
 
 # Create your views here.
 def add(request):
@@ -32,7 +32,7 @@ def add(request):
     
     
 	form = CorreoForm()
-	form2 = BuscarDestinatariosForm()
+	form2 = BuscarDestinatariosForm({'alumnos':['gonzalo.abad']})
 	info={'form2':form2,'form':form}
 	return render(request, 'add_correos.html',info)
 
