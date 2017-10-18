@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block login %}
 {% if request.session.username %}
-          <form action="/logout/" method="post" class="navbar-form navbar-right">
+          <form action="{{SITE_URL}}/logout/" method="post" class="navbar-form navbar-right">
               {% csrf_token %}
               Usuario:<strong>{{request.session.username}}</strong>
 
@@ -9,7 +9,7 @@
          </form>
 
 {% else %}
-          <form action="/" method="post" class="navbar-form navbar-right">
+          <form method="post" class="navbar-form navbar-right">
               {% csrf_token %}
             {%if error %}
              <div class="form-group has-error" >
