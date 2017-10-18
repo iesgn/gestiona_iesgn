@@ -31,5 +31,6 @@ class BuscarDestinatariosForm(forms.Form):
             ldap=gnLDAP()
             lista=[]
             for keys,values in ldap.grupo.items():
-                lista.append((keys,values))
-            self.fields['Alumnos'].choices=lista[:-3]
+                if not "prof" in keys:
+                    lista.append((keys,values))
+            self.fields['Alumnos'].choices=lista
