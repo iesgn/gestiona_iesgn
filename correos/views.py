@@ -41,6 +41,8 @@ def add(request):
 	return render(request, 'add_correos.html',info)
 
 def SelectUsuarios(grupo):
+	if grupo="0":
+		return []
 	ldap=gnLDAP()
 	filtro={"grupo":grupo}
 	lista=ldap.gnBuscar(filtro=filtro)
