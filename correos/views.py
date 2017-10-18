@@ -11,8 +11,8 @@ def add(request):
 		info={}
 		info["asunto"]=request.POST.get("asunto")
 		info["contenido"]=request.POST.get("contenido")		
-		info["dest"]=SelectUsuarios(request.POST.get("Alumnos"))
-		form = CorreoForm(info)
+		
+		form = CorreoForm(**info,dest=SelectUsuarios(request.POST.get("Alumnos")))
 #    elif request.method=='POST' and request.POST.has_key("correo"):
 #        form2 = BuscarDestinatariosForm(request.POST.get("Profesores")) 
 #        form = CorreoForm(request.POST)
@@ -34,7 +34,7 @@ def add(request):
 #            return redirect('/correo/list')
 	else:
    
-		form = CorreoForm(dest=[])
+		form = CorreoForm(dest=['gonzalo.abad'])
 		form2 = BuscarDestinatariosForm()
 
 	info={'form2':form2,'form':form}
