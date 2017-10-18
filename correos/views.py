@@ -7,7 +7,7 @@ from usuarios.libldap import gnLDAP
 # Create your views here.
 def add(request):
 	if request.method=='POST' and not request.POST.has_key("correo"):
-		form2 = BuscarDestinatariosForm(dest=SelectUsuarios(request.POST.get("alumnos")))
+		form2 = BuscarDestinatariosForm(alumnos=request.POST.get("alumnos"),dest=SelectUsuarios(request.POST.get("alumnos")))
 		info={}
 		info["asunto"]=request.POST.get("asunto")
 		info["contenido"]=request.POST.get("contenido")		
