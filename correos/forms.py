@@ -4,7 +4,7 @@ from django.contrib.admin.widgets import FilteredSelectMultiple
 from django.forms.widgets import HiddenInput,Textarea,TextInput
 class CorreoForm(forms.Form):
     asunto=forms.CharField(max_length=100,required=False,widget=forms.TextInput(attrs={'class': "form-control"}))
-    destinatarios=forms.MultipleChoiceField(choices=[],required=False,widget=fFilteredSelectMultiple("Profesores", is_stacked=False,attrs={'class': "form-control"}))
+    destinatarios=forms.MultipleChoiceField(choices=[],required=False,widget=FilteredSelectMultiple("Profesores", is_stacked=False,attrs={'class': "form-control"}))
     contenido=forms.CharField(max_length=100,required=False,widget=forms.Textarea(attrs={'class': "form-control",'cols': 100, 'rows': 15}))
 
     
