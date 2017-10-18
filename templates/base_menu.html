@@ -39,49 +39,49 @@
  <li class="dropdown">
  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Alumnos<span class="caret"></span></a>
  <ul class="dropdown-menu">
-    <li><a href="/usuarios/alumnos">Listar</a></li>
-    <li><a href="/usuarios/alumnos/add">Nuevo</a></li>
-    <li><a href="/usuarios/alumnos/del">Borrar</a></li>
+    <li><a href="{{SITE_URL}}/usuarios/alumnos">Listar</a></li>
+    <li><a href="{{SITE_URL}}/usuarios/alumnos/add">Nuevo</a></li>
+    <li><a href="{{SITE_URL}}/usuarios/alumnos/del">Borrar</a></li>
  </ul>
 </li>
  <li class="dropdown">
 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profesores<span class="caret"></span></a>
  <ul class="dropdown-menu">
-    <li><a href="/usuarios/profesores">Listar</a></li>
-    <li><a href="/usuarios/profesores/add">Nuevo</a></li>
+    <li><a href="{{SITE_URL}}/usuarios/profesores">Listar</a></li>
+    <li><a href="{{SITE_URL}}/usuarios/profesores/add">Nuevo</a></li>
   </ul>
 </li>
 <li class="dropdown">
 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Grupos<span class="caret"></span></a>
  <ul class="dropdown-menu">
-    <li><a href="/cursos/asir1">1º ASIR</a></li>
-    <li><a href="/cursos/asir2">2º ASIR</a></li>
-    <li><a href="/cursos/smr1">1º SMR</a></li>
-    <li><a href="/cursos/smr2">2º SMR</a></li>
-    <li><a href="/cursos/openstackusers">OpenStack</a></li>
+    <li><a href="{{SITE_URL}}/cursos/asir1">1º ASIR</a></li>
+    <li><a href="{{SITE_URL}}/cursos/asir2">2º ASIR</a></li>
+    <li><a href="{{SITE_URL}}/cursos/smr1">1º SMR</a></li>
+    <li><a href="{{SITE_URL}}/cursos/smr2">2º SMR</a></li>
+    <li><a href="{{SITE_URL}}/cursos/openstackusers">OpenStack</a></li>
   </ul>
 </li>
 
 <li class="dropdown">
 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Utilidades<span class="caret"></span></a>
  <ul class="dropdown-menu">
-    <li><a href="/multitask">Multitask</a></li>
+    <li><a href="{{SITE_URL}}/multitask">Multitask</a></li>
     
   </ul>
 </li>
 
 
 {% endif %}
- <li><a href="/usuarios/perfil">Tu perfil</a></li>
+ <li><a href="{{SITE_URL}}/usuarios/perfil">Tu perfil</a></li>
 
 {% endif %}
 <li class="dropdown">
 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Documentación<span class="caret"></span></a>
  <ul class="dropdown-menu">
-    <li><a href="/documentacion/vpn">Repositorios</a></li>
-    <li><a href="/documentacion/wifi">Conexión wifi</a></li>
+    <li><a href="{{SITE_URL}}/documentacion/vpn">Repositorios</a></li>
+    <li><a href="{{SITE_URL}}/documentacion/wifi">Conexión wifi</a></li>
     {% if request.session.username %}
-      <li><a href="/documentacion/ca">Certificado Gonzalo Nazareno</a></li>
+      <li><a href="{{SITE_URL}}/documentacion/ca">Certificado Gonzalo Nazareno</a></li>
     {% endif %}
   </ul>
 </li>
