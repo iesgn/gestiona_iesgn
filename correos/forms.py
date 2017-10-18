@@ -18,4 +18,4 @@ class BuscarDestinatariosForm(forms.Form):
             for i in xrange(0,len(lista)):
                 lista2.append((i,lista[i]))
             
-            self.fields['Profesores'].choices=lista2
+            self.fields['Alumnos'].choices=lista2
