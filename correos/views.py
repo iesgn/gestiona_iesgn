@@ -31,7 +31,7 @@ def add(request):
 #    else:
     
     
-	form = CorreoForm("dest"=['gonzalo.abad'])
+	form = CorreoForm(dest=['gonzalo.abad'])
 	form2 = BuscarDestinatariosForm()
 
 	info={'form2':form2,'form':form}
