@@ -10,7 +10,7 @@ class CorreoForm(forms.Form):
     
     class Media:
         css = {'all':('admin/css/widgets.css','css/overrides.css'),}
-        js = ('admin/js/vendor/jquery/jquery.js','/admin/jsi18n/','admin/js/jquery.init.js')
+        js = ('admin/js/vendor/jquery/jquery.js','admin/jsi18n/','admin/js/jquery.init.js')
 
 class BuscarDestinatariosForm(forms.Form):
     Profesores = forms.ChoiceField(choices=[],required=False,widget=forms.Select(attrs={'class': "form-control",'onchange': 'this.form.submit();'}))
