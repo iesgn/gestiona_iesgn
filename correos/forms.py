@@ -29,7 +29,7 @@ class BuscarDestinatariosForm(forms.Form):
             for keys,values in ldap.grupo.items():
                 if not "prof" in keys:
                     lista.append((keys,values))
-            self.fields['Alumnos'].choices=sorted(lista)
+            self.fields['alumnos'].choices=sorted(lista)
             self.fields['destinatarios'].initial=dest
             self.fields['destinatarios'].choices=getSelect()
     
