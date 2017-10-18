@@ -6,9 +6,9 @@ from usuarios.libldap import gnLDAP
 
 # Create your views here.
 def add(request):
-    if request.method=='POST' and not request.POST.has_key("correo"):
-        form2 = BuscarDestinatariosForm(request.POST)
-        form = CorreoForm(request.POST,dest=SelectUsuarios(request.POST.get("Alumnos")))
+	if request.method=='POST' and not request.POST.has_key("correo"):
+		form2 = BuscarDestinatariosForm(request.POST)
+		form = CorreoForm(request.POST,dest=SelectUsuarios(request.POST.get("Alumnos")))
 #    elif request.method=='POST' and request.POST.has_key("correo"):
 #        form2 = BuscarDestinatariosForm(request.POST.get("Profesores")) 
 #        form = CorreoForm(request.POST)
@@ -28,7 +28,7 @@ def add(request):
 #                   fail_silently=False,
 #                  )
 #            return redirect('/correo/list')
-    else:
+	else:
    
 		form = CorreoForm(dest=['gonzalo.abad'])
 		form2 = BuscarDestinatariosForm()
