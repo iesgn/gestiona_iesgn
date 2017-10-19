@@ -21,7 +21,7 @@ def index(request):
                     return render(request,"index.html",info)
                 request.session["username"]=username
                 request.session["password"]=password
-                if lldap.memberOfGroup(request.POST["username"],key=True)=="profesores":
+                if "profesores" in lldap.memberOfGroup(request.POST["username"],key=True):
                     request.session["profesor"]=True
                 else:
                     request.session["profesor"]=False
