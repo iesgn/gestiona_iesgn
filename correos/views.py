@@ -4,9 +4,11 @@ from correos.forms import CorreoForm,BuscarDestinatariosForm
 from usuarios.libldap import gnLDAP
 from django.core.mail import send_mail
 from django.conf import settings
+from gestiona_iesgn.views import test_profesor
 
 # Create your views here.
 def add(request):
+	test_profesor(request)
 	if request.method=='POST' and not request.POST.has_key("correo"):
 		form2 = BuscarDestinatariosForm(dest=SelectUsuarios(request.POST.get("alumnos")),alum=request.POST.get("alumnos"))
 		form = CorreoForm(request.POST)
