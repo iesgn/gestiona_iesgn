@@ -24,7 +24,7 @@ class BuscarDestinatariosForm(forms.Form):
             alum = kwargs.pop('alum')
             
             super(BuscarDestinatariosForm, self).__init__(*args, **kwargs)
-            lista=[("0","Ninguno"),("asir1","1º ASIR"),("asir2","2º ASIR"),("smr1","1º SMR"),("smr2","2º SMR"),("antiguosalumnos","A.A.")]
+            lista=[("0","Ninguno"),("asir1","1º ASIR"),("asir2","2º ASIR"),("smr1","1º SMR"),("smr2","2º SMR"),("antiguosalumnos","A.A."),("preofesores","Profesores")]
             ldap=gnLDAP()
             
             self.fields["alumnos"] = forms.ChoiceField(initial=alum,choices=lista,required=False,widget=forms.Select(attrs={'class': "form-control",'onchange': 'this.form.submit();'}))
