@@ -20,7 +20,7 @@ def add(request):
 			for usuario in request.POST["Destinatarios"]:
 				busqueda='(uid=%s)'%(usuario)
 				datos=lldap.gnBuscar(cadena=busqueda)
-				correos.append(datos[0]["mail"][0]))
+				correos.append(datos[0]["mail"][0])
 
 
 			send_mail(
