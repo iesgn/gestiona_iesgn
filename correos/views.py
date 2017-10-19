@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from correos.forms import CorreoForm,BuscarDestinatariosForm
 from usuarios.libldap import gnLDAP
 from django.core.mail import send_mail
