@@ -25,7 +25,7 @@ class CorreoForm(forms.Form):
 		if not contenido:
 			del self._errors['contenido']
 
-		 return self.cleaned_data
+		return self.cleaned_data
 
 class BuscarDestinatariosForm(forms.Form):
 	
