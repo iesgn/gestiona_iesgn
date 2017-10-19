@@ -18,13 +18,12 @@ class CorreoForm(forms.Form):
 	contenido=forms.CharField(max_length=100,widget=forms.Textarea(attrs={'class': "form-control",'cols': 100, 'rows': 15}))
 	def clean(self):
 		 super(CorreoForm, self).clean()
-		 if self.instance.pk:
-			asunto = self.cleaned_data.get("asunto")
-			if not asunto:
-				 del self._errors['asunto']
-			contenido = self.cleaned_data.get("contenido")
-			if not contenido:
-				 del self._errors['contenido']
+		 asunto = self.cleaned_data.get("asunto")
+		if not asunto:
+			del self._errors['asunto']
+		contenido = self.cleaned_data.get("contenido")
+		if not contenido:
+			del self._errors['contenido']
 
 		 return self.cleaned_data
 
