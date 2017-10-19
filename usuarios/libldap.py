@@ -87,7 +87,7 @@ class gnLDAP(LibLDAP):
                 if not key:
                     lista.append(self.grupo[clave])
                 else:
-                    list.append(clave)
+                    lista.append(clave)
         return lista
 
     def modUserGroup(self,uid,grupo,adddel):
