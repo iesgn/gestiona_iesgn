@@ -11,8 +11,8 @@ def add(request):
 		info={}
 		info["asunto"]=request.POST.get("asunto")
 		info["contenido"]=request.POST.get("contenido")		
-		
-		form = CorreoForm(request.POST)
+		info["destinatarios"]=",".join(request.POST.get("destinatarios"))
+		form = CorreoForm(info)
 #    elif request.method=='POST' and request.POST.has_key("correo"):
 #        form2 = BuscarDestinatariosForm(request.POST.get("Profesores")) 
 #        form = CorreoForm(request.POST)

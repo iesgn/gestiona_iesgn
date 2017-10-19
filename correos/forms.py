@@ -16,7 +16,7 @@ def getSelect():
 class CorreoForm(forms.Form):
     asunto=forms.CharField(max_length=100,required=False,widget=forms.TextInput(attrs={'class': "form-control"}))
     contenido=forms.CharField(max_length=100,required=False,widget=forms.Textarea(attrs={'class': "form-control",'cols': 100, 'rows': 15}))
-
+    destinatarios=forms.CharField(max_length=100,required=False,widget=forms.HiddenInput())
 class BuscarDestinatariosForm(forms.Form):
     
     def __init__(self, *args, **kwargs):
@@ -27,7 +27,7 @@ class BuscarDestinatariosForm(forms.Form):
             lista=[("0","Ninguno"),("asir1","1º ASIR"),("asir2","2º ASIR"),("smr1","1º SMR"),("smr2","2º SMR"),("antiguosalumnos","A.A.")]
             ldap=gnLDAP()
             
-            self.fields["alumnos"] = forms.ChoiceField(initial= alum,choices=lista,required=False,widget=forms.Select(attrs={'class': "form-control",'onchange': 'this.form.submit();'}))
+            self.fields["alumnos"] = forms.ChoiceField(initial=alum,choices=lista,required=False,widget=forms.Select(attrs={'class': "form-control",'onchange': 'this.form.submit();'}))
             self.fields["destinatarios"]=forms.MultipleChoiceField(initial=dest,choices=getSelect(),required=False,widget=forms.SelectMultiple(attrs={'class': "form-control js-example-basic-multiple"}))
 
             

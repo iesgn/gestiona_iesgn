@@ -188,7 +188,7 @@ def update(request,usuario):
         
         ### Obtengo path de retorno
         if "perfil" in request.path:
-            url="/"
+            url=settings.SITE_URL+"/"
         else:
             url=settings.SITE_URL+"/usuarios/"+configuracion["AP"]
 
