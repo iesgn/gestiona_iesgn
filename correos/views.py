@@ -10,27 +10,27 @@ def add(request):
 		form2 = BuscarDestinatariosForm(dest=SelectUsuarios(request.POST.get("alumnos")),alum=request.POST.get("alumnos"))
 		form = CorreoForm(request.POST)
 	elif request.method=='POST' and request.POST.has_key("correo"):
-		print request.POST["destinatarios"]
+		
 		form2 = BuscarDestinatariosForm(dest=SelectUsuarios(request.POST.get("alumnos")),alum=request.POST.get("alumnos"))
 		form = CorreoForm(request.POST)	
-#        form2 = BuscarDestinatariosForm(request.POST.get("Profesores")) 
-#        form = CorreoForm(request.POST)
-#        if form.is_valid():
-#            form.save()
-#            correos=[]
-#            for prof in request.POST["Destinatarios"]:
-#                correos.append(Profesores.objects.get(id=prof).Email)
-#
 
-#            #send_mail(
-#                   request.POST["Asunto"],
-#                   request.POST["Contenido"],
-#                   '41011038.edu@juntadeandalucia.es',
-#                 #  'josedom24@gmail.com',
-#                   correos,
-#                   fail_silently=False,
-#                  )
-#            return redirect('/correo/list')
+		if form.is_valid():
+			ldap=gnLDAP()
+			correos=[]
+			for usuario in request.POST["Destinatarios"]:
+				busqueda='(uid=%s)'%(usuario)
+				datos=lldap.gnBuscar(cadena=busqueda)
+				correos.append(datos[0]["mail"][0]))
+
+
+			send_mail(
+				   request.POST["Asunto"],
+				   request.POST["Contenido"],
+				   'informatica@gonzalonazareno.org',
+				   correos,
+				   fail_silently=False,
+				  )
+			return redirect(settings.SITE_URL+'/')
 	else:
    
 		form = CorreoForm()
