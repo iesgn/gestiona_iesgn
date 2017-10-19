@@ -16,7 +16,7 @@ def index(request):
                 # Solo dejamos loguearse a los alumnos y profesores
                 # No dejamos a los AA y a los AP
                 tipos=["asir1","asir2","smr1","smr2","profesores"]
-                if not lldap.memberOfGroup(request.POST["username"],key=True) in tipos:
+                if not lldap.memberOfGroup(request.POST["username"],key=True)[0] in tipos:
                     info={"error":True}
                     return render(request,"index.html",info)
                 request.session["username"]=username
