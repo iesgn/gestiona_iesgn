@@ -17,13 +17,13 @@ def add(request):
 		if form.is_valid():
 			lldap=gnLDAP()
 			correos=[]
-			for usuario in request.POST["destinatarios"]:
+			for usuario in request.POST.getlist("destinatarios"):
 				busqueda='(uid=%s)'%(usuario)
 				datos=lldap.gnBuscar(cadena=busqueda)
 				correos.append(datos[0]["mail"][0])
 
 
-			#send_mail(
+			send_mail(
 				   request.POST["asunto"],
 				   request.POST["contenido"],
 				   'informatica@gonzalonazareno.org',
