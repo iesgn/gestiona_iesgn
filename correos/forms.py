@@ -14,7 +14,7 @@ def getSelect():
 	return lista2
 
 class CorreoForm(forms.Form):
-	asunto=forms.CharField(max_length=100,widget=forms.TextInput(attrs={'class': "form-control"}))
+	asunto=forms.CharField(max_length=100,required=True,widget=forms.TextInput(attrs={'class': "form-control"}))
 	contenido=forms.CharField(max_length=100,required=True,widget=forms.Textarea(attrs={'class': "form-control",'cols': 100, 'rows': 15}))
 	def clean(self):
 		super(CorreoForm, self).clean()
@@ -47,6 +47,6 @@ class BuscarDestinatariosForm(forms.Form):
 			ldap=gnLDAP()
 			
 			self.fields["alumnos"] = forms.ChoiceField(initial=alum,choices=lista,required=False,widget=forms.Select(attrs={'class': "form-control",'onchange': 'this.form.submit();'}))
-			self.fields["destinatarios"]=forms.MultipleChoiceField(initial=dest,choices=getSelect(),required=False,widget=forms.SelectMultiple(attrs={'class': "form-control js-example-basic-multiple"}))
+			self.fields["destinatarios"]=forms.MultipleChoiceField(required=True,initial=dest,choices=getSelect(),required=False,widget=forms.SelectMultiple(attrs={'class': "form-control js-example-basic-multiple"}))
 
 			
