@@ -16,7 +16,7 @@ def getSelect():
 class CorreoForm(forms.Form):
     asunto=forms.CharField(max_length=100,required=False,widget=forms.TextInput(attrs={'class': "form-control"}))
     contenido=forms.CharField(max_length=100,required=False,widget=forms.Textarea(attrs={'class': "form-control",'cols': 100, 'rows': 15}))
-    destinatarios=forms.CharField(max_length=100,required=False,widget=forms.HiddenInput())
+    
 class BuscarDestinatariosForm(forms.Form):
     
     def __init__(self, *args, **kwargs):
