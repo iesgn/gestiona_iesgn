@@ -47,6 +47,6 @@ class BuscarDestinatariosForm(forms.Form):
 			ldap=gnLDAP()
 			
 			self.fields["alumnos"] = forms.ChoiceField(initial=alum,choices=lista,required=False,widget=forms.Select(attrs={'class': "form-control",'onchange': 'this.form.submit();'}))
-			self.fields["destinatarios"]=forms.MultipleChoiceField(required=True,initial=dest,choices=getSelect(),required=False,widget=forms.SelectMultiple(attrs={'class': "form-control js-example-basic-multiple"}))
+			self.fields["destinatarios"]=forms.MultipleChoiceField(initial=dest,choices=getSelect(),required=True,widget=forms.SelectMultiple(attrs={'class': "form-control js-example-basic-multiple"}))
 
 			
