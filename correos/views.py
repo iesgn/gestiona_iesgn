@@ -15,7 +15,7 @@ def add(request):
 		form = CorreoForm(request.POST)	
 
 		if form.is_valid():
-			ldap=gnLDAP()
+			lldap=gnLDAP()
 			correos=[]
 			for usuario in request.POST["destinatarios"]:
 				busqueda='(uid=%s)'%(usuario)
@@ -27,7 +27,7 @@ def add(request):
 				   request.POST["asunto"],
 				   request.POST["contenido"],
 				   'informatica@gonzalonazareno.org',
-				   correos,
+				   correos,	
 				   fail_silently=False,
 				  )
 			return redirect(settings.SITE_URL+'/')
