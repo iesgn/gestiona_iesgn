@@ -35,7 +35,7 @@ class BuscarDestinatariosForm(forms.Form):
 			
 			super(BuscarDestinatariosForm, self).__init__(*args, **kwargs)
 			lista=[("0","Ninguno"),
-				("1","Alumnos")
+				("1","Alumnos"),
 				("asir1","1º ASIR"),
 				("asir2","2º ASIR"),
 				("smr1","1º SMR"),
