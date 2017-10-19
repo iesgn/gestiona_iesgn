@@ -9,8 +9,6 @@ def add(request):
 	if request.method=='POST' and not request.POST.has_key("correo"):
 		form2 = BuscarDestinatariosForm(dest=SelectUsuarios(request.POST.get("alumnos")),alum=request.POST.get("alumnos"))
 		form = CorreoForm(request.POST)
-		form.errors['asunto'] = form['asunto'].error_class()		
-		form.errors['contenido'] = form['contenido'].error_class()		
 	elif request.method=='POST' and request.POST.has_key("correo"):
 		
 		form2 = BuscarDestinatariosForm(dest=SelectUsuarios(request.POST.get("alumnos")),alum=request.POST.get("alumnos"))
