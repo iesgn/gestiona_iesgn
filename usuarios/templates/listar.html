@@ -50,7 +50,9 @@
       <tr>
         <td class="text-center">{{forloop.counter}}</td>
         <td>{{r.sn.0}}, {{r.givenname.0}} ({{r.uid.0}})</td>
+        {% autoescape off %}
         <td class="text-center">{{r.grupo}}</td>
+        {% endautoescape %}
         <td class="text-center"><a href="{{SITE_URL}}/usuarios/update/{{r.uid.0}}"><span class="glyphicon glyphicon-edit" style="color:green" aria-hidden="true"></span></a></td>
       </tr>
 
