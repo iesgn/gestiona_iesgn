@@ -16,13 +16,13 @@ def getSelect():
 class CorreoForm(forms.Form):
     asunto=forms.CharField(max_length=100,required=False,widget=forms.TextInput(attrs={'class': "form-control"}))
     contenido=forms.CharField(max_length=100,required=False,widget=forms.Textarea(attrs={'class': "form-control",'cols': 100, 'rows': 15}))
-    
+
 class BuscarDestinatariosForm(forms.Form):
     
     def __init__(self, *args, **kwargs):
             dest = kwargs.pop('dest')
             alum = kwargs.pop('alum')
-            print dest
+            
             super(BuscarDestinatariosForm, self).__init__(*args, **kwargs)
             lista=[("0","Ninguno"),("asir1","1º ASIR"),("asir2","2º ASIR"),("smr1","1º SMR"),("smr2","2º SMR"),("antiguosalumnos","A.A.")]
             ldap=gnLDAP()
