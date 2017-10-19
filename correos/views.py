@@ -23,7 +23,7 @@ def add(request):
 				correos.append(datos[0]["mail"][0])
 
 
-			send_mail(
+			#send_mail(
 				   request.POST["asunto"],
 				   request.POST["contenido"],
 				   'informatica@gonzalonazareno.org',
