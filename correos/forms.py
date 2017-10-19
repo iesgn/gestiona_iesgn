@@ -14,8 +14,8 @@ def getSelect():
     return lista2
 
 class CorreoForm(forms.Form):
-    asunto=forms.CharField(max_length=100,required=False,widget=forms.TextInput(attrs={'class': "form-control"}))
-    contenido=forms.CharField(max_length=100,required=False,widget=forms.Textarea(attrs={'class': "form-control",'cols': 100, 'rows': 15}))
+    asunto=forms.CharField(max_length=100,widget=forms.TextInput(attrs={'class': "form-control"}))
+    contenido=forms.CharField(max_length=100,widget=forms.Textarea(attrs={'class': "form-control",'cols': 100, 'rows': 15}))
 
 class BuscarDestinatariosForm(forms.Form):
     
