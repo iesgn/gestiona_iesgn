@@ -43,8 +43,11 @@ def add(request):
 def SelectUsuarios(grupo):
 	if grupo=="0":
 		return []
+	elif grupo=="1":
+		filtro={"grupo":"soloalumnos"}	
+	else:
+		filtro={"grupo":grupo}	
 	ldap=gnLDAP()
-	filtro={"grupo":grupo}
 	lista=ldap.gnBuscar(filtro=filtro)
 	lista2=[]
 	for usuario in lista:
