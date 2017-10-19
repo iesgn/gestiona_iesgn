@@ -2,6 +2,7 @@
 from django.shortcuts import render
 from correos.forms import CorreoForm,BuscarDestinatariosForm
 from usuarios.libldap import gnLDAP
+from django.core.mail import send_mail
 
 
 # Create your views here.
