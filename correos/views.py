@@ -11,6 +11,8 @@ def add(request):
 		form = CorreoForm(request.POST)
 	elif request.method=='POST' and request.POST.has_key("correo"):
 		print request.POST["destinatarios"]
+		form2 = BuscarDestinatariosForm(dest=SelectUsuarios(request.POST.get("alumnos")),alum=request.POST.get("alumnos"))
+		form = CorreoForm(request.POST)
 #        form2 = BuscarDestinatariosForm(request.POST.get("Profesores")) 
 #        form = CorreoForm(request.POST)
 #        if form.is_valid():
