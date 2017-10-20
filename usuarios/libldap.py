@@ -108,6 +108,7 @@ class gnLDAP(LibLDAP):
                 if campo=="grupo" and valor=='all': 
                     cadena+="(uid=*)"
                 elif campo=="grupo": 
+                    grupos=[valor]
                     if valor=="alumnos":
                         grupos=["asir1","asir2","smr1","smr2","antiguosalumnos"]
                     elif valor=="soloalumnos":
