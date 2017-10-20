@@ -112,14 +112,14 @@ class gnLDAP(LibLDAP):
                         grupos=["asir1","asir2","smr1","smr2"]
                     elif valor=="allprofesores":
                         grupos=["profesores","antiguosprofesores"]
-                    elif valor=="all":
-                        grupos=["asir1","asir2","smr1","smr2","antiguosalumnos","profesores","antiguosprofesores"]
                     cadena2="(|"
                     for grupos in grupos:
                         cadena2+="(memberOf=cn=%s,ou=Group,dc=gonzalonazareno,dc=org)" % grupos
                     cadena2+=")"
                     cadena+=cadena2
-                    print cadena
+                
+                elif campo=="grupo" and valor=='all': 
+                    cadena+="(uid=*)"
                 else:
                     cadena+="(%s=%s*)" % (campo,valor)
             cadena+=")"
