@@ -2,7 +2,8 @@
 from django.shortcuts import render,redirect
 from correos.forms import CorreoForm,BuscarDestinatariosForm
 from usuarios.libldap import gnLDAP
-from django.core.mail import send_mail
+
+from django.core.mail import EmailMessage
 from django.conf import settings
 from gestiona_iesgn.views import test_profesor
 
@@ -25,14 +26,15 @@ def add(request):
 				datos=lldap.gnBuscar(cadena=busqueda)
 				correos.append(datos[0]["mail"][0])
 
-
-			send_mail(
-				   request.POST["asunto"],
+			email = EmailMessage(
+ 				   request.POST["asunto"],
 				   request.POST["contenido"],
-				   'informatica@gonzalonazareno.org',
-				   correos,	
-				   fail_silently=False,
-				  )
+    				'informatica@gonzalonazareno.org',
+				    'informatica@gonzalonazareno.org',
+				    correos,
+				    reply_to=['informatica@gonzalonazareno.org'],
+				    )
+			email.send()
 			return redirect(settings.SITE_URL+'/')
 	else:
    
