@@ -17,7 +17,7 @@ def index(request):
                 # No dejamos a los AA y a los AP
                 tipos=["asir1","asir2","smr1","smr2","profesores"]
 
-                if lldap.isMemberOfGroups(request.POST["username"],tipos)
+                if not lldap.isMemberOfGroups(request.POST["username"],tipos):
                     info={"error":True}
                     return render(request,"index.html",info)
                 request.session["username"]=username
