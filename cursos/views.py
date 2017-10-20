@@ -35,9 +35,11 @@ def eliminar(request,curso,usuario):
 		ldap.modUserGroup(str(usuario),str(curso),"del")
 	except:
 		pass
+	ldap=gnLDAP()
 	grupos=ldap.memberOfGroup(usuario,key=True)
 	print grupos
 	if len(grupos)==0:
+		ldap=gnLDAP(request.session["username"],request.session["password"])
 		if curso=="profesores":
 			ldap.modUserGroup(str(usuario),"antiguoprofesores","add")
 		else:
