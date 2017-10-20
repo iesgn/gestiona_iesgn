@@ -2,7 +2,7 @@
 from django.shortcuts import render,redirect
 from usuarios.libldap import LibLDAP,gnLDAP
 #from usuarios.forms import BuscarUsuario,newUserForm,updateUserForm,deleteUserForm,deleteUserForm2
-from usuarios.forms import BuscarUsuario
+from usuarios.forms import BuscarUsuario,updateUserForm
 from gestiona_iesgn.views import test_profesor,test_login
 from django.contrib import messages
 from django import forms
@@ -10,23 +10,6 @@ from django.conf import settings
 
 import binascii
 import hashlib
-
-
-#def listarAlumnos(request):
-#    configuracion={
-#        "grupo":"alumnos",
-#        "AP":{"AP":"alumnos"},
-#        "titulo":"Listado de Alumnos"
-#    }
-#    return listarUsuarios(request,configuracion)#
-
-#def listarProfesores(request):
-#    configuracion={
-#        "grupo":"allprofesores",
-#        "AP":{"AP":"profesores"},
-#        "titulo":"Listado de Profesores"
-#    }
-#    return listarUsuarios(request,configuracion)
 
 
 def listarUsuarios(request):
@@ -130,119 +113,91 @@ def getGrupo(lista):
 ######################################################################################################
 #
 
-#def update(request,usuario):
-#    if not "perfil" in request.path: 
-#        test_profesor(request)
-#    ldap=gnLDAP(request.session["username"],request.session["password"])
-#    lista=ldap.gnBuscar(cadena="(uid=%s)"%usuario)
-#    if len(lista)==0:
-#        return redirect(settings.SITE_URL+"/")
-#    datos=quito_listas_en_resultado(lista[0],utf8=False)
-#    if datos["gidnumber"]=='2000':
-#        configuracion={
-#        "titulo":"Modificar Profesor",
-#        "AP":"profesores",
-#        }#
+def update(request,usuario):
+    if not "perfil" in request.path: 
+        test_profesor(request)
+    ldap=gnLDAP(request.session["username"],request.session["password"])
+    lista=ldap.gnBuscar(cadena="(uid=%s)"%usuario)
+    if len(lista)==0:
+        return redirect(settings.SITE_URL+"/")
+    datos=quito_listas_en_resultado(lista[0],utf8=False)
+    
+    
+    
+    form=updateUserForm(datos) if request.method=="GET" else updateUserForm(request.POST)
+    if request.method=="POST" and form.is_valid():
+        new=dict(form.data)
+    
+        del new["csrfmiddlewaretoken"]
 
-#    else:
-#        configuracion={
-#        "titulo":"Modificar Alumno",
-#        "AP":"alumnos",
-#        }
-#    datos["AP"]=configuracion["AP"]
-#    datos["grupo"]=ldap.memberOfGroup(usuario,key=True)
-#    form=updateUserForm(datos) if request.method=="GET" else updateUserForm(request.POST)
-#    if "perfil" in request.path: 
-#        form.fields["grupo"].widget=forms.HiddenInput()
-#    if request.method=="POST" and form.is_valid():
-#        new=dict(form.data)
-#        grupo=new["grupo"]
-#        del new["csrfmiddlewaretoken"]
-#        del new["AP"]
-#        del new["grupo"]
-#        del datos["AP"]#
+        # Tengo un diccionario donde cada campo es una lista
+        # Quito las listas
+        new=quito_listas_en_resultado(new)
+        old={}
+        new["cn"]=new["givenname"]+" "+new["sn"]
+        if new["userpassword"]!='':
+            nuevapass=new["userpassword"]
+            the_hash = hashlib.md5(new["userpassword"]).hexdigest()
+            the_unhex = binascii.unhexlify(the_hash)
+            new["userpassword"]="{MD5}"+the_unhex.encode('base64')#
+        else:
+            the_hash = hashlib.md5(request.session["password"]).hexdigest()
+            the_unhex = binascii.unhexlify(the_hash)
+            new["userpassword"]="{MD5}"+the_unhex.encode('base64')
+        the_hash = hashlib.md5(request.session["password"]).hexdigest()
+        the_unhex = binascii.unhexlify(the_hash)
+        datos["userpassword"]="{MD5}"+the_unhex.encode('base64')
+        
+        for campo in new.keys():
+            if new[campo]==datos[campo]:
+                del new[campo]
+        for campo in new:
+            old[campo]=datos[campo]
+        
+        ### Obtengo path de retorno
+        if "perfil" in request.path:
+            url=settings.SITE_URL+"/"
+        else:
+            url=settings.SITE_URL+"/usuarios/"
+        ##3 Hago la modificación
+        
+        if ldap.isbind:
+            
+            try: 
+                        
+                ldap.modify(datos["uid"],new,old)
+                try:
+                    request.session["password"]=nuevapass
+                except:
+                    pass
+                
+            except Exception as err:
+                messages.add_message(request, messages.INFO, 'No se ha podido modificar el usuario. Error'+str(err))
+                return redirect("%s" % url)
+        else:
+            messages.add_message(request, messages.INFO, 'No se ha podido modificar el usuario. Usuario autentificado incorrecto.')
+            return redirect("%s" % url)#
+        messages.add_message(request, messages.INFO, 'Se ha modificado el usuario.')
+        return redirect("%s" % url)#
+    
+    info={'form':form}
+    return render(request,"update.html",info)
 
-#        # Tengo un diccionario donde cada campo es una lista
-#        # Quito las listas
-#        new=quito_listas_en_resultado(new)
-#        old={}
-#        new["cn"]=new["givenname"]+" "+new["sn"]
-#        if new["userpassword"]!='':
-#            nuevapass=new["userpassword"]
-#            the_hash = hashlib.md5(new["userpassword"]).hexdigest()
-#            the_unhex = binascii.unhexlify(the_hash)
-#            new["userpassword"]="{MD5}"+the_unhex.encode('base64')#
-
-#        else:
-#            the_hash = hashlib.md5(request.session["password"]).hexdigest()
-#            the_unhex = binascii.unhexlify(the_hash)
-#            new["userpassword"]="{MD5}"+the_unhex.encode('base64')
-#        the_hash = hashlib.md5(request.session["password"]).hexdigest()
-#        the_unhex = binascii.unhexlify(the_hash)
-#        datos["userpassword"]="{MD5}"+the_unhex.encode('base64')
-#        
-#        for campo in new.keys():
-#            if new[campo]==datos[campo]:
-#                del new[campo]
-#        for campo in new:
-#            old[campo]=datos[campo]
-#        
-#        ### Obtengo path de retorno
-#        if "perfil" in request.path:
-#            url=settings.SITE_URL+"/"
-#        else:
-#            url=settings.SITE_URL+"/usuarios/"+configuracion["AP"]#
-
-#        ##3 Hago la modificación
-#        
-#        if ldap.isbind:
-#            oldgrupo=ldap.memberOfGroup(datos["uid"],key=True)#
-
-#            
-#            try: 
-#                
-#                if str(grupo[0])!=oldgrupo:
-#                    ldap.modUserGroup(datos["uid"],grupo[0],"add")
-#                    ldap.modUserGroup(datos["uid"],oldgrupo,"del")
-#                ldap.modify(datos["uid"],new,old)
-#                try:
-#                    request.session["password"]=nuevapass
-#                except:
-#                    pass
-#                
-#            except Exception as err:
-#                messages.add_message(request, messages.INFO, 'No se ha podido modificar el usuario. Error'+str(err))
-#                return redirect("%s" % url)
-#        else:
-#            messages.add_message(request, messages.INFO, 'No se ha podido modificar el usuario. Usuario autentificado incorrecto.')
-#            return redirect("%s" % url)#
-
-#        messages.add_message(request, messages.INFO, 'Se ha modificado el usuario.')
-#        return redirect("%s" % url)#
-
-#    configuracion["titulo2"]="Si no escribes ninguna contraseña se mantendrá la que el usuario posee actualmente."
-#    info={'titulo':configuracion["titulo"],'titulo2':configuracion["titulo2"],'form':form}
-#    if "perfil" in request.path:
-#        info["perfil"]=True
-#    return render(request,"new.html",info)#
-#
-
-#def quito_listas_en_resultado(datos,utf8=True):
-#    for campo,valor in datos.items():
-#        if utf8:
-#            resultado=valor[0].encode('utf-8')
-#        else:
-#            resultado=valor[0]
-#        del datos[campo]
-#        datos[campo.encode('utf-8')]=resultado
-#    return datos#
-
-#def perfil(request):
-#    test_login(request)
-#    lldap=gnLDAP()
-#    busqueda='(uid=%s)'%(request.session["username"])
-#    datos=lldap.gnBuscar(cadena=busqueda)
-#    return update(request,datos[0]["uid"][0])#
+def quito_listas_en_resultado(datos,utf8=True):
+    for campo,valor in datos.items():
+        if utf8:
+            resultado=valor[0].encode('utf-8')
+        else:
+            resultado=valor[0]
+        del datos[campo]
+        datos[campo.encode('utf-8')]=resultado
+    return datos#
+def perfil(request):
+    test_login(request)
+    lldap=gnLDAP()
+    busqueda='(uid=%s)'%(request.session["username"])
+    datos=lldap.gnBuscar(cadena=busqueda)
+    return update(request,datos[0]["uid"][0])#
 
 #############################################################################################################
 
