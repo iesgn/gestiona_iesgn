@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render,redirect
 from usuarios.libldap import LibLDAP,gnLDAP
-#from usuarios.forms import BuscarUsuario,newUserForm,updateUserForm,deleteUserForm,deleteUserForm2
-from usuarios.forms import BuscarUsuario,updateUserForm
+from usuarios.forms import BuscarUsuario,newUserForm,updateUserForm,deleteUserForm,deleteUserForm2
 from gestiona_iesgn.views import test_profesor,test_login
 from django.contrib import messages
 from django import forms
@@ -43,72 +42,55 @@ def getGrupo(lista):
 
 #############################################################################################################
 
-#def addAlumnos(request):
-#    configuracion={
-#        "AP":{"AP":"alumnos"},
-#        "titulo":"Nuevo Alumno"
-#    }
-#    return add(request,configuracion)#
 
-#def addProfesores(request):
-#    configuracion={
-#        "AP":{"AP":"profesores"},
-#        "titulo":"Nuevo Profesor"
-#    }
-#    return add(request,configuracion)#
-
-#def add(request,configuracion):
-#    test_profesor(request)
-#    form=newUserForm(configuracion["AP"]) if request.method=="GET" else newUserForm(request.POST)
-#    
-#    if form.is_valid():
-#        # Calcular max uidnumbre
-#        # Toda la lista desde clase 1 hasta 9 #####
-
-#        ldap=gnLDAP(request.session["username"],request.session["password"])
-#        lista=ldap.gnBuscar(cadena="(cn=*)",ordenarpor="udinumber")
-#        datos=dict(form.data)
-#        grupo=datos["grupo"][0]
-#        del datos["csrfmiddlewaretoken"]
-#        del datos["AP"]
-#        del datos["grupo"]#
-
-#        # Tengo un diccionario donde cada campo es una lista
-#        # Quito las listas
-#        datos=quito_listas_en_resultado(datos)#
-
-#        datos["uidnumber"]=str(int(lista[-1]["uidnumber"][0])+1)
-#        datos["cn"]=datos["givenname"]+" "+datos["sn"]
-#        datos["loginshell"]="/bin/bash"
-#        
-#        if configuracion["AP"]=="profesores":
-#            datos["gidnumber"]="2000"
-#        else:
-#            datos["gidnumber"]="2001"
-#        datos["homedirectory"]="/home/%s/%s"%(configuracion["AP"]["AP"],datos["uid"])
-#        datos["objectclass"]= ['inetOrgPerson', 'posixAccount', 'top']
-#        the_hash = hashlib.md5(datos["userpassword"]).hexdigest()
-#        the_unhex = binascii.unhexlify(the_hash)
-#        datos["userpassword"]="{MD5}"+the_unhex.encode('base64')
-#        if ldap.isbind:
-#            
-#            try: 
-#                
-#                ldap.add(datos["uid"],datos)
-#                ldap=gnLDAP(request.session["username"],request.session["password"])
-#                ldap.modUserGroup(datos["uid"],grupo,"add")
-#                
-#            except Exception as err:
-#                messages.add_message(request, messages.INFO, 'No se ha podido añadir el nuevo usuario. Error:' + str(err))
-#                return redirect(settings.SITE_URL+"/usuarios/%s" % configuracion["AP"]["AP"])
-#        else:
-#            messages.add_message(request, messages.INFO, 'No se ha podido añadir el nuevo usuario. Usuario autentificado incorrecto.')
-#            return redirect(settings.SITE_URL+"/usuarios/%s" % configuracion["AP"]["AP"])
-#        messages.add_message(request, messages.INFO, 'Se ha añadido el nuevo usuario.')
-#        return redirect(settings.SITE_URL+"/usuarios/%s" % configuracion["AP"]["AP"])
-#    
-#    info={"titulo":configuracion["titulo"],'form':form}
-#    return render(request,"new.html",info)#
+def add(request):
+    test_profesor(request)
+    form=newUserForm() if request.method=="GET" else newUserForm(request.POST)
+    
+    if form.is_valid():
+        # Calcular max uidnumbre
+        # Toda la lista desde clase 1 hasta 9 #####
+        ldap=gnLDAP(request.session["username"],request.session["password"])
+        lista=ldap.gnBuscar(cadena="(cn=*)",ordenarpor="udinumber")
+        datos=dict(form.data)
+        grupo=datos["grupo"][0]
+        del datos["csrfmiddlewaretoken"]
+        del datos["grupo"]#
+        # Tengo un diccionario donde cada campo es una lista
+        # Quito las listas
+        datos=quito_listas_en_resultado(datos)#
+        datos["uidnumber"]=str(int(lista[-1]["uidnumber"][0])+1)
+        datos["cn"]=datos["givenname"]+" "+datos["sn"]
+        datos["loginshell"]="/bin/bash"
+        
+        if grupo=="profesores":
+            datos["gidnumber"]="2000"
+        else:
+            datos["gidnumber"]="2001"
+        datos["homedirectory"]="/home/%s/%s"%(configuracion["AP"]["AP"],datos["uid"])
+        datos["objectclass"]= ['inetOrgPerson', 'posixAccount', 'top']
+        the_hash = hashlib.md5(datos["userpassword"]).hexdigest()
+        the_unhex = binascii.unhexlify(the_hash)
+        datos["userpassword"]="{MD5}"+the_unhex.encode('base64')
+        if ldap.isbind:
+            
+            try: 
+                
+                ldap.add(datos["uid"],datos)
+                ldap=gnLDAP(request.session["username"],request.session["password"])
+                ldap.modUserGroup(datos["uid"],grupo,"add")
+                
+            except Exception as err:
+                messages.add_message(request, messages.INFO, 'No se ha podido añadir el nuevo usuario. Error:' + str(err))
+                return redirect(settings.SITE_URL+"/usuarios/%s" % configuracion["AP"]["AP"])
+        else:
+            messages.add_message(request, messages.INFO, 'No se ha podido añadir el nuevo usuario. Usuario autentificado incorrecto.')
+            return redirect(settings.SITE_URL+"/usuarios/%s" % configuracion["AP"]["AP"])
+        messages.add_message(request, messages.INFO, 'Se ha añadido el nuevo usuario.')
+        return redirect(settings.SITE_URL+"/usuarios/%s" % configuracion["AP"]["AP"])
+    
+    info={'form':form}
+    return render(request,"new.html",info)
 
 ######################################################################################################
 #

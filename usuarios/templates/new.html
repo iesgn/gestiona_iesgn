@@ -2,10 +2,8 @@
 
 {% block content %}
 <div class="row">
-<h3>{{titulo}}</h3>
-{% if titulo2 %}
-    <strong>{{titulo2}}</strong><br/>
-{% endif %}
+<h3>Añadir nuevo usuario</h3>
+
 <form  method="post" class="form-hotizontal">
   <div class="col-md-6">
     {% csrf_token %}
@@ -33,20 +31,13 @@
             <label>Ciudad:</label>
             {{ form.l}}
     </div>
-    {% if not perfil %}
     <div class="form-group">
             <label>Grupo:</label>
             {{ form.grupo}}
     </div>
-    {%else%}
-        {{ form.grupo}}
-    {% endif %}
-    {{ form.AP}}
-    {% if "Mod" in titulo%}
-        <button  type="submit" class="btn btn-primary">Modificar</button>
-    {% else %}
+    
         <button  type="submit" class="btn btn-primary">Añadir</button>
-    {% endif %}
+    
 
 </div>
 </form>
