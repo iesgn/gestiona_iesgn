@@ -8,7 +8,9 @@ from django.conf import settings
 import operator
 # Create your views here.
 
-grupos=(
+
+def cursos(request,curso):
+	grupos=(
     ('asir1', '1º ASIR'),
     ('asir2', '2º ASIR'),
     ('smr1', '1º SMR'),
@@ -17,7 +19,7 @@ grupos=(
     ('openstackusers','Usuarios OpenStack'),
 )
 
-def cursos(request,curso):
+	
 	test_profesor(request)
 	ldap=gnLDAP()
 	if not curso in [x[0] for x in grupos]:
