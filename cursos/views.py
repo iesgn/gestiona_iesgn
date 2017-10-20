@@ -16,11 +16,9 @@ def cursos(request,curso):
 	if request.method=="POST":
 		ldap=gnLDAP(request.session["username"],request.session["password"])
 		for usuario in request.POST.getlist("usuarios"):
-			try:
-				ldap.modUserGroup(str(usuario),str(curso),"add")
-			except:
-				pass
-
+			
+			ldap.modUserGroup(str(usuario),str(curso),"add")
+			
 	
 	filtro={"grupo":curso}
 	lista=ldap.gnBuscar(filtro=filtro)
