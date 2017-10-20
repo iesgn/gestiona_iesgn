@@ -9,6 +9,7 @@ import operator
 # Create your views here.
 
 
+
 def cursos(request,curso):
 	grupos=(
     ('asir1', '1º ASIR'),
@@ -17,9 +18,7 @@ def cursos(request,curso):
     ('smr2', '2º SMR'),
     ('profesores','Profesores'),
     ('openstackusers','Usuarios OpenStack'),
-)
-
-	
+	)
 	test_profesor(request)
 	ldap=gnLDAP()
 	if not curso in [x[0] for x in grupos]:
@@ -43,7 +42,7 @@ def cursos(request,curso):
 	filtro={"grupo":curso}
 	lista=ldap.gnBuscar(filtro=filtro)
 	form=BuscarUsuario(filtro)
-	info={"titulo":grupos[curso],"resultados":lista,"form":form}
+	info={"titulo":ldap.grupo[curso],"resultados":lista,"form":form}
 	return render(request,"listar_cursos.html",info)
 
 def eliminar(request,curso,usuario):
