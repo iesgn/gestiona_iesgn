@@ -36,8 +36,9 @@ def eliminar(request,curso,usuario):
 	except:
 		pass
 	grupos=ldap.memberOfGroup(usuario,key=True)
+	print grupos
 	if len(grupos)==0:
-		if curso in ["profesores","antiguosprofesores"]:
+		if curso=="profesores":
 			ldap.modUserGroup(str(usuario),"antiguoprofesores","add")
 		else:
 			ldap.modUserGroup(str(usuario),"antiguosalumnos","add")
