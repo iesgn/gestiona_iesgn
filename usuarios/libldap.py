@@ -100,35 +100,26 @@ class gnLDAP(LibLDAP):
             return
         self.con.modify_s("cn=%s,ou=Group,dc=gonzalonazareno,dc=org"%grupo,modlist)
        
-        
-
-    
 
     def gnBuscar(self,filtro={},cadena="",ordenarpor="sn"):
         if len(filtro)>0:
             cadena="(&(objectClass=inetOrgPerson)"
             for campo,valor in filtro.items():
-                if campo=="grupo" and valor=="alumnos":
+                if campo=="grupo": 
+                    if valor=="alumnos":
+                        grupos=["asir1","asir2","smr1","smr2","antiguosalumnos"]
+                    elif valor=="soloalumnos":
+                        grupos=["asir1","asir2","smr1","smr2"]
+                    elif valor=="allprofesores":
+                        grupos=["profesores","antiguosprofesores"]
+                    elif valor=="all":
+                        grupos=["asir1","asir2","smr1","smr2","antiguosalumnos","profesores","antiguosprofesores"]
                     cadena2="(|"
-                    for grupos in ["asir1","asir2","smr1","smr2","antiguosalumnos"]:
+                    for grupos in grupos:
                         cadena2+="(memberOf=cn=%s,ou=Group,dc=gonzalonazareno,dc=org)" % grupos
                     cadena2+=")"
                     cadena+=cadena2
-                elif campo=="grupo" and valor=="soloalumnos":
-                    cadena2="(|"
-                    for grupos in ["asir1","asir2","smr1","smr2"]:
-                        cadena2+="(memberOf=cn=%s,ou=Group,dc=gonzalonazareno,dc=org)" % grupos
-                    cadena2+=")"
-                    cadena+=cadena2
-                elif campo=="grupo" and valor=="allprofesores":
-                    cadena2="(|"
-                    for grupos in ["profesores","antiguosprofesores"]:
-                        cadena2+="(memberOf=cn=%s,ou=Group,dc=gonzalonazareno,dc=org)" % grupos
-                    cadena2+=")"
-                    cadena+=cadena2
-                elif campo=="grupo":
-                    cadena+="(memberOf=cn=%s,ou=Group,dc=gonzalonazareno,dc=org)" % valor
-
+                    print cadena
                 else:
                     cadena+="(%s=%s*)" % (campo,valor)
             cadena+=")"
