@@ -8,10 +8,19 @@ from django.conf import settings
 import operator
 # Create your views here.
 
+grupos=(
+    ('asir1', '1º ASIR'),
+    ('asir2', '2º ASIR'),
+    ('smr1', '1º SMR'),
+    ('smr2', '2º SMR'),
+    ('profesores','Profesores'),
+    ('openstackusers','Usuarios OpenStack'),
+)
+
 def cursos(request,curso):
 	test_profesor(request)
 	ldap=gnLDAP()
-	if not curso in ldap.grupo.keys():
+	if not curso in [x[0] for x in grupos]:
 		raise Http404  
 	if request.method=="POST":
 		ldap=gnLDAP(request.session["username"],request.session["password"])
@@ -32,7 +41,7 @@ def cursos(request,curso):
 	filtro={"grupo":curso}
 	lista=ldap.gnBuscar(filtro=filtro)
 	form=BuscarUsuario(filtro)
-	info={"titulo":ldap.grupo[curso],"resultados":lista,"form":form}
+	info={"titulo":grupos[curso],"resultados":lista,"form":form}
 	return render(request,"listar_cursos.html",info)
 
 def eliminar(request,curso,usuario):
