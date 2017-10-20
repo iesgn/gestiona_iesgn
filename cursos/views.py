@@ -16,7 +16,14 @@ def cursos(request,curso):
 	if request.method=="POST":
 		ldap=gnLDAP(request.session["username"],request.session["password"])
 		for usuario in request.POST.getlist("usuarios"):
+			grupos=ldap.memberOfGroup(usuario,key=True)
 			try:
+				if len(grupos)==1:
+					if grupo[0]=="antiguosalumnos":
+						ldap.modUserGroup(str(usuario),"antiguosalumnos","del")
+					if grupo[0]=="antiguosprofesores":
+						ldap.modUserGroup(str(usuario),"antiguosprofesores","del")
+			
 				ldap.modUserGroup(str(usuario),str(curso),"add")
 			except:
 				pass
