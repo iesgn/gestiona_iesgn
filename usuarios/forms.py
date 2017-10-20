@@ -8,7 +8,7 @@ grupos = (
     ('asir2', '2º ASIR'),
     ('smr1', '1º SMR'),
     ('smr2', '2º SMR'),
-    ('antiguosalumnos', 'Antiguo Alumno'),
+    ('antiguosalumnos', 'Antiguos Alumnos'),
     ('allprofesores','Todos los profesores'),
     ('profesores','Profesores'),
     ('antiguosprofesores', 'Antiguos Profesores'),
