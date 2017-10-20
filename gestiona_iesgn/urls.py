@@ -22,7 +22,7 @@ urlpatterns = [
     url(r'^$',index),
     url(r'^logout/$',salir),
     url(r'^usuarios/', include('usuarios.urls')),
-    url(r'^cursos/', include('cursos.urls')),
+    url(r'^grupos/', include('grupos.urls')),
     url(r'^documentacion/', include('documentacion.urls')),
     url(r'^multitask/', include('multitask.urls')),
     url(r'^correos/', include('correos.urls')),

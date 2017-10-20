@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render,redirect
 from usuarios.libldap import gnLDAP
-from cursos.forms import BuscarUsuario
+from grupos.forms import BuscarUsuario
 from gestiona_iesgn.views import test_profesor
 from django.http import Http404
 from django.conf import settings

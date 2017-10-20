@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'usuarios.apps.UsuariosConfig',
-    'cursos.apps.CursosConfig',
+    'grupos.apps.GruposConfig',
     'documentacion.apps.DocumentacionConfig',
     'multitask.apps.MultitaskConfig',
     'correos.apps.CorreosConfig',
