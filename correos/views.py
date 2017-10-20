@@ -30,7 +30,7 @@ def add(request):
  				   request.POST["asunto"],
 				   request.POST["contenido"],
     				'informatica@gonzalonazareno.org',
-				    'informatica@gonzalonazareno.org',
+				    ['informatica@gonzalonazareno.org'],
 				    correos,
 				    reply_to=['informatica@gonzalonazareno.org'],
 				    )
