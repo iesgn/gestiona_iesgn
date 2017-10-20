@@ -98,6 +98,7 @@ class gnLDAP(LibLDAP):
             modlist.append((ldap.MOD_DELETE, "member", "uid=%s,ou=People,dc=gonzalonazareno,dc=org" % uid ))
         else:
             return
+        print modlist
         self.con.modify_s("cn=%s,ou=Group,dc=gonzalonazareno,dc=org"%grupo,modlist)
        
 
@@ -108,7 +109,7 @@ class gnLDAP(LibLDAP):
                 if campo=="grupo" and valor=='all': 
                     cadena+="(uid=*)"
                 elif campo=="grupo": 
-                    grupos=[valor]
+                    grupos=[]
                     if valor=="alumnos":
                         grupos=["asir1","asir2","smr1","smr2","antiguosalumnos"]
                     elif valor=="soloalumnos":
