@@ -3,7 +3,7 @@ from django import forms
 grupos = (
     ('all','Todos'),
     ('alumnos','Todos Alumnos'),
-    ('soloalumnos','Alumnos matriculados')
+    ('soloalumnos','Alumnos matriculados'),
     ('asir1', '1º ASIR'),
     ('asir2', '2º ASIR'),
     ('smr1', '1º SMR'),
