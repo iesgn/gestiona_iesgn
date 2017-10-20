@@ -90,6 +90,16 @@ class gnLDAP(LibLDAP):
                     lista.append(clave)
         return lista
 
+    def isMemberOfGroup(self,uid,grupo):
+        return grupo in self.memberOfGroup(uid,key=True)
+
+    def isMemberOfGroups(self,uid,grupos=[]):
+        for grupo in grupos:
+            if grupo in self.memberOfGroup(uid,key=True):
+                return True
+        return False
+
+
     def modUserGroup(self,uid,grupo,adddel):
         modlist = []
         if adddel=="add":
