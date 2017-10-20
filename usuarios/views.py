@@ -65,29 +65,28 @@ def add(request):
         
         if grupo=="profesores":
             datos["gidnumber"]="2000"
+            directory="profesores"
         else:
             datos["gidnumber"]="2001"
-        datos["homedirectory"]="/home/%s/%s"%(configuracion["AP"]["AP"],datos["uid"])
+            directory="alumnos"
+        datos["homedirectory"]="/home/%s/%s"%(directory,datos["uid"])
         datos["objectclass"]= ['inetOrgPerson', 'posixAccount', 'top']
         the_hash = hashlib.md5(datos["userpassword"]).hexdigest()
         the_unhex = binascii.unhexlify(the_hash)
         datos["userpassword"]="{MD5}"+the_unhex.encode('base64')
         if ldap.isbind:
-            
+            mensaje='Se ha añadido el nuevo usuario.'    
             try: 
                 
                 ldap.add(datos["uid"],datos)
                 ldap=gnLDAP(request.session["username"],request.session["password"])
                 ldap.modUserGroup(datos["uid"],grupo,"add")
-                
             except Exception as err:
-                messages.add_message(request, messages.INFO, 'No se ha podido añadir el nuevo usuario. Error:' + str(err))
-                return redirect(settings.SITE_URL+"/usuarios/%s" % configuracion["AP"]["AP"])
+                mensaje='No se ha podido añadir el nuevo usuario. Error:' + str(err)
         else:
-            messages.add_message(request, messages.INFO, 'No se ha podido añadir el nuevo usuario. Usuario autentificado incorrecto.')
-            return redirect(settings.SITE_URL+"/usuarios/%s" % configuracion["AP"]["AP"])
-        messages.add_message(request, messages.INFO, 'Se ha añadido el nuevo usuario.')
-        return redirect(settings.SITE_URL+"/usuarios/%s" % configuracion["AP"]["AP"])
+            mensaje='No se ha podido añadir el nuevo usuario. Usuario autentificado incorrecto.'
+        messages.add_message(request, messages.INFO, mensaje)
+        return redirect(settings.SITE_URL+"/usuarios")
     
     info={'form':form}
     return render(request,"new.html",info)
