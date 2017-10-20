@@ -45,7 +45,7 @@ def listarUsuarios(request):
         filtro["sn"]="" if request.POST["apellidos"]=="" else request.POST["apellidos"]    
     lista=ldap.gnBuscar(filtro=filtro)
     lista=getGrupo(lista)
-    info={"titulo":configuracion["titulo"],"resultados":lista,'form':form}
+    info={"resultados":lista,'form':form}
     return render(request,"listar.html",info)
 
 
