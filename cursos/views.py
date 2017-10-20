@@ -36,6 +36,7 @@ def cursos(request,curso):
 	return render(request,"listar_cursos.html",info)
 
 def eliminar(request,curso,usuario):
+	tipos=["asir1","asir2","smr1","smr2","profesores"]
 	test_profesor(request)
 	ldap=gnLDAP(request.session["username"],request.session["password"])
 	try:
@@ -43,8 +44,8 @@ def eliminar(request,curso,usuario):
 	except:
 		pass
 	ldap=gnLDAP()
-	grupos=ldap.memberOfGroup(usuario,key=True)
-	if len(grupos)==0:
+	
+	if not ldap.isMemberOfGroups(usuario,tipos):
 		ldap=gnLDAP(request.session["username"],request.session["password"])
 		if curso=="profesores":
 			ldap.modUserGroup(str(usuario),"antiguosprofesores","add")
