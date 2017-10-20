@@ -40,7 +40,7 @@ def eliminar(request,curso,usuario):
 		if curso in ["profesores","antiguosprofesores"]:
 			ldap.modUserGroup(str(usuario),"antiguoprofesores","add")
 		else:
-			ldap.modUserGroup(str(usuario),"alumnos","add")
+			ldap.modUserGroup(str(usuario),"alumnos	","add")
 	return redirect(settings.SITE_URL+"/cursos/"+curso)
 
 
