@@ -39,7 +39,7 @@ class newUserForm(forms.Form):
     sn=forms.CharField(max_length=100,required=True,widget=forms.TextInput(attrs={'class': "form-control"}))
     mail=forms.CharField(max_length=100,required=True,widget=forms.EmailInput(attrs={'class': "form-control"}))
     l=forms.CharField(max_length=100,required=True,widget=forms.TextInput(attrs={'class': "form-control"}))
-    curso=forms.ChoiceField(choices=grupo_add,required=False,widget=forms.Select(attrs={'class': "form-control"}))#
+    grupo=forms.ChoiceField(choices=grupo_add,required=False,widget=forms.Select(attrs={'class': "form-control"}))#
     
 
 class updateUserForm(forms.Form):
