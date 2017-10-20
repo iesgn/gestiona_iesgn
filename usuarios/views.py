@@ -182,41 +182,40 @@ def perfil(request):
 
 #############################################################################################################
 
-#def delete(request):
-#    test_login(request)
-#    if request.method=="POST" and request.POST.get("uid",False):
-#        uid=request.POST["uid"]
-#        ldap=gnLDAP()
-#        busqueda='(uid=%s)'%(uid)
-#        datos=ldap.gnBuscar(cadena=busqueda)
-#        grupo=ldap.memberOfGroup(uid,key=True)
-#        if grupo=="profesores" or grupo=="antiguosprofesores":
-#            info={"error":"No se puede borrar un profesor."}
-#        elif len(datos)==0:
-#            info={"error":"No existe ese usuario"}
-#        else:
-#            form=deleteUserForm2({'uiddel':uid})
-#            info={'form':form,'grupo':ldap.memberOfGroup(uid),'nombre':datos[0]["cn"][0]}
-#        return render(request,"delete.html",info)
-#    elif request.method=="POST" and request.POST.get("uiddel",False):
-#        if request.POST["confirmar"]=="no":
-#            return redirect(settings.SITE_URL+"/")
-#        if request.POST["confirmar"]=="si":
-#            ldap=gnLDAP(request.session["username"],request.session["password"])
-#            grupo=ldap.memberOfGroup(request.POST["uiddel"],key=True)
-#            
-#            try:
-#                ldap.modUserGroup(str(request.POST["uiddel"]),grupo,"del")
-#                ldap.delete(request.POST["uiddel"])
-#                
-#                info={"error":"Usuario borrado con éxito."}
-#            except Exception as err:
-#                info={"error":'No se ha podido borrar el usuario. Error'+str(err)}#
+def delete(request):
+    test_login(request)
+    if request.method=="POST" and request.POST.get("uid",False):
+        uid=request.POST["uid"]
+        ldap=gnLDAP()
+        busqueda='(uid=%s)'%(uid)
+        datos=ldap.gnBuscar(cadena=busqueda)
+        grupo=ldap.memberOfGroup(uid,key=True)
+        if grupo=="profesores" or grupo=="antiguosprofesores":
+            info={"error":"No se puede borrar un profesor."}
+        elif len(datos)==0:
+            info={"error":"No existe ese usuario"}
+        else:
+            form=deleteUserForm2({'uiddel':uid})
+            info={'form':form,'grupo':ldap.memberOfGroup(uid),'nombre':datos[0]["cn"][0]}
+        return render(request,"delete.html",info)
+    elif request.method=="POST" and request.POST.get("uiddel",False):
+        if request.POST["confirmar"]=="no":
+            return redirect(settings.SITE_URL+"/")
+        if request.POST["confirmar"]=="si":
+            ldap=gnLDAP(request.session["username"],request.session["password"])
+            grupos=ldap.memberOfGroup(request.POST["uiddel"],key=True)
+            
+            try:
+                for grupo in grupos:
+                    ldap.modUserGroup(str(request.POST["uiddel"]),grupo,"del")
+                ldap.delete(request.POST["uiddel"])
+                
+                info={"error":"Usuario borrado con éxito."}
+            except Exception as err:
+                info={"error":'No se ha podido borrar el usuario. Error'+str(err)}#
+            return render(request,"delete.html",info)#
 
-#            return render(request,"delete.html",info)#
-#
-
-#    else:
-#        form=deleteUserForm()
-#        info={'form':form}
-#        return render(request,"delete.html",info)
+    else:
+        form=deleteUserForm()
+        info={'form':form}
+        return render(request,"delete.html",info)

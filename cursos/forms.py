@@ -17,7 +17,7 @@ class BuscarUsuario(forms.Form):
 	grupo=forms.CharField(widget=forms.HiddenInput())
 	def __init__(self, *args, **kwargs):
 		super(BuscarUsuario, self).__init__(*args, **kwargs)
-		lista=getSelect('alumnos')+getSelect('profesores')
+		lista=getSelect('all')
 		lista2=getSelect(args[0]["grupo"])
 		lista3 = [x for x in lista if x not in lista2]
 		self.fields['usuarios']=forms.MultipleChoiceField(choices=lista3,required=False,widget=forms.SelectMultiple(attrs={'class': "form-control js-example-basic-multiple"}))

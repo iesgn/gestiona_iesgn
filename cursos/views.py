@@ -18,7 +18,6 @@ def cursos(request,curso):
 		for usuario in request.POST.getlist("usuarios"):
 			try:
 				ldap.modUserGroup(str(usuario),str(curso),"add")
-				ldap.modUserGroup(str(usuario),"antiguosalumnos","del")
 			except:
 				pass
 
@@ -34,7 +33,15 @@ def eliminar(request,curso,usuario):
 	ldap=gnLDAP(request.session["username"],request.session["password"])
 	try:
 		ldap.modUserGroup(str(usuario),str(curso),"del")
-		ldap.modUserGroup(str(usuario),"antiguosalumnos","add")
 	except:
 		pass
+	grupos=ldap.memberOfGroup(usuario,key=True)
+	if len(grupos)==0:
+		if curso in ["profesores","antiguosprofesores"]:
+			ldap.modUserGroup(str(usuario),"antiguoprofesores","add")
+		else:
+			ldap.modUserGroup(str(usuario),"alumnos","add")
 	return redirect(settings.SITE_URL+"/cursos/"+curso)
+
+
+	
