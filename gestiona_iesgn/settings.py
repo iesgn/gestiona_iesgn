@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'documentacion.apps.DocumentacionConfig',
     'multitask.apps.MultitaskConfig',
     'correos.apps.CorreosConfig',
-    'tinymce',
 ]
 
 MIDDLEWARE = [

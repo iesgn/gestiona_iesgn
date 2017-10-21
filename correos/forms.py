@@ -16,9 +16,7 @@ def getSelect():
 
 class CorreoForm(forms.Form):
 	asunto=forms.CharField(max_length=100,widget=forms.TextInput(attrs={'class': "form-control"}))
-	#contenido=forms.CharField(widget=forms.Textarea(attrs={'class': "form-control",'cols': 100, 'rows': 15}))
-	contenido= HTMLField()
-
+	contenido=forms.CharField(widget=forms.Textarea(attrs={'class': "form-control",'cols': 100, 'rows': 15}))
 	def clean(self):
 		super(CorreoForm, self).clean()
 		asunto = self.cleaned_data.get("asunto")
