@@ -3,6 +3,7 @@ from django import forms
 from django.contrib.admin.widgets import FilteredSelectMultiple
 from django.forms.widgets import HiddenInput,Textarea,TextInput
 from usuarios.libldap import gnLDAP
+from tinymce.models import HTMLField
 
 def getSelect():
 	ldap=gnLDAP()
@@ -15,7 +16,9 @@ def getSelect():
 
 class CorreoForm(forms.Form):
 	asunto=forms.CharField(max_length=100,widget=forms.TextInput(attrs={'class': "form-control"}))
-	contenido=forms.CharField(widget=forms.Textarea(attrs={'class': "form-control",'cols': 100, 'rows': 15}))
+	#contenido=forms.CharField(widget=forms.Textarea(attrs={'class': "form-control",'cols': 100, 'rows': 15}))
+	contenido= HTMLField()
+
 	def clean(self):
 		super(CorreoForm, self).clean()
 		asunto = self.cleaned_data.get("asunto")
