@@ -14,10 +14,11 @@ def add(request):
 	if request.method == 'POST':
 		form = UploadFileForm(request.POST, request.FILES)
 		if form.is_valid():
-			handle_uploaded_file(request.FILES["csr"],request.session["username"])
-			asunto="Petición de certificado de " + str(request.session["username"])
-			cuerpo="El usuario %s ha subido un fichero csr:%s al programa gestiona, para gestionar la firma de su certificado."%(request.session["username"],request.FILES["csr"].name)
-			email = EmailMessage(
+			if request.FILES["csr"].content_type=="text/plain":
+				handle_uploaded_file(request.FILES["csr"],request.session["username"])
+				asunto="Petición de certificado de " + str(request.session["username"])
+				cuerpo="El usuario %s ha subido un fichero csr:%s al programa gestiona, para gestionar la firma de su certificado."%(request.session["username"],request.FILES["csr"].name)
+				email = EmailMessage(
  				   asunto,
 				   cuerpo,
     				'informatica@gonzalonazareno.org',
@@ -25,7 +26,7 @@ def add(request):
 				    [],
 				    reply_to=['informatica.gonzalonazareno.org'],
 				    )
-			email.send()
+				#email.send()
 			return redirect(settings.SITE_URL+'/certificados')
 	else:
 		path= os.path.join(settings.BASE_DIR, 'cert/%s'%request.session["username"])
