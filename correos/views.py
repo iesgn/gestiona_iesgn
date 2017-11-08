@@ -11,11 +11,11 @@ from gestiona_iesgn.views import test_profesor
 def add(request):
 	test_profesor(request)
 	if request.method=='POST' and not request.POST.has_key("correo"):
-		form2 = BuscarDestinatariosForm(dest=SelectUsuarios(request.POST.get("alumnos")),alum=request.POST.get("alumnos"))
+		form2 = BuscarDestinatariosForm(dest=SelectUsuarios(request.POST.get("usuarios")),alum=request.POST.get("usuarios"))
 		form = CorreoForm(request.POST)
 	elif request.method=='POST' and request.POST.has_key("correo"):
 		
-		form2 = BuscarDestinatariosForm(dest=SelectUsuarios(request.POST.get("alumnos")),alum=request.POST.get("alumnos"))
+		form2 = BuscarDestinatariosForm(dest=SelectUsuarios(request.POST.get("usuarios")),alum=request.POST.get("usuarios"))
 		form = CorreoForm(request.POST)	
 
 		if form.is_valid():
