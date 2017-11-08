@@ -27,7 +27,7 @@ def add(request):
 				    [],
 				    reply_to=['informatica.gonzalonazareno.org'],
 				    )
-				#email.send()
+				email.send()
 			else:
 				messages.add_message(request, messages.INFO, "Tienes que subir un fichero csr...")
 			return redirect(settings.SITE_URL+'/certificados')
