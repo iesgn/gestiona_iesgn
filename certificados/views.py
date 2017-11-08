@@ -9,22 +9,22 @@ import os.path
 
 def add(request):
 	test_login(request)
-    if request.method == 'POST':
-        form = UploadFileForm(request.POST, request.FILES)
-        if form.is_valid():
-            handle_uploaded_file(request.FILES["csr"],request.session["username"])
-            return redirect(settings.SITE_URL+'/certificados')
-    else:
-    	path= os.path.join(settings.BASE_DIR, 'cert/%s'%request.session["username"])
-    	if  os.path.isdir(path):
-    		files=os.listdir(path)
-    		paths=[]
-    		for file in files:
-    			paths.append(settings.SITE_URL+"/cert/"+file)
-    		return render(request, 'files.html', {'files': files,'paths':paths})
-    	else:
-        	form = UploadFileForm()
-    		return render(request, 'upload.html', {'form': form})
+	if request.method == 'POST':
+		form = UploadFileForm(request.POST, request.FILES)
+		if form.is_valid():
+			handle_uploaded_file(request.FILES["csr"],request.session["username"])
+			return redirect(settings.SITE_URL+'/certificados')
+	else:
+		path= os.path.join(settings.BASE_DIR, 'cert/%s'%request.session["username"])
+		if  os.path.isdir(path):
+			files=os.listdir(path)
+			paths=[]
+			for file in files:
+				paths.append(settings.SITE_URL+"/cert/"+file)
+			return render(request, 'files.html', {'files': files,'paths':paths})
+		else:
+			form = UploadFileForm()
+			return render(request, 'upload.html', {'form': form})
 
 def handle_uploaded_file(f,nombre):
 	path= os.path.join(settings.BASE_DIR, 'cert/%s'%nombre)
