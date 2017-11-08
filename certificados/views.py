@@ -1,4 +1,4 @@
-from django.shortcuts import render,HttpResponseRedirect
+from django.shortcuts import render,redirect
 from .forms import UploadFileForm
 from django.conf import settings
 import os
@@ -9,18 +9,18 @@ def add(request):
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
-            handle_uploaded_file(request.FILES['csr'])
+            handle_uploaded_file(request)
             return redirect(settings.SITE_URL+'/certificados')
     else:
         form = UploadFileForm()
     return render(request, 'upload.html', {'form': form})
 
-def handle_uploaded_file(f):
-	path= os.path.join(settings.BASE_DIR, 'cert')
-	print "*********"
-	print path
+def handle_uploaded_file(request):
+	path= os.path.join(settings.BASE_DIR, 'cert/%s'%request.session("username"))
 	if not os.path.isdir(path):
 		os.mkdir(path)
-    #with open('some/file/name.txt', 'wb+') as destination:
-    #    for chunk in f.chunks():
-    #        destination.write(chunk)
+	path_file=path+"/"+request.FILES['csr'].name
+	f=request.FILES['csr']
+	with open(path_file, 'w') as destination:
+        destination.write(f.read())
+    
