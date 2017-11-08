@@ -18,7 +18,7 @@ def add(request):
 def handle_uploaded_file(f,nombre):
 	path= os.path.join(settings.BASE_DIR, 'cert/%s'%nombre)
 	if not os.path.isdir(path):
-		os.mkdir(path)
+		os.makedirs(path)
 	path_file=path+"/"+f.name
 	with open(path_file, 'w') as destination:
 		destination.write(f.read())
