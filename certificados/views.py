@@ -5,6 +5,7 @@ from django.conf import settings
 from gestiona_iesgn.views import test_login
 from wsgiref.util import FileWrapper
 from django.core.mail import EmailMessage
+from django.contrib import messages
 import os
 import os.path
 # Create your views here.
@@ -14,8 +15,7 @@ def add(request):
 	if request.method == 'POST':
 		form = UploadFileForm(request.POST, request.FILES)
 		if form.is_valid():
-			print request.FILES["csr"].content_type
-			if request.FILES["csr"].content_type=="text/plain":
+			if request.FILES["csr"].content_type=="application/pkcs10":
 				handle_uploaded_file(request.FILES["csr"],request.session["username"])
 				asunto="Petición de certificado de " + str(request.session["username"])
 				cuerpo="El usuario %s ha subido un fichero csr:%s al programa gestiona, para gestionar la firma de su certificado."%(request.session["username"],request.FILES["csr"].name)
@@ -28,6 +28,8 @@ def add(request):
 				    reply_to=['informatica.gonzalonazareno.org'],
 				    )
 				#email.send()
+			else:
+				messages.add_message(request, messages.INFO, "Tienes que subir un fichero csr...")
 			return redirect(settings.SITE_URL+'/certificados')
 	else:
 		path= os.path.join(settings.BASE_DIR, 'cert/%s'%request.session["username"])
