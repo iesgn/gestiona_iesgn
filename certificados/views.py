@@ -20,7 +20,7 @@ def add(request):
     		files=os.listdir(path)
     		paths=[]
     		for file in files:
-    			paths.append(path+"/"+file)
+    			paths.append(settings.SITE_URL+"/cert/"+file)
     		return render(request, 'files.html', {'files': files,'paths':paths})
     	else:
         	form = UploadFileForm()
