@@ -37,7 +37,7 @@ def handle_uploaded_file(f,nombre):
 def download(request,usuario,file):
 	test_login(request)
 	if usuario==request.session["username"]:
-		filename = os.path.join(settings.BASE_DIR, 'cert/%s'%(request.session["username"]+"/"+file.encode("utf8")))
+		filename = str(os.path.join(settings.BASE_DIR, 'cert/%s'%(request.session["username"]+"/"+file.encode("utf8"))))
 		print filename
 		wrapper = FileWrapper(file(filename))
 		response = HttpResponse(wrapper, content_type='text/plain')
