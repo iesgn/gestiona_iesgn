@@ -38,7 +38,7 @@ def add(request):
 			return redirect(settings.SITE_URL+'/')
 	else:
    
-		form = CorreoForm(replyto="josedom24@gmail.com")
+		form = CorreoForm({replyto:"josedom24@gmail.com"})
 		form2 = BuscarDestinatariosForm(dest=[],alum="")
 
 	info={'form2':form2,'form':form}
