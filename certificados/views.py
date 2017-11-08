@@ -12,8 +12,13 @@ def add(request):
             handle_uploaded_file(request.FILES["csr"],request.session["username"])
             return redirect(settings.SITE_URL+'/certificados')
     else:
-        form = UploadFileForm()
-    return render(request, 'upload.html', {'form': form})
+    	path= os.path.join(settings.BASE_DIR, 'cert/%s'%nombre)
+    	if  os.path.isdir(path):
+    		files=os.listdir(path)
+    		return render(request, 'files.html', {'files': files})
+    	else:
+        	form = UploadFileForm()
+    		return render(request, 'upload.html', {'form': form})
 
 def handle_uploaded_file(f,nombre):
 	path= os.path.join(settings.BASE_DIR, 'cert/%s'%nombre)
