@@ -16,7 +16,8 @@ def add(request):
     return render(request, 'upload.html', {'form': form})
 
 def handle_uploaded_file(f):
-	path=file_path = os.path.join(settings.BASE_DIR, 'cert')
+	path= os.path.join(settings.BASE_DIR, 'cert')
+	print "*********"
 	print path
 	if not os.path.isdir(path):
 		os.mkdir(path)
