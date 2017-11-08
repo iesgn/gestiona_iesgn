@@ -15,7 +15,7 @@ def add(request):
 			handle_uploaded_file(request.FILES["csr"],request.session["username"])
 			return redirect(settings.SITE_URL+'/certificados')
 	else:
-		path= os.path.join(settings.BASE_DIR, 'cert/%s'%request.session["username"])
+		path= os.path.join(settings.BASE_DIR, 'certificados/%s'%request.session["username"])
 		if  os.path.isdir(path):
 			files=os.listdir(path)
 			paths=[]
