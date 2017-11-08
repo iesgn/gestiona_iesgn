@@ -14,14 +14,14 @@ def getSelect():
 	return lista2
 
 class CorreoForm(forms.Form):
-	replay-to=forms.CharField(max_length=100,widget=forms.TextInput(attrs={'class': "form-control"}))
+	replyto=forms.CharField(max_length=100,widget=forms.TextInput(attrs={'class': "form-control"}))
 	asunto=forms.CharField(max_length=100,widget=forms.TextInput(attrs={'class': "form-control"}))
 	contenido=forms.CharField(widget=forms.Textarea(attrs={'class': "form-control",'cols': 100, 'rows': 15}))
 	def clean(self):
 		super(CorreoForm, self).clean()
-		replay-to = self.cleaned_data.get("replay-to")
-		if not replay-to:
-			del self._errors['replay-to']
+		replyto = self.cleaned_data.get("replyto")
+		if not replyto:
+			del self._errors['replyto']
 		asunto = self.cleaned_data.get("asunto")
 		if not asunto:
 			del self._errors['asunto']
