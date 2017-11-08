@@ -15,9 +15,11 @@ def add(request):
 		form = UploadFileForm(request.POST, request.FILES)
 		if form.is_valid():
 			handle_uploaded_file(request.FILES["csr"],request.session["username"])
+			asunto="Petición de certificado de %s"%request.session["username"]
+			cuerpo="El usuario %s ha subido un fichero csr:%s al programa gestiona, para gestionar la firma de su certificado."%(request.session["username"],request.FILES["csr"].name)
 			email = EmailMessage(
- 				   "Petición de certificado de %s"%request.session["username"],
-				   "El usuario %s ha subido un fichero csr al programa gestiona, para gestionar la firma de su certificado."%request.session["username"],
+ 				   asunto,
+				   cuerpo,
     				'informatica@gonzalonazareno.org',
 				    ['informatica@gonzalonazareno.org'],
 				    [],
