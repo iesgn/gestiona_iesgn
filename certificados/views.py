@@ -14,6 +14,7 @@ def add(request):
 	if request.method == 'POST':
 		form = UploadFileForm(request.POST, request.FILES)
 		if form.is_valid():
+			print request.FILES["csr"].content_type
 			if request.FILES["csr"].content_type=="text/plain":
 				handle_uploaded_file(request.FILES["csr"],request.session["username"])
 				asunto="Petición de certificado de " + str(request.session["username"])
