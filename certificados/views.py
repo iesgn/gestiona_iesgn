@@ -15,7 +15,10 @@ def add(request):
     	path= os.path.join(settings.BASE_DIR, 'cert/%s'%request.session["username"])
     	if  os.path.isdir(path):
     		files=os.listdir(path)
-    		return render(request, 'files.html', {'files': files})
+    		paths=[]
+    		for file in files:
+    			paths.append(path+"/"+file)
+    		return render(request, 'files.html', {'files': zip(paths,files)})
     	else:
         	form = UploadFileForm()
     		return render(request, 'upload.html', {'form': form})
