@@ -56,14 +56,18 @@
     <li><a href="{{SITE_URL}}/grupos/openstackusers">OpenStack</a></li>
   </ul>
 </li>
+{% end if %}
 
 <li class="dropdown">
 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Utilidades<span class="caret"></span></a>
  <ul class="dropdown-menu">
+  {% if request.session.profesor %}
     <li><a href="{{SITE_URL}}/multitask">Multitask</a></li>
     <li><a href="{{SITE_URL}}/correos">Correo</a></li>
-    
+  {% end if %}
+    <li><a href="{{SITE_URL}}/certificados">Certificados</a></li>
   </ul>
+  }
 </li>
 
 
