@@ -37,8 +37,10 @@ def add(request):
 			email.send()
 			return redirect(settings.SITE_URL+'/')
 	else:
-   
-		form = CorreoForm({"replyto":"josedom24@gmail.com"})
+		lldap=gnLDAP()
+		busqueda='(uid=%s)'%(request.session["username"])
+		datos=lldap.gnBuscar(cadena=busqueda)
+		form = CorreoForm({"replyto":datos[0]["mail"][0]})
 		form2 = BuscarDestinatariosForm(dest=[],alum="")
 
 	info={'form2':form2,'form':form}
