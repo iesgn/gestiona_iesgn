@@ -26,7 +26,6 @@ def add(request):
 				datos=lldap.gnBuscar(cadena=busqueda)
 				correos.append(datos[0]["mail"][0])
 			replayto="informatica.gonzalonazareno.org" if request.POST.get("replyto")=="" else request.POST.get("replyto")
-			print replayto
 			email = EmailMessage(
  				   request.POST["asunto"],
 				   request.POST["contenido"],
