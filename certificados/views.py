@@ -46,3 +46,5 @@ def download(request,usuario,file):
 		response['Content-Disposition'] = 'attachment; filename=%s' % os.path.basename(filename)
 		response['Content-Length'] = os.path.getsize(filename)
 		return response
+	else:
+		return redirect(settings.SITE_URL)
