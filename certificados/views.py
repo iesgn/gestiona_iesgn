@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from .forms import UploadFileForm
 from django.conf import settings
 from gestiona_iesgn.views import test_login
-from django.core.servers.basehttp import FileWrapper
+from wsgiref.util import FileWrapper
 import os
 import os.path
 # Create your views here.
