@@ -22,5 +22,5 @@ def handle_uploaded_file(request):
 	path_file=path+"/"+request.FILES['csr'].name
 	f=request.FILES['csr']
 	with open(path_file, 'w') as destination:
-        destination.write(f.read())
+		destination.write(f.read())
     
