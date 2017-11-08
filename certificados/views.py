@@ -18,7 +18,7 @@ def add(request):
     		paths=[]
     		for file in files:
     			paths.append(path+"/"+file)
-    		return render(request, 'files.html', {'files': zip(paths,files)})
+    		return render(request, 'files.html', {'files': files,'paths':paths})
     	else:
         	form = UploadFileForm()
     		return render(request, 'upload.html', {'form': form})
