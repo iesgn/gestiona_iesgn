@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,HttpResponse
 from .forms import UploadFileForm
 from django.conf import settings
 from gestiona_iesgn.views import test_login
