@@ -39,7 +39,7 @@ def download(request,usuario,file):
 	if usuario==request.session["username"]:
 		filename = os.path.join(settings.BASE_DIR, 'cert/%s'%(request.session["username"]+"/"+file))
 		print filename
-		wrapper = FileWrapper(file(filename.encode("utf-8")))
+		wrapper = FileWrapper(file(filename.encode("utf8")))
 		response = HttpResponse(wrapper, content_type='text/plain')
 		response['Content-Disposition'] = 'attachment; filename=%s' % os.path.basename(filename)
 		response['Content-Length'] = os.path.getsize(filename)
