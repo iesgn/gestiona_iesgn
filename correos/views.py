@@ -35,7 +35,7 @@ def add(request):
 				    correos,
 				    reply_to=['informatica@gonzalonazareno.org'],
 				    )
-			email.send()
+			#email.send()
 			return redirect(settings.SITE_URL+'/')
 	else:
 		lldap=gnLDAP()
