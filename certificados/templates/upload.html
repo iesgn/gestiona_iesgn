@@ -4,7 +4,7 @@
 
 {% block content %}
 <h3>Gestión de Certificados</h3>
-<form  method="post">
+<form  method="post" enctype="multipart/form-data">
 
     {% csrf_token %}
     {{ form.as_p}}
