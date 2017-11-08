@@ -5,10 +5,25 @@
 {% block content %}
 <h3>Gestión de Certificados</h3>
 
-<p>Tu fichero csr: <a href="{{paths.0}}">{{files.0}}</a></p>
+<div class="card w-75">
+  <div class="card-body">
+    <h4 class="card-title">Tu fichero csr</h4>
+    <p class="card-text">{{files.0}}</p>
+     <a href="{{paths.0}}" class="btn btn-primary">Descargar</a>
+  </div>
+</div>
+
+
 {% if paths.1 %}
-<br>
-<p>Tu certificado: <a href="{{paths.1}}">{{files.1}}</a></p>
+<div class="card w-50">
+  <div class="card-body">
+    <h4 class="card-title">Tu Certfificado</h4>
+    <p class="card-text">{{files.1}}</p>
+    <a href="#" class="btn btn-primary">Button</a>
+    <a href="{{paths.1}}" class="btn btn-primary"">Descargar</a>
+  </div>
+</div>
+
 {% endif %}
 
 <br/><br/>
