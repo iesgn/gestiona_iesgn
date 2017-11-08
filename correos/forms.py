@@ -20,8 +20,6 @@ class CorreoForm(forms.Form):
 	def clean(self):
 		super(CorreoForm, self).clean()
 		replyto = self.cleaned_data.get("replyto")
-		if not replyto:
-			del self._errors['replyto']
 		asunto = self.cleaned_data.get("asunto")
 		if not asunto:
 			del self._errors['asunto']
