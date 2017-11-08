@@ -7,6 +7,6 @@ urlpatterns = [
 	url(r'^update/(?P<usuario>[0-9a-z.]+)$', views.update),
 	url(r'^add$', views.add),
 	url(r'^perfil$', views.perfil),
-	url(r'^alumnos/del$', views.delete),
+	url(r'^del$', views.delete),
 
   ]
