@@ -11,16 +11,25 @@
 <div class="panel panel-default">
   <div class="panel-heading"><h3 class="panel-title">Certificado (#{{num}})</h3></div>
   <div class="panel-body">
-    Tu fichero csr: <strong>{{fs.0|last}}</strong><br/>
-    <a href="{{fs.0|first}}/{{fs.0|last}}" class="btn btn-primary">Descargar</a>
+    <table>
+      <tr>
+        <td>
+            Tu fichero csr: <strong>{{fs.0|last}}</strong><br/>
+            <a href="{{fs.0|first}}/{{fs.0|last}}" class="btn btn-primary">Descargar</a>
+        </td>
   
   {% if fs.1%}
-  <br/><br/><br/>
-    Tu fichero crt: <strong>{{fs.1|last}}</strong><br/>
-    <a href="{{fs.0|first}}/{{fs.1|last}}" class="btn btn-primary">Descargar</a>
+    <tr>
+      <td>
+          Tu fichero crt: <strong>{{fs.1|last}}</strong><br/>
+          <a href="{{fs.0|first}}/{{fs.1|last}}" class="btn btn-primary">Descargar</a>
+      </td>
+    </tr>
   {%else%}
     <br/><strong>Se está gestionando la generación de tu certificado...</strong>
   {% endif%}
+      </tr>
+    </table>
   </div>
 </div>
 {% endfor %}
