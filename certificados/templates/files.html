@@ -63,23 +63,21 @@
 
 {% if files.usuario %}
 
-{%for fs in files.usuario%}
-
-<div class="panel panel-default">
-  <div class="panel-heading"><h3 class="panel-title">Certificado de equipo (#{{num}})</h3></div>
+<div class="panel panel-danger">
+  <div class="panel-heading"><h3 class="panel-title">Certificado de usuario</h3></div>
   <div class="panel-body">
     <table class="table">
       <tr>
         <td>
-            Tu fichero csr: <strong>{{fs.0|last}}</strong><br/>
-            <a href="{{fs.0|first}}/{{fs.0|last}}" class="btn btn-primary">Descargar</a>
+            Tu fichero csr: <strong>{{files.usuario.0|last}}</strong><br/>
+            <a href="{{files.usuario.0|first}}/{{files.usuario.0|last}}" class="btn btn-danger">Descargar</a>
         </td>
   
-  {% if fs.1%}
+  {% if files.usuario.1%}
     
       <td>
-          Tu fichero crt: <strong>{{fs.1|last}}</strong><br/>
-          <a href="{{fs.0|first}}/{{fs.1|last}}" class="btn btn-primary">Descargar</a>
+          Tu fichero crt: <strong>{{files.usuario.1|last}}</strong><br/>
+          <a href="{{files.usuario.0|first}}/{{files.usuario.1|last}}" class="btn btn-danger">Descargar</a>
       </td>
     
   {%else%}
@@ -91,7 +89,7 @@
     </table>
   </div>
 </div>
-{% endfor %}
+
 {% else %}
 
 <div class="panel panel-danger">
