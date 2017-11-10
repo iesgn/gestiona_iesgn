@@ -89,6 +89,7 @@ def handle_uploaded_file(f,nombre,tipo):
 		destination.write(f.read())
 
 def download_equipo(request,usuario,direc,file):
+	print "*"*30
 	test_login(request)
 	if usuario==request.session["username"]:
 		filename = str(os.path.join(settings.BASE_DIR, 'cert/%s/equipo/%s/%s'%(request.session["username"],direc,file)))
