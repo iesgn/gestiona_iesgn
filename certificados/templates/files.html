@@ -4,6 +4,18 @@
 
 {% block content %}
 <h2>Gestión de Certificados</h2>
+<div class="row">
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-danger alert-dismissable fade in">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      {{ message }}</div>
+    {% endfor%}
+  {% endif %}
+</div>
+
 <h3>Certificados de Equipos</h3>
 
 {%for num,fs in files.equipo.items%}
@@ -36,17 +48,7 @@
 </div>
 {% endfor %}
 
-<div class="row">
-  {% if messages %}
-    {% for message in messages %}
-      <div class="alert alert-danger alert-dismissable fade in">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      {{ message }}</div>
-    {% endfor%}
-  {% endif %}
-</div>
+
 <div class="panel panel-default">
   <div class="panel-heading"><h3 class="panel-title">Certificado de equipo</h3></div>
   <div class="panel-body">
