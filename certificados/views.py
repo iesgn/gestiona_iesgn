@@ -65,7 +65,7 @@ def handle_uploaded_file(f,nombre,tipo):
 		if len(dirs)==0:
 			dir=1
 		else:
-			dirs=map(dirs,int)
+			dirs=map(int,dirs)
 			dir=max(dirs)+1
 	path=path+"/"+str(dir)
 	if not os.path.isdir(path):
