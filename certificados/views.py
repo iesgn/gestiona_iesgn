@@ -39,7 +39,7 @@ def add(request):
 				messages.add_message(request, messages.INFO, "Tienes que subir un fichero csr...")
 			return redirect(settings.SITE_URL+'/certificados')
 	else:
-		path_usuario = os.path.join(settings.BASE_DIR, 'cert/%s/usuario'%request.session["username"])
+		path = os.path.join(settings.BASE_DIR, 'cert/%s/usuario'%request.session["username"])
 		path_equipo= os.path.join(settings.BASE_DIR, 'cert/%s/equipo'%request.session["username"])
 		paths_usuario=[]
 		paths_equipo=[]
@@ -67,7 +67,6 @@ def handle_uploaded_file(f,nombre,tipo):
 	path=path+"/"+str(dir)
 	if not os.path.isdir(path):
 		os.makedirs(path)
-
 	
 	path_file=path+"/"+f.name
 	with open(path_file, 'w') as destination:
