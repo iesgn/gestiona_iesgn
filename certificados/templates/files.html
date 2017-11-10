@@ -9,7 +9,7 @@
 {%for num,fs in files.equipo.items%}
 
 <div class="panel panel-default">
-  <div class="panel-heading"><h3 class="panel-title">Certificado (#{{num}})</h3></div>
+  <div class="panel-heading"><h3 class="panel-title">Certificado de equipo (#{{num}})</h3></div>
   <div class="panel-body">
     <table class="table">
       <tr>
@@ -35,21 +35,6 @@
   </div>
 </div>
 {% endfor %}
-<!--
-
-{% if paths.1 %}
-<div class="panel panel-danger">
-  <div class="panel-heading"><h3 class="panel-title">Tu Certificado</h3></div>
-  <div class="panel-body">
-    <strong>{{files.1}}</strong><br/>
-    <a href="{{paths.1}}" class="btn btn-danger">Descargar</a>
-  </div>
-</div>
-
-{% else %}
-
-<p>Se está gestionando la generación de tu certificado...</p>
-{% endif %}-->
 
 <div class="row">
   {% if messages %}
@@ -76,6 +61,39 @@
 
 <br/><br/>
 
+{% if files.usuario %}
+
+{%for fs in files.usuario%}
+
+<div class="panel panel-default">
+  <div class="panel-heading"><h3 class="panel-title">Certificado de equipo (#{{num}})</h3></div>
+  <div class="panel-body">
+    <table class="table">
+      <tr>
+        <td>
+            Tu fichero csr: <strong>{{fs.0|last}}</strong><br/>
+            <a href="{{fs.0|first}}/{{fs.0|last}}" class="btn btn-primary">Descargar</a>
+        </td>
+  
+  {% if fs.1%}
+    
+      <td>
+          Tu fichero crt: <strong>{{fs.1|last}}</strong><br/>
+          <a href="{{fs.0|first}}/{{fs.1|last}}" class="btn btn-primary">Descargar</a>
+      </td>
+    
+  {%else%}
+      <td>
+        <strong>Se está gestionando la generación de tu certificado...</strong>
+      </td>
+  {% endif%}
+      </tr>
+    </table>
+  </div>
+</div>
+{% endfor %}
+{% else %}
+
 <div class="panel panel-danger">
   <div class="panel-heading"><h3 class="panel-title">Certificado de usuario</h3></div>
   <div class="panel-body">
@@ -89,5 +107,5 @@
 </div>
 
 <br/><br/>
-
+{% endif%}
 {% endblock %}
