@@ -61,7 +61,7 @@
 <hr class="hr-primary" />
 <h3>Certificado de Usuario</h3>
 
-{% if files.usuario %}
+{% if files.usuario.0|length>0 %}
 
 <div class="panel panel-danger">
   <div class="panel-heading"><h3 class="panel-title">Certificado de usuario</h3></div>
