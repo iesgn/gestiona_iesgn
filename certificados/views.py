@@ -40,20 +40,20 @@ def add(request):
 			return redirect(settings.SITE_URL+'/certificados')
 	else:
 		path = os.path.join(settings.BASE_DIR, 'cert/%s'%request.session["username"])
-		files={"usuario":[],"equipo":[]}
+		files={"usuario":["",""],"equipo":["",""]}
 		for base, dirs, files in os.walk(path):
 			if len(files)>0:
 				for f in files:
 					if "usuario" in base:
 							if "csr" in f:
-								files["usuario"].insert(0,base+"/"+f)
+								files["usuario"][0]=base+"/"+f
 							else:
-								files["usuario"].insert(1,base+"/"+f)
+								files["usuario"][1]=base+"/"+f
 					else:
 						if "csr" in f:
-							files["equipo"].insert(0,base+"/"+f)
+							files["equipo"][0]=base+"/"+f
 						else:
-							files["equipo"].insert(1,base+"/"+f)
+							files["equipo"][1]=base+"/"+f
 		print files
 
 		form_usuario = UploadFileFormUsuario()
