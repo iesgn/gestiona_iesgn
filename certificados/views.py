@@ -91,7 +91,7 @@ def handle_uploaded_file(f,nombre,tipo):
 def download_equipo(request,usuario,direc,file):
 	test_login(request)
 	if usuario==request.session["username"]:
-		filename = str(os.path.join(settings.BASE_DIR, 'cert/%s/equipo/%s%s'%(request.session["username"],direc,file)))
+		filename = str(os.path.join(settings.BASE_DIR, 'cert/%s/equipo/%s/%s'%(request.session["username"],direc,file)))
 		f=open(filename,'r')
 		wrapper = FileWrapper(f)
 		response = HttpResponse(wrapper, content_type='text/plain')
