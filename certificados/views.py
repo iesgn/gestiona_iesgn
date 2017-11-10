@@ -41,7 +41,7 @@ def add(request):
 	else:
 		path = os.path.join(settings.BASE_DIR, 'cert/%s'%request.session["username"])
 		files={"usuario":[],"equipo":[]}
-		for base, dirs, files in os.walk('cert/josedom'):
+		for base, dirs, files in os.walk(path):
 			if len(files)>0:
 				for f in files:
 					if "usuario" in base:
