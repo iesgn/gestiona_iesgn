@@ -50,16 +50,16 @@ def add(request):
 				for f in files:
 					if "usuario" in base:
 							if "csr" in f:
-								fil["usuario"][0]=base[base.index("/cert"):]+"/"+f
+								fil["usuario"][0]=base[base.index("/cert"):],f
 							else:
-								fil["usuario"][1]=base[base.index("/cert"):]+"/"+f
+								fil["usuario"][1]=base[base.index("/cert"):],f
 					else:
 						
 						
 						if "csr" in f:
-							fil["equipo"][num][0]=base[base.index("/cert"):]+"/"+f
+							fil["equipo"][num][0]=base[base.index("/cert"):],f
 						else:
-							fil["equipo"][num][1]=base[base.index("/cert"):]+"/"+f
+							fil["equipo"][num][1]=base[base.index("/cert"):],f
 		print fil
 
 		form_usuario = UploadFileFormUsuario()
