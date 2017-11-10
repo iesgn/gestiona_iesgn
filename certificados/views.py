@@ -60,8 +60,7 @@ def add(request):
 							fil["equipo"][num][0]=settings.SITE_URL+base[base.index("/cert"):],f
 						else:
 							fil["equipo"][num][1]=settings.SITE_URL+base[base.index("/cert"):],f
-		print fil
-
+	
 		form_usuario = UploadFileFormUsuario()
 		form_equipo = UploadFileFormEquipo()
 		return render(request, 'files.html', {'files': fil,'form_usuario':form_usuario,'form_equipo':form_equipo})
@@ -89,14 +88,16 @@ def handle_uploaded_file(f,nombre,tipo):
 		destination.write(f.read())
 
 def download_equipo(request,usuario,direc,file):
-	print "*"*30
+	
 	test_login(request)
 	if usuario==request.session["username"]:
 		filename = str(os.path.join(settings.BASE_DIR, 'cert/%s/equipo/%s/%s'%(request.session["username"],direc,file)))
-		print filename
 		f=open(filename,'r')
 		wrapper = FileWrapper(f)
-		response = HttpResponse(wrapper, content_type='text/plain')
+		if "csr" in file:
+			response = HttpResponse(wrapper, content_type='application/pkcs10')
+		if "crt" in file:
+			response = HttpResponse(wrapper, content_type='application/x-x509-user-cert')
 		response['Content-Disposition'] = 'attachment; filename=%s' % os.path.basename(filename)
 		response['Content-Length'] = os.path.getsize(filename)
 		return response
