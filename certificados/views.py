@@ -46,7 +46,7 @@ def add(request):
 				for f in files:
 					if "usuario" in base:
 							if "csr" in f:
-								fil["usuario"][0]=base+"/"+f
+								fil["usuario"][0]=base[base.index("/cert"):]+"/"+f
 							else:
 								fil["usuario"][1]=base+"/"+f
 					else:
