@@ -51,6 +51,7 @@ def add(request):
 							else:
 								fil["usuario"][1]=base[base.index("/cert"):]+"/"+f
 					else:
+						print base[base.index("/cert"):]
 						num=re.search('.*/equipo/(.*)/.*',base[base.index("/cert"):]).group(1)
 						fil["equipo"][num]=["",""]
 						if "csr" in f:
