@@ -87,7 +87,7 @@ def handle_uploaded_file(f,nombre,tipo):
 	with open(path_file, 'w') as destination:
 		destination.write(f.read())
 
-def download(request,usuario,direc="",file):
+def download(request,usuario,direc="",file=""):
 	
 	test_login(request)
 	if usuario==request.session["username"]:
