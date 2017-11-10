@@ -15,11 +15,11 @@
     <a href="{{fs.0|first}}/{{fs.0|last}}" class="btn btn-primary">Descargar</a>
   
   {% if fs.1%}
-  <br/>
+  <br/><br/><br/>
     Tu fichero crt: <strong>{{fs.1|last}}</strong><br/>
     <a href="{{fs.0|first}}/{{fs.1|last}}" class="btn btn-primary">Descargar</a>
   {%else%}
-    <p>Se está gestionando la generación de tu certificado...</p>
+    <br/><strong>Se está gestionando la generación de tu certificado...</strong>
   {% endif%}
   </div>
 </div>
