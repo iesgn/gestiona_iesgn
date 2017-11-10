@@ -8,6 +8,7 @@ from django.core.mail import EmailMessage
 from django.contrib import messages
 import os
 import os.path
+import re
 # Create your views here.
 
 def add(request):
@@ -40,7 +41,7 @@ def add(request):
 			return redirect(settings.SITE_URL+'/certificados')
 	else:
 		path = os.path.join(settings.BASE_DIR, 'cert/%s'%request.session["username"])
-		fil={"usuario":["",""],"equipo":["",""]}
+		fil={"usuario":["",""],"equipo":{}}
 		for base, dirs, files in os.walk(path):
 			if len(files)>0:
 				for f in files:
@@ -48,12 +49,14 @@ def add(request):
 							if "csr" in f:
 								fil["usuario"][0]=base[base.index("/cert"):]+"/"+f
 							else:
-								fil["usuario"][1]=base+"/"+f
+								fil["usuario"][1]=base[base.index("/cert"):]+"/"+f
 					else:
+						num=re.search('.*/equipo/(.*)/.*',base[base.index("/cert"):]).group(1)
+						fil["equipo"][num]=["",""]
 						if "csr" in f:
-							fil["equipo"][0]=base+"/"+f
+							fil["equipo"][num][0]=base[base.index("/cert"):]+"/"+f
 						else:
-							fil["equipo"][1]=base+"/"+f
+							fil["equipo"][num][1]=base[base.index("/cert"):]+"/"+f
 		print fil
 
 		form_usuario = UploadFileFormUsuario()
