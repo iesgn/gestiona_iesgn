@@ -54,7 +54,7 @@ def add(request):
 							fil["equipo"][0]=base+"/"+f
 						else:
 							fil["equipo"][1]=base+"/"+f
-		print files
+		print fil
 
 		form_usuario = UploadFileFormUsuario()
 		form_equipo = UploadFileFormEquipo()
