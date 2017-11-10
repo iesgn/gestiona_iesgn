@@ -13,21 +13,28 @@ import os.path
 def add(request):
 	test_login(request)
 	if request.method == 'POST':
-		form = UploadFileForm(request.POST, request.FILES)
+		if request.FILES["csr_equipo"]:
+			form = UploadFileFormEquipo(request.POST, request.FILES)
+			campo="csr_equipo"
+			tipo="equipo"
+		else:
+			form = UploadFileFormUsuario(request.POST, request.FILES)
+			campo="csr_usuario"
+			tipo="usuario"
 		if form.is_valid():
-			if request.FILES["csr"].content_type=="application/pkcs10":
-				handle_uploaded_file(request.FILES["csr"],request.session["username"])
-				asunto="Petición de certificado de " + str(request.session["username"])
-				cuerpo="El usuario %s ha subido un fichero csr:%s al programa gestiona, para gestionar la firma de su certificado."%(request.session["username"],request.FILES["csr"].name)
-				email = EmailMessage(
- 				   asunto,
-				   cuerpo,
-    				'informatica@gonzalonazareno.org',
-				    ['informatica@gonzalonazareno.org'],
-				    [],
-				    reply_to=['informatica.gonzalonazareno.org'],
-				    )
-				email.send()
+			if request.FILES[campo].content_type=="application/pkcs10":
+				handle_uploaded_file(request.FILES[campo],request.session["username"],tipo)
+				#asunto="Petición de certificado de "+tipo+" de " + str(request.session["username"])
+#				cuerpo="El usuario %s ha subido un fichero csr:%s al programa gestiona, para gestionar la firma de su certificado de %s."%(request.session["username"],request.FILES[campo].name,tipo)
+#				email = EmailMessage(
+# 				   asunto,
+#				   cuerpo,
+#    				'informatica@gonzalonazareno.org',
+#				    ['informatica@gonzalonazareno.org'],
+#				    [],
+#				    reply_to=['informatica.gonzalonazareno.org'],
+#				    )
+#				email.send()
 			else:
 				messages.add_message(request, messages.INFO, "Tienes que subir un fichero csr...")
 			return redirect(settings.SITE_URL+'/certificados')
@@ -45,8 +52,8 @@ def add(request):
 		return render(request, 'files.html', {'files': files,'paths':paths,'form_usuario':form_usuario,'form_equipo':form_equipo})
 		
 
-def handle_uploaded_file(f,nombre):
-	path= os.path.join(settings.BASE_DIR, 'cert/%s'%nombre)
+def handle_uploaded_file(f,nombre,tipo):
+	path= os.path.join(settings.BASE_DIR, 'cert/%s/%s'%(nombre,tipo))
 	if not os.path.isdir(path):
 		os.makedirs(path)
 	path_file=path+"/"+f.name
