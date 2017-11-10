@@ -25,17 +25,17 @@ def add(request):
 		if form.is_valid():
 			if request.FILES[campo].content_type=="application/pkcs10":
 				handle_uploaded_file(request.FILES[campo],request.session["username"],tipo)
-				#asunto="Petición de certificado de "+tipo+" de " + str(request.session["username"])
-#				cuerpo="El usuario %s ha subido un fichero csr:%s al programa gestiona, para gestionar la firma de su certificado de %s."%(request.session["username"],request.FILES[campo].name,tipo)
-#				email = EmailMessage(
-# 				   asunto,
-#				   cuerpo,
-#    				'informatica@gonzalonazareno.org',
-#				    ['informatica@gonzalonazareno.org'],
-#				    [],
-#				    reply_to=['informatica.gonzalonazareno.org'],
-#				    )
-#				email.send()
+				asunto="Petición de certificado de "+tipo+" de " + str(request.session["username"])
+				cuerpo="El usuario %s ha subido un fichero csr:%s al programa gestiona, para gestionar la firma de su certificado de %s."%(request.session["username"],request.FILES[campo].name,tipo)
+				email = EmailMessage(
+ 				   asunto,
+				   cuerpo,
+    				'informatica@gonzalonazareno.org',
+				    ['informatica@gonzalonazareno.org'],
+				    [],
+				    reply_to=['informatica.gonzalonazareno.org'],
+				    )
+				email.send()
 			else:
 				messages.add_message(request, messages.INFO, "Tienes que subir un fichero csr...")
 			return redirect(settings.SITE_URL+'/cert')
@@ -108,5 +108,13 @@ def download(request,usuario,direc="",file=""):
 	else:
 		return redirect(settings.SITE_URL)
 
-def download_usuario(request,usuario,file):
-	return redirect(settings.SITE_URL)
+def revocar(request,usuario,direc="",file=""):
+	
+	test_login(request)
+	if usuario==request.session["username"]:
+		if direc=="":
+			filename = str(os.path.join(settings.BASE_DIR, 'cert/%s/usuario/%s'%(request.session["username"],file)))
+		else:
+			filename = str(os.path.join(settings.BASE_DIR, 'cert/%s/equipo/%s/%s'%(request.session["username"],direc,file)))
+		os.rename(filename,filename+"_revocar")
+		return redirect(settings.SITE_URL)		
