@@ -13,7 +13,7 @@ import os.path
 def add(request):
 	test_login(request)
 	if request.method == 'POST':
-		if request.FILES["csr_equipo"]:
+		if "csr_equipo" in request.FILES:
 			form = UploadFileFormEquipo(request.POST, request.FILES)
 			campo="csr_equipo"
 			tipo="equipo"
