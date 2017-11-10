@@ -11,8 +11,8 @@
 <div class="panel panel-default">
   <div class="panel-heading"><h3 class="panel-title">Tu fichero csr (#{{num}})</h3></div>
   <div class="panel-body">
-    <strong>{{fs.0.first}}</strong><br/>
-    <a href="{{fs.0.last}}" class="btn btn-primary">Descargar</a>
+    <strong>{{fs.0|first}}</strong><br/>
+    <a href="{{fs.0|last}}{{fs.0|first}}/" class="btn btn-primary">Descargar</a>
   </div>
 </div>
 {% endfor %}
