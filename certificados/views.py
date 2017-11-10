@@ -52,14 +52,20 @@ def add(request):
 							if "csr" in f:
 								fil["usuario"][0]=settings.SITE_URL+base[base.index("/cert"):],f
 							else:
-								fil["usuario"][1]=settings.SITE_URL+base[base.index("/cert"):],f
+								if "revocar" in f:
+									fil["usuario"][1]=settings.SITE_URL+base[base.index("/cert"):],"*"
+								else:
+									fil["usuario"][1]=settings.SITE_URL+base[base.index("/cert"):],f
 					else:
 						
 						
 						if "csr" in f:
 							fil["equipo"][num][0]=settings.SITE_URL+base[base.index("/cert"):],f
 						else:
-							fil["equipo"][num][1]=settings.SITE_URL+base[base.index("/cert"):],f
+							if "revocar" in f:
+								fil["equipo"][num][1]=settings.SITE_URL+base[base.index("/cert"):],"*"
+							else:
+								fil["equipo"][num][1]=settings.SITE_URL+base[base.index("/cert"):],f
 	
 		form_usuario = UploadFileFormUsuario()
 		form_equipo = UploadFileFormEquipo()
@@ -117,4 +123,4 @@ def revocar(request,usuario,direc="",file=""):
 		else:
 			filename = str(os.path.join(settings.BASE_DIR, 'cert/%s/equipo/%s/%s'%(request.session["username"],direc,file)))
 		os.rename(filename,filename+"_revocar")
-		return redirect(settings.SITE_URL)		
+		return redirect(settings.SITE_URL+'/cert')		
