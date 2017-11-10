@@ -49,8 +49,8 @@ def add(request):
 		
 		print files
 
-			for file in files:
-				paths.append(settings.SITE_URL+"/certificados/"+request.session["username"]+"/"+file)
+		for file in files:
+			paths.append(settings.SITE_URL+"/certificados/"+request.session["username"]+"/"+file)
 		form_usuario = UploadFileFormUsuario()
 		form_equipo = UploadFileFormEquipo()
 		return render(request, 'files.html', {'files': files,'paths':paths,'form_usuario':form_usuario,'form_equipo':form_equipo})
