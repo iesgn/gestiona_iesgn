@@ -44,8 +44,9 @@ def add(request):
 		fil={"usuario":["",""],"equipo":{}}
 		for base, dirs, files in os.walk(path):
 			if len(files)>0:
-				num=re.search('.*/equipo/(.*)',base[base.index("/cert"):]).group(1)
-				fil["equipo"][num]=["",""]
+				if "equipo" in base:
+					num=re.search('.*/equipo/(.*)',base[base.index("/cert"):]).group(1)
+					fil["equipo"][num]=["",""]
 				for f in files:
 					if "usuario" in base:
 							if "csr" in f:
