@@ -40,8 +40,7 @@ def add(request):
 			return redirect(settings.SITE_URL+'/certificados')
 	else:
 		path = os.path.join(settings.BASE_DIR, 'cert/%s'%request.session["username"])
-		files["usuario"]=[]
-		files["equipo"]=[]
+		files={"usuario":[],"equipo":[]}
 		for base, dirs, files in os.walk('cert/josedom'):
 			if len(files)>0:
 				for f in files:
