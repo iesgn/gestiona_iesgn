@@ -5,7 +5,7 @@
 {% block content %}
 <h3>Gestión de Certificados</h3>
 
-<div class="panel panel-default">
+<!--<div class="panel panel-default">
   <div class="panel-heading"><h3 class="panel-title">Tu fichero csr</h3></div>
   <div class="panel-body">
     <strong>{{files.0}}</strong><br/>
@@ -27,7 +27,44 @@
 {% else %}
 
 <p>Se está gestionando la generación de tu certificado...</p>
-{% endif %}
+{% endif %}-->
+
+<div class="row">
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-danger alert-dismissable fade in">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      {{ message }}</div>
+    {% endfor%}
+  {% endif %}
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading"><h3 class="panel-title">Certificado de equipo</h3></div>
+  <div class="panel-body">
+    <form  method="post" enctype="multipart/form-data">
+
+    {% csrf_token %}
+    {{ form_equipo.as_p}}
+    <br/><input name ="certificados" class="btn btn-primary" type="submit" value="Enviar" />    
+  </form>    
+</div>
+</div>
+
+<br/><br/>
+
+<div class="panel panel-danger">
+  <div class="panel-heading"><h3 class="panel-title">Certificado de usuarios</h3></div>
+  <div class="panel-body">
+    <form  method="post" enctype="multipart/form-data">
+
+    {% csrf_token %}
+    {{ form_usuario.as_p}}
+    <br/><input name ="certificados" class="btn btn-danger" type="submit" value="Enviar" />    
+  </form>    
+</div>
+</div>
 
 <br/><br/>
 

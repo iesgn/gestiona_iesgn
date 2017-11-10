@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render,redirect,HttpResponse
-from .forms import UploadFileForm
+from .forms import UploadFileFormEquipo,UploadFileFormUsuario
 from django.conf import settings
 from gestiona_iesgn.views import test_login
 from wsgiref.util import FileWrapper
@@ -33,15 +33,17 @@ def add(request):
 			return redirect(settings.SITE_URL+'/certificados')
 	else:
 		path= os.path.join(settings.BASE_DIR, 'cert/%s'%request.session["username"])
+		paths=[]
+		files=[]
 		if  os.path.isdir(path):
 			files=os.listdir(path)
-			paths=[]
+			
 			for file in files:
 				paths.append(settings.SITE_URL+"/certificados/"+request.session["username"]+"/"+file)
-			return render(request, 'files.html', {'files': files,'paths':paths})
-		else:
-			form = UploadFileForm()
-			return render(request, 'upload.html', {'form': form})
+		form_usuario = UploadFileFormUsuario()
+		form_equipo = UploadFileFormEquipo()
+		return render(request, 'files.html', {'files': files,'paths':paths,'form_usuario':form_usuario,'form_equipo':form_equipo})
+		
 
 def handle_uploaded_file(f,nombre):
 	path= os.path.join(settings.BASE_DIR, 'cert/%s'%nombre)
