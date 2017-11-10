@@ -38,7 +38,7 @@ def add(request):
 #				email.send()
 			else:
 				messages.add_message(request, messages.INFO, "Tienes que subir un fichero csr...")
-			return redirect(settings.SITE_URL+'/certificados')
+			return redirect(settings.SITE_URL+'/cert')
 	else:
 		path = os.path.join(settings.BASE_DIR, 'cert/%s'%request.session["username"])
 		fil={"usuario":["",""],"equipo":{}}
