@@ -88,19 +88,19 @@ def handle_uploaded_file(f,nombre,tipo):
 	with open(path_file, 'w') as destination:
 		destination.write(f.read())
 
-def download(request,usuario,tipo,direc="",file):
+def download_equipo(request,usuario,direc,file):
 	test_login(request)
 	if usuario==request.session["username"]:
-		if tipo=="equipo":
-			filename = str(os.path.join(settings.BASE_DIR, 'cert/%s/equipo/%s%s'%(request.session["username"],direc,file)))
-			
-			f=open(filename,'r')
-			wrapper = FileWrapper(f)
-			response = HttpResponse(wrapper, content_type='text/plain')
-			response['Content-Disposition'] = 'attachment; filename=%s' % os.path.basename(filename)
-			response['Content-Length'] = os.path.getsize(filename)
-			return response
-		else:
-			return redirect(settings.SITE_URL)	
+		filename = str(os.path.join(settings.BASE_DIR, 'cert/%s/equipo/%s%s'%(request.session["username"],direc,file)))
+		f=open(filename,'r')
+		wrapper = FileWrapper(f)
+		response = HttpResponse(wrapper, content_type='text/plain')
+		response['Content-Disposition'] = 'attachment; filename=%s' % os.path.basename(filename)
+		response['Content-Length'] = os.path.getsize(filename)
+		return response
+	
 	else:
 		return redirect(settings.SITE_URL)
+
+def download_usuario(request,usuario,file):
+	return redirect(settings.SITE_URL)
