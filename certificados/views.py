@@ -58,7 +58,10 @@ def handle_uploaded_file(f,nombre,tipo):
 	path= os.path.join(settings.BASE_DIR, 'cert/%s/%s'%(nombre,tipo))
 	
 	if tipo=="equipo":
-		dirs=os.listdir(path)
+		try:
+			dirs=os.listdir(path)
+		except:
+			dirs=[]
 		if len(dirs)==0:
 			dir=1
 		else:
