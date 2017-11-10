@@ -19,12 +19,12 @@
         </td>
   
   {% if fs.1%}
-    <tr>
+    
       <td>
           Tu fichero crt: <strong>{{fs.1|last}}</strong><br/>
           <a href="{{fs.0|first}}/{{fs.1|last}}" class="btn btn-primary">Descargar</a>
       </td>
-    </tr>
+    
   {%else%}
     <br/><strong>Se está gestionando la generación de tu certificado...</strong>
   {% endif%}
