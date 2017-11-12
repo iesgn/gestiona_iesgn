@@ -31,7 +31,7 @@
         </td>
   
   {% if fs.1%}
-      {% if fs.1|last="*"%}
+      {% if fs.1|last == "*" %}
       <td>
         <strong>Se está gestionando la revocación de tu certificado...</strong>
       </td>
@@ -81,7 +81,7 @@
         </td>
   
   {% if files.usuario.1%}
-    {% if files.usuario.1|last="*"%}
+    {% if files.usuario.1|last == "*" %}
       <td>
         <strong>Se está gestionando la revocación de tu certificado...</strong>
       </td>
