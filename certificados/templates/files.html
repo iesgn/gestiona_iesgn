@@ -31,17 +31,13 @@
         </td>
   
   {% if fs.1%}
-      {% if fs.1|last == "*" %}
-      <td>
-        <strong>Se está gestionando la revocación de tu certificado...</strong>
-      </td>
-      {%else%}
+      
       <td>
           Tu fichero crt: <strong>{{fs.1|last}}</strong><br/>
           <a href="{{fs.0|first}}/{{fs.1|last}}" class="btn btn-primary">Descargar</a>
           <a href="{{fs.1|first}}/{{fs.1|last}}/del" class="btn btn-primary">Revocar</a>
       </td>
-      {% endif %}
+
   {%else%}
       <td>
         <strong>Se está gestionando la generación de tu certificado...</strong>
