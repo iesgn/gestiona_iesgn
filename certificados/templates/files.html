@@ -88,7 +88,9 @@
       {%else%}
       <td>
           Tu fichero crt: <strong>{{files.usuario.1|last}}</strong><br/>
-          <a href="{{files.usuario.0|first}}/{{files.usuario.1|last}}" class="btn btn-danger">Descargar</a>
+          <a href="{{files.usuario.1|first}}/{{files.usuario.1|last}}" class="btn btn-danger">Descargar</a>
+          <a href="{{files.usuario.1|first}}/{{files.usuario.1|last}}/del" class="btn btn-danger">Revocar</a>
+
       </td>
       {%endif%}
     
