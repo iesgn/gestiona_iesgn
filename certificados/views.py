@@ -127,7 +127,7 @@ def revocar(request,usuario,direc="",file=""):
 		os.rename(filename,filename+"_revocar")
 		asunto="Petición de revocación de certificado de "+tipo+" de " + str(request.session["username"])
 		file=str(file)
-		cuerpo="El usuario "+usuario+" ha solicitado la revocación de su certificado de "+tipo+":"+file
+		cuerpo="El usuario "+str(usuario)+" ha solicitado la revocación de su certificado de "+tipo+":"+file
 		email = EmailMessage(
  				   asunto,
 				   cuerpo,
