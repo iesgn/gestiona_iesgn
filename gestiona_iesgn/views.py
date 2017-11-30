@@ -9,7 +9,7 @@ def index(request):
         username = request.POST["username"]
         password = request.POST["password"].encode('utf-8')
         lldap=gnLDAP(username,password)
-        if lldap.isbind:
+        if username!="" and lldap.isbind:
                 busqueda='(uid=%s)'%username
                 resultados=lldap.buscar(busqueda)
                 info=resultados[0].get_attributes()
