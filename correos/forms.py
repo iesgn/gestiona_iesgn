@@ -44,6 +44,7 @@ class BuscarDestinatariosForm(forms.Form):
 				("smr2","2º SMR"),
 				('tituladosasir', 'Titulados ASIR'),
     			('tituladossmr', 'Titulados SMR'),
+    			('alltitulados', 'Todos los titulados'),
 				("profesores","Profesores"),
 				("antiguosprofesores","Antiguos Profesores"),
 				('allprofesores','Todos los profesores'),
