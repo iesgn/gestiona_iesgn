@@ -8,11 +8,13 @@ grupos = (
     ('asir2', '2º ASIR'),
     ('smr1', '1º SMR'),
     ('smr2', '2º SMR'),
-    ('antiguosalumnos', 'Antiguos Alumnos'),
+    ('tituladosasir', 'Titulados ASIR'),
+    ('tituladossmr', 'Titulados SMR'),
     ('allprofesores','Todos los profesores'),
     ('profesores','Profesores'),
     ('antiguosprofesores', 'Antiguos Profesores'),
     ('openstackusers','Usuarios OpenStack'),
+    ('antiguosalumnos', 'Otros Alumnos'),
 
 )
 grupo_add = (
@@ -22,7 +24,7 @@ grupo_add = (
     ('smr1', '1º SMR'),
     ('smr2', '2º SMR'),
     ('profesores','Profesor'),
-    ('antiguosalumnos', 'Antiguo Alumno'),
+    ('antiguosalumnos', 'Otros alumnos'),
 
     )
 
