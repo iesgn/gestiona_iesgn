@@ -42,11 +42,13 @@ class BuscarDestinatariosForm(forms.Form):
 				("asir2","2º ASIR"),
 				("smr1","1º SMR"),
 				("smr2","2º SMR"),
-				("antiguosalumnos","Antiguos Alumnos"),
+				('tituladosasir', 'Titulados ASIR'),
+    			('tituladossmr', 'Titulados SMR'),
 				("profesores","Profesores"),
 				("antiguosprofesores","Antiguos Profesores"),
 				('allprofesores','Todos los profesores'),
 				('openstackusers','Usuarios OpenStack'),
+				("antiguosalumnos","Otros Alumnos"),
 				]
 			ldap=gnLDAP()
 			
