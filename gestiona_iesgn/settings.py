@@ -12,8 +12,11 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 
-SITE_URL = 'https://gestiona.gonzalonazareno.org/gestiona'
-SITE_URL_STATIC = 'https://gestiona.gonzalonazareno.org/gestiona/static/'
+#SITE_URL = 'https://gestiona.gonzalonazareno.org/gestiona'
+#SITE_URL_STATIC = 'https://gestiona.gonzalonazareno.org/gestiona/static/'
+
+SITE_URL = 'http://localhost:8000'
+SITE_URL_STATIC = 'http://localhost:8000/static/'
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

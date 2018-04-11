@@ -18,6 +18,8 @@ def cursos(request,curso):
     ('smr2', '2º SMR'),
     ('profesores','Profesores'),
     ('openstackusers','Usuarios OpenStack'),
+    ('tituladosasir','Titulados ASIR'),
+    ('tituladossmr','Titulados SMR'),
 	)
 	test_profesor(request)
 	ldap=gnLDAP()

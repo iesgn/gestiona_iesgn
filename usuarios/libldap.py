@@ -57,10 +57,12 @@ class gnLDAP(LibLDAP):
         'asir2':'2º ASIR',
         'smr1':'1º SMR',
         'smr2':'2º SMR',
-        'antiguosalumnos':'A.A.',
+        'antiguosalumnos':'Otros',
         'profesores':'Profesor',
         'antiguosprofesores':'A.P.',
-        'openstackusers':'OpenStack'}
+        'openstackusers':'OpenStack',
+        'tituladosasir':'Titulados ASIR',
+        'tituladossmr':'Titulados SMR',}
 
     def __init__(self,username="",password="",base_dn=""):
         LibLDAP.__init__(self,username,password)
