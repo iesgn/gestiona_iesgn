@@ -1,10 +1,13 @@
 from django.shortcuts import render,redirect
+import socket
 from usuarios.libldap import gnLDAP
 from django.conf import settings
 from django.http import Http404
 def index(request):
     if request.method=="GET":
-            return render(request,'index.html')
+        hostname = socket.gethostname()
+        info={"hostname":hostname}
+        return render(request,'index.html',info)
     else:
         username = request.POST["username"]
         password = request.POST["password"].encode('utf-8')
