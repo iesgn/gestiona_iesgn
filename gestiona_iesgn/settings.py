@@ -12,8 +12,8 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 
-SITE_URL = 'http://dit.gonzalonazareno.org/gestiona'
-SITE_URL_STATIC = 'http://dit.gonzalonazareno.org/gestiona/static/'
+SITE_URL = 'https://dit.gonzalonazareno.org/gestiona'
+SITE_URL_STATIC = 'https://dit.gonzalonazareno.org/gestiona/static/'
 
 #SITE_URL = 'http://localhost:8000'
 #SITE_URL_STATIC = 'http://localhost:8000/static/'
