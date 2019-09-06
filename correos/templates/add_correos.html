@@ -18,6 +18,7 @@ $(document).ready(function() {
 <form  method="post">
 
     {% csrf_token %}
+    <p>Busca los destinatarios de un grupo:</p>
     {{ form2.as_p}}
     
     {{ form.as_p}}
