@@ -12,8 +12,8 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 
-SITE_URL = 'https://gestiona.gonzalonazareno.org/gestiona'
-SITE_URL_STATIC = 'https://gestiona.gonzalonazareno.org/gestiona/static/'
+SITE_URL = 'https://dit.gonzalonazareno.org/gestiona'
+SITE_URL_STATIC = 'https://dit.gonzalonazareno.org/gestiona/static/'
 
 #SITE_URL = 'http://localhost:8000'
 #SITE_URL_STATIC = 'http://localhost:8000/static/'
@@ -31,7 +31,7 @@ SECRET_KEY = 'g==5n6$*w+3xr+ge$vfj*v%ag!e(b4o6w3&u20s1tmpf50cqv2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["gestiona.gonzalonazareno.org","localhost"]
+ALLOWED_HOSTS = ["dit.gonzalonazareno.org","localhost"]
 
 
 # Application definition

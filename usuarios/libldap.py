@@ -18,7 +18,7 @@ class LibLDAP(object):
 
     def conectar(self,username,password):
         try:
-            self.con=ldap.initialize("ldap://papion.gonzalonazareno.org")
+            self.con=ldap.initialize("ldap://ldap.gonzalonazareno.org")
             self.con.protocol_version = ldap.VERSION3
             self.con.opt_sizelimit=3000
             if username!="":
