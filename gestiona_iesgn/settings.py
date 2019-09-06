@@ -136,3 +136,5 @@ STATICFILES_DIRS = (
             # Don't forget to use absolute paths, not relative paths.
             os.path.join(BASE_DIR,"static"),
                 )
+
+EMAIL_HOST = 'correo.gonzalonazareno.org'
