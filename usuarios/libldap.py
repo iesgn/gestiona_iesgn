@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import ldap
 import ldap.modlist
 import ldif
@@ -138,13 +137,14 @@ class gnLDAP(LibLDAP):
                     cadena+="(%s=%s*)" % (campo,valor)
             cadena+=")"
       
-        lista = LibLDAP.buscar(self,cadena.encode("utf-8"))
+        lista = LibLDAP.buscar(self,cadena)
         resultado=[]
         for elem in lista:
             resultado.append(elem.get_attributes())
 
         if len(resultado)>0 and resultado[0].get(ordenarpor,False):
-        	resultado=sorted(resultado,key=lambda d: normalize(d[ordenarpor][0]))
+        	#resultado=sorted(resultado,key=lambda d: normalize(d[ordenarpor][0]))
+            resultado=sorted(resultado,key=lambda d: d[ordenarpor][0])
             
         
         return resultado
@@ -254,17 +254,17 @@ class LDAPSearchResult:
 
 
 
-def normalize(s, encoding = "UTF-8"):
-    if not isinstance(s,unicode):
-        s = s.decode(encoding)
-
-    ret = u""
-    for c in s:
-        n = name(c)
-        pos = n.find("WITH")
-        if pos >= 0:
-            n = n[:pos]
-        n = lookup(n.strip())
-        ret += n
-    return ret
-
+#def normalize(s, encoding = "UTF-8"):
+#    if not isinstance(s,unicode):
+#        s = s.decode(encoding)
+#
+#    ret = u""
+#    for c in s:
+#        n = name(c)
+#        pos = n.find("WITH")
+#        if pos >= 0:
+#            n = n[:pos]
+#        n = lookup(n.strip())
+#        ret += n
+#    return ret
+#
