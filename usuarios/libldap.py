@@ -30,7 +30,7 @@ class LibLDAP(object):
                 self.isbind=True
             else:
                 self.isbind=False
-        except ldap.LDAPError, e:
+        except ldap.LDAPError as e:
             self.isbind=False
 
     def buscar(self,filter):
