@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from django.shortcuts import render,redirect
 from usuarios.libldap import LibLDAP,gnLDAP
 from usuarios.forms import BuscarUsuario,newUserForm,updateUserForm,deleteUserForm,deleteUserForm2
@@ -9,6 +8,7 @@ from django.conf import settings
 
 import binascii
 import hashlib
+import base64
 
 
 def listarUsuarios(request):
@@ -18,12 +18,12 @@ def listarUsuarios(request):
     if request.method=="GET":
         form=BuscarUsuario()
         filtro["grupo"]='all'
-        filtro["givenname"]=""
+        filtro["givenName"]=""
         filtro["sn"]=""
     else:
         form=BuscarUsuario(request.POST)
         filtro["grupo"]=request.POST["grupo"]
-        filtro["givenname"]="" if request.POST["nombre"]=="" else request.POST["nombre"]
+        filtro["givenName"]="" if request.POST["nombre"]=="" else request.POST["nombre"]
         filtro["sn"]="" if request.POST["apellidos"]=="" else request.POST["apellidos"]    
     lista=ldap.gnBuscar(filtro=filtro)
     lista=getGrupo(lista)
@@ -60,7 +60,7 @@ def add(request):
         # Quito las listas
         datos=quito_listas_en_resultado(datos)#
         datos["uidnumber"]=str(int(lista[-1]["uidnumber"][0])+1)
-        datos["cn"]=datos["givenname"]+" "+datos["sn"]
+        datos["cn"]=datos["givenName"]+" "+datos["sn"]
         datos["loginshell"]="/bin/bash"
         
         if grupo=="profesores":
@@ -71,9 +71,9 @@ def add(request):
             directory="alumnos"
         datos["homedirectory"]="/home/%s/%s"%(directory,datos["uid"])
         datos["objectclass"]= ['inetOrgPerson', 'posixAccount', 'top']
-        the_hash = hashlib.md5(datos["userpassword"]).hexdigest()
+        the_hash = hashlib.md5(datos["userPassword"]).hexdigest()
         the_unhex = binascii.unhexlify(the_hash)
-        datos["userpassword"]="{MD5}"+the_unhex.encode('base64')
+        datos["userPassword"]="{MD5}"+base64.b64encode(the_unhex).decode("utf-8")
         if ldap.isbind:
             mensaje='Se ha añadido el nuevo usuario.'    
             try: 
@@ -101,10 +101,7 @@ def update(request,usuario):
     lista=ldap.gnBuscar(cadena="(uid=%s)"%usuario)
     if len(lista)==0:
         return redirect(settings.SITE_URL+"/")
-    datos=quito_listas_en_resultado(lista[0],utf8=False)
-    
-    
-    
+    datos=quito_listas_en_resultado(lista[0])
     form=updateUserForm(datos) if request.method=="GET" else updateUserForm(request.POST)
     if request.method=="POST" and form.is_valid():
         new=dict(form.data)
@@ -115,21 +112,21 @@ def update(request,usuario):
         # Quito las listas
         new=quito_listas_en_resultado(new)
         old={}
-        new["cn"]=new["givenname"]+" "+new["sn"]
-        if new["userpassword"]!='':
-            nuevapass=new["userpassword"]
-            the_hash = hashlib.md5(new["userpassword"]).hexdigest()
+        new["cn"]=new["givenName"]+" "+new["sn"]
+        if new["userPassword"]!='':
+            nuevapass=new["userPassword"]
+            the_hash = hashlib.md5(new["userPassword"]).hexdigest()
             the_unhex = binascii.unhexlify(the_hash)
-            new["userpassword"]="{MD5}"+the_unhex.encode('base64')#
+            new["userPassword"]="{MD5}"+base64.b64encode(the_unhex).decode("utf-8")
         else:
-            the_hash = hashlib.md5(request.session["password"]).hexdigest()
+            the_hash = hashlib.md5(request.session["password"].encode('utf-8')).hexdigest()
             the_unhex = binascii.unhexlify(the_hash)
-            new["userpassword"]="{MD5}"+the_unhex.encode('base64')
-        the_hash = hashlib.md5(request.session["password"]).hexdigest()
+            new["userPassword"]="{MD5}"+base64.b64encode(the_unhex).decode("utf-8")
+        the_hash = hashlib.md5(request.session["password"].encode('utf-8')).hexdigest()
         the_unhex = binascii.unhexlify(the_hash)
-        datos["userpassword"]="{MD5}"+the_unhex.encode('base64')
+        datos["userPassword"]="{MD5}"+ base64.b64encode(the_unhex).decode("utf-8")
         
-        for campo in new.keys():
+        for campo in list(new):
             if new[campo]==datos[campo]:
                 del new[campo]
         for campo in new:
@@ -164,15 +161,16 @@ def update(request,usuario):
     info={'form':form}
     return render(request,"update.html",info)
 
-def quito_listas_en_resultado(datos,utf8=True):
+def quito_listas_en_resultado(datos):
+    datos2={}
     for campo,valor in datos.items():
-        if utf8:
-            resultado=valor[0].encode('utf-8')
-        else:
+        if type(valor)==list and len(valor)==1:
             resultado=valor[0]
-        del datos[campo]
-        datos[campo.encode('utf-8')]=resultado
-    return datos#
+        else:
+            resultado=valor
+
+        datos2[campo]=resultado
+    return datos2#
 def perfil(request):
     test_login(request)
     lldap=gnLDAP()
