@@ -2,7 +2,7 @@
 import ldap
 import ldap.modlist
 import ldif
-from StringIO import StringIO
+from io import StringIO
 from ldap.cidict import cidict
 from unicodedata import lookup, name
 
