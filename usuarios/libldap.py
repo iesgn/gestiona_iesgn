@@ -84,7 +84,8 @@ class gnLDAP(LibLDAP):
     def memberOfGroup(self,uid,key=False):
         lista=[]
         for clave,valor in self.grupos.items():
-            if "uid=%s,ou=People,dc=gonzalonazareno,dc=org" % uid in valor:
+            usuario="uid=%s,ou=People,dc=gonzalonazareno,dc=org" % uid
+            if usuario.encode("utf-8") in valor:
                 if not key:
                     lista.append(self.grupo[clave])
                 else:

@@ -10,7 +10,7 @@ def index(request):
         return render(request,'index.html',info)
     else:
         username = request.POST["username"]
-        password = request.POST["password"].encode('utf-8')
+        password = request.POST["password"]
         lldap=gnLDAP(username,password)
         if username!="" and lldap.isbind:
                 busqueda='(uid=%s)'%username
