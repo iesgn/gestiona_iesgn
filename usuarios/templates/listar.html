@@ -49,7 +49,7 @@
       {% for r in resultados %}
       <tr>
         <td class="text-center">{{forloop.counter}}</td>
-        <td>{{r.sn.0}}, {{r.givenname.0}} ({{r.uid.0}})</td>
+        <td>{{r.sn.0}}, {{r.givenName.0}} ({{r.uid.0}})</td>
         {% autoescape off %}
         <td class="text-center"><p class="small">{{r.grupo}}</p></td>
         {% endautoescape %}

@@ -85,7 +85,7 @@ class gnLDAP(LibLDAP):
         lista=[]
         for clave,valor in self.grupos.items():
             usuario="uid=%s,ou=People,dc=gonzalonazareno,dc=org" % uid
-            if usuario.encode("utf-8") in valor:
+            if usuario in valor:
                 if not key:
                     lista.append(self.grupo[clave])
                 else:
@@ -141,8 +141,15 @@ class gnLDAP(LibLDAP):
         lista = LibLDAP.buscar(self,cadena)
         resultado=[]
         for elem in lista:
-            resultado.append(elem.get_attributes())
-
+            usuario=elem.get_attributes()
+            valores={}
+            for a,b in usuario.items():
+                if type(b) == list and "jpeg" not in a:
+                    valores[a]=[x.decode("utf-8") for x in b]
+                else:
+                    valores[a]=b
+                    
+            resultado.append(valores)
         if len(resultado)>0 and resultado[0].get(ordenarpor,False):
         	#resultado=sorted(resultado,key=lambda d: normalize(d[ordenarpor][0]))
             resultado=sorted(resultado,key=lambda d: d[ordenarpor][0])
