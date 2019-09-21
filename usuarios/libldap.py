@@ -36,6 +36,7 @@ class LibLDAP(object):
         result=self.con.search_ext_s(self.base_dn, ldap.SCOPE_SUBTREE, filter,sizelimit=1000)
         return get_search_results(result)
     def add(self,uid,attrs):
+        attrs=convertir_dict_str_to_byte(attrs)
         self.con.add_s("uid="+uid+","+self.base_dn,self.addldif(attrs))
         self.con.unbind_s()
     def addldif(self,attrs):
@@ -142,14 +143,7 @@ class gnLDAP(LibLDAP):
         resultado=[]
         for elem in lista:
             usuario=elem.get_attributes()
-            valores={}
-            for a,b in usuario.items():
-                if type(b) == list and "jpeg" not in a:
-                    valores[a]=[x.decode("utf-8") for x in b]
-                else:
-                    valores[a]=b
-                    
-            resultado.append(valores)
+            resultado.append(convertir_dict_byte_to_str(usuario))
         if len(resultado)>0 and resultado[0].get(ordenarpor,False):
         	#resultado=sorted(resultado,key=lambda d: normalize(d[ordenarpor][0]))
             resultado=sorted(resultado,key=lambda d: d[ordenarpor][0])
@@ -276,3 +270,23 @@ class LDAPSearchResult:
 #        ret += n
 #    return ret
 #
+
+def convertir_dict_byte_to_str(usuario):
+    valores={}
+    for a,b in usuario.items():
+        if type(b) == list and "jpeg" not in a:
+            valores[a]=[x.decode("utf-8") for x in b]
+        else:
+            valores[a]=b
+    return valores
+
+def convertir_dict_str_to_byte(usuario):
+    valores={}
+    for a,b in usuario.items():
+        if type(b) == str and "jpeg" not in a:
+            valores[a]=a.encode("utf-8")
+        elif type(b) == list and "jpeg" not in a:
+            valores[a]=[x.encode("utf-8") for x in b]
+        else:
+            valores[a]=b
+    return valores

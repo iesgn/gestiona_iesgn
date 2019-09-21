@@ -51,7 +51,7 @@ def add(request):
         # Calcular max uidnumbre
         # Toda la lista desde clase 1 hasta 9 #####
         ldap=gnLDAP(request.session["username"],request.session["password"])
-        lista=ldap.gnBuscar(cadena="(cn=*)",ordenarpor="uidnumber")
+        lista=ldap.gnBuscar(cadena="(cn=*)",ordenarpor="uidNumber")
         datos=dict(form.data)
         grupo=datos["grupo"][0]
         del datos["csrfmiddlewaretoken"]
@@ -59,25 +59,25 @@ def add(request):
         # Tengo un diccionario donde cada campo es una lista
         # Quito las listas
         datos=quito_listas_en_resultado(datos)#
-        datos["uidnumber"]=str(int(lista[-1]["uidnumber"][0])+1)
+        datos["uidNumber"]=str(int(lista[-1]["uidNumber"][0])+1)
         datos["cn"]=datos["givenName"]+" "+datos["sn"]
         datos["loginshell"]="/bin/bash"
         
         if grupo=="profesores":
-            datos["gidnumber"]="2000"
+            datos["gidNumber"]="2000"
             directory="profesores"
         else:
-            datos["gidnumber"]="2001"
+            datos["gidNumber"]="2001"
             directory="alumnos"
         datos["homedirectory"]="/home/%s/%s"%(directory,datos["uid"])
         datos["objectclass"]= ['inetOrgPerson', 'posixAccount', 'top']
-        the_hash = hashlib.md5(datos["userPassword"]).hexdigest()
+        the_hash = hashlib.md5(datos["userPassword"].encode('utf-8')).hexdigest()
         the_unhex = binascii.unhexlify(the_hash)
         datos["userPassword"]="{MD5}"+base64.b64encode(the_unhex).decode("utf-8")
         if ldap.isbind:
             mensaje='Se ha añadido el nuevo usuario.'    
             try: 
-                
+                print(datos)
                 ldap.add(datos["uid"],datos)
                 ldap=gnLDAP(request.session["username"],request.session["password"])
                 ldap.modUserGroup(datos["uid"],grupo,"add")
