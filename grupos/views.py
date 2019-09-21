@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from django.shortcuts import render,redirect
 from usuarios.libldap import gnLDAP
 from grupos.forms import BuscarUsuario

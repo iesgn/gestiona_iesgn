@@ -45,6 +45,8 @@ class LibLDAP(object):
         self.con.delete_s("uid="+uid+","+self.base_dn)
         self.con.unbind_s()
     def modify(self,uid,new,old):
+        new=convertir_dict_str_to_byte(new)
+        old=convertir_dict_str_to_byte(old)
         self.con.modify_s("uid="+uid+","+self.base_dn,self.modldif(old,new))
         self.con.unbind_s()
     def modldif(self,old,new):
@@ -105,13 +107,14 @@ class gnLDAP(LibLDAP):
 
     def modUserGroup(self,uid,grupo,adddel):
         modlist = []
+        usuario="uid=%s,ou=People,dc=gonzalonazareno,dc=org" % uid
+        print(usuario)
         if adddel=="add":
-            modlist.append((ldap.MOD_ADD, "member", "uid=%s,ou=People,dc=gonzalonazareno,dc=org" % uid ))
+            modlist.append((ldap.MOD_ADD, "member", usuario.encode("utf-8") ))
         elif adddel=="del":
-            modlist.append((ldap.MOD_DELETE, "member", "uid=%s,ou=People,dc=gonzalonazareno,dc=org" % uid ))
+            modlist.append((ldap.MOD_DELETE, "member", usuario.encode("utf-8") ))
         else:
-            return
-        self.con.modify_s("cn=%s,ou=Group,dc=gonzalonazareno,dc=org"%grupo,modlist)
+            return self.con.modify_s("cn=%s,ou=Group,dc=gonzalonazareno,dc=org"%grupo,modlist)
        
 
     def gnBuscar(self,filtro={},cadena="",ordenarpor="sn"):
@@ -284,7 +287,7 @@ def convertir_dict_str_to_byte(usuario):
     valores={}
     for a,b in usuario.items():
         if type(b) == str and "jpeg" not in a:
-            valores[a]=a.encode("utf-8")
+            valores[a]=b.encode("utf-8")
         elif type(b) == list and "jpeg" not in a:
             valores[a]=[x.encode("utf-8") for x in b]
         else:

@@ -77,7 +77,6 @@ def add(request):
         if ldap.isbind:
             mensaje='Se ha añadido el nuevo usuario.'    
             try: 
-                print(datos)
                 ldap.add(datos["uid"],datos)
                 ldap=gnLDAP(request.session["username"],request.session["password"])
                 ldap.modUserGroup(datos["uid"],grupo,"add")
@@ -141,17 +140,17 @@ def update(request,usuario):
         
         if ldap.isbind:
             
-            try: 
-                        
-                ldap.modify(datos["uid"],new,old)
-                try:
-                    request.session["password"]=nuevapass
-                except:
-                    pass
+            #try: 
                 
-            except Exception as err:
-                messages.add_message(request, messages.INFO, 'No se ha podido modificar el usuario. Error'+str(err))
-                return redirect("%s" % url)
+            ldap.modify(datos["uid"],new,old)
+            try:
+                request.session["password"]=nuevapass
+            except:
+                pass
+                
+            #except Exception as err:
+            #    messages.add_message(request, messages.INFO, 'No se ha podido modificar el usuario. Error'+str(err))
+            #    return redirect("%s" % url)
         else:
             messages.add_message(request, messages.INFO, 'No se ha podido modificar el usuario. Usuario autentificado incorrecto.')
             return redirect("%s" % url)#
@@ -188,13 +187,18 @@ def delete(request):
         busqueda='(uid=%s)'%(uid)
         datos=ldap.gnBuscar(cadena=busqueda)
         grupo=ldap.memberOfGroup(uid,key=True)
+        
         if grupo=="profesores" or grupo=="antiguosprofesores":
             info={"error":"No se puede borrar un profesor."}
         elif len(datos)==0:
             info={"error":"No existe ese usuario"}
         else:
+            if len(grupo)==0:
+                grupo="Sin grupo"
+            else:
+                grupo=ldap.memberOfGroup(uid)
             form=deleteUserForm2({'uiddel':uid})
-            info={'form':form,'grupo':ldap.memberOfGroup(uid),'nombre':datos[0]["cn"][0]}
+            info={'form':form,'grupo':grupo,'nombre':datos[0]["cn"][0]}
         return render(request,"delete.html",info)
     elif request.method=="POST" and request.POST.get("uiddel",False):
         if request.POST["confirmar"]=="no":
