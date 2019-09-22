@@ -21,11 +21,11 @@ def cursos(request,curso):
     ('tituladossmr','Titulados SMR'),
 	)
 	test_profesor(request)
-	ldap=gnLDAP()
+	
 	if not curso in [x[0] for x in grupos]:
 		raise Http404  
 	if request.method=="POST":
-		ldap=gnLDAP(request.session["username"],request.session["password"])
+		ldap=LibLDAP(request.session["username"],request.session["password"])
 		for usuario in request.POST.getlist("usuarios"):
 			grupos=ldap.memberOfGroup(usuario,key=True)
 			try:
@@ -38,22 +38,27 @@ def cursos(request,curso):
 				ldap.modUserGroup(str(usuario),str(curso),"add")
 			except:
 				pass
+		ldap.logout()
 
-	
+	ldap=LibLDAP()
 	filtro={"grupo":curso}
-	lista=ldap.gnBuscar(filtro=filtro)
 	form=BuscarUsuario(filtro)
-	info={"titulo":ldap.grupo[curso],"resultados":lista,"form":form}
+	filtro=ldap.conv_filtro(filtro)
+	lista=ldap.buscar(filtro,["sn","uid","givenname"])
+	
+	info={"titulo":ldap.grupos[curso],"resultados":lista,"form":form}
+	ldap.logout()
 	return render(request,"listar_cursos.html",info)
 
 def eliminar(request,curso,usuario):
 	test_profesor(request)
-	ldap=gnLDAP(request.session["username"],request.session["password"])
+	ldap=LibLDAP(request.session["username"],request.session["password"])
 	try:
 		ldap.modUserGroup(str(usuario),str(curso),"del")
 	except:
 		pass
-	ldap=gnLDAP()
+	ldap.logout()
+	ldap=LibLDAP()
 	grupos=ldap.memberOfGroup(usuario,key=True)
 	if len(grupos)==0:
 		ldap=gnLDAP(request.session["username"],request.session["password"])

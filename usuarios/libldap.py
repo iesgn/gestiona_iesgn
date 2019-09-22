@@ -85,6 +85,7 @@ class LibLDAP(object):
 
     def logout(self):
         self.conn.unbind()
+        self.isbind=False
 
     def add(self,uid,datos):
         usuario="uid=%s,%s" % (uid,self.base_dn)

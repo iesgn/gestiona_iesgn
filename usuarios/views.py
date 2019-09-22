@@ -41,6 +41,7 @@ def getGrupo(lista):
     for usuario in lista:
         usuario["grupo"]="<br/>".join(ldap.memberOfGroup(usuario["uid"][0]))
         resultado.append(usuario)
+    ldap.logout()
     return resultado
 
 #############################################################################################################
@@ -157,6 +158,7 @@ def update(request,usuario):
             messages.add_message(request, messages.INFO, 'No se ha podido modificar el usuario. Usuario autentificado incorrecto.')
             return redirect("%s" % url)#
         messages.add_message(request, messages.INFO, 'Se ha modificado el usuario.')
+        ldap.logout()
         return redirect("%s" % url)#
     
     info={'form':form}
@@ -172,11 +174,13 @@ def quito_listas_en_resultado(datos):
 
         datos2[campo]=resultado
     return datos2#
+
 def perfil(request):
     test_login(request)
     lldap=LibLDAP()
     busqueda='(uid=%s)'%(request.session["username"])
-    datos=lldap.gnBuscar(cadena=busqueda)
+    datos=lldap.buscar(busqueda,["uid"])
+    ldap.logout()
     return update(request,datos[0]["uid"][0])#
 
 #############################################################################################################
@@ -213,7 +217,7 @@ def delete(request):
                 for grupo in grupos:
                     ldap.modUserGroup(str(request.POST["uiddel"]),grupo,"del")
                 ldap.delete(request.POST["uiddel"])
-                
+                ldap.logout()
                 info={"error":"Usuario borrado con éxito."}
             except Exception as err:
                 info={"error":'No se ha podido borrar el usuario. Error'+str(err)}#
