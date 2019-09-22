@@ -61,11 +61,13 @@ def eliminar(request,curso,usuario):
 	ldap=LibLDAP()
 	grupos=ldap.memberOfGroup(usuario,key=True)
 	if len(grupos)==0:
-		ldap=gnLDAP(request.session["username"],request.session["password"])
+		ldap=LibLDAP(request.session["username"],request.session["password"])
 		if curso=="profesores":
 			ldap.modUserGroup(str(usuario),"antiguosprofesores","add")
 		else:
 			ldap.modUserGroup(str(usuario),"antiguosalumnos","add")
+		ldap.logout()
+	ldap.logout()
 	return redirect(settings.SITE_URL+"/grupos/"+curso)
 
 
