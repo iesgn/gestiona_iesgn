@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from usuarios.libldap import gnLDAP
+from usuarios.libldap import LibLDAP
 from grupos.forms import BuscarUsuario
 from gestiona_iesgn.views import test_profesor
 from django.http import Http404

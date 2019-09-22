@@ -44,7 +44,7 @@ class LibLDAP(object):
            
             if usuario in grupo["member"]:
                 if key:
-                    lista.append(grupo["cn"][0]])
+                    lista.append(grupo["cn"][0])
                 else:    
                     lista.append(self.grupos[grupo["cn"][0]])
         return lista

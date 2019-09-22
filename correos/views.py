@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
 from django.shortcuts import render,redirect
 from correos.forms import CorreoForm,BuscarDestinatariosForm
-from usuarios.libldap import gnLDAP
+from usuarios.libldap import LibLDAP
 
 from django.core.mail import EmailMessage
 from django.conf import settings

@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from usuarios.libldap import LibLDAP,gnLDAP
+from usuarios.libldap import LibLDAP
 from usuarios.forms import BuscarUsuario,newUserForm,updateUserForm,deleteUserForm,deleteUserForm2
 from gestiona_iesgn.views import test_profesor,test_login
 from django.contrib import messages
@@ -14,7 +14,7 @@ import base64
 def listarUsuarios(request):
     test_profesor(request)
     filtro={}
-    ldap=gnLDAP()
+    ldap=LibLDAP()
     if request.method=="GET":
         form=BuscarUsuario()
         filtro["grupo"]='all'
@@ -25,7 +25,9 @@ def listarUsuarios(request):
         filtro["grupo"]=request.POST["grupo"]
         filtro["givenName"]="" if request.POST["nombre"]=="" else request.POST["nombre"]
         filtro["sn"]="" if request.POST["apellidos"]=="" else request.POST["apellidos"]    
-    lista=ldap.gnBuscar(filtro=filtro)
+    filtro=ldap.conv_filtro(filtro)
+    lista=ldap.buscar(filtro,["sn","uid","givenname"])
+    lista=sorted(lista,key=lambda d: d["sn"])
     lista=getGrupo(lista)
     info={"resultados":lista,'form':form}
     return render(request,"listar.html",info)
@@ -34,7 +36,7 @@ def listarUsuarios(request):
 def getGrupo(lista):
     resultado=[]
 
-    ldap=gnLDAP()
+    ldap=LibLDAP()
     for usuario in lista:
         usuario["grupo"]="<br/>".join(ldap.memberOfGroup(usuario["uid"][0]))
         resultado.append(usuario)
@@ -50,7 +52,7 @@ def add(request):
     if form.is_valid():
         # Calcular max uidnumbre
         # Toda la lista desde clase 1 hasta 9 #####
-        ldap=gnLDAP(request.session["username"],request.session["password"])
+        ldap=LibLDAP(request.session["username"],request.session["password"])
         lista=ldap.gnBuscar(cadena="(cn=*)",ordenarpor="uidNumber")
         datos=dict(form.data)
         grupo=datos["grupo"][0]
@@ -78,7 +80,7 @@ def add(request):
             mensaje='Se ha añadido el nuevo usuario.'    
             try: 
                 ldap.add(datos["uid"],datos)
-                ldap=gnLDAP(request.session["username"],request.session["password"])
+                ldap=LibLDAP(request.session["username"],request.session["password"])
                 ldap.modUserGroup(datos["uid"],grupo,"add")
             except Exception as err:
                 mensaje='No se ha podido añadir el nuevo usuario. Error:' + str(err)
@@ -96,7 +98,7 @@ def add(request):
 def update(request,usuario):
     if not "perfil" in request.path: 
         test_profesor(request)
-    ldap=gnLDAP(request.session["username"],request.session["password"])
+    ldap=LibLDAP(request.session["username"],request.session["password"])
     lista=ldap.gnBuscar(cadena="(uid=%s)"%usuario)
     if len(lista)==0:
         return redirect(settings.SITE_URL+"/")
@@ -172,7 +174,7 @@ def quito_listas_en_resultado(datos):
     return datos2#
 def perfil(request):
     test_login(request)
-    lldap=gnLDAP()
+    lldap=LibLDAP()
     busqueda='(uid=%s)'%(request.session["username"])
     datos=lldap.gnBuscar(cadena=busqueda)
     return update(request,datos[0]["uid"][0])#
@@ -183,7 +185,7 @@ def delete(request):
     test_login(request)
     if request.method=="POST" and request.POST.get("uid",False):
         uid=request.POST["uid"]
-        ldap=gnLDAP()
+        ldap=LibLDAP()
         busqueda='(uid=%s)'%(uid)
         datos=ldap.gnBuscar(cadena=busqueda)
         grupo=ldap.memberOfGroup(uid,key=True)
@@ -204,7 +206,7 @@ def delete(request):
         if request.POST["confirmar"]=="no":
             return redirect(settings.SITE_URL+"/")
         if request.POST["confirmar"]=="si":
-            ldap=gnLDAP(request.session["username"],request.session["password"])
+            ldap=LibLDAP(request.session["username"],request.session["password"])
             grupos=ldap.memberOfGroup(request.POST["uiddel"],key=True)
             
             try:

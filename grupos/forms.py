@@ -1,4 +1,4 @@
-from usuarios.libldap import gnLDAP
+from usuarios.libldap import LibLDAP
 from django import forms
 
 

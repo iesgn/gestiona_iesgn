@@ -1,8 +1,7 @@
-# -*- coding: utf-8 -*-
 from django import forms
 from django.contrib.admin.widgets import FilteredSelectMultiple
 from django.forms.widgets import HiddenInput,Textarea,TextInput
-from usuarios.libldap import gnLDAP
+from usuarios.libldap import LibLDAP
 
 def getSelect():
 	ldap=gnLDAP()

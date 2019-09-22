@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 import socket
-from usuarios.libldap import gnLDAP
+from usuarios.libldap import LibLDAP
 from django.conf import settings
 from django.http import Http404
 def index(request):
@@ -11,11 +11,11 @@ def index(request):
     else:
         username = request.POST["username"]
         password = request.POST["password"]
-        lldap=gnLDAP(username,password)
+        lldap=LibLDAP(username,password)
         if username!="" and lldap.isbind:
                 busqueda='(uid=%s)'%username
                 resultados=lldap.buscar(busqueda)
-                info=resultados[0].get_attributes()
+                
                 # Solo dejamos loguearse a los alumnos y profesores
                 # No dejamos a los AA y a los AP
                 tipos=["asir1","asir2","smr1","smr2","profesores"]
