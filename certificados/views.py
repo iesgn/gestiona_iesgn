@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from django.shortcuts import render,redirect,HttpResponse
 from .forms import UploadFileFormEquipo,UploadFileFormUsuario
 from django.conf import settings

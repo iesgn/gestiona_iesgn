@@ -4,12 +4,13 @@ from django.forms.widgets import HiddenInput,Textarea,TextInput
 from usuarios.libldap import LibLDAP
 
 def getSelect():
-	ldap=gnLDAP()
+	ldap=LibLDAP()
 	
-	lista=ldap.gnBuscar(cadena="(uid=*)")
+	lista=ldap.buscar("(uid=*)",["uid","givenname","sn"])
 	lista2=[]
 	for usuario in lista:
-		lista2.append((usuario["uid"][0],usuario["givenname"][0]+" "+usuario["sn"][0]))
+		lista2.append((usuario["uid"][0],usuario["givenName"][0]+" "+usuario["sn"][0]))
+		ldap.logout()
 	return lista2
 
 class CorreoForm(forms.Form):
@@ -50,7 +51,6 @@ class BuscarDestinatariosForm(forms.Form):
 				('openstackusers','Usuarios OpenStack'),
 				("antiguosalumnos","Otros Alumnos"),
 				]
-			ldap=gnLDAP()
 			
 			self.fields["usuarios"] = forms.ChoiceField(initial=alum,choices=lista,required=False,widget=forms.Select(attrs={'class': "form-control",'onchange': 'this.form.submit();'}))
 			self.fields["destinatarios"]=forms.MultipleChoiceField(initial=dest,choices=getSelect(),required=True,widget=forms.SelectMultiple(attrs={'class': "form-control js-example-basic-multiple"}))
