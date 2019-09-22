@@ -118,7 +118,7 @@ def update(request,usuario):
         new["cn"]=new["givenName"]+" "+new["sn"]
         if new["userPassword"]!='':
             nuevapass=new["userPassword"]
-            the_hash = hashlib.md5(new["userPassword"]).hexdigest()
+            the_hash = hashlib.md5(new["userPassword"].encode('utf-8')).hexdigest()
             the_unhex = binascii.unhexlify(the_hash)
             new["userPassword"]="{MD5}"+base64.b64encode(the_unhex).decode("utf-8")
         else:
