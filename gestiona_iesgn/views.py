@@ -33,6 +33,7 @@ def index(request):
         else:
                info={"error":True}
                return render(request,"index.html",info)
+        ldap.logout()
 
 def salir(request):
     del request.session["username"]

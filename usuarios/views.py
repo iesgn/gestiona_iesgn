@@ -27,6 +27,7 @@ def listarUsuarios(request):
         filtro["sn"]="" if request.POST["apellidos"]=="" else request.POST["apellidos"]    
     filtro=ldap.conv_filtro(filtro)
     lista=ldap.buscar(filtro,["sn","uid","givenname"])
+    ldap.logout()
     lista=sorted(lista,key=lambda d: d["sn"])
     lista=getGrupo(lista)
     info={"resultados":lista,'form':form}
@@ -53,7 +54,9 @@ def add(request):
         # Calcular max uidnumbre
         # Toda la lista desde clase 1 hasta 9 #####
         ldap=LibLDAP(request.session["username"],request.session["password"])
-        lista=ldap.gnBuscar(cadena="(cn=*)",ordenarpor="uidNumber")
+        lista=ldap.buscar("(cn=*)",["uidNumber"])
+        lista=sorted(lista,key=lambda d: d["uidNumber"])
+
         datos=dict(form.data)
         grupo=datos["grupo"][0]
         del datos["csrfmiddlewaretoken"]
@@ -80,7 +83,6 @@ def add(request):
             mensaje='Se ha añadido el nuevo usuario.'    
             try: 
                 ldap.add(datos["uid"],datos)
-                ldap=LibLDAP(request.session["username"],request.session["password"])
                 ldap.modUserGroup(datos["uid"],grupo,"add")
             except Exception as err:
                 mensaje='No se ha podido añadir el nuevo usuario. Error:' + str(err)
@@ -99,7 +101,7 @@ def update(request,usuario):
     if not "perfil" in request.path: 
         test_profesor(request)
     ldap=LibLDAP(request.session["username"],request.session["password"])
-    lista=ldap.gnBuscar(cadena="(uid=%s)"%usuario)
+    lista=ldap.buscar("(uid=%s)"%usuario,["uid","cn","givenName","loginShell","userPassword","l","sn","homeDirectory","mail"])
     if len(lista)==0:
         return redirect(settings.SITE_URL+"/")
     datos=quito_listas_en_resultado(lista[0])
@@ -112,7 +114,7 @@ def update(request,usuario):
         # Tengo un diccionario donde cada campo es una lista
         # Quito las listas
         new=quito_listas_en_resultado(new)
-        old={}
+
         new["cn"]=new["givenName"]+" "+new["sn"]
         if new["userPassword"]!='':
             nuevapass=new["userPassword"]
@@ -130,8 +132,6 @@ def update(request,usuario):
         for campo in list(new):
             if new[campo]==datos[campo]:
                 del new[campo]
-        for campo in new:
-            old[campo]=datos[campo]
         
         ### Obtengo path de retorno
         if "perfil" in request.path:
@@ -144,7 +144,7 @@ def update(request,usuario):
             
             #try: 
                 
-            ldap.modify(datos["uid"],new,old)
+            ldap.modify(datos["uid"],new)
             try:
                 request.session["password"]=nuevapass
             except:
@@ -187,7 +187,7 @@ def delete(request):
         uid=request.POST["uid"]
         ldap=LibLDAP()
         busqueda='(uid=%s)'%(uid)
-        datos=ldap.gnBuscar(cadena=busqueda)
+        datos=ldap.buscar(busqueda,["cn"])
         grupo=ldap.memberOfGroup(uid,key=True)
         
         if grupo=="profesores" or grupo=="antiguosprofesores":

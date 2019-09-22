@@ -1,4 +1,4 @@
-from ldap3 import Server, Connection, ALL,SUBTREE
+from ldap3 import Server, Connection, ALL,SUBTREE,  MODIFY_DELETE, MODIFY_ADD,MODIFY_REPLACE
 
 class LibLDAP(object):
     base_dn="ou=People,dc=gonzalonazareno,dc=org"
@@ -82,3 +82,31 @@ class LibLDAP(object):
                     cadena+="(%s=%s*)" % (campo,valor)
             cadena+=")"
         return cadena
+
+    def logout(self):
+        self.conn.unbind()
+
+    def add(self,uid,datos):
+        usuario="uid=%s,%s" % (uid,self.base_dn)
+        self.conn.add(usuario, attributes=datos)
+    
+    def delete(self,uid):
+        usuario="uid=%s,%s" % (uid,self.base_dn)
+        self.conn.delete(usuario)
+    
+    def modify(self,uid,datos):
+        usuario="uid=%s,%s" % (uid,self.base_dn)
+        for c,v in datos.items():
+            datos[c]=[(MODIFY_REPLACE,[v])]
+        self.conn.modify(usuario,datos)
+    
+
+    def modUserGroup(self,uid,grupo,adddel):
+        modlist = []
+        usuario="uid=%s,%s" % (uid,self.base_dn)
+        grupo="cn=%s,%s" % (grupo,self.group_dn)
+        if adddel=="add":
+            return self.conn.modify(grupo,{'member': [(MODIFY_ADD, [usuario])]})
+        elif adddel=="del":
+            return self.conn.modify(grupo,{'member': [(MODIFY_DELETE, [usuario])]})
+       
