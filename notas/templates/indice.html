@@ -5,11 +5,26 @@
         <div class="col-md-6">
         <h2 class="form-signin-heading">Notas</h2>
         <strong>Alumno:{{alumno}}</strong>
+      {{datos}}
         <br>
         {% for cat,tareas in datos.items%}
             <h3>{{cat}}</h3>
+            <h4>1ª Evaluación</h4>
             <ul>
-            {% for tarea in tareas%}
+            
+            {% for tarea in tareas.1%}
+            <li>
+              {% if tarea.2  %}<strong>{%endif%}
+              {{tarea.0}} -- {{tarea.1}}
+              {% if tarea.2  %}</strong>{%endif%}
+            </li>
+            {% endfor %}
+          </ul>
+          
+          <h4>2ª Evaluación</h4>
+            <ul>
+            
+            {% for tarea in tareas.2%}
               <li>{{tarea.0}} -- {{tarea.1}}</li>
             {% endfor %}
           </ul>
