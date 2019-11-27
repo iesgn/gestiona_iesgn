@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'multitask.apps.MultitaskConfig',
     'correos.apps.CorreosConfig',
     'certificados.apps.CertificadosConfig',
+    'notas.apps.NotasConfig',
 ]
 
 MIDDLEWARE = [

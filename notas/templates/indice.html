@@ -1,0 +1,20 @@
+
+{% extends "base_menu.html" %}
+{% block content %}
+
+        <div class="col-md-6">
+        <h2 class="form-signin-heading">Notas</h2>
+        <strong>Alumno:{{alumno}}</strong>
+        <br>
+        {% for cat,tareas in datos.items%}
+            <h3>{{cat}}</h3>
+            <ul>
+            {% for tarea in tareas%}
+              <li>{{tarea.0}} -- {{tarea.1}}</li>
+            {% endfor %}
+          </ul>
+          {% endfor %}
+        
+  </div>
+  <br/>
+{% endblock  %}
