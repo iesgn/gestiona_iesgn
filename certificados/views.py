@@ -38,7 +38,7 @@ def add(request):
 				email.send()
 			else:
 				messages.add_message(request, messages.INFO, "Tienes que subir un fichero csr...")
-			return redirect(settings.SITE_URL+'/cert')
+			return redirect(settings.SITE_URL+'/cert/')
 	else:
 		path = os.path.join(settings.BASE_DIR, 'cert/%s'%request.session["username"])
 		fil={"usuario":["",""],"equipo":{}}
@@ -112,7 +112,7 @@ def download(request,usuario,direc="",file=""):
 		return response
 	
 	else:
-		return redirect(settings.SITE_URL)
+		return redirect(settings.SITE_URL+"/")
 
 def revocar(request,usuario,direc="",file=""):
 	
@@ -137,4 +137,4 @@ def revocar(request,usuario,direc="",file=""):
 				    reply_to=['informatica.gonzalonazareno.org'],
 				    )
 		email.send()
-		return redirect(settings.SITE_URL+'/cert')		
+		return redirect(settings.SITE_URL+'/cert/')		
