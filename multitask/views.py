@@ -31,7 +31,7 @@ def inicio(request):
 				doc=r.json()
 				info["usuarios"]=[]
 				for usuario in doc["memberships"]:
-					if usuario["roles"][0]["id"]==9 and usuario.has_key("user"):
+					if usuario["roles"][0]["id"]==9 and "user" in usuario:
 						info["usuarios"].append(usuario)
 			#Lista Categorias
 
