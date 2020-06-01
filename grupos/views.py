@@ -45,7 +45,7 @@ def cursos(request,curso):
 	form=BuscarUsuario(filtro)
 	filtro=ldap.conv_filtro(filtro)
 	lista=ldap.buscar(filtro,["sn","uid","givenname"])
-	
+	lista=sorted(lista,key=lambda d: d["sn"])
 	info={"titulo":ldap.grupos[curso],"resultados":lista,"form":form}
 	ldap.logout()
 	return render(request,"listar_cursos.html",info)
