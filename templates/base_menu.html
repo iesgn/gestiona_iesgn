@@ -83,7 +83,9 @@
     <li><a href="{{SITE_URL}}/info/noticias">Noticias</a></li>
     <li><a href="{{SITE_URL}}/info/documentacion">Documentación</a></li>
     <li><a href="{{SITE_URL}}/info/blog">Blog</a></li>
-    
+    {% if request.session.profesor %}
+    <li><a href="{{SITE_URL}}/info/actualizar">Actualizar contenido</a></li>
+    {%endif%}
   </ul>
 </li>
 
