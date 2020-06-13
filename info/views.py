@@ -11,9 +11,8 @@ def actualizar(request):
 	return redirect("/")
 
 def doc(request,tipo):
-	#datos=getInfo(tipo)
+	
 	visibility="public"
-	print(request.session)
 	
 	if request.session.get("username"):
 		visibility="auth"
@@ -24,7 +23,11 @@ def doc(request,tipo):
 	if len(datos)==0:
 		raise Http404 
 	info={"datos":datos,"tipo":tipo}
-	return render(request,"listardoc.html",info)
+	if tipo=="documentacion":
+		return render(request,"listardoc.html",info)
+	if tipo=="blog":
+		return render(request,"listarblog.html",info)
+	
 
 def show(request,tipo,url):
 	dato=getDoc(tipo,url,request.session)
@@ -64,7 +67,6 @@ def getDoc(tipo,url,session):
 def getInfoVisibility(tipo,visibility):
 	datos=getInfo(tipo)
 	respuesta=[]
-	print(visibility)
 	for dato in datos:
 		if visibility=="profesor":
 			respuesta.append(dato)
