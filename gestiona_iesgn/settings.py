@@ -15,8 +15,8 @@ import os
 #SITE_URL = 'https://dit.gonzalonazareno.org/gestiona'
 #SITE_URL_STATIC = 'https://dit.gonzalonazareno.org/gestiona/static/'
 
-SITE_URL = 'http://localhost:8000'
-SITE_URL_STATIC = 'http://localhost:8000/static/'
+#SITE_URL = 'http://localhost:8000'
+#SITE_URL_STATIC = 'http://localhost:8000/static/'
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -29,9 +29,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'g==5n6$*w+3xr+ge$vfj*v%ag!e(b4o6w3&u20s1tmpf50cqv2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
-ALLOWED_HOSTS = ["dit.gonzalonazareno.org","localhost"]
+DEBUG = True
+DEBUG_PROPAGATE_EXCEPTIONS = True
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -76,7 +76,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'gestiona_iesgn.context_processor.my_site_url',
+                #'gestiona_iesgn.context_processor.my_site_url',
             ],
         },
     },
@@ -132,6 +132,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 STATIC_URL = '/static/'
+#STATIC_ROOT = os.path.join(BASE_DIR,"static")
 STATICFILES_DIRS = (
             # Put strings here, like "/home/html/static" or "C:/www/django/static".
             # Always use forward slashes, even on Windows.

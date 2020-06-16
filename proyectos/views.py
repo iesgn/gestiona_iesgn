@@ -11,9 +11,8 @@ def show(request):
     info={"datos":datos}
     return render(request,"mostrarproy.html",info)
 def server(request,url):
-    print(url)
     try:
-        return serve(request, 'content_iesgn/'+url)
+        return serve(request, 'content_iesgn/proyectos/'+url)
     except:
         raise Http404
     
