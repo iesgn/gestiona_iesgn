@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect
+from django.contrib.staticfiles.views import serve
 from django.http import Http404
 from gestiona_iesgn.views import test_profesor,test_login
 from django.conf import settings
@@ -32,7 +33,6 @@ def doc(request,tipo):
 def show(request,tipo,url):
     dato=getDoc(tipo,url,request.session)
     if dato==None:
-        print('content_iesgn'+"/"+tipo+"/"+url)
         try:
             return serve(request, 'content_iesgn'+"/"+tipo+"/"+url)
         except:
