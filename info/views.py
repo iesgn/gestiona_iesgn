@@ -1,7 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib.staticfiles.views import serve
 from django.http import Http404
-from gestiona_iesgn.views import test_profesor,test_login
 from django.conf import settings
 import os
 import markdown
@@ -28,6 +27,8 @@ def doc(request,tipo):
         return render(request,"listardoc.html",info)
     if tipo=="blog":
         return render(request,"listarblog.html",info)
+    if tipo=="noticias":
+        return render(request,"listarnoticias.html",info)
     
 
 def show(request,tipo,url):

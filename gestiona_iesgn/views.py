@@ -3,10 +3,23 @@ import socket
 from usuarios.libldap import LibLDAP
 from django.conf import settings
 from django.http import Http404
+from info.views import getInfoVisibility
 def index(request):
+    info={}
+    ## Generamos últimas noticias
+    visibility="public"
+    if request.session.get("username"):
+        visibility="auth"
+    if request.session.get("profesor"):
+        visibility="profesor"
+    datos=getInfoVisibility("noticias",visibility)
+    info["noticias"]=datos
+    ####
+    ## Generamos últimas entradas del blog
+    datos=getInfoVisibility("blog",visibility)
+    info["blog"]=datos[:5]
+
     if request.method=="GET":
-        hostname = socket.gethostname()
-        info={"hostname":hostname}
         return render(request,'index.html',info)
     else:
         username = request.POST["username"]
@@ -21,7 +34,7 @@ def index(request):
                 tipos=["asir1","asir2","smr1","smr2","profesores"]
 
                 if not lldap.isMemberOfGroups(request.POST["username"],tipos):
-                    info={"error":True}
+                    info["error"]=True
                     return render(request,"index.html",info)
                 request.session["username"]=username
                 request.session["password"]=password
@@ -31,7 +44,7 @@ def index(request):
                     request.session["profesor"]=False
                 return render(request,"index.html")
         else:
-               info={"error":True}
+               info["error"]=True
                return render(request,"index.html",info)
         ldap.logout()
 

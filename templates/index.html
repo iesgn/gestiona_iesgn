@@ -12,6 +12,20 @@
     {% endfor%}
   {% endif %}
 
+
+{%for noticia in noticias %}
+
+  {% if noticia.meta.index.0 == "True" %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><strong>Noticias: {{noticia.meta.title.0}}</strong> ({{noticia.meta.fecha.0}})</h3>
+        </div>
+        <div class="panel-body">
+          {{noticia.html|safe}}
+        </div>
+      </div>
+    {% endif %}
+{%endfor%}
 <!-- Jumbotron Header -->
         <header class="page-header">
             <h1>IES Gonzalo Nazareno</h1>
@@ -38,7 +52,7 @@
 
             <div class="col-md-3 col-sm-6 hero-feature">
                 <div class="thumbnail">
-                    <img src="{{SITE_URL}}/static/img/moodle.png" alt="">
+                    <img src="static/img/moodle.png" alt="">
                     <div class="caption">
                         <h3>Moodle</h3>
                         <p>Plataforma Educativa</p>
@@ -51,7 +65,7 @@
 
             <div class="col-md-3 col-sm-6 hero-feature">
                 <div class="thumbnail">
-                    <img src="{{SITE_URL}}/static/img/redmine.png" alt="">
+                    <img src="static/img/redmine.png" alt="">
                     <div class="caption">
                         <h3>redmine</h3>
                         <p>Gestor de proyectos</p>
@@ -64,7 +78,7 @@
 
             <div class="col-md-3 col-sm-6 hero-feature">
                 <div class="thumbnail">
-                    <img src="{{SITE_URL}}/static/img/openstack.png" alt="">
+                    <img src="static/img/openstack.png" alt="">
                     <div class="caption">
                         <h3>OpenStack</h3>
                         <p>Nuestro Cloud Computing</p>
@@ -75,20 +89,46 @@
                 </div>
             </div>
 
-            
+            <div class="col-md-3 col-sm-6 hero-feature">
+                <div class="thumbnail">
+                    <img src="static/img/nas.png" alt="">
+                    <div class="caption">
+                        <h3>NAS</h3>
+                        <p>Network Attached Storage </p>
+                        <p>
+                            <a href="http://nas.gonzalonazareno.org/nas" class="btn btn-primary">Entra</a> 
+                        </p>
+                    </div>
+                </div>
+            </div>
 
         </div>
-	<div classs="row">
-		<h3>Otros enlaces...</h3>
-		<div class="list-group">
-			<a href="http://informatica.gonzalonazareno.org" class="list-group-item list-group-item-action">Blog del departamento</a>
-			<a href="http://informatica.gonzalonazareno.org/plataforma" class="list-group-item list-group-item-action">Antiguos cursos (moodle)</a>
-			<a href="http://informatica.gonzalonazareno.org/proyectos" class="list-group-item list-group-item-action">Proyectos integrados</a>
-			<a href="http://www.gonzalonazareno.org" class="list-group-item list-group-item-action ">Web del IES Gonzalo Nazareno</a>
+        <div class="row">
+            <h3>Últimas entradas del blog...</h3>
+            {%for entrada in blog%}
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong>{{entrada.meta.title.0}}</strong></div>
+                <div class="panel-body">
+                    {{entrada.html|slice:":250"|safe}}
+                </div>
+              </div>
+
+            {%endfor%}
+			
 		</div>
-	</div>
+        
+	
 </div>
 <div class="col-md-4">
+    <div class="row">
+		<h3>Enlaces</h3>
+		<div class="list-group">
+			<li class="list-group-item list-group-item-action"><a href="http://informatica.gonzalonazareno.org">Blog del departamento</a></li>
+			<li class="list-group-item list-group-item-action"><a href="http://informatica.gonzalonazareno.org/plataforma">Antiguos cursos (moodle)</a></li>
+			<li class="list-group-item list-group-item-action"><a href="http://informatica.gonzalonazareno.org/proyectos">Proyectos integrados</a></li>
+			<li class="list-group-item list-group-item-action"><a href="http://www.gonzalonazareno.org">Web del IES Gonzalo Nazareno</a></li>
+		</div>
+	</div>
     <a class="twitter-timeline" data-width="400" data-dnt="true" data-tweet-limit="3" href="https://twitter.com/dit_GN?ref_src=twsrc%5Etfw">Tweets by dit_GN</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
 </div>
 </div>

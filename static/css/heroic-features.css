@@ -19,3 +19,11 @@ body {
 footer {
     margin: 50px 0;
 }
+
+img[alt$="><"] {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: auto;
+    float: none!important;
+  }
