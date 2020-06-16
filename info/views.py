@@ -8,7 +8,7 @@ import markdown
 def actualizar(request):
     path = os.path.join(settings.STATICFILES_DIRS[0], 'content_iesgn/')
     os.system("cd %s && git pull" % path)
-    return redirect("/")
+    return redirect(settings.SITE_URL)
 
 def doc(request,tipo):
     
