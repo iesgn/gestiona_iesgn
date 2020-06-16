@@ -27,4 +27,5 @@ urlpatterns = [
     url(r'^multitask/', include('multitask.urls')),
     url(r'^correos/', include('correos.urls')),
     url(r'^cert/', include('certificados.urls')),
+    url(r'^proyectos/', include('proyectos.urls')),
 ]

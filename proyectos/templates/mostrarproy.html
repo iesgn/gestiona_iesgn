@@ -1,0 +1,47 @@
+{% extends "base_menu.html" %}
+
+{% block content %}
+
+<h1>Proyectos Integrados ASI/ASIR</h1>
+{%for curso in datos%}
+<h2>Curso {{curso.curso}}</h2>
+<table class="table">
+    <thead>
+      <tr>
+          {% for campo in curso.campos%}
+          <th>{{campo}}</th>
+          {%endfor%}          
+     </tr>
+     {% for alumno in curso.alumnos%}
+        <tr>
+        
+          {%for campo,dato in alumno.items%}
+          {% if campo != "nombre"  and campo != "titulo" %}
+          {%if dato.tipo != ""%}
+                {%if campo == "video"%}
+                    <td>
+                        {%for v in dato.info%}
+                        <a href="{{v}}"><img src="img/{{dato.tipo}}.png"/></a>
+                        {%endfor%}
+                    </td>
+                {%else%}
+                <td><a href="{{dato.info}}"><img src="img/{{dato.tipo}}.png"/></a></td>
+                {%endif%}
+            {%else%}
+                <td></td>
+            {%endif%}
+            
+          {%else%}
+          <td>{{dato}}</td>
+          {%endif%}
+          
+          {%endfor%}          
+        </tr>
+        {%endfor%}
+    </thead>
+</table>
+{%endfor%}
+
+
+
+{% endblock %}

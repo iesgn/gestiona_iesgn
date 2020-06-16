@@ -29,7 +29,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'g==5n6$*w+3xr+ge$vfj*v%ag!e(b4o6w3&u20s1tmpf50cqv2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["dit.gonzalonazareno.org","localhost"]
 
@@ -49,7 +49,9 @@ INSTALLED_APPS = [
     'multitask.apps.MultitaskConfig',
     'correos.apps.CorreosConfig',
     'certificados.apps.CertificadosConfig',
+    'proyectos.apps.ProyectosConfig',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
