@@ -2,3 +2,4 @@
 *.swp
 db.sqlite3
 settings.py
+static/content_iesgn/

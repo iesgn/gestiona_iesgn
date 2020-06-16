@@ -1,15 +1,15 @@
-# -*- coding: utf-8 -*-
-from usuarios.libldap import gnLDAP
+from usuarios.libldap import LibLDAP
 from django import forms
 
 
 def getSelect(grupo):
-	ldap=gnLDAP()
+	ldap=LibLDAP()
 	filtro={"grupo":grupo}
-	lista=ldap.gnBuscar(filtro=filtro)
+	filtro=ldap.conv_filtro(filtro)
+	lista=ldap.buscar(filtro,["sn","uid","givenname"])
 	lista2=[]
 	for usuario in lista:
-		lista2.append((usuario["uid"][0],usuario["givenname"][0]+" "+usuario["sn"][0]))
+		lista2.append((usuario["uid"][0],usuario["givenName"][0]+" "+usuario["sn"][0]))
 	return lista2
 
 

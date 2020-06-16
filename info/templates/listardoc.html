@@ -1,0 +1,13 @@
+{% extends "base_menu.html" %}
+
+{% block content %}
+ 
+<h1>{{tipo|title}}</h1>
+<ul>
+{% for doc in datos%}
+
+<li><a href="{{tipo}}/{{doc.meta.url.0}}">{{doc.meta.title.0}}</a></li>
+{%endfor%}
+</ul>
+
+{% endblock %}

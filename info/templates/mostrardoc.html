@@ -1,0 +1,12 @@
+{% extends "base_menu.html" %}
+
+{% block content %}
+
+<h1>{{dato.meta.title.0}}</h1>
+<strong>{{dato.meta.fecha.0}}</strong>
+{{dato.html|safe}}
+<hr/>
+<a href="/info/{{tipo}}">Volver</a>
+
+
+{% endblock %}

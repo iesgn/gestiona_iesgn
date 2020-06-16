@@ -23,9 +23,9 @@ urlpatterns = [
     url(r'^logout/$',salir),
     url(r'^usuarios/', include('usuarios.urls')),
     url(r'^grupos/', include('grupos.urls')),
-    url(r'^documentacion/', include('documentacion.urls')),
+    url(r'^info/', include('info.urls')),
     url(r'^multitask/', include('multitask.urls')),
     url(r'^correos/', include('correos.urls')),
     url(r'^cert/', include('certificados.urls')),
-    url(r'^notas/', include('notas.urls')),
+    url(r'^proyectos/', include('proyectos.urls')),
 ]

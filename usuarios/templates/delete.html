@@ -21,7 +21,7 @@
     <strong>{{error}}</strong><br/>
 {% endif %}
 {% if grupo %}
-    <strong>¿Quieres borrar a {{nombre}} ({{grupo}})?</strong><br/>
+    <strong>¿Quieres borrar a {{nombre}} ({{grupo.0}})?</strong><br/>
     <form  method="post" class="form-hotizontal">
     <div class="col-md-6">
     {% csrf_token %}

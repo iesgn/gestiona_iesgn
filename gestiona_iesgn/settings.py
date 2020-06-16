@@ -12,8 +12,8 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 
-SITE_URL = 'https://dit.gonzalonazareno.org/gestiona'
-SITE_URL_STATIC = 'https://dit.gonzalonazareno.org/gestiona/static/'
+#SITE_URL = 'https://dit.gonzalonazareno.org/gestiona'
+#SITE_URL_STATIC = 'https://dit.gonzalonazareno.org/gestiona/static/'
 
 #SITE_URL = 'http://localhost:8000'
 #SITE_URL_STATIC = 'http://localhost:8000/static/'
@@ -30,8 +30,8 @@ SECRET_KEY = 'g==5n6$*w+3xr+ge$vfj*v%ag!e(b4o6w3&u20s1tmpf50cqv2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = ["dit.gonzalonazareno.org","localhost"]
+DEBUG_PROPAGATE_EXCEPTIONS = True
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -45,12 +45,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'usuarios.apps.UsuariosConfig',
     'grupos.apps.GruposConfig',
-    'documentacion.apps.DocumentacionConfig',
+    'info.apps.InfoConfig',
     'multitask.apps.MultitaskConfig',
     'correos.apps.CorreosConfig',
     'certificados.apps.CertificadosConfig',
-    'notas.apps.NotasConfig',
+    'proyectos.apps.ProyectosConfig',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -75,7 +76,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'gestiona_iesgn.context_processor.my_site_url',
+                #'gestiona_iesgn.context_processor.my_site_url',
             ],
         },
     },
@@ -131,6 +132,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 STATIC_URL = '/static/'
+#STATIC_ROOT = os.path.join(BASE_DIR,"static")
 STATICFILES_DIRS = (
             # Put strings here, like "/home/html/static" or "C:/www/django/static".
             # Always use forward slashes, even on Windows.

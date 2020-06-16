@@ -1,0 +1,16 @@
+{% extends "base_menu.html" %}
+
+{% block content %}
+
+<h1>Ultimas {{tipo|title}}...</h1>
+<ul>
+
+{% for doc in datos%}
+<h3>{{doc.meta.title.0}}</h3>
+<p><strong>{{doc.meta.fecha.0}}</strong></p>
+{{doc.html|safe}}
+<hr/>
+{%endfor%}
+
+
+{% endblock %}

@@ -1,6 +1,5 @@
-# -*- coding: utf-8 -*-
 from django.shortcuts import render,redirect
-from usuarios.libldap import LibLDAP,gnLDAP
+from usuarios.libldap import LibLDAP
 from usuarios.forms import BuscarUsuario,newUserForm,updateUserForm,deleteUserForm,deleteUserForm2
 from gestiona_iesgn.views import test_profesor,test_login
 from django.contrib import messages
@@ -9,23 +8,27 @@ from django.conf import settings
 
 import binascii
 import hashlib
+import base64
 
 
 def listarUsuarios(request):
     test_profesor(request)
     filtro={}
-    ldap=gnLDAP()
+    ldap=LibLDAP()
     if request.method=="GET":
         form=BuscarUsuario()
         filtro["grupo"]='all'
-        filtro["givenname"]=""
+        filtro["givenName"]=""
         filtro["sn"]=""
     else:
         form=BuscarUsuario(request.POST)
         filtro["grupo"]=request.POST["grupo"]
-        filtro["givenname"]="" if request.POST["nombre"]=="" else request.POST["nombre"]
+        filtro["givenName"]="" if request.POST["nombre"]=="" else request.POST["nombre"]
         filtro["sn"]="" if request.POST["apellidos"]=="" else request.POST["apellidos"]    
-    lista=ldap.gnBuscar(filtro=filtro)
+    filtro=ldap.conv_filtro(filtro)
+    lista=ldap.buscar(filtro,["sn","uid","givenname"])
+    ldap.logout()
+    lista=sorted(lista,key=lambda d: d["sn"])
     lista=getGrupo(lista)
     info={"resultados":lista,'form':form}
     return render(request,"listar.html",info)
@@ -34,10 +37,11 @@ def listarUsuarios(request):
 def getGrupo(lista):
     resultado=[]
 
-    ldap=gnLDAP()
+    ldap=LibLDAP()
     for usuario in lista:
         usuario["grupo"]="<br/>".join(ldap.memberOfGroup(usuario["uid"][0]))
         resultado.append(usuario)
+    ldap.logout()
     return resultado
 
 #############################################################################################################
@@ -50,8 +54,10 @@ def add(request):
     if form.is_valid():
         # Calcular max uidnumbre
         # Toda la lista desde clase 1 hasta 9 #####
-        ldap=gnLDAP(request.session["username"],request.session["password"])
-        lista=ldap.gnBuscar(cadena="(cn=*)",ordenarpor="uidnumber")
+        ldap=LibLDAP(request.session["username"],request.session["password"])
+        lista=ldap.buscar("(cn=*)",["uidNumber"])
+        lista=sorted(lista,key=lambda d: d["uidNumber"])
+
         datos=dict(form.data)
         grupo=datos["grupo"][0]
         del datos["csrfmiddlewaretoken"]
@@ -59,27 +65,25 @@ def add(request):
         # Tengo un diccionario donde cada campo es una lista
         # Quito las listas
         datos=quito_listas_en_resultado(datos)#
-        datos["uidnumber"]=str(int(lista[-1]["uidnumber"][0])+1)
-        datos["cn"]=datos["givenname"]+" "+datos["sn"]
+        datos["uidNumber"]=str(int(lista[-1]["uidNumber"][0])+1)
+        datos["cn"]=datos["givenName"]+" "+datos["sn"]
         datos["loginshell"]="/bin/bash"
         
         if grupo=="profesores":
-            datos["gidnumber"]="2000"
+            datos["gidNumber"]="2000"
             directory="profesores"
         else:
-            datos["gidnumber"]="2001"
+            datos["gidNumber"]="2001"
             directory="alumnos"
         datos["homedirectory"]="/home/%s/%s"%(directory,datos["uid"])
         datos["objectclass"]= ['inetOrgPerson', 'posixAccount', 'top']
-        the_hash = hashlib.md5(datos["userpassword"]).hexdigest()
+        the_hash = hashlib.md5(datos["userPassword"].encode('utf-8')).hexdigest()
         the_unhex = binascii.unhexlify(the_hash)
-        datos["userpassword"]="{MD5}"+the_unhex.encode('base64')
+        datos["userPassword"]="{MD5}"+base64.b64encode(the_unhex).decode("utf-8")
         if ldap.isbind:
             mensaje='Se ha añadido el nuevo usuario.'    
             try: 
-                
                 ldap.add(datos["uid"],datos)
-                ldap=gnLDAP(request.session["username"],request.session["password"])
                 ldap.modUserGroup(datos["uid"],grupo,"add")
             except Exception as err:
                 mensaje='No se ha podido añadir el nuevo usuario. Error:' + str(err)
@@ -97,14 +101,11 @@ def add(request):
 def update(request,usuario):
     if not "perfil" in request.path: 
         test_profesor(request)
-    ldap=gnLDAP(request.session["username"],request.session["password"])
-    lista=ldap.gnBuscar(cadena="(uid=%s)"%usuario)
+    ldap=LibLDAP(request.session["username"],request.session["password"])
+    lista=ldap.buscar("(uid=%s)"%usuario,["uid","cn","givenName","loginShell","userPassword","l","sn","homeDirectory","mail"])
     if len(lista)==0:
         return redirect(settings.SITE_URL+"/")
-    datos=quito_listas_en_resultado(lista[0],utf8=False)
-    
-    
-    
+    datos=quito_listas_en_resultado(lista[0])
     form=updateUserForm(datos) if request.method=="GET" else updateUserForm(request.POST)
     if request.method=="POST" and form.is_valid():
         new=dict(form.data)
@@ -114,26 +115,24 @@ def update(request,usuario):
         # Tengo un diccionario donde cada campo es una lista
         # Quito las listas
         new=quito_listas_en_resultado(new)
-        old={}
-        new["cn"]=new["givenname"]+" "+new["sn"]
-        if new["userpassword"]!='':
-            nuevapass=new["userpassword"]
-            the_hash = hashlib.md5(new["userpassword"]).hexdigest()
+
+        new["cn"]=new["givenName"]+" "+new["sn"]
+        if new["userPassword"]!='':
+            nuevapass=new["userPassword"]
+            the_hash = hashlib.md5(new["userPassword"].encode('utf-8')).hexdigest()
             the_unhex = binascii.unhexlify(the_hash)
-            new["userpassword"]="{MD5}"+the_unhex.encode('base64')#
+            new["userPassword"]="{MD5}"+base64.b64encode(the_unhex).decode("utf-8")
         else:
-            the_hash = hashlib.md5(request.session["password"]).hexdigest()
+            the_hash = hashlib.md5(request.session["password"].encode('utf-8')).hexdigest()
             the_unhex = binascii.unhexlify(the_hash)
-            new["userpassword"]="{MD5}"+the_unhex.encode('base64')
-        the_hash = hashlib.md5(request.session["password"]).hexdigest()
+            new["userPassword"]="{MD5}"+base64.b64encode(the_unhex).decode("utf-8")
+        the_hash = hashlib.md5(request.session["password"].encode('utf-8')).hexdigest()
         the_unhex = binascii.unhexlify(the_hash)
-        datos["userpassword"]="{MD5}"+the_unhex.encode('base64')
+        datos["userPassword"]="{MD5}"+ base64.b64encode(the_unhex).decode("utf-8")
         
-        for campo in new.keys():
+        for campo in list(new):
             if new[campo]==datos[campo]:
                 del new[campo]
-        for campo in new:
-            old[campo]=datos[campo]
         
         ### Obtengo path de retorno
         if "perfil" in request.path:
@@ -144,40 +143,44 @@ def update(request,usuario):
         
         if ldap.isbind:
             
-            try: 
-                        
-                ldap.modify(datos["uid"],new,old)
-                try:
-                    request.session["password"]=nuevapass
-                except:
-                    pass
+            #try: 
                 
-            except Exception as err:
-                messages.add_message(request, messages.INFO, 'No se ha podido modificar el usuario. Error'+str(err))
-                return redirect("%s" % url)
+            ldap.modify(datos["uid"],new)
+            try:
+                request.session["password"]=nuevapass
+            except:
+                pass
+                
+            #except Exception as err:
+            #    messages.add_message(request, messages.INFO, 'No se ha podido modificar el usuario. Error'+str(err))
+            #    return redirect("%s" % url)
         else:
             messages.add_message(request, messages.INFO, 'No se ha podido modificar el usuario. Usuario autentificado incorrecto.')
             return redirect("%s" % url)#
         messages.add_message(request, messages.INFO, 'Se ha modificado el usuario.')
+        ldap.logout()
         return redirect("%s" % url)#
     
     info={'form':form}
     return render(request,"update.html",info)
 
-def quito_listas_en_resultado(datos,utf8=True):
+def quito_listas_en_resultado(datos):
+    datos2={}
     for campo,valor in datos.items():
-        if utf8:
-            resultado=valor[0].encode('utf-8')
-        else:
+        if type(valor)==list and len(valor)==1:
             resultado=valor[0]
-        del datos[campo]
-        datos[campo.encode('utf-8')]=resultado
-    return datos#
+        else:
+            resultado=valor
+
+        datos2[campo]=resultado
+    return datos2#
+
 def perfil(request):
     test_login(request)
-    lldap=gnLDAP()
+    lldap=LibLDAP()
     busqueda='(uid=%s)'%(request.session["username"])
-    datos=lldap.gnBuscar(cadena=busqueda)
+    datos=lldap.buscar(busqueda,["uid"])
+    ldap.logout()
     return update(request,datos[0]["uid"][0])#
 
 #############################################################################################################
@@ -186,30 +189,35 @@ def delete(request):
     test_login(request)
     if request.method=="POST" and request.POST.get("uid",False):
         uid=request.POST["uid"]
-        ldap=gnLDAP()
+        ldap=LibLDAP()
         busqueda='(uid=%s)'%(uid)
-        datos=ldap.gnBuscar(cadena=busqueda)
+        datos=ldap.buscar(busqueda,["cn"])
         grupo=ldap.memberOfGroup(uid,key=True)
+        
         if grupo=="profesores" or grupo=="antiguosprofesores":
             info={"error":"No se puede borrar un profesor."}
         elif len(datos)==0:
             info={"error":"No existe ese usuario"}
         else:
+            if len(grupo)==0:
+                grupo="Sin grupo"
+            else:
+                grupo=ldap.memberOfGroup(uid)
             form=deleteUserForm2({'uiddel':uid})
-            info={'form':form,'grupo':ldap.memberOfGroup(uid),'nombre':datos[0]["cn"][0]}
+            info={'form':form,'grupo':grupo,'nombre':datos[0]["cn"][0]}
         return render(request,"delete.html",info)
     elif request.method=="POST" and request.POST.get("uiddel",False):
         if request.POST["confirmar"]=="no":
             return redirect(settings.SITE_URL+"/")
         if request.POST["confirmar"]=="si":
-            ldap=gnLDAP(request.session["username"],request.session["password"])
+            ldap=LibLDAP(request.session["username"],request.session["password"])
             grupos=ldap.memberOfGroup(request.POST["uiddel"],key=True)
             
             try:
                 for grupo in grupos:
                     ldap.modUserGroup(str(request.POST["uiddel"]),grupo,"del")
                 ldap.delete(request.POST["uiddel"])
-                
+                ldap.logout()
                 info={"error":"Usuario borrado con éxito."}
             except Exception as err:
                 info={"error":'No se ha podido borrar el usuario. Error'+str(err)}#

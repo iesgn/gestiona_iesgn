@@ -78,13 +78,15 @@
 
 {% endif %}
 <li class="dropdown">
-<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Documentación<span class="caret"></span></a>
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Contenido<span class="caret"></span></a>
  <ul class="dropdown-menu">
-    <li><a href="{{SITE_URL}}/documentacion/normas">Normas de clase</a></li>
-    <li><a href="{{SITE_URL}}/documentacion/vpn">Repositorios</a></li>
-    <li><a href="{{SITE_URL}}/documentacion/wifi">Conexión wifi</a></li>
-    <li><a href="{{SITE_URL}}/documentacion/ca">Certificado Gonzalo Nazareno</a></li>
-    <li><a href="{{SITE_URL}}/documentacion/fct">Módulo FCT</a></li>
+    <li><a href="{{SITE_URL}}/info/noticias">Noticias</a></li>
+    <li><a href="{{SITE_URL}}/info/documentacion">Documentación</a></li>
+    <li><a href="{{SITE_URL}}/info/blog">Blog</a></li>
+    <li><a href="{{SITE_URL}}/proyectos">Proyectos Integrados</a></li>
+    {% if request.session.profesor %}
+    <li><a href="{{SITE_URL}}/info/actualizar">Actualizar contenido</a></li>
+    {%endif%}
   </ul>
 </li>
 
