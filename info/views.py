@@ -50,7 +50,7 @@ def getInfo(tipo):
             if root==path:
                 with open(path+file, "r", encoding="utf-8") as input_file:
                     text = input_file.read()
-                md = markdown.Markdown(extensions = ['meta'])
+                md = markdown.Markdown(extensions = ['meta','extra'])
                 html = md.convert(text)
                 meta=md.Meta
                 datos.append({"html":html,"meta":meta})

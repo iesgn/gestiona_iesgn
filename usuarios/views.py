@@ -180,7 +180,7 @@ def perfil(request):
     lldap=LibLDAP()
     busqueda='(uid=%s)'%(request.session["username"])
     datos=lldap.buscar(busqueda,["uid"])
-    ldap.logout()
+    lldap.logout()
     return update(request,datos[0]["uid"][0])#
 
 #############################################################################################################
