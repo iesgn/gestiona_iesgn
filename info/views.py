@@ -10,7 +10,9 @@ def actualizar(request):
     os.system("cd %s && git pull" % path)
     return redirect(settings.SITE_URL)
 
-def doc(request,tipo):
+def doc(request,tipo=""):
+    if tipo=="":
+        return redirect("/info/blog")
     
     visibility="public"
     

@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^usuarios/', include('usuarios.urls')),
     url(r'^grupos/', include('grupos.urls')),
     url(r'^info/', include('info.urls')),
+    url(r'^portal/', include('info.urls')),
     url(r'^multitask/', include('multitask.urls')),
     url(r'^correos/', include('correos.urls')),
     url(r'^cert/', include('certificados.urls')),

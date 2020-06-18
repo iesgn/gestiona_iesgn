@@ -3,6 +3,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+  path('',views.doc),
   url(r'^actualizar',views.actualizar),
 	url(r'^(?P<tipo>[a-z0-9]+)$', views.doc),
 	#url(r'^(?P<tipo>[a-z0-9]+)/(?P<url>[a-z0-9-]+)$', views.show),
