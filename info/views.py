@@ -10,7 +10,7 @@ def actualizar(request):
     os.system("cd %s && git pull" % path)
     return redirect(settings.SITE_URL)
 
-def doc(request,tipo=""):
+def doc(request,tipo="",pagina=1):
     if tipo=="":
         return redirect("/info/blog")
     
@@ -28,6 +28,17 @@ def doc(request,tipo=""):
     if tipo=="documentacion":
         return render(request,"listardoc.html",info)
     if tipo=="blog":
+        numpost=5
+        try:
+            maxpag=int(len(datos)/numpost)+2
+        except:
+            maxpag=1
+        info["numpaginas"]=range(1,maxpag)
+        if pagina<1 or pagina>maxpag-1:
+            raise Http404
+        info["pagina"]=pagina
+        
+        info["datos"]=datos[(pagina-1)*numpost:(pagina-1)*numpost+numpost]
         return render(request,"listarblog.html",info)
     if tipo=="noticias":
         return render(request,"listarnoticias.html",info)
@@ -61,6 +72,7 @@ def getInfo(tipo):
 
 def getDoc(tipo,url,session):
     datos=getInfo(tipo)
+    print(datos)
     for dato in datos:
         if dato.get("meta").get("url")[0]==url:
             if dato.get("meta").get("visibility")[0]=="public":

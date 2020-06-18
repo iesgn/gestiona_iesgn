@@ -17,7 +17,7 @@ def index(request):
     ####
     ## Generamos últimas entradas del blog
     datos=getInfoVisibility("blog",visibility)
-    info["blog"]=datos[:5]
+    info["blog"]=datos[:8]
 
     if request.method=="GET":
         return render(request,'index.html',info)
