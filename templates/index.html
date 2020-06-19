@@ -1,8 +1,8 @@
-{% extends "base_menu.html" %}
+{% extends "t2bloque.html" %}
 
 
-{% block content %}
-{% if messages %}
+{% block top %}
+  {% if messages %}
     {% for message in messages %}
       <div class="alert alert-danger alert-dismissable fade in">
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -13,6 +13,12 @@
   {% endif %}
 
 
+
+{% endblock%}
+
+
+
+{%block content%}
 {%for noticia in noticias %}
 
   {% if noticia.meta.index.0 == "True" %}
@@ -25,115 +31,74 @@
         </div>
       </div>
     {% endif %}
+    <!-- Jumbotron Header -->
+    <header class="page-header">
+        <h1>IES Gonzalo Nazareno</h1>
+        <h3>Departamento de Informática</h3>
+    </header>
 {%endfor%}
-<!-- Jumbotron Header -->
-        <header class="page-header">
-            <h1>IES Gonzalo Nazareno</h1>
-            <h3>Departamento de Informática</h3>
-	    <!--p><a class="btn btn-primary btn-large">Call to action!</a>-->
-            </p>
-        </header>
-        
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-9">
-            
 
-        <!-- Title -->
-        <div class="row">
-            <div class="col-lg-12">
-                <h3>Enlaces</h3>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <!-- Page Features -->
-        <div class="row text-center">
-
-            <div class="col-md-4 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="static/img/moodle.png" alt="">
-                    <div class="caption">
-                        <h3>Moodle</h3>
-                        <p>Plataforma Educativa</p>
-                        <p>
-			<a href="http://dit.gonzalonazareno.org/moodle#" class="btn btn-primary">Entra</a> 
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="static/img/redmine.png" alt="">
-                    <div class="caption">
-                        <h3>redmine</h3>
-                        <p>Gestor de proyectos</p>
-                        <p>
-                            <a href="http://dit.gonzalonazareno.org/redmine" class="btn btn-primary">Entra</a> 
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="static/img/openstack.png" alt="">
-                    <div class="caption">
-                        <h3>OpenStack</h3>
-                        <p>Nuestro Cloud Computing</p>
-                        <p>
-                            <a href="https://jupiter.gonzalonazareno.org" class="btn btn-primary">Entra</a> 
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-    
-
-        </div>
-        <div class="row">
-            <h3>Últimas entradas del blog...</h3>
-            {%for entrada in blog%}
-            <div class="panel panel-default">
-                <div class="panel-heading"><a href="{{SITE_URL}}/info/blog/{{entrada.meta.url.0}}"><strong>{{entrada.meta.title.0}}</strong></a></div>
-                <div class="panel-body">
-                    {{entrada.html|slice:":250"|safe}}...
-                </div>
-              </div>
-
-            {%endfor%}
-			
-		</div>
-        
+           <!-- Title -->
+           <div class="row">
+               <div class="col-lg-12">
+                   <h3>Enlaces</h3>
+               </div>
+           </div>
+       <!-- /.row -->
+   <!-- Page Features -->
+   <div class="row text-center">
+       <div class="col-md-4 col-sm-6 hero-feature">
+           <div class="thumbnail">
+               <img src="static/img/moodle.png" alt="">
+               <div class="caption">
+                   <h3>Moodle</h3>
+                   <p>Plataforma Educativa</p>
+                   <p><a href="http://dit.gonzalonazareno.org/moodle#" class="btn btn-primary">Entra</a> 
+                   </p>
+               </div>
+           </div>
+       </div>
+       <div class="col-md-4 col-sm-6 hero-feature">
+           <div class="thumbnail">
+               <img src="static/img/redmine.png" alt="">
+               <div class="caption">
+                   <h3>redmine</h3>
+                   <p>Gestor de proyectos</p>
+                   <p>
+                       <a href="http://dit.gonzalonazareno.org/redmine" class="btn btn-primary">Entra</a> 
+                   </p>
+               </div>
+           </div>
+       </div>
+       <div class="col-md-4 col-sm-6 hero-feature">
+           <div class="thumbnail">
+               <img src="static/img/openstack.png" alt="">
+               <div class="caption">
+                   <h3>OpenStack</h3>
+                   <p>Nuestro Cloud Computing</p>
+                   <p>
+                       <a href="https://jupiter.gonzalonazareno.org" class="btn btn-primary">Entra</a> 
+                   </p>
+               </div>
+           </div>
+       </div>
+   
+   </div>
+       <div class="row">
+           <h3>Últimas entradas del blog...</h3>
+           {%for entrada in blog%}
+           <div class="panel panel-default">
+               <div class="panel-heading"><a href="{{SITE_URL}}/info/blog/{{entrada.meta.url.0}}"><strong>{{entrada.meta.title.0}}</strong></a></div>
+               <div class="panel-body">
+                   {{entrada.html|slice:":250"|safe}}...
+               </div>
+             </div>
+         
+           {%endfor%}
+         
+ </div>
 	
-</div>
-<div class="col-md-3">
-    <div class="row">
-        <h3>Menú</h3>
-		<div class="list-group">
-            <li class="list-group-item list-group-item-action"><a href="/">Inicio</a></li>
-            <li class="list-group-item list-group-item-action"><a href="/info/paginas/contacto">Contacto</a></li>
-            <li class="list-group-item list-group-item-action"><a href="/info/paginas/oferta">Oferta Educativa</a></li>
-            <li class="list-group-item list-group-item-action"><a href="/info/paginas/innovacion">Innovación</a></li>
-            <li class="list-group-item list-group-item-action"><a href="/info/paginas/instalaciones">Instalaciones</a></li>
-            <li class="list-group-item list-group-item-action"><a href="/info/paginas/reconocimientos">Reconocimientos</a></li>		
-        </div>
-        
-            <h3>Enlaces</h3>
-		<div class="list-group">
-			<li class="list-group-item list-group-item-action"><a href="https://informatica.gonzalonazareno.org">Blog del departamento</a></li>
-			<li class="list-group-item list-group-item-action"><a href="https://informatica.gonzalonazareno.org/plataforma">Antiguos cursos (moodle)</a></li>
-			<li class="list-group-item list-group-item-action"><a href="https://informatica.gonzalonazareno.org/proyectos">Proyectos integrados</a></li>
-			<li class="list-group-item list-group-item-action"><a href="https://www.gonzalonazareno.org">Web del IES Gonzalo Nazareno</a></li>
-		</div>
-    </div>
-    <div class="row">
-        <a class="twitter-timeline" data-width="400" data-dnt="true" data-tweet-limit="3" href="https://twitter.com/dit_GN?ref_src=twsrc%5Etfw">Tweets by dit_GN</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
-    </div>
-</div>
-</div>
-</div>
-    
+
+
 {% endblock %}
 

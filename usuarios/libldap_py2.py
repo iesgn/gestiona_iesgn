@@ -108,7 +108,6 @@ class gnLDAP(LibLDAP):
     def modUserGroup(self,uid,grupo,adddel):
         modlist = []
         usuario="uid=%s,ou=People,dc=gonzalonazareno,dc=org" % uid
-        print(usuario)
         if adddel=="add":
             modlist.append((ldap.MOD_ADD, "member", usuario.encode("utf-8") ))
         elif adddel=="del":

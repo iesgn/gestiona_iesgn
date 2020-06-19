@@ -72,7 +72,6 @@ def getInfo(tipo):
 
 def getDoc(tipo,url,session):
     datos=getInfo(tipo)
-    print(datos)
     for dato in datos:
         if dato.get("meta").get("url")[0]==url:
             if dato.get("meta").get("visibility")[0]=="public":
