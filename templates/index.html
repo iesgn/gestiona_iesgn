@@ -88,7 +88,7 @@
            <h3>Últimas entradas del blog...</h3>
            {%for entrada in blog%}
            <div class="panel panel-default">
-               <div class="panel-heading"><a href="{{SITE_URL}}/info/blog/{{entrada.meta.url.0}}"><strong>{{entrada.meta.title.0}}</strong></a></div>
+               <div class="panel-heading"><a href="{{SITE_URL}}/info/blog/{{entrada.meta.url.0}}"><strong>{{entrada.meta.title.0}}</strong> <small>({{entrada.meta.fecha.0}})</small></small></a></div>
                <div class="panel-body">
                    {{entrada.html|slice:":250"|safe}}...
                </div>
