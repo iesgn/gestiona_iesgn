@@ -16,9 +16,9 @@
     <ul class="pagination">
       {% for pag in numpaginas%}
         {% if pag == pagina%}
-            <li class="active"><a href="/info/blog/pagina/{{pag}}">{{pag}}</a></li>
+            <li class="active"><a href="{{SITE_URL}}/info/blog/pagina/{{pag}}">{{pag}}</a></li>
         {% else %}
-            <li ><a href="/info/blog/pagina/{{pag}}">{{pag}}</a></li>
+            <li ><a href="{{SITE_URL}}/info/blog/pagina/{{pag}}">{{pag}}</a></li>
         {% endif %}
 
       {%endfor%}

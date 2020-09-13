@@ -92,7 +92,6 @@ def getInfoVisibility(tipo,visibility):
             respuesta.append(dato)
         elif visibility=="public" and dato.get("meta").get("visibility")[0]=="public":
             respuesta.append(dato)
-            
     return respuesta
 
     
