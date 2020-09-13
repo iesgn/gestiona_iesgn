@@ -42,6 +42,7 @@ def doc(request,tipo="",pagina=1):
         return render(request,"listarblog.html",info)
     if tipo=="noticias":
         return render(request,"listarnoticias.html",info)
+    return redirect("/")
     
 
 def show(request,tipo,url):
