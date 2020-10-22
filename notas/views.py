@@ -5,12 +5,12 @@ import requests
 import json
 import datetime
 url_base="https://dit.gonzalonazareno.org/redmine/"
-key="0399e7851259ae2f377e34497432ee3b80204cb2"
+key="7c66d06567766f7f1412615eef7c48720de02ffa"
 # Create your views here.
 
 
 def usuario_id(user):
-    params={"name":user,"key":"0399e7851259ae2f377e34497432ee3b80204cb2"}
+    params={"name":user,"key":key}
     r=requests.get(url_base+'users.json',params=params,verify=False)
     if r.status_code == 200:
         doc=r.json()
@@ -18,7 +18,7 @@ def usuario_id(user):
             
 
 def categorias(user):
-    params={"assigned_to_id":usuario_id(user),"project_id":"24","status_id":"*","key":"0399e7851259ae2f377e34497432ee3b80204cb2"}
+    params={"assigned_to_id":usuario_id(user),"project_id":"24","status_id":"*","key":key}
     r=requests.get(url_base+'issues.json',params=params,verify=False)
     if r.status_code == 200:
         doc=r.json()
@@ -32,11 +32,24 @@ def categorias(user):
 @csrf_exempt
 def inicio(request):
     #user=request.session["username"]
-    user="f.tirado"
+    #user="josedom"
+    #request.session["profesor"]=True
+    user="javier.crespillo"
+    request.session["profesor"]=False
+    if request.session.get("profesor"):
+        
+        info={}
+        return render(request,"profesor.html",info)
+    else:
+        datos=notas_alumno(user)
+        info={"alumno":user,"datos":datos}
+        return render(request,"indice.html",info)
+
+def notas_alumno(user):
     datos={}
     for cat in categorias(user):
-        datos[cat[0]]={"1":[],"2":[]}
-        params={"sort":"created_on","category_id":cat[1],"assigned_to_id":usuario_id(user),"project_id":"24","status_id":"*","key":"0399e7851259ae2f377e34497432ee3b80204cb2"}
+        datos[cat[0]]={"1ev":[],"2ev":[]}
+        params={"sort":"created_on","category_id":cat[1],"assigned_to_id":usuario_id(user),"project_id":"24","status_id":"*","key":key}
         r=requests.get(url_base+'issues.json',params=params,verify=False)
         if r.status_code == 200:
             doc=r.json()
@@ -46,17 +59,16 @@ def inicio(request):
                 for campo in tarea["custom_fields"]:
                     if campo["name"]=="Nota":
                         dat.append(campo["value"])
+                    if campo["name"]=="Peso":
+                        dat.append(campo["value"])
                 if tarea["status"]["name"].lower()=="resuelta":
                     dat.append(True)
                 else:
                     dat.append(False)
                 #dat.append(tarea["created_on"])
                 date_time_obj = datetime.datetime.strptime(tarea["created_on"], '%Y-%m-%dT%H:%M:%SZ')
-                if date_time_obj<datetime.datetime(2019, 12, 8):
-                    datos[cat[0]]["1"].append(dat)
+                if date_time_obj.month>=9:
+                    datos[cat[0]]["1ev"].append(dat)
                 else:
-                    datos[cat[0]]["2"].append(dat)
-                
-                
-    info={"alumno":user,"datos":datos}
-    return render(request,"indice.html",info)
+                    datos[cat[0]]["2ev"].append(dat)
+    return datos

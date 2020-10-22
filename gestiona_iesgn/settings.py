@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'correos.apps.CorreosConfig',
     'certificados.apps.CertificadosConfig',
     'proyectos.apps.ProyectosConfig',
+    'notas.apps.NotasConfig',
 ]
 
 

@@ -29,4 +29,5 @@ urlpatterns = [
     url(r'^correos/', include('correos.urls')),
     url(r'^cert/', include('certificados.urls')),
     url(r'^proyectos/', include('proyectos.urls')),
+    url(r'^notas/', include('notas.urls')),
 ]

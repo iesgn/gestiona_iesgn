@@ -12,11 +12,11 @@
             <h4>1ª Evaluación</h4>
             <ul>
             
-            {% for tarea in tareas.1%}
+            {% for tarea in tareas.1ev%}
             <li>
-              {% if tarea.2  %}<strong>{%endif%}
-              {{tarea.0}} -- {{tarea.1}}
-              {% if tarea.2  %}</strong>{%endif%}
+              {% if tarea.1  %}<strong>{%endif%}
+              {{tarea.0}}: Nota: {{tarea.1}} -- Peso: {{tarea.2}}
+              {% if tarea.1  %}</strong>{%endif%}
             </li>
             {% endfor %}
           </ul>
@@ -24,8 +24,8 @@
           <h4>2ª Evaluación</h4>
             <ul>
             
-            {% for tarea in tareas.2%}
-              <li>{{tarea.0}} -- {{tarea.1}}</li>
+            {% for tarea in tareas.2ev%}
+            {{tarea.0}}: Nota: {{tarea.1}} -- Peso: {{tarea.2}}
             {% endfor %}
           </ul>
           {% endfor %}
