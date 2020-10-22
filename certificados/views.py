@@ -89,7 +89,7 @@ def handle_uploaded_file(f,nombre,tipo):
 		os.makedirs(path)
 	
 	path_file=path+"/"+f.name
-	with open(path_file, 'w') as destination:
+	with open(path_file, 'wb') as destination:
 		destination.write(f.read())
 
 def download(request,usuario,direc="",file=""):
