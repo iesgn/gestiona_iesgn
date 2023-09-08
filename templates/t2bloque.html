@@ -15,10 +15,16 @@
             <h3>Menú</h3>
 		    <div class="list-group">
                 <li class="list-group-item list-group-item-action"><a href="/">Inicio</a></li>
-                <li class="list-group-item list-group-item-action"><a href="http://dit.gonzalonazareno.org/moodle#">Aula virtual Moodle</a></li>
+                <!--<li class="list-group-item list-group-item-action"><a href="http://dit.gonzalonazareno.org/moodle#">Aula virtual Moodle</a></li>-->
+                <li class="list-group-item list-group-item-action"><a href="https://educacionadistancia.juntadeandalucia.es/centros/sevilla/">Moodle Centros</a></li>
                 <li class="list-group-item list-group-item-action"><a href="http://dit.gonzalonazareno.org/redmine">Gestor de proyectos Redmine</a></li>
-                <li class="list-group-item list-group-item-action"><a href="https://jupiter.gonzalonazareno.org/">OpenStack</a></li>
+                <!--<li class="list-group-item list-group-item-action"><a href="https://jupiter.gonzalonazareno.org/">OpenStack</a></li>-->
+                <li class="list-group-item list-group-item-action"><a href="https://dit.gonzalonazareno.org/gestiona/proyectos/">Proyectos Integrados</a></li>
+                {% if request.session.profesor %}
+                <li class="list-group-item list-group-item-action"><a href="{{SITE_URL}}/info/actualizar">Actualizar Proyectos Integrados</a></li>
+                {%endif%}
             </div>
+    <!--
             <h3>Contenido</h3>
 		    <div class="list-group">
                 <li class="list-group-item list-group-item-action"><a href="{{SITE_URL}}/info/noticias">Noticias</a></li>
@@ -26,7 +32,8 @@
                 <li class="list-group-item list-group-item-action"><a href="{{SITE_URL}}/info/blog">Blog</a></li>
                 <li class="list-group-item list-group-item-action"><a href="{{SITE_URL}}/proyectos/">Proyectos Integrados</a></li>
             </div>
-            
+        -->
+        <!--
             <h3>Información</h3>
 		    <div class="list-group">
                 <li class="list-group-item list-group-item-action"><a href="{{SITE_URL}}/info/paginas/contacto">Contacto</a></li>
@@ -35,7 +42,7 @@
                 <li class="list-group-item list-group-item-action"><a href="{{SITE_URL}}/info/paginas/instalaciones">Instalaciones</a></li>
                 <li class="list-group-item list-group-item-action"><a href="{{SITE_URL}}/info/paginas/reconocimientos">Reconocimientos</a></li>		
             </div>
-        
+        -->
             <!--<h3>Enlaces</h3>
 		    <div class="list-group">
 			    <li class="list-group-item list-group-item-action"><a href="https://informatica.gonzalonazareno.org">Blog del departamento</a></li>
@@ -45,7 +52,7 @@
 		    </div>-->
     
             
-            <a class="twitter-timeline" data-width="400" data-dnt="true" data-tweet-limit="3" href="https://twitter.com/dit_GN?ref_src=twsrc%5Etfw">Tweets by dit_GN</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+           <!-- <a class="twitter-timeline" data-width="400" data-dnt="true" data-tweet-limit="3" href="https://twitter.com/dit_GN?ref_src=twsrc%5Etfw">Tweets by dit_GN</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> -->
             
         </div>
     </div>
