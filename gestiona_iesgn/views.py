@@ -67,4 +67,4 @@ def test_login(request):
         raise Http404  
 
 def dual(request):
-    return redirect("info/paginas/dual")
+    return redirect("/gestiona/info/paginas/dual")
