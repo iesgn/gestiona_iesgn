@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url,include
 from django.contrib import admin
-from gestiona_iesgn.views import index,salir
+from gestiona_iesgn.views import index,salir,dual
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -30,4 +30,6 @@ urlpatterns = [
     url(r'^cert/', include('certificados.urls')),
     url(r'^proyectos/', include('proyectos.urls')),
     url(r'^notas/', include('notas.urls')),
+    url(r'^dual/$',dual),
+    
 ]

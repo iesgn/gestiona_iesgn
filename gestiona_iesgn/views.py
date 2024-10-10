@@ -65,3 +65,6 @@ def test_profesor(request):
 def test_login(request):
     if not request.session.get("username",False):
         raise Http404  
+
+def dual(request):
+    return redirect("/info/paginas/dual")
