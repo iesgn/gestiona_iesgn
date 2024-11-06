@@ -13,24 +13,23 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url,include
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,re_path,include
 from gestiona_iesgn.views import index,salir,dual
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^$',index),
-    url(r'^logout/$',salir),
-    url(r'^usuarios/', include('usuarios.urls')),
-    url(r'^grupos/', include('grupos.urls')),
-    url(r'^info/', include('info.urls')),
-    url(r'^portal/', include('info.urls')),
-    url(r'^multitask/', include('multitask.urls')),
-    url(r'^correos/', include('correos.urls')),
-    url(r'^cert/', include('certificados.urls')),
-    url(r'^proyectos/', include('proyectos.urls')),
-    url(r'^notas/', include('notas.urls')),
+    re_path(r'^admin/', admin.site.urls),
+    re_path(r'^$',index),
+    re_path(r'^logout/$',salir),
+    re_path(r'^usuarios/', include('usuarios.urls')),
+    re_path(r'^grupos/', include('grupos.urls')),
+    re_path(r'^info/', include('info.urls')),
+    re_path(r'^portal/', include('info.urls')),
+    re_path(r'^multitask/', include('multitask.urls')),
+    re_path(r'^correos/', include('correos.urls')),
+    re_path(r'^cert/', include('certificados.urls')),
+    re_path(r'^proyectos/', include('proyectos.urls')),
+    re_path(r'^notas/', include('notas.urls')),
     path('dual',dual),
     
 ]

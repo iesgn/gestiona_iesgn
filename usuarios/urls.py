@@ -1,12 +1,12 @@
-from django.conf.urls import url
+from django.urls import re_path
 
 from . import views
 
 urlpatterns = [
-	url(r'^$', views.listarUsuarios),
-	url(r'^update/(?P<usuario>[\- 0-9A-Za-z.]+)$', views.update),
-	url(r'^add$', views.add),
-	url(r'^perfil$', views.perfil),
-	url(r'^del$', views.delete),
+	re_path(r'^$', views.listarUsuarios),
+	re_path(r'^update/(?P<usuario>[\- 0-9A-Za-z.]+)$', views.update),
+	re_path(r'^add$', views.add),
+	re_path(r'^perfil$', views.perfil),
+	re_path(r'^del$', views.delete),
 
   ]
