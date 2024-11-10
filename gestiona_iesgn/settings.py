@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://dit.gonzalonazareno.org',
+]
+
 SITE_URL = 'https://dit.gonzalonazareno.org/gestiona'
 SITE_URL_STATIC = 'https://dit.gonzalonazareno.org/gestiona/static/'
 
