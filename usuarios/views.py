@@ -145,15 +145,15 @@ def update(request,usuario):
             
             #try: 
                 
-            ldap.modify(datos["uid"],new)
+            
             try:
-                request.session["password"]=nuevapass
-            except:
-                pass
-                
-            #except Exception as err:
-            #    messages.add_message(request, messages.INFO, 'No se ha podido modificar el usuario. Error'+str(err))
-            #    return redirect("%s" % url)
+                ldap.modify(datos["uid"],new)
+                if "perfil" in request.path:
+                    request.session["password"]=nuevapass
+                          
+            except Exception as err:
+                messages.add_message(request, messages.INFO, 'No se ha podido modificar el usuario. Error'+str(err))
+                return redirect("%s" % url)
         else:
             messages.add_message(request, messages.INFO, 'No se ha podido modificar el usuario. Usuario autentificado incorrecto.')
             return redirect("%s" % url)#
