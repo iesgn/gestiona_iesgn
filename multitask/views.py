@@ -3,8 +3,8 @@ from gestiona_iesgn.views import test_profesor
 from django.views.decorators.csrf import csrf_exempt
 import requests
 import json
-url_base="https://dit.gonzalonazareno.org/redmine/"
-
+#url_base="https://dit.gonzalonazareno.org/redmine/"
+url_base="http://172.22.0.3:3000/redmine/"
 # Create your views here.
 
 @csrf_exempt
