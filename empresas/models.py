@@ -46,18 +46,6 @@ class Empresa(models.Model):
     def __str__(self):
         return f"{self.nombre} ({self.cif})"
 
-class PersonaContacto(models.Model):
-    empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE, related_name="contactos_persona")
-    nombre = models.CharField(max_length=200)
-    telefono = models.CharField(max_length=50, blank=True)
-    email = models.EmailField(blank=True)
-
-    class Meta:
-        verbose_name = "Persona de contacto"
-        verbose_name_plural = "Personas de contacto"
-
-    def __str__(self):
-        return f"{self.nombre} - {self.empresa.nombre}"
 
 class ContactoEmpresa(models.Model):
     empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE, related_name="historial")

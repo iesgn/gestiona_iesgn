@@ -6,9 +6,8 @@
     <h3>Historial de contactos de {{ empresa.nombre }}</h3>
 
     <!-- Formulario para añadir nuevo registro -->
-    <form method="post" class="form-horizontal" style="margin-bottom:30px;">
+    <form method="post" action="" class="form-horizontal" style="margin-bottom:30px;">
       {% csrf_token %}
-
       <div class="form-group">
         <label class="col-sm-2 control-label">Fecha y hora</label>
         <div class="col-sm-4">
@@ -35,36 +34,57 @@
     </form>
 
     <!-- Listado de registros -->
-    {% if historial %}
+    <!-- Listado de registros en formato tabla -->
+{% if historial %}
+  <table class="table table-bordered table-hover">
+    <tbody>
       {% for h in historial %}
-      <div class="panel panel-default" style="margin-bottom:20px; border-radius:6px;">
-        <div class="panel-heading" style="background-color:#f7f7f7; border-bottom:1px solid #ddd;">
-          <strong>{{ h.fecha|date:"d/m/Y H:i" }}</strong>
-          &nbsp;&nbsp;|&nbsp;&nbsp;
-          <span class="text-muted">{{ h.profesor_nombre|default:h.profesor_username }}</span>
-          <form method="post" style="display:inline; float:right; margin-top:-2px;">
-            {% csrf_token %}
-            <button type="submit" name="borrar" value="{{ h.id }}"
-                    class="btn btn-danger btn-xs"
-                    title="Eliminar"
-                    onclick="return confirm('¿Seguro que deseas eliminar este registro del historial?');">
-              <span class="glyphicon glyphicon-trash"></span>
-            </button>
-          </form>
-          <div style="clear:both;"></div>
-        </div>
-        <div class="panel-body"
-             style="word-wrap:break-word; font-size:16px; line-height:1.5em;">
-          {{ h.texto }}
-        </div>
-      </div>
+        <tr style="background-color:#f7f7f7;">
+          <td style="width:20%; vertical-align:middle;">
+            <strong>{{ h.fecha|date:"d/m/Y H:i" }}</strong>
+          </td>
+          <td style="width:65%; vertical-align:middle;">
+            <span class="text-muted">{{ h.profesor_nombre|default:h.profesor_username }}</span>
+          </td>
+          <td style="width:15%; text-align:right;">
+            <form method="post" style="display:inline;">
+              {% csrf_token %}
+              <button type="submit" name="borrar" value="{{ h.id }}"
+                      class="btn btn-danger btn-xs"
+                      title="Eliminar"
+                      onclick="return confirm('¿Seguro que deseas eliminar este registro del historial?');">
+                <span class="glyphicon glyphicon-trash"></span>
+              </button>
+            </form>
+          </td>
+        </tr>
+        <tr>
+         <td colspan="3" style="padding:10px; background-color:#fcfcfc;">
+  <pre style="white-space:pre-wrap;
+              word-wrap:break-word;
+              margin:0;
+              padding:0;
+              border:0;
+              background:transparent;
+              font-family:inherit;
+              font-size:14px;
+              line-height:1.5;">
+{{ h.texto }}
+  </pre>
+</td>
+        </tr>
       {% endfor %}
-    {% else %}
-      <div class="alert alert-info text-center">
-        <em>No hay contactos registrados para esta empresa.</em>
-      </div>
-    {% endif %}
+    </tbody>
+  </table>
+{% else %}
+  <div class="alert alert-info text-center">
+    <em>No hay contactos registrados para esta empresa.</em>
+  </div>
+{% endif %}
+
   </div>
 </div>
+
+
 
 {% endblock %}

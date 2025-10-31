@@ -4,10 +4,11 @@ from django.urls import reverse_lazy
 from django.db.models import Q
 from gestiona_iesgn.views import test_profesor
 from .forms import EmpresaForm
-from .models import Empresa,AlumnoEmpresa,Curso, ContactoEmpresa, PersonaContacto, HistorialContacto
+from .models import Empresa, PersonaContacto, AlumnoEmpresa, HistorialContacto,Curso
 from .services import alumnos_de_empresa
 from usuarios.libldap import LibLDAP
 from django.utils import timezone
+
 
 @csrf_exempt
 def lista_empresas(request):
@@ -114,7 +115,7 @@ def historial_empresa(request, pk):
             # Crear nuevo registro
             fecha_str = request.POST.get("fecha")
             texto = request.POST.get("texto", "").strip()
-
+    
             if texto:
                 # Intentar convertir la fecha desde el input
                 try:
