@@ -1,0 +1,34 @@
+[
+  {
+    "model": "empresas.curso",
+    "pk": 1,
+    "fields": {
+      "code": "1SMR",
+      "nombre": "1º SMR"
+    }
+  },
+  {
+    "model": "empresas.curso",
+    "pk": 2,
+    "fields": {
+      "code": "2SMR",
+      "nombre": "2º SMR"
+    }
+  },
+  {
+    "model": "empresas.curso",
+    "pk": 3,
+    "fields": {
+      "code": "1ASIR",
+      "nombre": "1º ASIR"
+    }
+  },
+  {
+    "model": "empresas.curso",
+    "pk": 4,
+    "fields": {
+      "code": "2ASIR",
+      "nombre": "2º ASIR"
+    }
+  }
+]

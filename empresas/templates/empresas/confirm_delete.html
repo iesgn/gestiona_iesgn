@@ -1,0 +1,9 @@
+{% extends "t1bloque.html" %}
+{% block content %}
+  <h1>Borrar empresa</h1>
+  <p>¿Seguro que quieres borrar <strong>{{ object }}</strong>? Se eliminará también su historial.</p>
+  <form method="post">{% csrf_token %}
+    <button type="submit">Sí, borrar</button>
+    <a href="{% url 'empresas:lista' %}">Cancelar</a>
+  </form>
+{% endblock %}

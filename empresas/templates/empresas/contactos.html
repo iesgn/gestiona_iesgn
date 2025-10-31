@@ -1,0 +1,77 @@
+{% extends "t1bloque.html" %}
+{% block content %}
+
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <h3>Personas de contacto de {{ empresa.nombre }}</h3>
+
+    <form method="post" class="form-horizontal" style="margin-bottom:20px;">
+  {% csrf_token %}
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Nombre</label>
+    <div class="col-sm-8">
+      <input type="text" name="nombre" placeholder="Nombre completo" class="form-control" required>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Teléfono</label>
+    <div class="col-sm-4">
+      <input type="text" name="telefono" placeholder="Teléfono" class="form-control">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Correo</label>
+    <div class="col-sm-6">
+      <input type="email" name="email" placeholder="Correo electrónico" class="form-control">
+    </div>
+  </div>
+
+  <div class="form-group text-center">
+    <button type="submit" class="btn btn-success btn-lg">
+      <span class="glyphicon glyphicon-plus"></span> Añadir contacto
+    </button>
+    <a href="{% url 'empresas:lista' %}" class="btn btn-default btn-lg" style="margin-left:10px;">
+      <span class="glyphicon glyphicon-arrow-left"></span> Volver
+    </a>
+  </div>
+</form>
+
+
+    <table class="table table-bordered table-hover table-condensed">
+  <tr class="info">
+    <th>Nombre</th>
+    <th>Teléfono</th>
+    <th>Email</th>
+    <th class="text-center" style="width: 80px;">Acciones</th>
+  </tr>
+  {% for c in contactos %}
+  <tr>
+    <td>{{ c.nombre }}</td>
+    <td>{{ c.telefono }}</td>
+    <td>{{ c.email }}</td>
+    <td class="text-center">
+      <a href="{% url 'empresas:borrar_contacto' c.id %}"
+         class="btn btn-danger btn-xs"
+         onclick="return confirm('¿Seguro que deseas eliminar este contacto?');">
+        <span class="glyphicon glyphicon-trash"></span>
+      </a>
+    </td>
+  </tr>
+  {% empty %}
+  <tr><td colspan="4"><em>No hay personas de contacto.</em></td></tr>
+  {% endfor %}
+</table>
+
+
+    <div class="text-center">
+      <a href="{% url 'empresas:lista' %}" class="btn btn-default">
+        <span class="glyphicon glyphicon-arrow-left"></span> Volver
+      </a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

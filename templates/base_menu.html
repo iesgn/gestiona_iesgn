@@ -71,9 +71,9 @@
   </ul>
 
 </li>
-
-
-
+{% if request.session.profesor %}
+<li><a href="{{SITE_URL}}/empresas">Empresas</a></li>
+  {% endif %}
  <li><a href="{{SITE_URL}}/usuarios/perfil">Tu perfil</a></li>
 
 {% endif %}

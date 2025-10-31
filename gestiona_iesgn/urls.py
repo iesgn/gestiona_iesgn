@@ -31,5 +31,6 @@ urlpatterns = [
     re_path(r'^proyectos/', include('proyectos.urls')),
     re_path(r'^notas/', include('notas.urls')),
     path('dual',dual),
+    path("empresas/", include("empresas.urls")),
     
 ]

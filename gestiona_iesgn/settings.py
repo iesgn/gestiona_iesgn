@@ -16,11 +16,11 @@ CSRF_TRUSTED_ORIGINS = [
     'https://dit.gonzalonazareno.org',
 ]
 
-SITE_URL = 'https://dit.gonzalonazareno.org/gestiona'
-SITE_URL_STATIC = 'https://dit.gonzalonazareno.org/gestiona/static/'
+#SITE_URL = 'https://dit.gonzalonazareno.org/gestiona'
+#SITE_URL_STATIC = 'https://dit.gonzalonazareno.org/gestiona/static/'
 
-#SITE_URL = 'http://localhost:8000'
-#SITE_URL_STATIC = 'http://localhost:8000/static/'
+SITE_URL = 'http://localhost:8000'
+SITE_URL_STATIC = 'http://localhost:8000/static/'
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -55,6 +55,8 @@ INSTALLED_APPS = [
     'certificados.apps.CertificadosConfig',
     'proyectos.apps.ProyectosConfig',
     'notas.apps.NotasConfig',
+    'empresas.apps.EmpresasConfig',
+    
 ]
 
 

@@ -1,0 +1,122 @@
+{% extends "t1bloque.html" %}
+{% block content %}
+
+<div class="container mt-3">
+  <!-- Encabezado con botón -->
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="mb-0"><i class="bi bi-building"></i> Empresas</h2>
+    <a href="{% url 'empresas:crear' %}" class="btn btn-success">
+      <i class="bi bi-plus-lg"></i> Nueva empresa
+    </a>
+  </div>
+
+  <!-- Filtros -->
+  <form method="get" class="card card-body shadow-sm mb-4">
+    <div class="row g-3 align-items-end">
+      <div class="col-md-3">
+        <label class="form-label fw-bold">Buscar</label>
+        <input type="text" name="q" value="{{ busqueda }}" class="form-control" placeholder="Nombre, localidad o CIF">
+      </div>
+
+      <div class="col-md-4">
+        <label class="form-label fw-bold">Estado</label><br>
+        {% for value,label in estados %}
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" name="estado" value="{{ value }}"
+                   {% if value in estados_seleccionados %}checked{% endif %}>
+            <label class="form-check-label">{{ label }}</label>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="col-md-4">
+        <label class="form-label fw-bold">Cursos</label><br>
+        {% for curso in cursos %}
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" name="curso" value="{{ curso.code }}"
+                   {% if curso.code in cursos_seleccionados %}checked{% endif %}>
+            <label class="form-check-label">{{ curso.nombre }}</label>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="col-md-1 text-end">
+        <button type="submit" class="btn btn-primary">Filtrar</button>
+        <a href="{% url 'empresas:lista' %}" class="btn btn-link">Limpiar</a>
+      </div>
+    </div>
+  </form>
+
+  <!-- Lista de empresas -->
+  
+    {% if object_list %}
+    <table class="table table-bordered table-hover table-condensed">
+      <tr class="info">
+        <th class="text-center">#</th>
+        <th>Nombre</th>
+        <th>Localidad</th>
+        <th>Estado</th>
+       
+        <th>Cursos</th>
+         <th>Alumnos</th>
+        <th>Acciones</th>
+      </tr>
+
+      {% for e in object_list %}
+      <tr class="{% if e.estado == 'verde' %}success{% elif e.estado == 'naranja' %}warning{% else %}danger{% endif %}">
+        <td class="text-center">{{ forloop.counter }}</td>
+        <td>{{ e.nombre }}</td>
+        <td>{{ e.localidad }}</td>
+        <td class="text-center">
+          {% if e.estado == 'verde' %}
+            <span class="label label-success">Colabora</span>
+          {% elif e.estado == 'naranja' %}
+            <span class="label label-warning">En contacto</span>
+          {% else %}
+            <span class="label label-danger">No colabora</span>
+          {% endif %}
+        </td>
+        <td>
+          {% for c in e.cursos.all %}
+            <span class="label label-default">{{ c.nombre }}</span>
+          {% empty %}
+            <em>Sin cursos</em>
+          {% endfor %}
+        </td>
+        <td>
+  {% for a in e.alumnos.all %}
+    {{ a.nombre|default:a.uid }} ({{ a.curso }})<br>
+  {% empty %}
+    <em>Sin alumnos</em>
+  {% endfor %}
+</td>
+        <td class="text-center">
+          <a href="{% url 'empresas:editar' e.pk %}" title="Editar">
+            <span class="glyphicon glyphicon-edit" style="color:green"></span>
+          </a>
+          &nbsp;
+          <a href="{% url 'empresas:borrar' e.pk %}" title="Borrar">
+            <span class="glyphicon glyphicon-trash" style="color:red"></span>
+          </a>
+          &nbsp;
+          <a href="{% url 'empresas:historial' e.pk %}" title="Historial" class="btn btn-xs btn-success">
+            <span class="glyphicon glyphicon-list-alt" style="color:#555;"></span>
+          </a>
+          <a href="{% url 'empresas:alumnos' e.pk %}" title="Alumnos" class="btn btn-xs btn-info">
+            <span class="glyphicon glyphicon-education"></span>
+          </a>
+          <a href="{% url 'empresas:contactos' e.pk %}" title="Contactos" class="btn btn-xs btn-warning">
+            <span class="glyphicon glyphicon-phone-alt"></span> 
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% else %}
+      <div class="alert alert-info text-center">No hay empresas registradas.</div>
+    {% endif %}
+  </div>
+
+
+
+{% endblock %}

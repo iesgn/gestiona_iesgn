@@ -1,0 +1,124 @@
+
+{% extends "t1bloque.html" %}
+{% load form_tags %}
+{% block content %}
+
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <div class="panel panel-default" style="margin-top:20px;">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          {% if form.instance.pk %}
+            <span class="glyphicon glyphicon-edit"></span> Editar empresa
+          {% else %}
+            <span class="glyphicon glyphicon-plus"></span> Nueva empresa
+          {% endif %}
+        </h3>
+      </div>
+
+      <div class="panel-body">
+        <form method="post" class="form-horizontal">
+          {% csrf_token %}
+
+          {% if form.errors %}
+          <div class="alert alert-danger">
+            <strong>Por favor, corrige los siguientes errores:</strong>
+            <ul class="mb-0">
+              {% for field in form %}
+                {% for error in field.errors %}
+                  <li><strong>{{ field.label }}:</strong> {{ error }}</li>
+                {% endfor %}
+              {% endfor %}
+            </ul>
+          </div>
+          {% endif %}
+
+          <!-- CIF -->
+          <div class="form-group">
+            <label class="col-sm-2 control-label">CIF</label>
+            <div class="col-sm-10">
+              {{ form.cif|add_class:"form-control" }}
+            </div>
+          </div>
+
+          <!-- Nombre -->
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Nombre</label>
+            <div class="col-sm-10">
+              {{ form.nombre|add_class:"form-control" }}
+            </div>
+          </div>
+
+          <!-- Dirección -->
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Dirección</label>
+            <div class="col-sm-10">
+              {{ form.direccion|add_class:"form-control" }}
+            </div>
+          </div>
+
+          <!-- Localidad -->
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Localidad</label>
+            <div class="col-sm-10">
+              {{ form.localidad|add_class:"form-control" }}
+            </div>
+          </div>
+
+          <!-- NIF Responsable -->
+          <div class="form-group">
+            <label class="col-sm-2 control-label">NIF Responsable</label>
+            <div class="col-sm-10">
+              {{ form.nif_responsable|add_class:"form-control" }}
+            </div>
+          </div>
+
+          <!-- Nombre Responsable -->
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Responsable legal</label>
+            <div class="col-sm-10">
+              {{ form.nombre_responsable|add_class:"form-control" }}
+            </div>
+          </div>
+
+          <!-- Estado -->
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Estado</label>
+            <div class="col-sm-10">
+              {{ form.estado|add_class:"form-control" }}
+              <p class="help-block">Indica si la empresa colabora, está en contacto o no colabora.</p>
+            </div>
+          </div>
+
+          <!-- Cursos -->
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Cursos</label>
+            <div class="col-sm-10">
+              <div class="well well-sm" style="padding:10px 15px;">
+                {% for checkbox in form.cursos %}
+                  <label class="checkbox-inline" style="margin-right:15px;">
+                    {{ checkbox.tag }} {{ checkbox.choice_label }}
+                  </label>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+
+         
+          <!-- Botones -->
+          <div class="form-group text-center" style="margin-top:20px;">
+            <button type="submit" class="btn btn-success btn-lg">
+              <span class="glyphicon glyphicon-ok"></span> Guardar
+            </button>
+            <a href="{% url 'empresas:lista' %}" class="btn btn-default btn-lg" style="margin-left:10px;">
+              <span class="glyphicon glyphicon-remove"></span> Cancelar
+            </a>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
