@@ -19,6 +19,8 @@ CSRF_TRUSTED_ORIGINS = [
 SITE_URL = 'https://dit.gonzalonazareno.org/gestiona'
 SITE_URL_STATIC = 'https://dit.gonzalonazareno.org/gestiona/static/'
 
+FORCE_SCRIPT_NAME = '/gestiona'
+
 #SITE_URL = 'http://localhost:8000'
 #SITE_URL_STATIC = 'http://localhost:8000/static/'
 
