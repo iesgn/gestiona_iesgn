@@ -91,22 +91,30 @@
           </div>
 
           <!-- Cursos -->
-          <div class="form-group">
-            <label class="col-sm-2 control-label">Cursos</label>
-            <div class="col-sm-10">
-              <div class="well well-sm" style="padding:10px 15px;">
-                {% for checkbox in form.cursos %}
-                  <label class="checkbox-inline" style="margin-right:15px;">
-                    {{ checkbox.tag }} {{ checkbox.choice_label }}
-                  </label>
-                {% endfor %}
-              </div>
+          <div class="col-md-12" style="margin-top:15px;padding-bottom: 20px;">
+            <label class="control-label"><strong>Plazas ofrecidas por curso</strong></label>
+            <div class="well well-sm" style="padding:10px 15px; margin-bottom:0;">
+              {% for curso in form.cursos %}
+                {% with field_name="plazas_"|add:curso.code %}
+                  <div class="form-group" style="margin-bottom:5px;">
+                    <label style="width:200px; padding-left: 15px;">{{ curso.nombre }}</label>
+                    {% for field in form %}
+                      {% if field.name == field_name %}
+                        {{ field }}
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                {% endwith %}
+              {% endfor %}
             </div>
           </div>
 
+          
+
+
          
           <!-- Botones -->
-          <div class="form-group text-center" style="margin-top:20px;">
+          <div class="form-group text-center" style="margin-top:20px; ">
             <button type="submit" class="btn btn-success btn-lg">
               <span class="glyphicon glyphicon-ok"></span> Guardar
             </button>

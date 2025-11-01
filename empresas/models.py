@@ -28,7 +28,7 @@ class Empresa(models.Model):
         NARANJA = "naranja", "En contacto"
         ROJO = "rojo", "No colabora"
 
-    cif = models.CharField(max_length=16, unique=True)
+    cif = models.CharField(max_length=16,blank=True)
     nombre = models.CharField(max_length=200)
     direccion = models.CharField(max_length=255, blank=True)
     localidad = models.CharField(max_length=120, blank=True)
@@ -90,3 +90,33 @@ class HistorialContacto(models.Model):
 
     def __str__(self):
         return f"{self.empresa.nombre} - {self.profesor_username} ({self.fecha:%d/%m/%Y %H:%M})"
+
+
+class PlazaCurso(models.Model):
+    empresa = models.ForeignKey("Empresa", on_delete=models.CASCADE, related_name="plazas_curso")
+    curso = models.ForeignKey(Curso, on_delete=models.CASCADE)
+    plazas = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        unique_together = ("empresa", "curso")
+        verbose_name = "Plaza por curso"
+        verbose_name_plural = "Plazas por curso"
+
+    def __str__(self):
+        return f"{self.empresa.nombre} - {self.curso.nombre} ({self.plazas} plazas)"
+
+
+class HistorialAlumno(models.Model):
+    alumno = models.ForeignKey("AlumnoEmpresa", on_delete=models.CASCADE, related_name="historial_alumno")
+    profesor_username = models.CharField(max_length=150)
+    profesor_nombre = models.CharField(max_length=200, blank=True)
+    fecha = models.DateTimeField(default=timezone.now)
+    texto = models.TextField()
+
+    class Meta:
+        ordering = ['-fecha']
+        verbose_name = "Seguimiento de alumno"
+        verbose_name_plural = "Seguimiento de alumnos"
+
+    def __str__(self):
+        return f"{self.alumno.nombre} ({self.alumno.empresa.nombre}) - {self.profesor_username} ({self.fecha:%d/%m/%Y %H:%M})"

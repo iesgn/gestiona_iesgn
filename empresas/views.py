@@ -4,39 +4,94 @@ from django.urls import reverse_lazy
 from django.db.models import Q
 from gestiona_iesgn.views import test_profesor
 from .forms import EmpresaForm
-from .models import Empresa, PersonaContacto, AlumnoEmpresa, HistorialContacto,Curso
+from .models import Empresa, PersonaContacto, AlumnoEmpresa, HistorialContacto,Curso, PlazaCurso,HistorialAlumno
 from .services import alumnos_de_empresa
 from usuarios.libldap import LibLDAP
 from django.utils import timezone
+from django.db import models
+from django.db.models import Q, Sum
+from django.contrib import messages
+
 
 
 @csrf_exempt
 def lista_empresas(request):
+    """
+    Muestra el listado de empresas con filtros por búsqueda, estado y cursos.
+    Además calcula un resumen global de plazas y alumnos por curso.
+    """
     test_profesor(request)
 
+    # === 1. Obtener filtros de la petición ===
     q = request.GET.get("q")
     estados = request.GET.getlist("estado")
     cursos = request.GET.getlist("curso")
 
-    empresas = Empresa.objects.prefetch_related("cursos")
+    # === 2. Construir queryset base ===
+    empresas = Empresa.objects.prefetch_related("plazas_curso__curso", "alumnos")
 
+    # === 3. Filtros dinámicos ===
     if q:
         empresas = empresas.filter(
             Q(nombre__icontains=q)
             | Q(localidad__icontains=q)
             | Q(cif__icontains=q)
-        )
+            | Q(alumnos__nombre__icontains=q)
+            | Q(alumnos__uid__icontains=q)
+        ).distinct()
 
     if estados:
         empresas = empresas.filter(estado__in=estados)
 
     if cursos:
-        empresas = empresas.filter(cursos__code__in=cursos).distinct()
+        # Filtramos por cursos ofertados con plazas > 0
+        empresas = empresas.filter(
+            plazas_curso__curso__code__in=cursos,
+            plazas_curso__plazas__gt=0
+        ).distinct()
 
-    # Orden: verde → naranja → rojo
+    # === 4. Orden personalizado por estado + nombre ===
     estado_order = {"verde": 0, "naranja": 1, "rojo": 2}
-    empresas = sorted(empresas, key=lambda e: (estado_order.get(e.estado, 99), e.nombre.lower()))
+    empresas = sorted(
+        empresas,
+        key=lambda e: (estado_order.get(e.estado, 99), e.nombre.lower())
+    )
 
+    # === 5. Preparar información de plazas y alumnos por empresa ===
+    for e in empresas:
+        e.plazas_info = []
+        for p in e.plazas_curso.all():
+            if p.plazas > 0:
+                num_alumnos = e.alumnos.filter(curso=p.curso.nombre).count()
+                e.plazas_info.append({
+                    "curso_nombre": p.curso.nombre,
+                    "plazas": p.plazas,
+                    "ocupadas": num_alumnos,
+                })
+
+    # === 6. Resumen global de plazas y alumnos por curso ===
+    empresa_ids = [e.id for e in empresas]  # usar IDs evita duplicados
+
+    resumen_cursos = []
+    cursos_para_resumen = (
+        Curso.objects.filter(code__in=cursos) if cursos else Curso.objects.all()
+    )
+
+    for curso in cursos_para_resumen:
+        plazas_totales = PlazaCurso.objects.filter(
+            empresa_id__in=empresa_ids, curso=curso
+        ).aggregate(total=Sum("plazas"))["total"] or 0
+
+        alumnos_totales = AlumnoEmpresa.objects.filter(
+            empresa_id__in=empresa_ids, curso=curso.nombre
+        ).count()
+
+        resumen_cursos.append({
+            "nombre": curso.nombre,
+            "plazas": plazas_totales,
+            "alumnos": alumnos_totales,
+        })
+    # === 7. Renderizado ===
     context = {
         "object_list": empresas,
         "cursos": Curso.objects.all(),
@@ -45,13 +100,14 @@ def lista_empresas(request):
             ("naranja", "En contacto"),
             ("rojo", "No colabora"),
         ],
-        # 👇 Añadimos las selecciones actuales
         "estados_seleccionados": estados,
         "cursos_seleccionados": cursos,
         "busqueda": q or "",
+        "resumen_cursos": resumen_cursos,
     }
 
     return render(request, "empresas/lista.html", context)
+
 
 
 
@@ -192,13 +248,20 @@ def gestionar_alumnos(request, pk):
     empresa = get_object_or_404(Empresa, pk=pk)
     ldap = LibLDAP()
 
-    # === 1. Obtener cursos y alumnos actuales ===
-    cursos = empresa.cursos.all()
+    # === 1. Obtener cursos ofertados y alumnos actuales ===
+    # (Los cursos vienen de PlazaCurso, no del ManyToMany)
+    cursos_qs = Curso.objects.filter(
+        plazacurso__empresa=empresa,
+        plazacurso__plazas__gt=0
+    ).distinct()
+
     alumnos = AlumnoEmpresa.objects.filter(empresa=empresa)
     existentes = [a.uid for a in alumnos]
 
-    # === 2. Buscar alumnos en LDAP según cursos ===
+    # === 2. Buscar alumnos en LDAP según los cursos ofertados ===
     disponibles = []
+    vistos = set()
+
     CURSO_TO_LDAP_GROUP = {
         "1SMR": "smr1",
         "2SMR": "smr2",
@@ -206,35 +269,54 @@ def gestionar_alumnos(request, pk):
         "2ASIR": "asir2",
     }
 
-    for curso in cursos:
+    # UIDs (normalizados a minúsculas) que tienen seguimiento en esta empresa
+    uids_con_seguimiento = set(
+        HistorialAlumno.objects.filter(
+            alumno__empresa=empresa
+        ).values_list("alumno__uid", flat=True)
+    )
+    uids_con_seguimiento = {str(u).lower() for u in uids_con_seguimiento if u}
+    
+    for curso in cursos_qs:
         grupo = CURSO_TO_LDAP_GROUP.get(curso.code)
         if not grupo:
             continue
+
         grupos = ldap.buscar(f"(cn={grupo})", ['member'], base_dn=ldap.group_dn)
         for g in grupos:
             for miembro in g.get("member", []):
                 if not miembro.startswith("uid="):
                     continue
                 uid = miembro.split(",")[0].split("=")[1]
-                entradas = ldap.buscar(f"(uid={uid})", ['uid', 'cn', 'mail'])
-                if entradas:
-                    e = entradas[0]
-                    # Comprobar si el alumno está asignado a alguna empresa
-                    empresa_asignada = AlumnoEmpresa.objects.filter(uid=uid).exclude(empresa=empresa).first()
-                    nombre_empresa = empresa_asignada.empresa.nombre if empresa_asignada else ""
-                    
-                    disponibles.append({
-                        "uid": uid,
-                        "nombre": e.get("cn", [""])[0],
-                        "email": e.get("mail", [""])[0],
-                        "curso": curso.nombre,
-                        "seleccionado": uid in existentes,
-                        "fuera_de_curso": False,
-                        "empresa_asignada": nombre_empresa,
-                    })
-                    
+                if uid in vistos:
+                    continue
+                vistos.add(uid)
 
-    # === 3. Añadir alumnos guardados que ya no están en los cursos actuales ===
+                entradas = ldap.buscar(f"(uid={uid})", ['uid', 'cn', 'mail'])
+                if not entradas:
+                    continue
+                e = entradas[0]
+
+                # Verificar si el alumno tiene seguimiento previo
+                uid_norm = (uid or "").lower()
+                seguimiento_activo = uid_norm in uids_con_seguimiento
+                
+                # ¿Ya está asignado a otra empresa?
+                empresa_asignada = AlumnoEmpresa.objects.filter(uid=uid).exclude(empresa=empresa).first()
+                nombre_empresa = empresa_asignada.empresa.nombre if empresa_asignada else ""
+
+                disponibles.append({
+                    "uid": uid,
+                    "nombre": e.get("cn", [""])[0],
+                    "email": e.get("mail", [""])[0],
+                    "curso": curso.nombre,
+                    "seleccionado": uid in existentes,
+                    "fuera_de_curso": False,
+                    "empresa_asignada": nombre_empresa,
+                    "tiene_seguimiento": seguimiento_activo,
+                })
+
+    # === 3. Añadir alumnos guardados que ya no están en LDAP ni en cursos actuales ===
     uids_ldap = {a["uid"] for a in disponibles}
     for guardado in alumnos:
         if guardado.uid not in uids_ldap:
@@ -245,18 +327,45 @@ def gestionar_alumnos(request, pk):
                 "curso": guardado.curso or "—",
                 "seleccionado": True,
                 "fuera_de_curso": True,
+                "empresa_asignada": "",
+                "tiene_seguimiento": uid_norm in uids_con_seguimiento,
             })
 
-    # === 4. Procesar guardado ===
+    # === 4. Si no hay cursos ofertados y tampoco alumnos guardados ===
+    if not cursos_qs.exists() and not alumnos.exists():
+        disponibles = [{
+            "uid": "",
+            "nombre": "— No hay cursos seleccionados para esta empresa —",
+            "email": "",
+            "curso": "",
+            "seleccionado": False,
+            "fuera_de_curso": False,
+            "empresa_asignada": "",
+        }]
+
+    from django.contrib import messages
+
+    # === 5. Procesar guardado ===
     if request.method == "POST":
         seleccionados = request.POST.getlist("alumnos")
 
-        # Eliminar los que no están seleccionados
-        AlumnoEmpresa.objects.filter(empresa=empresa).exclude(uid__in=seleccionados).delete()
+        # --- Detectar alumnos que se van a eliminar ---
+        to_delete = AlumnoEmpresa.objects.filter(empresa=empresa).exclude(uid__in=seleccionados)
 
-        # Crear o actualizar los seleccionados
+        for a in to_delete:
+            # Si el alumno tiene historial de seguimiento, mostrar aviso
+            if hasattr(a, "historial_alumno") and a.historial_alumno.exists():
+                messages.warning(
+                    request,
+                    f"El alumno {a.nombre or a.uid} tenía historial de seguimiento que ha sido eliminado."
+                )
+
+        # --- Eliminar alumnos desmarcados (y por cascada, su historial) ---
+        to_delete.delete()
+
+        # --- Crear o actualizar los seleccionados ---
         for a in disponibles:
-            if a["uid"] in seleccionados:
+            if a["uid"] in seleccionados and a["uid"]:
                 AlumnoEmpresa.objects.update_or_create(
                     empresa=empresa,
                     uid=a["uid"],
@@ -268,12 +377,12 @@ def gestionar_alumnos(request, pk):
 
         return redirect("empresas:lista")
 
-    # === 5. Renderizar plantilla ===
+
+    # === 6. Renderizar plantilla ===
     return render(request, "empresas/alumnos.html", {
         "empresa": empresa,
         "disponibles": disponibles,
     })
-
 
 
 # === Contactos ===
@@ -309,3 +418,69 @@ def borrar_contacto(request, contacto_id):
     empresa = contacto.empresa
     contacto.delete()
     return redirect("empresas:contactos", pk=empresa.pk)
+
+# ==seguimiento
+
+@csrf_exempt
+def historial_alumno(request, alumno_id):
+    """
+    Muestra y gestiona el historial de seguimiento de un alumno.
+    - Añadir registros con fecha, hora y observación.
+    - Guardar el profesor logueado desde LDAP.
+    - Permitir borrar entradas individuales.
+    """
+    test_profesor(request)
+    alumno = get_object_or_404(AlumnoEmpresa, pk=alumno_id)
+    empresa = alumno.empresa
+    ldap = LibLDAP()
+
+    # === Procesamiento POST (añadir o borrar) ===
+    if request.method == "POST":
+        if "borrar" in request.POST:
+            # Borrar registro concreto
+            registro_id = request.POST.get("borrar")
+            HistorialAlumno.objects.filter(pk=registro_id, alumno=alumno).delete()
+
+        else:
+            # Crear nuevo registro
+            fecha_str = request.POST.get("fecha")
+            texto = request.POST.get("texto", "").strip()
+
+            if texto:
+                # Intentar convertir la fecha desde el input
+                try:
+                    fecha = timezone.datetime.fromisoformat(fecha_str)
+                except Exception:
+                    fecha = timezone.now()
+
+                # Obtener profesor desde LDAP
+                profesor_username = request.session.get("username", "desconocido")
+                profesor_nombre = profesor_username  # valor por defecto
+
+                try:
+                    entradas = ldap.buscar(f"(uid={profesor_username})", ["cn"])
+                    if entradas:
+                        profesor_nombre = entradas[0].get("cn", [profesor_username])[0]
+                except Exception:
+                    pass
+
+                # Guardar el registro
+                HistorialAlumno.objects.create(
+                    alumno=alumno,
+                    profesor_username=profesor_username,
+                    profesor_nombre=profesor_nombre,
+                    fecha=fecha,
+                    texto=texto,
+                )
+
+        return redirect("empresas:historial_alumno", alumno_id=alumno.id)
+
+    # === En GET: mostrar historial ===
+    historial = HistorialAlumno.objects.filter(alumno=alumno).order_by("-fecha")
+
+    return render(request, "empresas/historial_alumno.html", {
+        "empresa": empresa,
+        "alumno": alumno,
+        "historial": historial,
+        "ahora": timezone.localtime(timezone.now()).strftime("%Y-%m-%dT%H:%M"),
+    })

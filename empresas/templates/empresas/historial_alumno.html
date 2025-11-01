@@ -1,0 +1,90 @@
+{% extends "t1bloque.html" %}
+{% block content %}
+
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <h3>
+      Seguimiento de {{ alumno.nombre }} ({{ alumno.curso }})
+      <small class="text-muted">— {{ empresa.nombre }}</small>
+    </h3>
+
+    <!-- Formulario para nueva observación -->
+    <form method="post" class="form-horizontal" style="margin-bottom:30px;">
+      {% csrf_token %}
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Fecha y hora</label>
+        <div class="col-sm-4">
+          <input type="datetime-local" name="fecha" value="{{ ahora }}" class="form-control" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Observación</label>
+        <div class="col-sm-10">
+          <textarea name="texto" rows="6" class="form-control"
+                    placeholder="Describe el seguimiento, observación o incidencia del alumno..."></textarea>
+        </div>
+      </div>
+
+      <div class="form-group text-center" style="margin-top:20px;">
+        <button type="submit" class="btn btn-success btn-lg">
+          <span class="glyphicon glyphicon-plus"></span> Añadir observación
+        </button>
+        <a href="{% url 'empresas:lista' %}" class="btn btn-default btn-lg" style="margin-left:10px;">
+          <span class="glyphicon glyphicon-arrow-left"></span> Volver
+        </a>
+      </div>
+    </form>
+
+    <!-- Listado del historial -->
+    {% if historial %}
+      <table class="table table-bordered table-hover">
+        <tbody>
+          {% for h in historial %}
+            <tr style="background-color:#f7f7f7;">
+              <td style="width:20%; vertical-align:middle;">
+                <strong>{{ h.fecha|date:"d/m/Y H:i" }}</strong>
+              </td>
+              <td style="width:65%; vertical-align:middle;">
+                <span class="text-muted">{{ h.profesor_nombre|default:h.profesor_username }}</span>
+              </td>
+              <td style="width:15%; text-align:right;">
+                <form method="post" style="display:inline;">
+                  {% csrf_token %}
+                  <button type="submit" name="borrar" value="{{ h.id }}"
+                          class="btn btn-danger btn-xs"
+                          title="Eliminar"
+                          onclick="return confirm('¿Seguro que deseas eliminar esta observación?');">
+                    <span class="glyphicon glyphicon-trash"></span>
+                  </button>
+                </form>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="3" style="padding:10px; background-color:#fcfcfc;">
+                <pre style="white-space:pre-wrap;
+            word-wrap:break-word;
+            margin:0;
+            padding:0;
+            border:0;
+            background:transparent;
+            font-family:inherit;
+            font-size:14px;
+            line-height:1.5;">
+{{ h.texto }}
+</pre>
+
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <div class="alert alert-info text-center">
+        <em>No hay observaciones registradas para este alumno.</em>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}

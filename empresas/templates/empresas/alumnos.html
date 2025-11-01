@@ -21,11 +21,17 @@
     <input type="checkbox" name="alumnos" value="{{ a.uid }}" {% if a.seleccionado %}checked{% endif %}>
   </td>
   <td>
-    {{ a.nombre }}
-    {% if a.fuera_de_curso %}
-      <span class="label label-default">fuera de curso</span>
-    {% endif %}
-  </td>
+  {{ a.nombre }}
+  {% if a.fuera_de_curso %}
+    <span class="label label-default">fuera de curso</span>
+  {% endif %}
+  {% if a.tiene_seguimiento %}
+    <br>
+    <span class="label label-warning" title="Si lo desmarcas, se eliminará su historial de seguimiento.">
+      Tiene seguimiento. Si lo desmarcas, se eliminará su historial de seguimiento.
+    </span>
+  {% endif %}
+</td>
   <td>{{ a.uid }}</td>
   <td>{{ a.curso }}</td>
   <td>{{ a.email }}</td>
