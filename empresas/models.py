@@ -60,13 +60,26 @@ class ContactoEmpresa(models.Model):
         return f"{self.empresa.nombre} - {self.profesor} @ {self.fecha:%Y-%m-%d %H:%M}"
 
 class AlumnoEmpresa(models.Model):
+    class Estado(models.TextChoices):
+        EN_PROCESO = "PROCESO", "En proceso"
+        ASIGNADO = "ASIGNADO", "Asignado"
+
     empresa = models.ForeignKey("Empresa", on_delete=models.CASCADE, related_name="alumnos")
     uid = models.CharField(max_length=50)
     nombre = models.CharField(max_length=100, blank=True)
     curso = models.CharField(max_length=20, blank=True)
+    estado = models.CharField(
+        max_length=10,
+        choices=Estado.choices,
+        blank=True,
+        null=True,
+        default=None,
+    )
 
     def __str__(self):
-        return f"{self.nombre or self.uid} ({self.curso})"
+        estado_txt = f" [{self.get_estado_display()}]" if self.estado else ""
+        return f"{self.nombre or self.uid} ({self.curso}){estado_txt}"
+
 
 class PersonaContacto(models.Model):
     empresa = models.ForeignKey("Empresa", on_delete=models.CASCADE, related_name="contactos")

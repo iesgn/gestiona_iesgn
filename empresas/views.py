@@ -248,8 +248,7 @@ def gestionar_alumnos(request, pk):
     empresa = get_object_or_404(Empresa, pk=pk)
     ldap = LibLDAP()
 
-    # === 1. Obtener cursos ofertados y alumnos actuales ===
-    # (Los cursos vienen de PlazaCurso, no del ManyToMany)
+    # === 1. Cursos ofertados y alumnos actuales ===
     cursos_qs = Curso.objects.filter(
         plazacurso__empresa=empresa,
         plazacurso__plazas__gt=0
@@ -258,7 +257,7 @@ def gestionar_alumnos(request, pk):
     alumnos = AlumnoEmpresa.objects.filter(empresa=empresa)
     existentes = [a.uid for a in alumnos]
 
-    # === 2. Buscar alumnos en LDAP según los cursos ofertados ===
+    # === 2. Buscar alumnos en LDAP según cursos ofertados ===
     disponibles = []
     vistos = set()
 
@@ -269,14 +268,13 @@ def gestionar_alumnos(request, pk):
         "2ASIR": "asir2",
     }
 
-    # UIDs (normalizados a minúsculas) que tienen seguimiento en esta empresa
     uids_con_seguimiento = set(
         HistorialAlumno.objects.filter(
             alumno__empresa=empresa
         ).values_list("alumno__uid", flat=True)
     )
     uids_con_seguimiento = {str(u).lower() for u in uids_con_seguimiento if u}
-    
+
     for curso in cursos_qs:
         grupo = CURSO_TO_LDAP_GROUP.get(curso.code)
         if not grupo:
@@ -297,13 +295,12 @@ def gestionar_alumnos(request, pk):
                     continue
                 e = entradas[0]
 
-                # Verificar si el alumno tiene seguimiento previo
                 uid_norm = (uid or "").lower()
                 seguimiento_activo = uid_norm in uids_con_seguimiento
-                
-                # ¿Ya está asignado a otra empresa?
                 empresa_asignada = AlumnoEmpresa.objects.filter(uid=uid).exclude(empresa=empresa).first()
                 nombre_empresa = empresa_asignada.empresa.nombre if empresa_asignada else ""
+
+                alumno_existente = alumnos.filter(uid=uid).first()
 
                 disponibles.append({
                     "uid": uid,
@@ -311,12 +308,13 @@ def gestionar_alumnos(request, pk):
                     "email": e.get("mail", [""])[0],
                     "curso": curso.nombre,
                     "seleccionado": uid in existentes,
+                    "estado": alumno_existente.estado if alumno_existente else None,
                     "fuera_de_curso": False,
                     "empresa_asignada": nombre_empresa,
                     "tiene_seguimiento": seguimiento_activo,
                 })
 
-    # === 3. Añadir alumnos guardados que ya no están en LDAP ni en cursos actuales ===
+    # === 3. Añadir alumnos guardados que ya no están en LDAP ===
     uids_ldap = {a["uid"] for a in disponibles}
     for guardado in alumnos:
         if guardado.uid not in uids_ldap:
@@ -326,64 +324,51 @@ def gestionar_alumnos(request, pk):
                 "email": "",
                 "curso": guardado.curso or "—",
                 "seleccionado": True,
+                "estado": guardado.estado,
                 "fuera_de_curso": True,
                 "empresa_asignada": "",
-                "tiene_seguimiento": uid_norm in uids_con_seguimiento,
+                "tiene_seguimiento": guardado.uid.lower() in uids_con_seguimiento,
             })
-
-    # === 4. Si no hay cursos ofertados y tampoco alumnos guardados ===
-    if not cursos_qs.exists() and not alumnos.exists():
-        disponibles = [{
-            "uid": "",
-            "nombre": "— No hay cursos seleccionados para esta empresa —",
-            "email": "",
-            "curso": "",
-            "seleccionado": False,
-            "fuera_de_curso": False,
-            "empresa_asignada": "",
-        }]
 
     from django.contrib import messages
 
-    # === 5. Procesar guardado ===
+    # === 4. Procesar guardado ===
     if request.method == "POST":
         seleccionados = request.POST.getlist("alumnos")
 
-        # --- Detectar alumnos que se van a eliminar ---
+        # --- Eliminar alumnos desmarcados ---
         to_delete = AlumnoEmpresa.objects.filter(empresa=empresa).exclude(uid__in=seleccionados)
-
         for a in to_delete:
-            # Si el alumno tiene historial de seguimiento, mostrar aviso
             if hasattr(a, "historial_alumno") and a.historial_alumno.exists():
                 messages.warning(
                     request,
                     f"El alumno {a.nombre or a.uid} tenía historial de seguimiento que ha sido eliminado."
                 )
-
-        # --- Eliminar alumnos desmarcados (y por cascada, su historial) ---
         to_delete.delete()
 
-        # --- Crear o actualizar los seleccionados ---
+        # --- Crear o actualizar seleccionados ---
         for a in disponibles:
             if a["uid"] in seleccionados and a["uid"]:
+                estado_valor = request.POST.get(f"estado_{a['uid']}", "").strip() or None
+
                 AlumnoEmpresa.objects.update_or_create(
                     empresa=empresa,
                     uid=a["uid"],
                     defaults={
                         "nombre": a["nombre"],
                         "curso": a["curso"],
+                        "estado": estado_valor,
                     }
                 )
 
         return redirect("empresas:lista")
 
 
-    # === 6. Renderizar plantilla ===
+    # === 5. Renderizar plantilla ===
     return render(request, "empresas/alumnos.html", {
         "empresa": empresa,
         "disponibles": disponibles,
     })
-
 
 # === Contactos ===
 @csrf_exempt

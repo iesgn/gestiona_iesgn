@@ -167,17 +167,30 @@
                   {% endfor %}
                 </td>
                 <td>
-                  {% for a in e.alumnos.all %}
+                {% for a in e.alumnos.all %}
+                  {% if a.estado == 'ASIGNADO' %}
                     <a href="{% url 'empresas:historial_alumno' a.id %}"
                        title="Ver seguimiento de {{ a.nombre }}"
-                       class="alumno-link">
+                       class="alumno-link text-success">
                       {{ a.nombre|default:a.uid }}
                     </a>
-                    <small class="text-muted">({{ a.curso }})</small><br>
-                  {% empty %}
-                    <em>Sin alumnos</em>
-                  {% endfor %}
-                </td>
+                    <small class="text-muted">({{ a.curso }})</small>
+                  {% elif a.estado == 'PROCESO' %}
+                    <span class="text-info">{{ a.nombre|default:a.uid }}</span>
+                    <small class="text-muted">({{ a.curso }})</small>
+                    <br><span class="label label-warning">En proceso</span>
+                  {% else %}
+                    <span class="text-muted">{{ a.nombre|default:a.uid }}</span>
+                    <small class="text-muted">({{ a.curso }})</small>
+                    <br> <span class="label label-danger">Sin estado</span>
+                  {% endif %}
+                  <br>
+                {% empty %}
+                  <em>Sin alumnos</em>
+                {% endfor %}
+              </td>
+
+
 
                 <td class="text-center" style="white-space:nowrap;">
                   <a href="{% url 'empresas:editar' e.pk %}" title="Editar">

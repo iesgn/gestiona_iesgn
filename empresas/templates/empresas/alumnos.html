@@ -9,44 +9,56 @@
       <table class="table table-bordered table-hover table-condensed">
         <tr class="info">
           <th></th>
+          <th>Estado</th>
           <th>Nombre</th>
-          <th>UID</th>
           <th>Curso</th>
           <th>Email</th>
           <th>Empresa</th>
         </tr>
-       {% for a in disponibles %}
-<tr {% if a.fuera_de_curso %}class="active"{% endif %}>
-  <td class="text-center">
-    <input type="checkbox" name="alumnos" value="{{ a.uid }}" {% if a.seleccionado %}checked{% endif %}>
-  </td>
-  <td>
-  {{ a.nombre }}
-  {% if a.fuera_de_curso %}
-    <span class="label label-default">fuera de curso</span>
-  {% endif %}
-  {% if a.tiene_seguimiento %}
-    <br>
-    <span class="label label-warning" title="Si lo desmarcas, se eliminará su historial de seguimiento.">
-      Tiene seguimiento. Si lo desmarcas, se eliminará su historial de seguimiento.
-    </span>
-  {% endif %}
-</td>
-  <td>{{ a.uid }}</td>
-  <td>{{ a.curso }}</td>
-  <td>{{ a.email }}</td>
-  <td>
-  {% if a.empresa_asignada %}
-    {{ a.empresa_asignada }}
-  {% else %}
-    <em></em>
-  {% endif %}
-</td>
 
-</tr>
-{% endfor %}
+        {% for a in disponibles %}
+        <tr {% if a.fuera_de_curso %}class="active"{% endif %}>
+          <td class="text-center">
+            <input type="checkbox" name="alumnos" value="{{ a.uid }}" {% if a.seleccionado %}checked{% endif %}>
+          </td>
 
+          <!-- Estado (antes del nombre) -->
+          <td style="width: 170px;">
+          <select name="estado_{{ a.uid }}" class="form-control input-sm" style="width: 100%;">
+            <option value="" {% if not a.estado %}selected{% endif %}></option>
+            <option value="PROCESO" {% if a.estado == 'PROCESO' %}selected{% endif %}>En proceso</option>
+            <option value="ASIGNADO" {% if a.estado == 'ASIGNADO' %}selected{% endif %}>Asignado</option>
+          </select>
+        </td>
+
+          <!-- Nombre y etiquetas -->
+          <td>
+            {{ a.nombre }}
+            {% if a.fuera_de_curso %}
+              <span class="label label-default">fuera de curso</span>
+            {% endif %}
+            {% if a.tiene_seguimiento %}
+              <br>
+              <span class="label label-warning" title="Si lo desmarcas, se eliminará su historial de seguimiento.">
+                Tiene seguimiento. Si lo desmarcas, se eliminará su historial de seguimiento.
+              </span>
+            {% endif %}
+          </td>
+
+          <td style="white-space: nowrap;">{{ a.curso }}</td>
+
+          <td>{{ a.email }}</td>
+          <td>
+            {% if a.empresa_asignada %}
+              {{ a.empresa_asignada }}
+            {% else %}
+              <em></em>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
       </table>
+
       <div class="text-center" style="margin-top:15px;">
         <button type="submit" class="btn btn-success">
           <span class="glyphicon glyphicon-ok"></span> Guardar cambios
