@@ -13,7 +13,7 @@ Damos de alta a las empresas.
     * No colabora: Este curso no colabora, pero la tenemos guardada. (ROJO)
 * Plazas ofrecidas por curso:
     * Nos permite indicar con que curso trabaja la empresa (poniendo alguna plaza a ese curso).
-    * Cuando sepamos las plazas no s permite ajustar el número de plazas para saber los alumnos que tenemos que asignar.
+    * Cuando sepamos las plazas nos permite ajustar el número de plazas para saber los alumnos que tenemos que asignar.
 
 ## Operaciones sobre las empresas:
 
