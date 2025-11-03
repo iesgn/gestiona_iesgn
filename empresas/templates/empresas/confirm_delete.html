@@ -4,6 +4,6 @@
   <p>¿Seguro que quieres borrar <strong>{{ object }}</strong>? Se eliminará también su historial.</p>
   <form method="post">{% csrf_token %}
     <button type="submit">Sí, borrar</button>
-    <a href="/empresas/">Cancelar</a>
+    <a href="{{SITE_URL}}/empresas/">Cancelar</a>
   </form>
 {% endblock %}
