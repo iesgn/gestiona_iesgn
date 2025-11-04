@@ -11,6 +11,7 @@ from django.utils import timezone
 from django.db import models
 from django.db.models import Q, Sum
 from django.contrib import messages
+from django.conf import settings
 
 
 
@@ -119,7 +120,7 @@ def nueva_empresa(request):
         form = EmpresaForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("empresas:lista")
+            return redirect(settings.SITE_URL+"/empresas/")
     else:
         form = EmpresaForm()
     return render(request, "empresas/form.html", {"form": form})
@@ -133,7 +134,7 @@ def editar_empresa(request, pk):
         form = EmpresaForm(request.POST, instance=empresa)
         if form.is_valid():
             form.save()
-            return redirect("empresas:lista")
+            return redirect(settings.SITE_URL+"/empresas/")
     else:
         form = EmpresaForm(instance=empresa)
     return render(request, "empresas/form.html", {"form": form})
@@ -145,7 +146,7 @@ def borrar_empresa(request, pk):
 
     if request.method == "POST":
         empresa.delete()
-        return redirect("empresas:lista")
+        return redirect(settings.SITE_URL+"/empresas/")
 
     return render(request, "empresas/confirm_delete.html", {"object": empresa})
 
@@ -200,7 +201,7 @@ def historial_empresa(request, pk):
                     texto=texto
                 )
 
-        return redirect("empresas:historial", pk=empresa.pk)
+        return redirect(settings.SITE_URL+"/empresas:historial", pk=empresa.pk)
 
     # === En GET: mostrar historial ===
     historial = HistorialContacto.objects.filter(empresa=empresa).order_by('-fecha')
@@ -362,7 +363,7 @@ def gestionar_alumnos(request, pk):
                     }
                 )
 
-        return redirect("empresas:lista")
+        return redirect(settings.SITE_URL+"/empresas/")
 
 
     # === 5. Renderizar plantilla ===
@@ -389,7 +390,7 @@ def gestionar_contactos(request, pk):
                 telefono=telefono,
                 email=email
             )
-        return redirect("empresas:contactos", pk=empresa.pk)
+        return redirect(settings.SITE_URL+"/empresas:contactos", pk=empresa.pk)
 
     contactos = PersonaContacto.objects.filter(empresa=empresa)
     return render(request, "empresas/contactos.html", {
@@ -403,7 +404,7 @@ def borrar_contacto(request, contacto_id):
     contacto = get_object_or_404(PersonaContacto, pk=contacto_id)
     empresa = contacto.empresa
     contacto.delete()
-    return redirect("empresas:contactos", pk=empresa.pk)
+    return redirect(settings.SITE_URL+"/empresas:contactos", pk=empresa.pk)
 
 # ==seguimiento
 
@@ -459,7 +460,7 @@ def historial_alumno(request, alumno_id):
                     texto=texto,
                 )
 
-        return redirect("empresas:historial_alumno", alumno_id=alumno.id)
+        return redirect(settings.SITE_URL+"/empresas:historial_alumno", alumno_id=alumno.id)
 
     # === En GET: mostrar historial ===
     historial = HistorialAlumno.objects.filter(alumno=alumno).order_by("-fecha")
