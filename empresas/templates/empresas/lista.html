@@ -141,7 +141,25 @@
             {% for e in object_list %}
               <tr class="{% if e.estado == 'verde' %}success{% elif e.estado == 'naranja' %}warning{% else %}danger{% endif %}">
                 <td class="text-center">{{ forloop.counter }}</td>
-                <td>{{ e.nombre }}</td>
+                <td>
+                  <strong>{{ e.nombre }}</strong>
+                  {% with e.contactos.all|first as c %}
+                    {% if c %}
+                      <br>
+                      <small class="text-muted">
+                        <i class="bi bi-person"></i> {{ c.nombre }}
+                        {% if c.telefono %}
+                          <i class="bi bi-telephone"></i> ({{ c.telefono }})
+                        {% endif %}
+                        {% if c.email %}
+                          <i class="bi bi-envelope"></i>
+                          <br><a href="mailto:{{ c.email }}">{{ c.email }}</a>
+                        {% endif %}
+                      </small>
+                    {% endif %}
+                  {% endwith %}
+                </td>
+
                 <td>{{ e.localidad }}</td>
                 <td class="text-center">
                   {% if e.estado == 'verde' %}
