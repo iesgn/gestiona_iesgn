@@ -390,7 +390,7 @@ def gestionar_contactos(request, pk):
                 telefono=telefono,
                 email=email
             )
-        return redirect((settings.SITE_URL+"/empresas/"+str(e.pk)+"/contacto/")
+        return redirect(settings.SITE_URL+"/empresas/"+str(e.pk)+"/contacto/")
 
     contactos = PersonaContacto.objects.filter(empresa=empresa)
     return render(request, "empresas/contactos.html", {
@@ -404,7 +404,7 @@ def borrar_contacto(request, contacto_id):
     contacto = get_object_or_404(PersonaContacto, pk=contacto_id)
     empresa = contacto.empresa
     contacto.delete()
-    return redirect((settings.SITE_URL+"/empresas/"+str(e.pk)+"/contacto/")
+    return redirect(settings.SITE_URL+"/empresas/"+str(e.pk)+"/contacto/")
 
 # ==seguimiento
 
@@ -460,7 +460,7 @@ def historial_alumno(request, alumno_id):
                     texto=texto,
                 )
 
-        return redirect((settings.SITE_URL+"/empresas/"+str(alumno.id)+"/historial/")
+        return redirect(settings.SITE_URL+"/empresas/"+str(alumno.id)+"/historial/")
 
     # === En GET: mostrar historial ===
     historial = HistorialAlumno.objects.filter(alumno=alumno).order_by("-fecha")
