@@ -10,6 +10,7 @@ class EmpresaForm(forms.ModelForm):
         fields = [
             "nombre", "cif", "direccion", "localidad",
             "nif_responsable", "nombre_responsable",
+            "profesor_responsable",
             "estado"
         ]
         widgets = {
@@ -19,6 +20,7 @@ class EmpresaForm(forms.ModelForm):
             "localidad": forms.TextInput(attrs={"class": "form-control"}),
             "nif_responsable": forms.TextInput(attrs={"class": "form-control"}),
             "nombre_responsable": forms.TextInput(attrs={"class": "form-control"}),
+            "profesor_responsable": forms.TextInput(attrs={"class": "form-control"}), 
             "estado": forms.Select(attrs={"class": "form-control"}),
         }
 

@@ -32,8 +32,9 @@ class Empresa(models.Model):
     nombre = models.CharField(max_length=200)
     direccion = models.CharField(max_length=255, blank=True)
     localidad = models.CharField(max_length=120, blank=True)
-    nif_responsable = models.CharField(max_length=16, blank=True)
+    nif_responsable = models.CharField(max_length=16, blank=True)   
     nombre_responsable = models.CharField(max_length=200, blank=True)
+    profesor_responsable = models.CharField(max_length=200, blank=True)
     estado = models.CharField(max_length=10, choices=Estado.choices, default=Estado.VERDE)
     cursos = models.ManyToManyField(Curso, blank=True, related_name="empresas")
 

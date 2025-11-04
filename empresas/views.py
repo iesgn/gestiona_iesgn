@@ -36,6 +36,7 @@ def lista_empresas(request):
             Q(nombre__icontains=q)
             | Q(localidad__icontains=q)
             | Q(cif__icontains=q)
+            | Q(profesor_responsable__icontains=q)
             | Q(alumnos__nombre__icontains=q)
             | Q(alumnos__uid__icontains=q)
         ).distinct()

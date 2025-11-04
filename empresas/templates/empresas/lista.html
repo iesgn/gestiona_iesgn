@@ -21,62 +21,70 @@
   </div>
 
   <div class="panel-body">
-    <form method="get" class="form-horizontal">
-
-      <div class="row">
-        <!-- Buscar -->
-        <div class="col-md-3">
-          <label><strong>Buscar</strong></label>
-          <input type="text" name="q" value="{{ busqueda }}" class="form-control"
-                 placeholder="Empresa, Alumno, Localidad o CIF">
-        </div>
-
-        <!-- Estado -->
-        <div class="col-md-4">
-          <label><strong>Estado</strong></label>
-          <div class="row" style="margin-left:5px;">
-            {% for value,label in estados %}
-              <div class="col-xs-6 col-sm-4" style="padding:2px 0;">
-                <label class="checkbox-inline" style="padding-left:0;">
-                  <input type="checkbox" name="estado" value="{{ value }}"
-                         {% if value in estados_seleccionados %}checked{% endif %}>
-                  {{ label }}
-                </label>
-              </div>
-            {% endfor %}
+      <form method="get" class="form-horizontal" style="padding:15px;">
+      
+        <!-- Campo de búsqueda -->
+        <div class="row" style="margin-bottom:15px;">
+          <div class="col-md-12">
+            <label><strong>Buscar</strong></label>
+            <input type="text" name="q" value="{{ busqueda }}"
+                   class="form-control input-lg"
+                   style="font-size:1.1em; height:45px;"
+                   placeholder="Empresa, Alumno, Profesor, Localidad o CIF">
           </div>
         </div>
-
-        <!-- Cursos -->
-        <div class="col-md-5">
-          <label><strong>Cursos</strong></label>
-          <div class="row" style="margin-left:5px;">
-            {% for curso in cursos %}
-              <div class="col-xs-6 col-sm-3" style="padding:2px 0;">
-                <label class="checkbox-inline" style="padding-left:0;">
-                  <input type="checkbox" name="curso" value="{{ curso.code }}"
-                         {% if curso.code in cursos_seleccionados %}checked{% endif %}>
-                  {{ curso.nombre }}
-                </label>
+      
+        <!-- Cuadros compactos en tabla -->
+        <table class="table table-bordered" style="background:#fcfcfc; margin-bottom:15px; border-radius:6px; overflow:hidden;">
+          <tr>
+            <!-- === Estado === -->
+            <td style="width:50%; vertical-align:top; padding:12px 15px;">
+              <strong style="font-size:1.05em;">Estado</strong>
+              <div style="margin-top:8px; padding-left:5px;">
+                {% for value,label in estados %}
+                  <div style="display:inline-block; width:45%; margin:2px 0;">
+                    <label style="margin:0; font-weight:normal;">
+                      <input type="checkbox" name="estado" value="{{ value }}"
+                             {% if value in estados_seleccionados %}checked{% endif %}>
+                      {{ label }}
+                    </label>
+                  </div>
+                {% endfor %}
               </div>
-            {% endfor %}
-          </div>
-        </div>
-      </div>
-
-      <!-- Botones alineados abajo -->
-      <div class="row" style="margin-top:15px;">
-        <div class="col-md-12 text-right">
-          <button type="submit" class="btn btn-primary">
+            </td>
+          
+            <!-- === Cursos === -->
+            <td style="width:50%; vertical-align:top; padding:12px 15px;">
+              <strong style="font-size:1.05em;">Cursos</strong>
+              <div style="margin-top:8px; padding-left:5px;">
+                {% for curso in cursos %}
+                  <div style="display:inline-block; width:45%; margin:2px 0;">
+                    <label style="margin:0; font-weight:normal;">
+                      <input type="checkbox" name="curso" value="{{ curso.code }}"
+                             {% if curso.code in cursos_seleccionados %}checked{% endif %}>
+                      {{ curso.nombre }}
+                    </label>
+                  </div>
+                {% endfor %}
+              </div>
+            </td>
+          </tr>
+        </table>
+      
+        <!-- Botones -->
+        <div class="text-right" style="margin-top:10px;">
+          <button type="submit" class="btn btn-primary btn-sm">
             <span class="glyphicon glyphicon-search"></span> Filtrar
           </button>
-          <a href="{{SITE_URL}}/empresas/" class="btn btn-default">
+          <a href="{{SITE_URL}}/empresas/" class="btn btn-default btn-sm" style="margin-left:10px;">
             <span class="glyphicon glyphicon-remove"></span> Limpiar
           </a>
         </div>
-      </div>
+      
+      </form>
 
-    </form>
+
+
   </div>
 </div>
 
@@ -143,6 +151,14 @@
                 <td class="text-center">{{ forloop.counter }}</td>
                 <td>
                   <strong>{{ e.nombre }}</strong>
+
+                  {% if e.profesor_responsable %}
+                    <br>
+                    <small class="text-primary">
+                      Profesor responsable: <i class="bi bi-person-badge"></i> {{ e.profesor_responsable }}
+                    </small>
+                  {% endif %}
+                  
                   {% with e.contactos.all|first as c %}
                     {% if c %}
                       <br>
@@ -152,14 +168,13 @@
                           <i class="bi bi-telephone"></i> ({{ c.telefono }})
                         {% endif %}
                         {% if c.email %}
-                          <i class="bi bi-envelope"></i>
-                          <br><a href="mailto:{{ c.email }}">{{ c.email }}</a>
+                          <br><i class="bi bi-envelope"></i>
+                          {{ c.email }}
                         {% endif %}
                       </small>
                     {% endif %}
                   {% endwith %}
                 </td>
-
                 <td>{{ e.localidad }}</td>
                 <td class="text-center">
                   {% if e.estado == 'verde' %}

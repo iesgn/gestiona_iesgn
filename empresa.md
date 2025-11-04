@@ -14,6 +14,7 @@ Damos de alta a las empresas.
 * Plazas ofrecidas por curso:
     * Nos permite indicar con que curso trabaja la empresa (poniendo alguna plaza a ese curso).
     * Cuando sepamos las plazas nos permite ajustar el número de plazas para saber los alumnos que tenemos que asignar.
+* se puede indicar el profesor responsable de la empresa.
 
 ## Operaciones sobre las empresas:
 
@@ -53,7 +54,7 @@ Como hemos comentado un alumno con estado **Seleccionado** aparecerá en la pág
 
 ## Otras funcionalidades
 
-* Filtro en la página principal: Podemos buscar por empresa, por alumno, por localidad o por CIF. Además podemos seleccionar por estado de la empresa y por cursos.
+* Filtro en la página principal: Podemos buscar por empresa, por alumno, por profesor, por localidad o por CIF. Además podemos seleccionar por estado de la empresa y por cursos.
 * Resumen de plazas asignadas / plazas solicitadas.
 
 
