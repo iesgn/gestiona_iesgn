@@ -201,7 +201,7 @@ def historial_empresa(request, pk):
                     texto=texto
                 )
 
-        return redirect(settings.SITE_URL+"/empresas/"+str(e.pk)+"/historial/", pk=empresa.pk)
+        return redirect(settings.SITE_URL+"/empresas/"+str(pk)+"/historial/", pk=empresa.pk)
 
     # === En GET: mostrar historial ===
     historial = HistorialContacto.objects.filter(empresa=empresa).order_by('-fecha')
@@ -390,7 +390,7 @@ def gestionar_contactos(request, pk):
                 telefono=telefono,
                 email=email
             )
-        return redirect(settings.SITE_URL+"/empresas/"+str(e.pk)+"/contacto/")
+        return redirect(settings.SITE_URL+"/empresas/"+str(pk)+"/contactos/")
 
     contactos = PersonaContacto.objects.filter(empresa=empresa)
     return render(request, "empresas/contactos.html", {
@@ -404,7 +404,7 @@ def borrar_contacto(request, contacto_id):
     contacto = get_object_or_404(PersonaContacto, pk=contacto_id)
     empresa = contacto.empresa
     contacto.delete()
-    return redirect(settings.SITE_URL+"/empresas/"+str(e.pk)+"/contacto/")
+    return redirect(settings.SITE_URL+"/empresas/")
 
 # ==seguimiento
 
