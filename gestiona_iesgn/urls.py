@@ -32,6 +32,7 @@ urlpatterns = [
     re_path(r'^notas/', include('notas.urls')),
     path('dual',dual),
     re_path(r'^empresas/', include("empresas.urls")),
+    path('vpn/', include('vpn.urls')),
     
     
 ]

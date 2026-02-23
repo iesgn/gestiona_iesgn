@@ -1,0 +1,62 @@
+{% extends "t2bloque.html" %}
+
+{% block title %}Solicitar acceso VPN{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+          <h4 class="mb-0">
+            <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+            Acceso a la VPN del IES Gonzalo Nazareno
+          </h4>
+        </div>
+        <div class="card-body">
+
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Cerrar">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+
+          <p>
+            La VPN del centro utiliza <strong>Tailscale</strong> con servidor propio
+            (Headscale).
+            Al pulsar el botón, se comprobará que tu usuario está registrado en el servidor
+            y recibirás por correo una <strong>auth key</strong> con las instrucciones
+            para conectar tu dispositivo.
+          </p>
+
+        
+          <hr>
+
+          <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary btn-lg">
+              <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+              Solicitar auth key por correo
+            </button>
+          </form>
+          <br/>
+        </div><!-- card-body -->
+        <div class="card-footer text-muted small">
+          <strong>¿Qué es Tailscale / Headscale?</strong>
+          Tailscale es un cliente VPN basado en WireGuard que permite conectarte de forma
+          segura a la red del centro. Headscale es el servidor de control que gestiona
+          los accesos de forma autónoma. Puedes descargar el cliente en
+          <a href="https://tailscale.com/download" target="_blank">tailscale.com/download</a>.
+        </div>
+      </div><!-- card -->
+
+    </div>
+  </div>
+</div>
+{% endblock %}
