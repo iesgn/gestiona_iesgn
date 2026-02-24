@@ -149,3 +149,4 @@ STATICFILES_DIRS = (
                 )
 
 EMAIL_HOST = 'correo.gonzalonazareno.org'
+DEFAULT_FROM_EMAIL = 'noreply@gonzalonazareno.org'

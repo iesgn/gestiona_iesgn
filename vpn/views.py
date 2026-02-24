@@ -2,8 +2,7 @@ import os
 import requests
 from datetime import datetime, timedelta, timezone
 from usuarios.libldap import LibLDAP
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
@@ -11,8 +10,8 @@ from gestiona_iesgn.views import test_login
 
 
 HEADSCALE_URL = os.environ.get("HEADSCALE_URL", "https://vpn.gonzalonazareno.org")
-HEADSCALE_API_KEY = os.environ.get("HEADSCALE_API_KEY", "")
 API_BASE = f"{HEADSCALE_URL}/api/v1"
+
 
 def _headscale_headers():
     api_key = os.environ.get("HEADSCALE_API_KEY", "")
@@ -48,6 +47,36 @@ def get_headscale_user(username):
             return user
     return None
 
+
+def delete_old_preauth_keys(user_id):
+    """
+    Elimina todas las preauth keys del usuario antes de crear una nueva.
+    """
+    response = requests.get(
+        f"{API_BASE}/preauthkey",
+        headers=_headscale_headers(),
+        timeout=10,
+    )
+    if not response.ok:
+        return
+
+    data = response.json()
+    keys = data.get("preAuthKeys") or data.get("preAuthKey") or []
+    if isinstance(keys, dict):
+        keys = [keys]
+
+    for k in keys:
+        # Filtrar solo las keys del usuario que hace la solicitud
+        if k.get("user", {}).get("id") != str(user_id):
+            continue
+        key_id = k.get("id")
+        if not key_id:
+            continue
+        requests.delete(
+            f"{API_BASE}/preauthkey?id={key_id}",
+            headers=_headscale_headers(),
+            timeout=10,
+        )
 
 def create_preauth_key(user_id):
     """
@@ -86,8 +115,17 @@ def solicitar_vpn(request):
     username = request.session["username"]
 
     if request.method == "POST":
+
         # 1. Comprobar que el usuario existe en Headscale
-        headscale_user = get_headscale_user(username)
+        try:
+            headscale_user = get_headscale_user(username)
+        except PermissionError as e:
+            messages.error(request, str(e))
+            return render(request, "solicitar.html")
+        except requests.RequestException as e:
+            messages.error(request, f"No se pudo conectar con el servidor VPN: {e}")
+            return render(request, "solicitar.html")
+
         if headscale_user is None:
             messages.error(
                 request,
@@ -96,9 +134,10 @@ def solicitar_vpn(request):
             )
             return render(request, "solicitar.html")
 
-        # 2. Crear preauth key
+        # 2. Expirar keys anteriores sin usar y crear una nueva
         try:
             user_id = headscale_user.get("id")
+            delete_old_preauth_keys(user_id)
             auth_key = create_preauth_key(user_id)
         except (PermissionError, ValueError) as e:
             messages.error(request, str(e))
@@ -115,8 +154,7 @@ def solicitar_vpn(request):
             )
             return render(request, "solicitar.html")
 
-        # 3. Enviar correo con la key e instrucciones
-        
+        # 3. Obtener email del LDAP
         ldap = LibLDAP()
         resultado = ldap.buscar(f"(uid={username})", ["mail"])
         if not resultado or not resultado[0].get("mail"):
@@ -125,8 +163,10 @@ def solicitar_vpn(request):
                 "No se encontró dirección de correo en el LDAP para tu usuario. "
                 "Contacta con el administrador.",
             )
-            return render(request, "vpn/solicitar.html")
+            return render(request, "solicitar.html")
         user_email = resultado[0]["mail"][0]
+
+        # 4. Enviar correo con la key e instrucciones
         asunto = "Tu clave de acceso a la VPN del IES Gonzalo Nazareno"
         cuerpo = f"""Hola {username},
 
@@ -143,21 +183,28 @@ INSTRUCCIONES DE REGISTRO
 1. Instala el cliente Tailscale en tu dispositivo:
    https://tailscale.com/download
 
+Para sistemas Linux:
+
+curl -fsSL https://tailscale.com/install.sh | sh
+
+Tienes clientes Tailscale para otros sistemas operativos: Windows, Android, iOS.
+
 2. Conéctate al servidor VPN del centro ejecutando:
 
-   Linux / macOS:
-     sudo tailscale up --login-server {HEADSCALE_URL} --authkey {auth_key}
+   Linux:
+     sudo tailscale up --accept-routes --login-server {HEADSCALE_URL} --authkey {auth_key}
 
-   Windows (PowerShell como administrador):
-     tailscale up --login-server {HEADSCALE_URL} --authkey {auth_key}
+Cuando termines de trabajar con la VPN puedes desconectarla con:
 
-   Android / iOS:
-     - Abre la app Tailscale
-     - Ve a "Accounts" → "Use a different server"
-     - Introduce: {HEADSCALE_URL}
-     - Cuando se pida la auth key, pega: {auth_key}
+sudo tailscale down
 
-3. Una vez conectado, podrás acceder a los recursos de la red del centro.
+Posteriormente para volver a trabajar con la VPN, solo es necesario ejecutar:
+
+sudo tailscale up
+
+3. Una vez conectado, podrás acceder a los recursos de la red del centro. Prueba a acceder a nuestro router:
+
+ping 172.22.0.1
 
 IMPORTANTE:
   · Esta clave es de un solo uso y caduca en 24 horas.
@@ -166,7 +213,6 @@ IMPORTANTE:
 
 ──────────────────────────────────────
 IES Gonzalo Nazareno - Servicio de Informática
-{HEADSCALE_URL}
 """
 
         try:
@@ -179,13 +225,13 @@ IES Gonzalo Nazareno - Servicio de Informática
             )
             messages.success(
                 request,
-                f"Se ha enviado la auth key y las instrucciones a {user_email}. "
+                f"Se ha generado una nueva auth key y se ha enviado a {user_email}. "
                 "Revisa tu bandeja de entrada (y el spam).",
             )
-        except Exception:
+        except Exception as e:
             messages.error(
                 request,
-                "Se generó la clave pero no se pudo enviar el correo. "
+                f"Se generó la clave pero no se pudo enviar el correo: {e}. "
                 "Contacta con el administrador.",
             )
 
