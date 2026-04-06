@@ -8,6 +8,7 @@ ALLOWED_HOSTS = ["*"]
 
 SITE_URL = "http://localhost:8000"
 SITE_URL_STATIC = "http://localhost:8000/static/"
+REDMINE_URL = "https://dit.gonzalonazareno.org/redmine/"
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
 

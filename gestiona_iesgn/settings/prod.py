@@ -8,6 +8,7 @@ ALLOWED_HOSTS = ["dit.gonzalonazareno.org"]
 
 SITE_URL = "https://dit.gonzalonazareno.org/gestiona"
 SITE_URL_STATIC = "https://dit.gonzalonazareno.org/gestiona/static/"
+REDMINE_URL = "https://dit.gonzalonazareno.org/redmine/"
 
 CSRF_TRUSTED_ORIGINS = [
     "https://dit.gonzalonazareno.org",
