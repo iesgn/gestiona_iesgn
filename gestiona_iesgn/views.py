@@ -64,7 +64,7 @@ def index(request):
                     request.session["profesor"]=True
                 else:
                     request.session["profesor"]=False
-                return render(request,"index.html")
+                return render(request,"index.html",info)
         else:
                info["error"]=True
                return render(request,"index.html",info)
