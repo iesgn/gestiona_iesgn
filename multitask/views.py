@@ -15,18 +15,18 @@ def inicio(request):
 			info={}
 			info["idproyecto"]=request.POST["proyecto"]
 			#Nombre del proyecto
-			r=requests.get(url_base+'projects/'+info["idproyecto"]+'.json',auth=(request.session["username"],request.session["password"]))
+			r=requests.get(url_base+'projects/'+info["idproyecto"]+'.json',auth=(request.session[\"username\"],request.session[\"password\"]),verify=False)
 			if r.status_code == 200:
 				doc=r.json()
 				info["nombreproyecto"]=doc["project"]["name"]
 			
 			#Lista de grupos
-			r=requests.get(url_base+'groups.json',auth=(request.session["username"],request.session["password"]))
+			r=requests.get(url_base+'groups.json',auth=(request.session[\"username\"],request.session[\"password\"]),verify=False)
 			if r.status_code == 200:
 				doc=r.json()
 				info["grupos"]=doc["groups"]
 			#Lista de usuarios del proyecto
-			r=requests.get(url_base+'projects/'+info["idproyecto"]+'/memberships.json',auth=(request.session["username"],request.session["password"]))
+			r=requests.get(url_base+'projects/'+info["idproyecto"]+'/memberships.json',auth=(request.session[\"username\"],request.session[\"password\"]),verify=False)
 			if r.status_code == 200:
 				doc=r.json()
 				info["usuarios"]=[]
@@ -35,7 +35,7 @@ def inicio(request):
 						info["usuarios"].append(usuario)
 			#Lista Categorias
 
-			r=requests.get(url_base+'/projects/'+info["idproyecto"]+'/issue_categories.json',auth=(request.session["username"],request.session["password"]))
+			r=requests.get(url_base+'projects/'+info["idproyecto"]+'/issue_categories.json',auth=(request.session[\"username\"],request.session[\"password\"]),verify=False)
 			if r.status_code == 200:
 				doc=r.json()
 				info["categorias"]=doc["issue_categories"]
@@ -63,7 +63,7 @@ def inicio(request):
 	
 
 			if opcion=="grupo":
-				r=requests.get(url_base+'groups/'+grupo+'.json?include=users',auth=(request.session["username"],request.session["password"]))
+				r=requests.get(url_base+'groups/'+grupo+'.json?include=users',auth=(request.session[\"username\"],request.session[\"password\"]),verify=False)
 				if r.status_code == 200:
 					doc=r.json()
 					alumnos=[]
@@ -73,7 +73,7 @@ def inicio(request):
 
 			resultado="<ul>"
 			for alum in alumnos:
-				r=requests.get(url_base+'/users/'+alum+'.json',auth=(request.session["username"],request.session["password"]))
+				r=requests.get(url_base+'users/'+alum+'.json',auth=(request.session[\"username\"],request.session[\"password\"]),verify=False)
 				if r.status_code==200:
 					doc=r.json()
 					nombre=doc["user"]["firstname"]+" "+doc["user"]["lastname"]
@@ -81,7 +81,7 @@ def inicio(request):
 			
 				parameters_json = json.dumps(payload)
 				headers = {'Content-Type': 'application/json'}
-				r = requests.post(url_base+'issues.json', auth=(request.session["username"],request.session["password"]), data=parameters_json, headers=headers)
+				r = requests.post(url_base+'issues.json', auth=(request.session["username"],request.session["password"]), data=parameters_json, headers=headers, verify=False)
 				resultado=resultado+"<li>"+nombre+":"+r.reason+"</li>"
 			resultado=resultado+"</ul>"
 			info={"idproyecto":idproyecto,"nombreproyecto":nombreproyecto,"resultado":resultado}
@@ -89,7 +89,7 @@ def inicio(request):
 
 
 	else:
-		r=requests.get(url_base+'projects.json',auth=(request.session["username"],request.session["password"]))
+		r=requests.get(url_base+'projects.json',auth=(request.session[\"username\"],request.session[\"password\"]),verify=False)
 		if r.status_code == 200:
 			doc=r.json()
 			info={"proyectos":doc["projects"]}
