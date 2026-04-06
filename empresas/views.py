@@ -1,4 +1,3 @@
-from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.db.models import Q
@@ -15,7 +14,6 @@ from django.conf import settings
 
 
 
-@csrf_exempt
 @profesor_required
 def lista_empresas(request):
     """
@@ -113,7 +111,6 @@ def lista_empresas(request):
 
 
 
-@csrf_exempt
 @profesor_required
 def nueva_empresa(request):
     if request.method == "POST":
@@ -126,7 +123,6 @@ def nueva_empresa(request):
     return render(request, "empresas/form.html", {"form": form})
 
 
-@csrf_exempt
 @profesor_required
 def editar_empresa(request, pk):
     empresa = get_object_or_404(Empresa, pk=pk)
@@ -139,7 +135,6 @@ def editar_empresa(request, pk):
         form = EmpresaForm(instance=empresa)
     return render(request, "empresas/form.html", {"form": form})
 
-@csrf_exempt
 @profesor_required
 def borrar_empresa(request, pk):
     empresa = get_object_or_404(Empresa, pk=pk)
@@ -151,7 +146,6 @@ def borrar_empresa(request, pk):
     return render(request, "empresas/confirm_delete.html", {"object": empresa})
 
 
-@csrf_exempt
 @profesor_required
 def historial_empresa(request, pk):
     """
@@ -244,7 +238,6 @@ def _guardar_alumnos(empresa, uids):
         )
 
 # === Alumnos ===
-@csrf_exempt
 @profesor_required
 def gestionar_alumnos(request, pk):
     empresa = get_object_or_404(Empresa, pk=pk)
@@ -373,7 +366,6 @@ def gestionar_alumnos(request, pk):
     })
 
 # === Contactos ===
-@csrf_exempt
 @profesor_required
 def gestionar_contactos(request, pk):
     empresa = get_object_or_404(Empresa, pk=pk)
@@ -398,7 +390,6 @@ def gestionar_contactos(request, pk):
         "contactos": contactos
     })
 
-@csrf_exempt
 @profesor_required
 def borrar_contacto(request, contacto_id):
     contacto = get_object_or_404(PersonaContacto, pk=contacto_id)
@@ -408,7 +399,6 @@ def borrar_contacto(request, contacto_id):
 
 # ==seguimiento
 
-@csrf_exempt
 @profesor_required
 def historial_alumno(request, alumno_id):
     """
