@@ -59,14 +59,14 @@
     {
       "titulo": "IES Gonzalo Nazareno",
       "descripcion": "Web del instituto",
-      "icono": "bi-building",
+      "imagen": "img/logogn.png",
       "url": "https://blogsaverroes.juntadeandalucia.es/iesgonzalonazareno/",
       "visible": true
     },
     {
       "titulo": "FP Dual",
       "descripcion": "Información sobre la FP Dual",
-      "icono": "bi-briefcase",
+      "imagen": "img/dual.png",
       "url": "https://dit.gonzalonazareno.org/gestiona/dual",
       "visible": true
     }

@@ -4,9 +4,6 @@ import json
 import os
 from usuarios.libldap import LibLDAP
 from django.conf import settings
-from info.views import getInfoVisibility
-
-
 def _load_config():
     path = os.path.join(settings.BASE_DIR, 'gestiona_iesgn', 'enlaces.json')
     with open(path, encoding='utf-8') as f:
@@ -33,15 +30,6 @@ def profesor_required(view_func):
 
 def index(request):
     info={}
-    visibility="public"
-    if request.session.get("username"):
-        visibility="auth"
-    if request.session.get("profesor"):
-        visibility="profesor"
-    datos=getInfoVisibility("noticias",visibility)
-    info["noticias"]=datos
-    datos=getInfoVisibility("blog",visibility)
-    info["blog"]=datos[:5]
     config = _load_config()
     info["enlaces"] = [e for e in config["tarjetas"] if e.get("visible", True)]
 
@@ -79,4 +67,7 @@ def salir(request):
     return redirect(settings.SITE_URL)
 
 def dual(request):
-    return redirect("/gestiona/info/paginas/dual")
+    return redirect(settings.SITE_URL + "/info/paginas/dual")
+
+def dual_page(request):
+    return render(request, "dual.html")

@@ -11,7 +11,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "usuarios.apps.UsuariosConfig",
     "grupos.apps.GruposConfig",
-    "info.apps.InfoConfig",
+    #"info.apps.InfoConfig",
     "multitask.apps.MultitaskConfig",
     "correos.apps.CorreosConfig",
     "certificados.apps.CertificadosConfig",
