@@ -32,7 +32,7 @@ grupo_add = (
 class BuscarUsuario(forms.Form):
     nombre=forms.CharField(max_length=100,required=False,widget=forms.TextInput(attrs={'class': "form-control"}))
     apellidos=forms.CharField(max_length=100,required=False,widget=forms.TextInput(attrs={'class': "form-control"}))
-    grupo=forms.ChoiceField(choices=grupos,required=False,widget=forms.Select(attrs={'class': "form-control",'onchange': 'this.form.submit();'}))
+    grupo=forms.ChoiceField(choices=grupos,required=False,widget=forms.Select(attrs={'class': "form-select",'onchange': 'this.form.submit();'}))
     
 class newUserForm(forms.Form):
     uid=forms.CharField(max_length=100,required=True,widget=forms.TextInput(attrs={'class': "form-control"}))
@@ -41,7 +41,7 @@ class newUserForm(forms.Form):
     sn=forms.CharField(max_length=100,required=True,widget=forms.TextInput(attrs={'class': "form-control"}))
     mail=forms.CharField(max_length=100,required=True,widget=forms.EmailInput(attrs={'class': "form-control"}))
     l=forms.CharField(max_length=100,required=True,widget=forms.TextInput(attrs={'class': "form-control"}))
-    grupo=forms.ChoiceField(choices=grupo_add,required=False,widget=forms.Select(attrs={'class': "form-control"}))#
+    grupo=forms.ChoiceField(choices=grupo_add,required=False,widget=forms.Select(attrs={'class': "form-select"}))#
     
 
 class updateUserForm(forms.Form):

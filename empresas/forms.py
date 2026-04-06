@@ -21,7 +21,7 @@ class EmpresaForm(forms.ModelForm):
             "nif_responsable": forms.TextInput(attrs={"class": "form-control"}),
             "nombre_responsable": forms.TextInput(attrs={"class": "form-control"}),
             "profesor_responsable": forms.TextInput(attrs={"class": "form-control"}), 
-            "estado": forms.Select(attrs={"class": "form-control"}),
+            "estado": forms.Select(attrs={"class": "form-select"}),
         }
 
     def __init__(self, *args, **kwargs):
@@ -42,7 +42,7 @@ class EmpresaForm(forms.ModelForm):
                 coerce=int,
                 initial=self.get_plazas_inicial(curso),
                 widget=forms.Select(
-                    attrs={"class": "form-control input-sm", "style": "width:80px; display:inline-block; margin-left:10px;"}
+                    attrs={"class": "form-select form-select-sm", "style": "width:80px; display:inline-block; margin-left:10px;"}
                 )
             )
 
