@@ -1,5 +1,8 @@
 from ldap3 import Server, Connection, ALL,SUBTREE,  MODIFY_DELETE, MODIFY_ADD,MODIFY_REPLACE
 from ldap3.utils.conv import escape_filter_chars
+import logging
+
+logger = logging.getLogger(__name__)
 
 class LibLDAP(object):
     base_dn="ou=People,dc=gonzalonazareno,dc=org"
@@ -22,7 +25,7 @@ class LibLDAP(object):
         try:
             server = Server('ldap.gonzalonazareno.org')
         except Exception as e:
-            print(f"Error al conectar al servidor: {e}")
+            logger.error(f"Error al conectar al servidor LDAP: {e}")
             return
         try:
             if username!="":
@@ -32,7 +35,7 @@ class LibLDAP(object):
                 self.conn = Connection(server,auto_bind=True)
             self.isbind=True;
         except Exception as e:
-            print(f"Error al realizar la conexión: {e}")
+            logger.error(f"Error al realizar la conexión LDAP: {e}")
 
     def buscar(self,filter,attr=[],base_dn=base_dn):
         self.conn.search(base_dn,filter, search_scope=SUBTREE,attributes=attr)
