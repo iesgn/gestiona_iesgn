@@ -1,14 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
-from django.db.models import Q
+from django.db.models import Q, Sum
 from gestiona_iesgn.views import profesor_required
 from .forms import EmpresaForm
 from .models import Empresa, PersonaContacto, AlumnoEmpresa, HistorialContacto,Curso, PlazaCurso,HistorialAlumno
 from .services import alumnos_de_empresa
 from usuarios.libldap import LibLDAP
 from django.utils import timezone
-from django.db import models
-from django.db.models import Q, Sum
 from django.contrib import messages
 from django.conf import settings
 

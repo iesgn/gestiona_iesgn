@@ -1,5 +1,5 @@
 from django import forms
-from .models import Empresa, Curso, Empresa, PlazaCurso
+from .models import Empresa, Curso, PlazaCurso
 from usuarios.libldap import LibLDAP
 
 
