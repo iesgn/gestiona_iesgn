@@ -22,11 +22,11 @@
                     {% if campo == "video" %}
                         <td>
                             {% for v in dato.info %}
-                            <a href="{{ v }}"><img src="{{ SITE_URL_STATIC }}img/proyectos/{{ dato.tipo }}.png" style="height:24px;"/></a>
+                            <a href="{{ v }}"><img src="{{ SITE_URL_STATIC }}proyectos/img/{{ dato.tipo }}.png" style="height:24px;"/></a>
                             {% endfor %}
                         </td>
                     {% else %}
-                        <td><a href="{{ dato.info }}"><img src="{{ SITE_URL_STATIC }}img/proyectos/{{ dato.tipo }}.png" style="height:24px;"/></a></td>
+                        <td><a href="{{ dato.info }}"><img src="{{ SITE_URL_STATIC }}proyectos/img/{{ dato.tipo }}.png" style="height:24px;"/></a></td>
                     {% endif %}
                 {% else %}
                     <td></td>

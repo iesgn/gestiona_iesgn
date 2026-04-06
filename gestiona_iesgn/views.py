@@ -76,4 +76,17 @@ def proyectos_page(request):
     path = os.path.join(settings.BASE_DIR, 'gestiona_iesgn', 'proyectos.json')
     with open(path, encoding='utf-8') as f:
         datos = json.load(f)
+    static = settings.SITE_URL_STATIC
+    for curso in datos:
+        for alumno in curso['alumnos']:
+            for campo, dato in alumno.items():
+                if isinstance(dato, dict) and dato.get('info'):
+                    info = dato['info']
+                    if isinstance(info, str) and not info.startswith('http'):
+                        dato['info'] = static + 'proyectos/' + info
+                    elif isinstance(info, list):
+                        dato['info'] = [
+                            v if v.startswith('http') else static + 'proyectos/' + v
+                            for v in info if v
+                        ]
     return render(request, "proyectos.html", {"datos": datos})

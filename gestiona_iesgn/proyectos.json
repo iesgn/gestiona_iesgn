@@ -1,0 +1,4292 @@
+[
+    {
+        "curso": "2024-2025",
+        "campos": ["Alumno/a","Título","Memoria","Exposición","Repositorio","Video","Foto"],
+        "alumnos": [
+            {
+                "nombre": "Iván Ruipérez Benitez",
+                "titulo": "Modernización de bases de datos MySQL de alta demanda con Vitess",
+                "memoria": {
+                    "info": "2024-25/Vitess_Ivan_Ruipérez.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2024-25/Presentacion_Vitess_Ivan_Ruipérez.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "https://github.com/IvanRuiperezB/Ivanr-Vitess",
+                    "tipo": "github"
+                },
+                "video": {
+                    "info": [""],
+                    "tipo": ""
+                },
+                "foto": {
+                    "info": "img/2024-25/ivan.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Carlos Manuel Gámez Pérez de Guzmán",
+                "titulo": "Creación de un servidor con Docker bajo Raspberry Pi",
+                "memoria": {
+                    "info": "2024-25/RPI4_Carlos_Gamez.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2024-25/Presentacion_RPI4_Carlos_Gamez.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": [""],
+                    "tipo": ""
+                },
+                "foto": {
+                    "info": "img/2024-25/carlos.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Francisco Javier Huete Mejías",
+                "titulo": "Despliegue de la aplicación NetBox con ASGI y usando Caddy como proxy inverso",
+                "memoria": {
+                    "info": "2024-25/NetBox_Francisco_Javier_Huete.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2024-25/Presentacion_NetBox_Francisco_Javier_Huete.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": ["https://www.youtube.com/watch?v=FnzjgFyNNFo"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2024-25/huete.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Francisco Javier Doblado Alonso",
+                "titulo": "Plataforma de seguridad para k8s con Kyverno + Wazuh + falco",
+                "memoria": {
+                    "info": "2024-25/Kyverno_Wazuh_Falco_Francisco_Javier_Doblado.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2024-25/Presentacion_Kyverno_Wazuh_Falco_Francisco_Javier_Doblado.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "https://github.com/K1K04/Repositorio-TFG.git",
+                    "tipo": "github"
+                },
+                "video": {
+                    "info": ["https://youtu.be/tM7mjVpYIj8"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2024-25/doblado.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Alejandro Liañez Frutos",
+                "titulo": "Gobernanza y Seguridad de Contenedores con Harbor, k8s y OPA Gatekeeper",
+                "memoria": {
+                    "info": "2024-25/Harbor_OPA_Alejandro_Liañez.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2024-25/Presentacion_Harbor_OPA_Alejandro_Liañez.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "https://github.com/alejandrolf20/proyecto_integrado",
+                    "tipo": "github"
+                },
+                "video": {
+                    "info": ["https://www.youtube.com/watch?v=m5E7eDgLLRI"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2024-25/liañez.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Miguel Figueroa Escribano",
+                "titulo": "Proxmox: Software Defined Network",
+                "memoria": {
+                    "info": "2024-25/Proxmox_SDN_Miguel_Figueroa.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2024-25/Presentacion_Proxmox_SDN_Miguel_Figueroa.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": ["https://youtu.be/DibnOcyxKho"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2024-25/miguel.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Pablo Martín Hidalgo",
+                "titulo": "Plataforma de backup y recuperación para entornos k8s con Velero y MinIO",
+                "memoria": {
+                    "info": "2024-25/Backup_k8s_Pablo_Martin.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2024-25/Presentacion_Backup_k8s_Pablo_Martin.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "https://github.com/PabloMartin19/ficheros-escenario-TFG",
+                    "tipo": "github"
+                },
+                "video": {
+                    "info": ["https://youtu.be/3YkgJ-6wt54"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2024-25/pablo.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Raúl Herrera Ruíz",
+                "titulo": "Kubernetes: monitoreo de métricas, cobertura de código y accesibilidad",
+                "memoria": {
+                    "info": "2024-25/Monitoreo_k8s_Raúl_Herrera.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2024-25/Presentacion_Monitoreo_k8s_Raúl_Herrera.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "https://github.com/raulhr16/app-tfg",
+                    "tipo": "github"
+                },
+                "video": {
+                    "info": ["https://youtu.be/VbZxs40aOGY"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2024-25/raul.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Alejandro Albaladejo Gago",
+                "titulo": "Nomad vs Kubernetes. Autoescalado en Nomad",
+                "memoria": {
+                    "info": "2024-25/Nomad_Albadalejo.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2024-25/Presentacion_Nomad_Albadalejo.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "https://github.com/alealbaladejo/Proyecto-Final-Nomad",
+                    "tipo": "github"
+                },
+                "video": {
+                    "info": ["https://youtu.be/u00uFTEmNjg"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2024-25/albadalejo.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "José Antonio Canalo González",
+                "titulo": "Cockpit como interfaz de gestión para KVM/libvirt",
+                "memoria": {
+                    "info": "2024-25/Cockpit_Canalo.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2024-25/Presentacion_Cockpit_Canalo.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": ["https://youtu.be/7I6FUB-kZSg"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2024-25/canalo.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Juan Antonio Pineda Amador",
+                "titulo": "Infraestructura como código con Pulumi",
+                "memoria": {
+                    "info": "2024-25/Pulumi_JuanAntonioPineda.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2024-25/Presentacion_Pulumi_JuanAntonioPineda.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "https://github.com/JuanantPineda/pulumi-kubernetes",
+                    "tipo": "github"
+                },
+                "video": {
+                    "info": ["https://youtu.be/ks_HclvhZdk"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2024-25/pineda.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Jairo Domínguez Hidalgo",
+                "titulo": "IC / DC con Buildah en Jenkins, K3s y Git",
+                "memoria": {
+                    "info": "2024-25/ICDC_Jairo_Dominguez.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2024-25/Presentacion_ICDC_Jairo_Dominguez.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "https://github.com/JairoDH/Buildah-k3s",
+                    "tipo": "github"
+                },
+                "video": {
+                    "info": ["https://youtu.be/DH9AfrLYXis"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2024-25/jairo.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "José Manuel Fernández Atienza",
+                "titulo": "Portainer",
+                "memoria": {
+                    "info": "2024-25/Portainer_Jose_Manuel_Fernandez.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2024-25/Presentacion_Portainer_Jose_Manuel_Fernandez.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": ["https://youtu.be/xwG3trskVx4"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2024-25/josemanuel.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Andrés Fernández Fdez de Santaella Rodriguez",
+                "titulo": "CapRover Plataforma como Servicio (PaaS)",
+                "memoria": {
+                    "info": "2024-25/Caprover_Andres_Fernandez.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2024-25/Presentacion_Caprover_Andres_Fernandez.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "https://github.com/ViTaXXX/demo-django-cap/tree/master",
+                    "tipo": "github"
+                },
+                "video": {
+                    "info": ["https://youtu.be/6wuL4r3K1fw"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2024-25/andres.jpg",
+                    "tipo": "jpg"
+                }
+            }
+      
+        ]
+	},
+    {
+        "curso": "2023-2024",
+        "campos": ["Alumno/a","Título","Memoria","Exposición","Repositorio","Video","Foto"],
+        "alumnos": [
+            {
+                "nombre": "Fabio González del Valle",
+                "titulo": "Autoescalado horizontal de pods en k8s con Keda",
+                "memoria": {
+                    "info": "2023-24/Autoescalado-k8s-Fabio.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "https://view.genially.com/6669ded6f0e1810014dfb7a5/guide-tfg-presentacion-fabio",
+                    "tipo": "html"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": ["https://youtu.be/osqbzfmkqwo"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2023-24/fabio.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Juan Manuel Durán Piñero",
+                "titulo": "Motorización completa de un servidor de aplicaciones Java Wildfly",
+                "memoria": {
+                    "info": "2023-24/Monitorizacion-Java-Juan-Manuel-Duran.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2023-24/Presentacion-Monitorizacion-Java-Juan-Manuel-Duran.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": ["https://youtu.be/5qD1_SVRDs8"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2023-24/juanma.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Omar Elhani Botkala",
+                "titulo": "Administración de Servidores Linux: Cockpit como Interfaz de Gestión Web",
+                "memoria": {
+                    "info": "2023-24/Cockpit-Omar.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2023-24/Presentacion-Cockpit-Omar.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": ["https://youtu.be/AjboXax9OIs"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2023-24/omar.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Manuel Alejandro Martín Núñez",
+                "titulo": "Alta disponibilidad en Oracle junto a RMAN y ASM",
+                "memoria": {
+                    "info": "2023-24/Oracle-Alex.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2023-24/Presentacion-Oracle-Alex.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": ["https://youtu.be/LCcnFHN9Vzc"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2023-24/alex.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Óscar Ponce de León Sanabria",
+                "titulo": "Introducción a un sistema de almacenamiento con OpenMediaVault",
+                "memoria": {
+                    "info": "2023-24/OpenMediaVault-Oscar-Ponce.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2023-24/Presentacion-OpenMediaVault-Oscar-Ponce.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": ["https://youtu.be/NNwUcdZ4TI0"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2023-24/oscarponce.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "José Carlos Rodríguez Cañas",
+                "titulo": "CI/CD con GitLab en Rancher + k3s",
+                "memoria": {
+                    "info": "2023-24/Rancher-K3s-Jose-Carlos-Rodriguez.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2023-24/Presentacion-Rancher-K3s-Jose-Carlos-Rodriguez.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": ["https://youtu.be/jjbFZ5gn5ks"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2023-24/pepe.jpg",
+                    "tipo": "jpg"
+                }
+            },
+
+            {
+                "nombre": "Mario Zayas Garcia",
+                "titulo": "KubeVela: Plataforma de entrega de aplicaciones web",
+                "memoria": {
+                    "info": "2023-24/KubeVela-Mario-Zayas.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2023-24/Presentacion-KubeVela-Mario-Zayas.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": ["https://youtu.be/Zmaot9cyt7U"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2023-24/mariozayas.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Francisco Javier Cruces Doval",
+                "titulo": "MAAS metal as a service",
+                "memoria": {
+                    "info": "2023-24/MAAS-Javier_Cruces.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2023-24/Presentacion-MAAS-Javier_Cruces.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": ["https://youtu.be/fW7wDC1OzAY"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2023-24/javiercruces.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Francisco Muñoz Pérez",
+                "titulo": "Orquestación automática de k8s con Argo Workflows y Argo Events",
+                "memoria": {
+                    "info": "2023-24/Argo-Workflow-Fran-Muñoz.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "https://view.genially.com/666de07a95d9bd0014c8de0e/presentation-automatizacion-de-tareas-en-kubernetes-con-argo-workflows",
+                    "tipo": "html"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": ["https://youtu.be/UOYaVCc2hso"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2023-24/franmuñoz.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Belén Nazareth Durán Meléndez",
+                "titulo": "Implantación de Entornos Dinámicos (con Jenkins y Kubernetes)",
+                "memoria": {
+                    "info": "2023-24/Entornos_Dinamicos-Belen_Nazareth_Duran.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "https://view.genial.ly/657601a04fa94400150e42ed",
+                    "tipo": "html"
+                },
+                "repositorio": {
+                    "info": "https://github.com/belennazareth/app",
+                    "tipo": "github"
+                },
+                "video": {
+                    "info": ["https://youtu.be/HqkNzIudjnQ","https://www.youtube.com/watch?v=tOoJyKqUbl8"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2023-24/nazareth.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Óscar Lucas Leo",
+                "titulo": "Implementación de un Service Mesh con k8s y Linkerd",
+                "memoria": {
+                    "info": "2023-24/Memoria-Implementación de un Service Mesh con k8s y Linkerd.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2023-24/Presentacion-Implementacion-ServiceMesh-k8s-Linkerd.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "https://github.com/oscarlucas22/Demo-PI",
+                    "tipo": "github"
+                },
+                "video": {
+                    "info": ["https://youtu.be/lFqe6GdaJrA"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2023-24/oscar.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Arantxa Fernandez Morató",
+                "titulo": "Integrando Harbor en GitLab CI/CD",
+                "memoria": {
+                    "info": "2023-24/memoria Intengrando Harbor en GitLab CICD.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2023-24/presentacion - Intengrando Harbor en GitLab CICD.pdf.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "https://github.com/afermor8/proyecto_asir/tree/main",
+                    "tipo": "github"
+                },
+                "video": {
+                    "info": ["https://youtu.be/dWMNTgL5I9s"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2023-24/arantxa.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "José Juan Hervás Carrasco",
+                "titulo": "Instalación de Foreman/Katello y Puppet",
+                "memoria": {
+                    "info": "2023-24/memoria-instalación-Foreman-Katello.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2023-24/presentacion-instalación-Foreman-Katello.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": ["https://youtu.be/zFBd1n69kcQ"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2023-24/josejuan.jpg",
+                    "tipo": "jpg"
+                }
+            }
+            
+
+            
+        ]
+	},
+    {
+        "curso": "2022-2023",
+        "campos": ["Alumno/a","Título","Memoria","Exposición","Repositorio","Video","Foto"],
+        "alumnos": [
+            {
+                "nombre": "Felipe López García",
+                "titulo": "Alta disponibilidad y replicas en Proxmox VE (Proxmox + HA + CEPH + ZFS)",
+                "memoria": {
+                    "info": "2022-23/Memoria Alta disponibilidad y replicas en Proxmox VE.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2022-23/Presentación Alta disponibilidad y replicas en Proxmox VE.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": ["https://www.youtube.com/watch?v=Rov12kbKyZ4"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2022-23/felipe.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Alejandro Gutierrez Valencia",
+                "titulo": "Gestión de usuarios con KeyCloak",
+                "memoria": {
+                    "info": "2022-23/Gestión de usuarios con KeyCloak.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "https://www.canva.com/design/DAFh8R_EAtA/YDD0JjF_PIRjsUCBD24tHg/edit?utm_content=DAFh8R_EAtA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton",
+                    "tipo": "html"
+                },
+                "repositorio": {
+                    "info": "https://github.com/alepeteporico/Proyecto_integrado",
+                    "tipo": "github"
+                },
+                "video": {
+                    "info": ["https://www.youtube.com/watch?v=P1K94BdkYQ0"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2022-23/alejandrog.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Adrián Palomino García",
+                "titulo": "Despliegue Continuo con Openshift",
+                "memoria": {
+                    "info": "2022-23/Memoria_DC_OpenShift.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2022-23/Presentacion_Despliegue continuo Openshift.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "https://github.com/apalgar24/pipelines-triggers",
+                    "tipo": "github"
+                },
+                "video": {
+                    "info": ["https://youtu.be/NdZIe8ogtxI"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2022-23/adrianp.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Alejandro Montes Delgado",
+                "titulo": "Despliegue y funcionamiento de Wazuh",
+                "memoria": {
+                    "info": "2022-23/Proyecto_Despliegue_funcionamiento_Wazuh.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2022-23/Presentacion_Proyecto_Despliegue_funcionamiento_Wazuh.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": ["https://youtu.be/h6CN6_xPPmM"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2022-23/alejandrom.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Alfonso Roldán Amador",
+                "titulo": "Implementación de Terraform en Azure mediante Azure DevOps Pipelines",
+                "memoria": {
+                    "info": "2022-23/Memoria - Implementación de Terraform en Azure mediante _Azure DevOps Pipelines_.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2022-23/Presentación - Implementación de Terraform en Azure.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "https://github.com/alfonsora6/Ejemplo-Infraestructura-Terraform",
+                    "tipo": "github"
+                },
+                "video": {
+                    "info": ["https://youtu.be/xuil1ihbKfs"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2022-23/alfonso.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Francisco Diz Ureña",
+                "titulo": "Almacenamiento de objetos de alto rendimiento con MinIO",
+                "memoria": {
+                    "info": "2022-23/Memoria-MinIO.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2022-23/Presentacion-MinIO.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "https://github.com/Pacodiz02/PI",
+                    "tipo": "github"
+                },
+                "video": {
+                    "info": ["https://youtu.be/TXU3eE2FvM4"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2022-23/paco.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Adrián Jaramillo Rodríguez",
+                "titulo": "Introducción a Fortinet, ciberseguridad de última generación",
+                "memoria": {
+                    "info": "https://pi.adrianj.eu/",
+                    "tipo": "html"
+                },
+                "exposicion": {
+                    "info": "2022-23/Presentación_Fortinet.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "https://github.com/adriasir123/pi-fortinet",
+                    "tipo": "github"
+                },
+                "video": {
+                    "info": ["https://youtu.be/98c5Ocf2J8A"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2022-23/adrianj.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Juan Jesús Alejo Sillero",
+                "titulo": "Despliegue de una web estática - The GitOps Way",
+                "memoria": {
+                    "info": "https://sh.juanje.net/proyecto-integrado-asir",
+                    "tipo": "html"
+                },
+                "exposicion": {
+                    "info": "2022-23/Presentacion_Despliegue de una web estática - The GitOps Way.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "https://github.com/JuanJesusAlejoSillero/Proyecto-Integrado-ASIR",
+                    "tipo": "github"
+                },
+                "video": {
+                    "info": ["https://www.youtube.com/watch?v=KazfAsxV5ho"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2022-23/juanjesus.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Ángel Suárez Pérez",
+                "titulo": "Monitorización y análisis de logs y métricas en tiempo real utilizando ELK stack, Metricbeat y Filebeat",
+                "memoria": {
+                    "info": "2022-23/Memoria_Monitorarizacion_elkstack_metricbeat_filebeat.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2022-23/Presentación pila ELK, Metricbeat y Filebeat.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "https://github.com/angelsuarez1612/Ficheros-PI-LogsyMetricas",
+                    "tipo": "github"
+                },
+                "video": {
+                    "info": ["https://www.youtube.com/watch?v=j_oT0h4JUvY"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2022-23/angel.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "María Jesús Alloza Rodríguez",
+                "titulo": "Despliegue con Terraform de un entorno Wordpress con alta disponibilidad y recuperación ante desastres en Azure",
+                "memoria": {
+                    "info": "2022-23/Memoria Proyecto Integrado - Terraform_WP_Azure.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2022-23/Presentación Proyecto Integrado - Terraform_WP_Azure.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "https://github.com/Legnakra/azure_ha_wordpress",
+                    "tipo": "github"
+                },
+                "video": {
+                    "info": ["https://www.youtube.com/watch?v=cyUlpzQdl8E"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2022-23/mariajesusa.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Roberto Rodríguez Márquez",
+                "titulo": "Despliegue de EKS usando CrossPlane",
+                "memoria": {
+                    "info": "2022-23/Memoria Despliegue de EKS usando CrossPlane + ArgoCD.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2022-23/Presentacion_Proyecto Integrado_EKS_ClossPlane_ArgoCD.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "https://github.com/robertorodriguez98/proyecto-integrado ",
+                    "tipo": "github"
+                },
+                "video": {
+                    "info": ["https://www.youtube.com/watch?v=f_TPhKwa4jE"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2022-23/roberto.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Antonio Rafael Marchán Posada",
+                "titulo": "CI/CD - Helm sobre Openshift utilizando Tekton & Kubeseal",
+                "memoria": {
+                    "info": "2022-23/Proyecto CI_CD Helm sobre Openshift.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2022-23/CI_CD - Helm sobre Openshift utilizando Tekton & Kubeseal.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "https://github.com/Evanticks/wordpress-helm-tekton",
+                    "tipo": "github"
+                },
+                "video": {
+                    "info": ["https://www.youtube.com/watch?v=l0V7808ij_s"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2022-23/antoniom.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Gonzalo Marín Gómez",
+                "titulo": "Monitorización de escenario con CMS",
+                "memoria": {
+                    "info": "2022-23/memoria_monitorizacion_cms.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2022-23/presentacion_monitorización_cms.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": ["https://www.youtube.com/watch?v=FEgO2D1_2mY"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2022-23/gonzalo.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Iván Piña Castillo",
+                "titulo": "Iniciación a Openshift Serverless y Knative Serving",
+                "memoria": {
+                    "info": "2022-23/Proyecto_OpernShift_Serverless.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2022-23/Iniciación a Openshift Serverless.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": ["https://youtu.be/-6fyrjI2yN4"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2022-23/ivan.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Daniel Pérez Gallo",
+                "titulo": "K8s con OPA Gatekeeper",
+                "memoria": {
+                    "info": "2022-23/Memoria K8s con OPA Gatekeeper.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2022-23/Presentacion K8s con OPA Gatekeeper.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": [""],
+                    "tipo": ""
+                },
+                "foto": {
+                    "info": "img/2022-23/daniel.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Antonio Castro Díaz",
+                "titulo": "Introducción a Podman y podman-compose",
+                "memoria": {
+                    "info": "2022-23/Proyecto Podman-Compose.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2022-23/Presentación podman-compose.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": [""],
+                    "tipo": ""
+                },
+                "foto": {
+                    "info": "img/2022-23/antonio.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "María Jesús Bohiguez Pérez",
+                "titulo": "Introducción a LXD",
+                "memoria": {
+                    "info": "2022-23/Introducción_LXD_MariaJesusBP.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2022-23/Presentación-LXD.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": [""],
+                    "tipo": ""
+                },
+                "foto": {
+                    "info": "img/2022-23/mariajesus.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Carlos Rivero Martín",
+                "titulo": "Lynis, auditando sistemas",
+                "memoria": {
+                    "info": "https://crivmar.github.io/crivmar-lynis.github.io/",
+                    "tipo": "html"
+                },
+                "exposicion": {
+                    "info": "2022-23/Presentación_Lynix.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": [""],
+                    "tipo": ""
+                },
+                "foto": {
+                    "info": "img/2022-23/carlosrivero.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Javier Crespillo Bergua",
+                "titulo": "Cloudformation + AWS",
+                "memoria": {
+                    "info": "2022-23/AwsCloudFormation.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2022-23/Presentación_AwsCloudFormation.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": [""],
+                    "tipo": ""
+                },
+                "foto": {
+                    "info": "img/2022-23/javiercrespillo.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Alejandro Domínguez Alcocer",
+                "titulo": "Terraform + Kubernetes",
+                "memoria": {
+                    "info": "2022-23/Proyecto_terraform_kubernetes.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2022-23/Presentación_terraform_kubernetes.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": [""],
+                    "tipo": ""
+                },
+                "foto": {
+                    "info": "img/2022-23/alejandrodominguez.jpg",
+                    "tipo": "jpg"
+                }
+            }
+
+            
+        ]
+	},
+    {
+        "curso": "2021-2022",
+        "campos": ["Alumno/a","Título","Memoria","Exposición","Repositorio","Video","Foto"],
+        "alumnos": [
+            {
+                "nombre": "Daniel Miguel Mesa Mejías",
+                "titulo": "Kyverno implementado en k8s",
+                "memoria": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "exposicion": {
+                    "info": "2021-22/Presentacion_Kyverno-en-K8S-DanielMesa.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "https://github.com/megandil/k8s-kyverno",
+                    "tipo": "github"
+                },
+                "video": {
+                    "info": ["https://youtu.be/PPpuKYu8awM"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2021-22/danielmesa.jpg",
+                    "tipo": "jpg"
+                }
+            },
+
+            {
+                "nombre": "Javier Vega Correa",
+                "titulo": "LongHorn. Almacenamientro Distribuido en Kubernetes",
+                "memoria": {
+                    "info": "2021-22/Longhorn_Javier_Vega.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2021-22/Presentacion_Longhorn_Javier_Vega.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": ["https://youtu.be/tqVl8yRQSO0"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2021-22/javiervega.jpg",
+                    "tipo": "jpg"
+                }
+            },
+
+            {
+                "nombre": "Jesús Rubio Martín",
+                "titulo": "Blockchain",
+                "memoria": {
+                    "info": "2021-22/blockchain_jesus_rubio.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2021-22/Presentacion_blockchain_jesus_rubio.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": ["https://youtu.be/-UV8AaSoloM"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2021-22/jesus.jpg",
+                    "tipo": "jpg"
+                }
+            },
+
+            {
+                "nombre": "Lara Pruna Ternero",
+                "titulo": "Despliegue continuo en Kubernetes con GitOps y ArgoCD",
+                "memoria": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "exposicion": {
+                    "info": "2021-22/Presentacion_ArgoCD_LaraPruna.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "https://github.com/LaraPruna/DespliegueArgoCD",
+                    "tipo": "github"
+                },
+                "video": {
+                    "info": ["https://youtu.be/L4WWeM_gylk"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2021-22/lara.jpg",
+                    "tipo": "jpg"
+                }
+            },
+
+            {
+                "nombre": "Daniel Parrales García",
+                "titulo": "Despliegue Continuo de aplicaciones web usando Openshift",
+                "memoria": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "exposicion": {
+                    "info": "2021-22/Presentacion_Integracion_Continua_Openshift_Daniel_Parrales.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "https://github.com/DanielPG25/FCT-Openshift",
+                    "tipo": "github"
+                },
+                "video": {
+                    "info": ["https://youtu.be/qR9dHQzQTPg"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2021-22/danielparrales.jpg",
+                    "tipo": "jpg"
+                }
+            },
+
+            {
+                "nombre": "Adrián Díaz Aguilar",
+                "titulo": "Pentesting en Entornos de Directorio Activo - SMB",
+                "memoria": {
+                    "info": "2021-22/Pentesting_Entornos_Directorio_Activo_SMB_Adrian_Diaz.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2021-22/Presentacion_Pentesting_Entornos_Directorio_Activo_SMB_Adrian_Diaz.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": ["https://youtu.be/IZD0JtzUr7c"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2021-22/adrian.jpg",
+                    "tipo": "jpg"
+                }
+            },
+
+            {
+                "nombre": "Celia García Márquez",
+                "titulo": "Recolección y filtrado de logs/registros mediante Fluent-bit con Docker",
+                "memoria": {
+                    "info": "2021-22/Logging_Fluent-bit_Docker_Celia_Garcia.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2021-22/Presentacion_Logging_Fluent-bit_Docker_Celia_Garcia.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "https://github.com/CeliaGMqrz/fluent-bit_loki_grafana__docker-drupal",
+                    "tipo": "github"
+                },
+                "video": {
+                    "info": [
+                        
+                    ],
+                    "tipo": ""
+                },
+                "foto": {
+                    "info": "img/2021-22/celia.png",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Sergio Ibáñez Nuñez",
+                "titulo": "Introducción a Softether vpn",
+                "memoria": {
+                    "info": "2021-22/Introduccion_VPN_Softether_Sergio_Ibanez.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2021-22/Presentacion_Introduccion_VPN_Softether_Sergio_Ibanez.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": ["https://www.youtube.com/watch?v=iY6Z70rkHXA","https://www.youtube.com/watch?v=BfLn5WF0qhg"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2021-22/sergio.png",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Francisco Javier Madueño Jurado",
+                "titulo": "Implantación de paginas web y su monitorización con New Relic utilizando kubernetes",
+                "memoria": {
+                    "info": "2021-22/Monitorizacion_NewRelic_Francisco_Madueno.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2021-22/Presentacion_Monitorizacion_NewRelic_Francisco_Madueno.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "https://franmadu6.github.io/gatsbyjs/implantacion-de-paginas-web-y-su-monitorizacion-con-new-relic-utilizando-kubernetes",
+                    "tipo": "html"
+                },
+                "video": {
+                    "info": ["https://www.youtube.com/watch?v=OUbg1D636mE","https://www.youtube.com/watch?v=NcZReBryTck"],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2021-22/francisco.png",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Jonathan Márquez Jiménez",
+                "titulo": "Seguridad del sistema con Wazuh",
+                "memoria": {
+                    "info": "2021-22/Seguiridad_Wazuh_Jonathan_Marquez.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2021-22/Presentacion_Seguiridad_Wazuh_Jonathan_Marquez.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": [
+                        
+                    ],
+                    "tipo": ""
+                },
+                "foto": {
+                    "info": "img/2021-22/jonathan.png",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Juan Antonio Reifs Ramírez",
+                "titulo": "Instalación de de Apache Guacamole (docker, ldap, proxy inverso, ...)",
+                "memoria": {
+                    "info": "2021-22/Proyecto_Guacamole_Juan_Antonio_Reifs.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2021-22/Presentacion_ Proyecto_Guacamole_Juan_Antonio_Reifs.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": [
+                        "https://youtu.be/KgbkFBbvp7U"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2021-22/juanantonio.png",
+                    "tipo": "jpg"
+                }
+            }
+        ]
+    },     
+            
+    {
+        "curso": "2020-2021",
+        "campos": ["Alumno/a","Título","Memoria","Exposición","Repositorio","Video","Foto"],
+        "alumnos": [
+            {
+                "nombre": "Ángel Almazán García",
+                "titulo": "Gestionar LXC/LXD con Terraform",
+                "memoria": {
+                    "info": "2020-21/Gestion_de_LXC_con_Terraform.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2020-21/Presentacion_Gestion_de_LXC_con_Terraform.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": [
+                        "https://youtu.be/53aZ6AKJzG4"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2020-21/angel.png",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Manuel Chacón de Dios",
+                "titulo": "Sistema híbrido de kubernetes: VMs + Pods",
+                "memoria": {
+                    "info": "2020-21/Proyecto_kubevirt.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2020-21/Presentacion_Proyecto_kubevirt.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": [
+                        "https://youtu.be/spD4eZSXc2o"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2020-21/manuel.png",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Jesús García Muñoz",
+                "titulo": "Creador de escenarios a medida",
+                "memoria": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "repositorio": {
+                    "info": "https://gitlab.com/Jesus-GM/proyecto-2-asir",
+                    "tipo": "gitlab"
+                },
+                "video": {
+                    "info": [
+                        "https://youtu.be/pKk4JihD_qM"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2020-21/jesus.png",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Juan Diego Abadía Noguera",
+                "titulo": "Docker Private Registry",
+                "memoria": {
+                    "info": "2020-21/Proyecto_Docker_Registry.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2020-21/Presentacion_Proyecto_Docker_Registry.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": [
+                        "https://youtu.be/uavM3nwkht4"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2020-21/juandi.png",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Francisco Jesús Huzón Villar",
+                "titulo": "Microsoft Azure",
+                "memoria": {
+                    "info": "2020-21/Microsoft_Azure-Fran_Huzón.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2020-21/Presentacion-Fran_Huzon.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": [
+                        "https://youtu.be/iUi-crfyOE0"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2020-21/huzon.png",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Luis Vázquez Alejo",
+                "titulo": "SAN basada en ARM y alta disponibilidad",
+                "memoria": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "exposicion": {
+                    "info": "2020-21/Presentacion-SAN.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "https://github.com/LuisaoStuff/SAN-basada-en-ARM-y-alta-disponibilidad",
+                    "tipo": "github"
+                },
+                "video": {
+                    "info": [
+                        "https://youtu.be/8M9BKJhqg2g"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2020-21/luis.png",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Alejandro Morales Gracia",
+                "titulo": "Despliegues de microservicios en k8s con Helm",
+                "memoria": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "exposicion": {
+                    "info": "2020-21/Presentacion_Helm.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "https://github.com/MoralG/Despliegues_de_microservicios_en_k8s_con_Helm",
+                    "tipo": "github"
+                },
+                "video": {
+                    "info": [
+                        "https://youtu.be/q85dZlr2tVY"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2020-21/alejandro.png",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Francisco Guillermo García",
+                "titulo": "Gestión de recursos con Apache Mesos",
+                "memoria": {
+                    "info": "2020-21/Proyecto_Apache_Mesos.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2020-21/Presentacion_Proyecto_Apache_Mesos.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": [
+                        "https://youtu.be/0EBtSAKEe_4"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2020-21/paco.png",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Javier Pérez Hidalgo",
+                "titulo": "Introducción y desarrollo de VPN con Wireguard",
+                "memoria": {
+                    "info": "2020-21/wireguard.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2020-21/INTRODUCCIÓN A WIREGUARD.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": [
+                        "https://youtu.be/5AI3KFIVoFo"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2020-21/javiperez.png",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Francisco Javier Martín Nuñez",
+                "titulo": "Introducción a los contenedores con Podman, Buildah, Skopeo",
+                "memoria": {
+                    "info": "2020-21/Podman.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2020-21/Presentacion_Podman.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "https://franjavimn.onrender.com/proyecto-podman",
+                    "tipo": "html"
+                },
+                "video": {
+                    "info": [
+                        "https://youtu.be/mV3jFEQENRA"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2020-21/fjmartin.png",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "José Miguel Calderón Frutos",
+                "titulo": "PfSense en alta disponibilidad",
+                "memoria": {
+                    "info": "2020-21/Pfsense.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2020-21/Presentacion_pfsense.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "https://github.com/jose20035/pfsense-alta-disponivilidad",
+                    "tipo": "github"
+                },
+                "video": {
+                    "info": [
+                        "https://youtu.be/EY8beME_Oik"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2020-21/calderon.png",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Ismael Santiago Estévez",
+                "titulo": "Juju + AWS",
+                "memoria": {
+                    "info": "2020-21/juju+AWS.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2020-21/Presentacion_juju_aws.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": [
+                        "https://youtu.be/aOzgNbGtnXI"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2020-21/ismael.png",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Juan Luis Millán Hidalgo",
+                "titulo": "Distribución de imágenes docker en una red P2P con DragonFly y CoreDNS",
+                "memoria": {
+                    "info": "https://github.com/juanlu-millan/Distribucion-de-imagenes-docker-en-una-red-P2P-con-DragonFly-y-CoreDNS",
+                    "tipo": "github"
+                },
+                "exposicion": {
+                    "info": "https://slides.com/juanluismillanhidalgo/deck",
+                    "tipo": "html"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": [
+                        "https://youtu.be/7yqxCp3uOgE"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2020-21/juanluis.png",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Manuel Lora Román",
+                "titulo": "RocketChat con autenticación LDAP",
+                "memoria": {
+                    "info": "https://manuelloraroman.github.io/proyectorocketchat.github.io/",
+                    "tipo": "html"
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": [
+                        "https://youtu.be/cb3M09epna0"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2020-21/manuellora.png",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Álvaro Vaca Ferreras",
+                "titulo": "Alta disponibilidad con sistemas de ficheros distribuidos",
+                "memoria": {
+                    "info": "https://www.alvarovf.com/seguridad/2021/06/13/alta-disponibilidad-sistemas-ficheros-distribuidos.html",
+                    "tipo": "html"
+                },
+                "exposicion": {
+                    "info": "2020-21/Presentacion_sistema_ficheros_distribuidos.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "https://github.com/alvarovaca/ansible-tfg",
+                    "tipo": "github"
+                },
+                "video": {
+                    "info": [
+                        "https://youtu.be/09BdYTHlxyM"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2020-21/alvarovaca.png",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Alejandro Cabezas Barea",
+                "titulo": "GitOps en Kubernetes con FluxCD",
+                "memoria": {
+                    "info": "https://github.com/acabe10/GitOps-FluxCD",
+                    "tipo": "github"
+                },
+                "exposicion": {
+                    "info": "https://prezi.com/p/-mnn3zrb7f2v/?present=1",
+                    "tipo": "html"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": [
+                        "https://youtu.be/AGNJ_9V21XY"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2020-21/cabezas.png",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Adrián Rodriguez Povea",
+                "titulo": "Despliegue de Kubernetes en Google Cloud con Terraform+Helm",
+                "memoria": {
+                    "info": "https://github.com/arpovea/proyecto-ASIR",
+                    "tipo": "github"
+                },
+                "exposicion": {
+                    "info": "2020-21/Presentacion_Terraform.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": [
+                        "https://youtu.be/0El9TeHh89I"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2020-21/adrian.png",
+                    "tipo": "jpg"
+                }
+            }
+
+            
+            
+
+        ]
+    },
+    {
+        "curso": "2019-2020",
+        "campos": ["Alumno/a","Título","Memoria","Exposición","Repositorio","Video","Foto"],
+        "alumnos": [
+            {
+                "nombre": "Victor Manuel Ruiz Mesa",
+                "titulo": "Creación y gestión de contenedores con buildah, podman y skopeo",
+                "memoria": {
+                    "info": "2019-20/proyecto_victorruiz_podman_buildah_skopeo.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2019-20/presentacion_victorruiz_podman_buildah_skopeo.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": [
+                        "https://www.youtube.com/watch?v=94CCsrhYPo4","https://www.youtube.com/watch?v=wlvHSvpKE8U"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2019-20/victor.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Adrián Silva Boceta",
+                "titulo": "Instalación de Odoo usando Jenkins y Docker",
+                "memoria": {
+                    "info": "2019-20/Odoo_Adrian_Silva_Boceta.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2019-20/presentacion_Odoo_Adrian_Silva_Boceta.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": [
+                        "https://www.youtube.com/watch?v=u9g_dvkR0go"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2019-20/adrian.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Alejandro Rodriguez Rojas",
+                "titulo": "Jenkins + Docker",
+                "memoria": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "exposicion": {
+                    "info": "2019-20/proyecto_Alejandro_Rodríguez_docker_jenkins.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "https://github.com/alexrr12341/Jenkins-con-Docker",
+                    "tipo": "github"
+                },
+                "video": {
+                    "info": [
+                        "https://www.youtube.com/watch?v=smJE41pUaFc"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2019-20/alejandro.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Álvaro Camargo Núñez",
+                "titulo": "MariaDB Galera Cluster VS Percona Xtradb Cluster",
+                "memoria": {
+                    "info": "2019-20/MARIADB Galera Cluster vs PXC.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2019-20/presentacion_MARIADB Galera Cluster vs PXC.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": [
+                        "https://www.youtube.com/watch?v=kanY7Do4G-o"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2019-20/alvaro.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Paloma del Rocío García Campón",
+                "titulo": "Creación de usuarios y reglas de acceso en Kubernetes",
+                "memoria": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "exposicion": {
+                    "info": "2019-20/gestion_usuarios_kubernetes_presentacion.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "https://github.com/PalomaR88/Gestion_de_usuarios_y_reglas_de_acceso_en_Kubernetes",
+                    "tipo": "github"
+                },
+                "video": {
+                    "info": [
+                        "https://www.youtube.com/watch?v=wOqcZ3Kz0aA"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2019-20/paloma.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Ernesto Vázquez García",
+                "titulo": "Terraform + AWS",
+                "memoria": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "exposicion": {
+                    "info": "2019-20/Terraform + AWS.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "https://ernestovazquez.es/posts/terraformaws/",
+                    "tipo": "html"
+                },
+                "video": {
+                    "info": [
+                        "https://www.youtube.com/watch?v=mZqBC0Kh_0w"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2019-20/ernesto.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "José María Montero Romero ",
+                "titulo": "PowerDNS",
+                "memoria": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "exposicion": {
+                    "info": "2019-20/Presentación_powerdns.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "https://gitlab.com/josemariamontero/powerdns/-/blob/master/documentacion.md",
+                    "tipo": "gitlab"
+                },
+                "video": {
+                    "info": [
+                        "https://www.youtube.com/watch?v=mZqBC0Kh_0w"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2019-20/josemaria.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Fernando Tirado Bulnes",
+                "titulo": "Micro VM con FireCracker",
+                "memoria": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "exposicion": {
+                    "info": "2019-20/presentacion_microvm.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "https://github.com/ftiradob/MicroVM_firecracker",
+                    "tipo": "github"
+                },
+                "video": {
+                    "info": [
+                        "https://www.youtube.com/watch?v=o1oEhw5tXjQ"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2019-20/fernando.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Salvador Lobato Gálvez",
+                "titulo": "Monitorización de Kubernetes con Prometheus",
+                "memoria": {
+                    "info": "2019-20/Proyecto Kubernets + Prometheus.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": [
+                        
+                    ],
+                    "tipo": ""
+                },
+                "foto": {
+                    "info": "",
+                    "tipo": ""
+                }
+            }
+
+
+            
+
+            
+        ]
+    },
+    {
+        "curso": "2018-2019",
+        "campos": ["Alumno/a","Título","Memoria","Exposición","Repositorio","Video","Foto"],
+        "alumnos": [
+            {
+                "nombre": "Jesús Arias Gil",
+                "titulo": "Rancher Kubernetes",
+                "memoria": {
+                    "info": "2018-19/memoria_rancher_jesus_arias.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2018-19/presentacion_rancher_jesus_arias.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": [
+                        "https://youtu.be/PqOPyGeLuRI"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2018-19/jesusarias.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Alvaro Beleño Rodríguez",
+                "titulo": "Terrafom + InSpec: Automatización y control de la Infraestructura en Azure",
+                "memoria": {
+                    "info": "2018-19/memoria_alvaro_beleño.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2018-19/presentacion_alvaro_beleño.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "https://gitlab.com/iesgn/proyecto-integrado/",
+                    "tipo": "gitlab"
+                },
+                "video": {
+                    "info": [
+                        "https://www.youtube.com/watch?v=NCFH730y9-U"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2018-19/alvarobeleño.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Daniel Cumplido Platero",
+                "titulo": "Kubernetes Operators",
+                "memoria": {
+                    "info": "https://gitlab.com/iesgn/kubernetesoperators",
+                    "tipo": "gitlab"
+                },
+                "exposicion": {
+                    "info": "2018-19/presentacion_daniel_cumplido.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": [
+                        "https://www.youtube.com/watch?v=EKI481WaTwQ"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2018-19/danielcumplido.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Juan Pedro Carmona Romero",
+                "titulo": "Gestión de configuración y administración de software con AWX",
+                "memoria": {
+                    "info": "https://jpcarmona.github.io/web/blog/proyecto/",
+                    "tipo": "html"
+                },
+                "exposicion": {
+                    "info": "https://jpcarmona.github.io/presentacion-ProyectoAWX",
+                    "tipo": "html"
+                },
+                "repositorio": {
+                    "info": "https://github.com/iesgn/proyectoawx",
+                    "tipo": "github"
+                },
+                "video": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "foto": {
+                    "info": "img/2018-19/juanpedrocarmona.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Kevin Ariza García",
+                "titulo": "nomad",
+                "memoria": {
+                    "info": "2018-19/ArizaKevin(Orquestacion Docker Con Nomad).pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2018-19/ArizaKevin (Presentación Nomad Hashicorp).pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": [
+                        "https://www.youtube.com/watch?v=7eULycTF0Ao"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2018-19/kevinariza.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "José Manuel Vela Fernández",
+                "titulo": "CLAPS (Cloud Local Administrator Password Solution)",
+                "memoria": {
+                    "info": "https://github.com/Velaa98/CLAPS/wiki",
+                    "tipo": "html"
+                },
+                "exposicion": {
+                    "info": "https://slides.com/velaa98/claps#/",
+                    "tipo": "html"
+                },
+                "repositorio": {
+                    "info": "https://github.com/iesgn/CLAPS/blob/v0.5/README.md",
+                    "tipo": "github"
+                },
+                "video": {
+                    "info": [
+                        "https://www.youtube.com/watch?v=rUcyJ-8dV9A"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2018-19/josemanuelvela.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Francisco José Romero Morillo",
+                "titulo": "Hosting con ansible y terraform",
+                "memoria": {
+                    "info": "2018-19/memoria_francisco_jose_romero.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2018-19/presentacion_francisco_jose_romero.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "https://github.com/iesgn/hosting-proyecto",
+                    "tipo": "github"
+                },
+                "video": {
+                    "info": [
+                        "https://www.youtube.com/watch?v=iqov5s7CYAk"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2018-19/franciscojose.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Sergio García Ojeda",
+                "titulo": "Service Mesh en Kubernetes con Istio",
+                "memoria": {
+                    "info": "2018-19/memoria_sergio_garcia.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2018-19/presentacion_sergio_garcia.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": [
+                        "https://www.youtube.com/watch?v=d37YGKx_ErA"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2018-19/sergioojeda.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Luís Manuel Raya Bernal",
+                "titulo": "Apache OpenWhisk",
+                "memoria": {
+                    "info": "https://telegra.ph/Apache-OpenWhisk-04-25",
+                    "tipo": "html"
+                },
+                "exposicion": {
+                    "info": "2018-19/presentacion_ApacheOpenWhisk.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": [
+                        "https://www.youtube.com/watch?v=DoMFLFSn7tQ"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2018-19/luisraya.jpg",
+                    "tipo": "jpg"
+                }
+            }
+        ]
+    },
+    {
+        "curso": "2017-2018",
+        "campos": ["Alumno/a","Título","Memoria","Exposición","Repositorio","Video","Foto"],
+        "alumnos": [
+            {
+},
+{                "nombre": "Juan José López Roldán",
+                "titulo": "Cassandra NoSQL",
+                "memoria": {
+                    "info": "2017-18/Memoria-Proyecto-juanjoselopezroldan.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2017-18/Presentacion_Proyecto_Juan_Jose.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": [
+                        "https://t.co/rH8YP4gp7e","https://youtu.be/8MJl1nTunWo"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2017-18/juanjose.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "David Tinoco Castillo",
+                "titulo": "OpenShift over OpenStack",
+                "memoria": {
+                    "info": "https://gitlab.com/iesgn/OpenshiftOverOpenstack/blob/master/README.md",
+                    "tipo": "gitlab"
+                },
+                "exposicion": {
+                    "info": "2017-18/Presentacion_David_Tinoco.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "https://gitlab.com/iesgn/OpenshiftOverOpenstack/",
+                    "tipo": "gitlab"
+                },
+                "video": {
+                    "info": [
+                        "https://youtu.be/DECXxbwWjTE"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2017-18/tinoco.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Adan Reina Jurado",
+                "titulo": "EasyLXC: Herramienta de gestión de Linux Containers",
+                "memoria": {
+                    "info": "2017-18/Reina.Adán.EasyLXC.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "repositorio": {
+                    "info": "https://github.com/iesgn/EasyLXC",
+                    "tipo": "github"
+                },
+                "video": {
+                    "info": [
+                        "https://youtu.be/3Q_FHWsU3DM"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2017-18/adan.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Daniel Bascón Arenas",
+                "titulo": "Hosting Hostcker: Implantación de un hosting con docker",
+                "memoria": {
+                    "info": "2017-18/Memoria_Daniel_Bascon.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2017-18/Presentacion HOSTCKER.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "https://github.com/iesgn/HOSTCKER",
+                    "tipo": "github"
+                },
+                "video": {
+                    "info": [
+                        "https://youtu.be/8yBhVNfTPBw"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2017-18/daniel.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Carlos Jesús Sánchez Ortega",
+                "titulo": "Auto Scaling en Amazon Web Services",
+                "memoria": {
+                    "info": "https://aws-autoscaling.github.io/",
+                    "tipo": "html"
+                },
+                "exposicion": {
+                    "info": "2017-18/autoscaling-presentacion.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "https://github.com/iesgn/aws-autoscaling.github.io",
+                    "tipo": "github"
+                },
+                "video": {
+                    "info": [
+                        "https://youtu.be/-LS4KczEZ6s"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2017-18/carlos.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Juan María Cobo Jódar",
+                "titulo": "Monitorización de Redes:Zabbix vs Pandora FMS",
+                "memoria": {
+                    "info": "2017-18/Proyecto-JuanMaríaCobo.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2017-18/presentacion_janma_cobo.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": [
+                        "https://youtu.be/lsvVWFpPA-I"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2017-18/juanma.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Manuel Angel Franco Sanchez",
+                "titulo": "Kubernetes: backend cri-o y almacenamiento en Ceph",
+                "memoria": {
+                    "info": "https://gitlab.com/iesgn/K8s-crio-ceph/blob/master/README.md",
+                    "tipo": "gitlab"
+                },
+                "exposicion": {
+                    "info": "https://gitlab.com/iesgn/K8s-crio-ceph/raw/master/presentacion.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "https://gitlab.com/iesgn/K8s-crio-ceph/",
+                    "tipo": "gitlab"
+                },
+                "video": {
+                    "info": [
+                        "https://youtu.be/mpFlQeTEoEU"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2017-18/manuel.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Misael Noda Quintero",
+                "titulo": "Despliegue de GitLab con integración continúa",
+                "memoria": {
+                    "info": "2017-18/Proyecto_Misael_Noda.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": [
+                        "https://youtu.be/dPModrvwTDI"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2017-18/misael.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Miguel Vargas Sánchez",
+                "titulo": "Instalación y configuración\tde Openstack con Manila",
+                "memoria": {
+                    "info": "2017-18/Proyecto_final_Miguel_Vargas.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": [
+                        "https://youtu.be/Fsa9h2TAjZs"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2017-18/miguel.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "María Romero Angulo",
+                "titulo": "CouchBase",
+                "memoria": {
+                    "info": "2017-18/memoriaMariaRomero.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2017-18/Presentacion_memoriaMariaRomero.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": [
+                        "https://youtu.be/BFR0zIpDAdw"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2017-18/maria.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Álvaro Sola Olivero",
+                "titulo": "Ansible-Container",
+                "memoria": {
+                    "info": "2017-18/Memoria-Ansible-Container.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2017-18/Presentacion-Memoria-Ansible-Container.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": [
+                        "https://youtu.be/aTDtBJEbD-g"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2017-18/alvaro.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Sergio Terán Monge",
+                "titulo": "Despliegue continuo de infraestructuras",
+                "memoria": {
+                    "info": "https://github.com/iesgn/TDD-jenkins-kitchen-dond/blob/master/README.md",
+                    "tipo": "github"
+                },
+                "exposicion": {
+                    "info": "2017-18/Presentacion_Sergio_Teran.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "https://github.com/iesgn/TDD-jenkins-kitchen-dond/",
+                    "tipo": "github"
+                },
+                "video": {
+                    "info": [
+                        "https://youtu.be/C_YiJp4soGI"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2017-18/teran.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Sergio Ferrete Benítez",
+                "titulo": "OpenForm: Aplicación web frontend para Terraform",
+                "memoria": {
+                    "info": "https://github.com/sfbenitez/OpenForm/wiki",
+                    "tipo": "github"
+                },
+                "exposicion": {
+                    "info": "2017-18/Presentacion_Sergio_Ferrete.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "https://github.com/sfbenitez/OpenForm",
+                    "tipo": "github"
+                },
+                "video": {
+                    "info": [
+                        "https://youtu.be/YiQm1Xo8Axg"
+                    ],
+                    "tipo": "youtube"
+                },
+                "foto": {
+                    "info": "img/2017-18/ferrete.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Elizabeth Moreno Begines",
+                "titulo": "Apache CloudStack",
+                "memoria": {
+                    "info": "2017-18/CloudStack_ElizabethMoreno.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2017-18/Presentacion_CloudStack_ElizabethMoreno.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "foto": {
+                    "info": "img/2017-18/elizabeth.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Alejandro Valencia Valles",
+                "titulo": "Control de datos en Oracle 11g",
+                "memoria": {
+                    "info": "2017-18/Proyecto_Alejandro_Valencia.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "foto": {
+                    "info": "img/2017-18/alejandro.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Francisco Manuel Hidalgo Fernández",
+                "titulo": "Almacenamiento iSCSI",
+                "memoria": {
+                    "info": "2017-18/Proyecto_Francisco_Hidalgo.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2017-18/Presentacion_Proyecto_Francisco_Hidalgo.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "foto": {
+                    "info": "img/2017-18/fran.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "David García Gómez",
+                "titulo": "neo4j: Base de datos orientada a grafos",
+                "memoria": {
+                    "info": "2017-18/Proyecto_David_Garcia.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "https://prezi.com/view/8UfQdxlUbukwjEbc75Zk/",
+                    "tipo": "html"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "foto": {
+                    "info": "img/2017-18/david.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Francisco Jarana Camacho",
+                "titulo": "Despliegue de Kubernetes sobre rkt",
+                "memoria": {
+                    "info": "2017-18/Proyecto_Francisco_Jarana.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2017-18/Presentacion_Proyecto_Francisco_Jarana.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "foto": {
+                    "info": "img/2017-18/jarana.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Antonio Manuel Gómez Varela",
+                "titulo": "Sharding y réplica en\tPostgresql",
+                "memoria": {
+                    "info": "2017-18/Proyecto_Antonio_Gomez.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2017-18/Presentacion_Proyecto_Antonio_Gomez.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "foto": {
+                    "info": "img/2017-18/antonio.jpg",
+                    "tipo": "jpg"
+                }
+            }
+        ]
+    },
+    {
+        "curso": "2016-2017",
+        "campos": ["Alumno/a","Título","Memoria","Exposición","Repositorio","Video","Foto"],
+        "alumnos": [
+            {
+},
+{                "nombre": "Aitor León Delgado",
+                "titulo": "Hosting automatizado con autenticación en LDAP",
+                "memoria": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "exposicion": {
+                    "info": "https://aitor28ld.github.io/presentacion#/",
+                    "tipo": "html"
+                },
+                "repositorio": {
+                    "info": "https://github.com/aitor28ld/Proyecto/blob/master/README.md",
+                    "tipo": "github"
+                },
+                "video": {
+                    "info": [
+                        "https://www.pscp.tv/w/1yoKMBzMaMoGQ"
+                    ],
+                    "tipo": "peri"
+                },
+                "foto": {
+                    "info": "img/2016-17/aitor.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "José María Castillo Cotán",
+                "titulo": "Terraform: Infraestructura como código",
+                "memoria": {
+                    "info": "2016-17/Proyecto_Terraform_JoseMariaCastilloCotan.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "http://prezi.com/m5wblswfsd-j/?utm_campaign=share&utm_medium=copy",
+                    "tipo": "html"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": [
+                        "https://www.pscp.tv/w/1ypKdrBmRdoJW"
+                    ],
+                    "tipo": "peri"
+                },
+                "foto": {
+                    "info": "img/2016-17/josemaria.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Alejandro Palomino García",
+                "titulo": "Apache Sparck - Big Data",
+                "memoria": {
+                    "info": "2016-17/Apache_spark-alejandro_palomino.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "https://prezi.com/zk8ri7qtt-o7/apache-spark/",
+                    "tipo": "html"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": [
+                        "https://www.pscp.tv/w/1BdxYveRkggKX"
+                    ],
+                    "tipo": "peri"
+                },
+                "foto": {
+                    "info": "img/2016-17/alejandro.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Josué Álvarez Moreno",
+                "titulo": "Nube híbrida: Autoescalado horizontal hacia AWS",
+                "memoria": {
+                    "info": "2016-17/Nube_hibrida_Josue_Alvarez.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2016-17/Presentacion_nube_hibrida_josue_Alvarez.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "https://github.com/j-alvarez-moreno/proyecto-2ASIR",
+                    "tipo": "github"
+                },
+                "video": {
+                    "info": [
+                        "https://www.pscp.tv/Pledin_JD/1gqxvbgprDnxB"
+                    ],
+                    "tipo": "peri"
+                },
+                "foto": {
+                    "info": "img/2016-17/josue.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Antonio Luis Luna Márquez",
+                "titulo": "Kube-RPI",
+                "memoria": {
+                    "info": "2016-17/Kube_RPI_Antonio_Luna.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2016-17/Presentacion_Kube_RPI_Antonio_Luna.pdf",
+                    "tipo": "pdf"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": [
+                        "https://www.pscp.tv/w/1ynJOjwYXBXGR"
+                    ],
+                    "tipo": "peri"
+                },
+                "foto": {
+                    "info": "img/2016-17/antonio.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Marina Nievas Rodríguez",
+                "titulo": "Monitorización de servicios con CHECK_MK",
+                "memoria": {
+                    "info": "2016-17/Proyecto_Marina_Nievas.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2016-17/Presentacion_Marina_Nievas.odp",
+                    "tipo": "odp"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": [
+                        "https://www.pscp.tv/w/1RDGlZNAXDRxL"
+                    ],
+                    "tipo": "peri"
+                },
+                "foto": {
+                    "info": "img/2016-17/marina.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Manuel Alcocer Jiménez",
+                "titulo": "Docker Swarm",
+                "memoria": {
+                    "info": "2016-17/docker-swarm-manuel-alcocer.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": [
+                        "https://www.pscp.tv/w/1RDxlZNAwPdGL"
+                    ],
+                    "tipo": "peri"
+                },
+                "foto": {
+                    "info": "img/2016-17/manuel.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Juan Luís Ramírez Vaquero",
+                "titulo": "HTTP/2",
+                "memoria": {
+                    "info": "2016-17/Juan Luis Ramirez-ProyectoFinal-HTTP2.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "http://slides.com/juanluisramirez/http2/#/",
+                    "tipo": "html"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": [
+                        "https://www.pscp.tv/w/1MnxnaEPEmeJO"
+                    ],
+                    "tipo": "peri"
+                },
+                "foto": {
+                    "info": "img/2016-17/juanlu.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Alvaro Rodríguez Márquez",
+                "titulo": "Despliegue Automatizado sobre contenedores LXC",
+                "memoria": {
+                    "info": "2016-17/proyecto_Álvaro_Rodríguez_Márquez.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "http://slides.com/alvaro-rodriguez/deck#/",
+                    "tipo": "html"
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": [
+                        "https://www.pscp.tv/w/1jMKgoQgDyeKL"
+                    ],
+                    "tipo": "peri"
+                },
+                "foto": {
+                    "info": "img/2016-17/alvaro.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Evaristo García Zambrana",
+                "titulo": "Docker y Docker y Swarm",
+                "memoria": {
+                    "info": "2016-17/Evaristo GZ - Docker y Docker Swarm.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "https://www.youtube.com/watch?v=8iRCdnl9hOY",
+                    "tipo": "youtube"
+                },
+                "repositorio": {
+                    "info": "https://github.com/EvaristoGZ/tutorial-Docker-Swarm",
+                    "tipo": "github"
+                },
+                "video": {
+                    "info": [
+                        "https://www.pscp.tv/w/1BRJjWQzLDvxw"
+                    ],
+                    "tipo": "peri"
+                },
+                "foto": {
+                    "info": "img/2016-17/evaristo.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Francisco Jesús Moncayo Hidalgo",
+                "titulo": "OpenShift v3 - MiniShift",
+                "memoria": {
+                    "info": "2016-17/Minishift_Francisco_Moncayo.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": [
+                        "https://www.pscp.tv/w/1nAJEBdbkzexL"
+                    ],
+                    "tipo": "peri"
+                },
+                "foto": {
+                    "info": "img/2016-17/moncayo.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Carlos García Muñoz",
+                "titulo": "MongoDB: Sharded Cluster",
+                "memoria": {
+                    "info": "2016-17/Cluster_Sharding_MongoDB_Carlos_Garcia.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": [
+                        "https://www.pscp.tv/w/1nAJEBdbpEAxL"
+                    ],
+                    "tipo": "peri"
+                },
+                "foto": {
+                    "info": "img/2016-17/carlos.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Alberto Andrades Gil",
+                "titulo": "Despliegue de Drupla 8 sobre Docker Swarm",
+                "memoria": {
+                    "info": "2016-17/Docker_swarm_Alberto_Andrades.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "repositorio": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": [
+                        "https://www.pscp.tv/w/1DXxyyeLODPxM"
+                    ],
+                    "tipo": "peri"
+                },
+                "foto": {
+                    "info": "img/2016-17/alberto.jpg",
+                    "tipo": "jpg"
+                }
+            }
+        ]
+    },
+    {
+        "curso": "2015-2016",
+        "campos": ["Alumno/a","Título","Memoria","Exposición","Video","Foto"],
+        "alumnos": [
+            {
+},
+{                "nombre": "Diego Martín Sánchez",
+                "titulo": "Instalación y configuración de OpenStack Mitaka sobre LXC",
+                "memoria": {
+                    "info": "http://openstack-lxc.github.io/",
+                    "tipo": "html"
+                },
+                "exposicion": {
+                    "info": "http://slides.com/diego_martin/deck#/",
+                    "tipo": "html"
+                },
+                "video": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "foto": {
+                    "info": "img/2015-16/diego.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "José García Roldán",
+                "titulo": "Instalación de OpenStack Mitaka",
+                "memoria": {
+                    "info": "2015-16/Openstack_Mitaka_JGR.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "http://slides.com/josegr92/deck-3#/",
+                    "tipo": "html"
+                },
+                "video": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "foto": {
+                    "info": "img/2015-16/jose.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Francisco Javier Ramírez Rodríguez",
+                "titulo": "Instalación de OpenStack Mitaka",
+                "memoria": {
+                    "info": "2015-16/OpenStack Mitaka.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2015-16/OpenStack mitaka FJRR.odp",
+                    "tipo": "odp"
+                },
+                "video": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "foto": {
+                    "info": "img/2015-16/fran.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Manuel Luna Pérez",
+                "titulo": "nftables",
+                "memoria": {
+                    "info": "2015-16/Proyecto-nftables.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2015-16/NFTABLES.pdf",
+                    "tipo": "pdf"
+                },
+                "video": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "foto": {
+                    "info": "img/2015-16/manuel.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Carlos Fernández Troncoso",
+                "titulo": "Proxmox en alta disponibilidad",
+                "memoria": {
+                    "info": "2015-16/Proyecto. Clúster de HA en Proxmox 4.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "http://slides.com/carlosfdez91/deck-1",
+                    "tipo": "html"
+                },
+                "video": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "foto": {
+                    "info": "img/2015-16/carlos.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Jesús Bueno Acosta",
+                "titulo": "Servidor Web HA: Galera, Pacemaker,Corosync, Hearbeat, GlusterFS, Apache",
+                "memoria": {
+                    "info": "2015-16/proyecto_JBA-1.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2015-16/ppt_proyecto_JBA.pdf",
+                    "tipo": "pdf"
+                },
+                "video": {
+                    "info": [
+                        "https://www.pscp.tv/EvaristoGZ/1lPJqzzAYXLxb"
+                    ],
+                    "tipo": "peri"
+                },
+                "foto": {
+                    "info": "img/2015-16/jesus.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Samuel Guerra González",
+                "titulo": "Cluster de Alta Disponiblidad con Balanceo de Carga con Alfresco",
+                "memoria": {
+                    "info": "2015-16/Cluster de Alta Disponibilidad de Alfresco con Balanceo de Carga.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2015-16/Presentación.odp",
+                    "tipo": "odp"
+                },
+                "video": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "foto": {
+                    "info": "img/2015-16/samuel.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "María Cabrera Gómez",
+                "titulo": "Gestión de contenedores docker - kubernetes",
+                "memoria": {
+                    "info": "2015-16/proyectoDK.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2015-16/presentacion_mc.odp",
+                    "tipo": "odp"
+                },
+                "video": {
+                    "info": [
+                        "https://www.pscp.tv/EvaristoGZ/1OdKrwwNVgOGX"
+                    ],
+                    "tipo": "peri"
+                },
+                "foto": {
+                    "info": "img/2015-16/maria.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Juan Manuel Torres Díaz",
+                "titulo": "Kubernetes Cluster HA sobre OpenStack",
+                "memoria": {
+                    "info": "http://tedezed.github.io/Celtic-Kubernetes/HTML/",
+                    "tipo": "html"
+                },
+                "exposicion": {
+                    "info": "http://slides.com/tedezed/deck-1#/",
+                    "tipo": "html"
+                },
+                "video": {
+                    "info": [
+                        "https://www.pscp.tv/w/1nAJEqqVvqaJL"
+                    ],
+                    "tipo": "peri"
+                },
+                "foto": {
+                    "info": "img/2015-16/juanma.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "José Antonio Fuentes Gómez",
+                "titulo": "Despliegue multinodo de Openstack Newton en centos 7 con Rdo y componente Magnum",
+                "memoria": {
+                    "info": "2015-16/proyecto-integrado-JAF.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "foto": {
+                    "info": "img/2015-16/joseantonio.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Alejandro Agroba Castro",
+                "titulo": "Cluster alta disponibilidad MariaDB Galera HAProxy",
+                "memoria": {
+                    "info": "2015-16/proyecto_cluster_galera_AAC.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "foto": {
+                    "info": "img/2015-16/alejandro.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "José Luís Martín Díaz",
+                "titulo": "Videovigilancia con Debían y Motion",
+                "memoria": {
+                    "info": "2015-16/proyecto_joseluis.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "video": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "foto": {
+                    "info": "img/2015-16/joseluis.jpg",
+                    "tipo": "jpg"
+                }
+            }
+        ]
+    },
+    {
+        "curso": "2014-2015",
+        "campos": ["Alumno/a","Título","Memoria","Exposición","Foto"],
+        "alumnos": [
+            {
+},
+{                "nombre": "Adrián Jiménez Blanes",
+                "titulo": "OpenStack Alta Disponibilidad",
+                "memoria": {
+                    "info": "http://openstack-olimpo.github.io/",
+                    "tipo": "html"
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "foto": {
+                    "info": "img/2014-15/adrian_fran.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Francisco Javier Barrera García",
+                "titulo": "OpenStack Alta Disponibilidad",
+                "memoria": {
+                    "info": "http://openstack-olimpo.github.io/",
+                    "tipo": "html"
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "foto": {
+                    "info": "img/2014-15/adrian_fran.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Manuel Jesús Begines González",
+                "titulo": "Servicio web en HA: GlusterFS,Galera, OpenStack y Owncloud",
+                "memoria": {
+                    "info": "2014-15/webHA.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "foto": {
+                    "info": "img/2014-15/manuel.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Sergio Marchena Quirós",
+                "titulo": "Introducción a Big Data",
+                "memoria": {
+                    "info": "2014-15/bigdata.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "foto": {
+                    "info": "img/2014-15/sergio.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "José Alejandro Perea García",
+                "titulo": "Cluster Proxmox en HA",
+                "memoria": {
+                    "info": "2014-15/Proxmox_HA.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "foto": {
+                    "info": "img/2014-15/perea.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Antonio David Tejero Galán",
+                "titulo": "Cluster de HA: COROSYNC-PACEMAKER-DRBD",
+                "memoria": {
+                    "info": "2014-15/HA_CPD.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "foto": {
+                    "info": "img/2014-15/david.jpg",
+                    "tipo": "jpg"
+                }
+            }
+        ]
+    },
+    {
+        "curso": "2013-2014",
+        "campos": ["Alumno/a","Título","Memoria","Exposición","Foto"],
+        "alumnos": [
+            {
+},
+{                "nombre": "Miguel Ángel Ávila Ruiz",
+                "titulo": "Pruebas de rendimiento con jmeter e Hyperic",
+                "memoria": {
+                    "info": "2013-14/maar.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "foto": {
+                    "info": "img/2013-14/miguelangel.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Miguel Ángel Martín Serrano",
+                "titulo": "MongoDB",
+                "memoria": {
+                    "info": "2013-14/mams.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2013-14/mams-2.pdf",
+                    "tipo": "pdf"
+                },
+                "foto": {
+                    "info": "img/2013-14/miguemartin.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Juan Manuel Rodríguez Begines",
+                "titulo": "Samba4 como controlador de dominio",
+                "memoria": {
+                    "info": "2013-14/jmrb.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "foto": {
+                    "info": "img/2013-14/juanma.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Francisco Javier Giménez Vallejo",
+                "titulo": "Ceph como sistema de almacenamiento",
+                "memoria": {
+                    "info": "2013-14/fjgv.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2013-14/fjgv-2.pdf",
+                    "tipo": "pdf"
+                },
+                "foto": {
+                    "info": "img/2013-14/javier.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Adrián Cid Ramos",
+                "titulo": "FreeIPA",
+                "memoria": {
+                    "info": "2013-14/acr.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "foto": {
+                    "info": "img/2013-14/adrian.jpg",
+                    "tipo": "jpg"
+                }
+            },
+            {
+                "nombre": "Carlos Miguel Hernández Romero",
+                "titulo": "API python de OpenStack",
+                "memoria": {
+                    "info": "2013-14/cmhr.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "foto": {
+                    "info": "img/2013-14/carlos.jpg",
+                    "tipo": "jpg"
+                }
+            }
+        ]
+    },
+    {
+        "curso": "2012-2013",
+        "campos": ["Alumno/a","Título","Memoria","Exposicion"],
+        "alumnos": [
+            {
+},
+{                "nombre": "Juan Beato Quiñones",
+                "titulo": "Chef",
+                "memoria": {
+                    "info": "2012-13/jbq.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2012-13/jbq-2.pdf",
+                    "tipo": "pdf"
+                }
+            },
+            {
+                "nombre": "Leonardo Bernal Bueno",
+                "titulo": "WPA2 Enterprise FreeRADIUS OpenLDAP",
+                "memoria": {
+                    "info": "2012-13/lbb.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2012-13/lbb-2.pdf",
+                    "tipo": "pdf"
+                }
+            },
+            {
+                "nombre": "Antonio Campos Martín",
+                "titulo": "Balanceadores de carga",
+                "memoria": {
+                    "info": "2012-13/acm.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2012-13/acm-2.pdf",
+                    "tipo": "pdf"
+                }
+            },
+            {
+                "nombre": "Alberto Cárdenas Jiménez",
+                "titulo": "Monitorización de copias de seguridad y recursos",
+                "memoria": {
+                    "info": "2012-13/acj.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2012-13/acj-2.pdf",
+                    "tipo": "pdf"
+                }
+            },
+            {
+                "nombre": "Gonzalo Carmona Romero",
+                "titulo": "FreeRADIUS con usuarios registrados en OpenLDAP",
+                "memoria": {
+                    "info": "2012-13/gcr.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2012-13/gcr-2.odp",
+                    "tipo": "odp"
+                }
+            },
+            {
+                "nombre": "Gabriela Susana Carrizo",
+                "titulo": "Vtiger",
+                "memoria": {
+                    "info": "2012-13/gc.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                }
+            },
+            {
+                "nombre": "Pier Alessandro Finazzi",
+                "titulo": "Introducción a los sistemas ERP. OpenERP",
+                "memoria": {
+                    "info": "2012-13/paf.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2012-13/paf-2.odp",
+                    "tipo": "odp"
+                }
+            },
+            {
+                "nombre": "José Luis Jaime González",
+                "titulo": "Orquestación de la configuración con Puppet",
+                "memoria": {
+                    "info": "2012-13/jljg.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2012-13/jljg-2.pdf",
+                    "tipo": "pdf"
+                }
+            },
+            {
+                "nombre": "Antonio Madrena Lucenilla",
+                "titulo": "Cluster de alta disponibilidad con haproxy y keepalived",
+                "memoria": {
+                    "info": "2012-13/aml.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2012-13/aml-2.pdf",
+                    "tipo": "pdf"
+                }
+            },
+            {
+                "nombre": "José Enrique Ruiz Navarro",
+                "titulo": "Clientes ligeros para máquinas virtuales sobre Spice",
+                "memoria": {
+                    "info": "2012-13/jern.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2012-13/jern-2.pdf",
+                    "tipo": "pdf"
+                }
+            }
+        ]
+    },
+    {
+        "curso": "2011-2012",
+        "campos": ["Alumno/a","Título","Memoria","Exposicion"],
+        "alumnos": [
+            {
+},
+{                "nombre": "Carlos Álvarez Barba",
+                "titulo": "Implantación de OpenStack Essex en el IES Gonzalo Nazareno",
+                "memoria": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                }
+            },
+            {
+                "nombre": "Josué Álvarez Moreno",
+                "titulo": "Análisis de rendimiento de Apache",
+                "memoria": {
+                    "info": "2011-12/jam.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                }
+            },
+            {
+                "nombre": "Juan Luis Dorante Lucas",
+                "titulo": "Certificación de redes",
+                "memoria": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                }
+            },
+            {
+                "nombre": "Moisés García Ruiz",
+                "titulo": "Proyecto Osmius",
+                "memoria": {
+                    "info": "2011-12/mgr.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                }
+            },
+            {
+                "nombre": "Aitor Lázaro Sánchez",
+                "titulo": "Configuración de NIC Bonding y Link Aggregation",
+                "memoria": {
+                    "info": "2011-12/als.pdf",
+                    "tipo": "odp"
+                },
+                "exposicion": {
+                    "info": "2011-12/als-2.pdf",
+                    "tipo": "pdf"
+                }
+            },
+            {
+                "nombre": "Alberto Mariscal Casado",
+                "titulo": "Nagios",
+                "memoria": {
+                    "info": "2011-12/amc.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                }
+            },
+            {
+                "nombre": "Jesús Miguel Muñoz Rodríguez",
+                "titulo": "Cluster de Alto Rendimiento con OpenMosix",
+                "memoria": {
+                    "info": "2011-12/jmmr.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                }
+            },
+            {
+                "nombre": "Alejandro Ocaña Gualda",
+                "titulo": "Sistemas de almacenamiento",
+                "memoria": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                }
+            },
+            {
+                "nombre": "Francisco Javier Pedrajas Capilla",
+                "titulo": "Creación y gestión de imágenes en OpenStack Glance",
+                "memoria": {
+                    "info": "2011-12/jpc.odt",
+                    "tipo": "odp"
+                },
+                "exposicion": {
+                    "info": "2011-12/jpc-2.pdf",
+                    "tipo": "pdf"
+                }
+            },
+            {
+                "nombre": "Juan Luis Sánchez Crespo",
+                "titulo": "Cluster web en alta disponibilidad con LVS",
+                "memoria": {
+                    "info": "2011-12/jlsc.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                }
+            },
+            {
+                "nombre": "Alejandro Romero Abadía",
+                "titulo": "Streaming",
+                "memoria": {
+                    "info": "2011-12/ara.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                }
+            }
+        ]
+    },
+    {
+        "curso": "2010-2011",
+        "campos": ["Alumno/a","Título","Memoria","Exposicion"],
+        "alumnos": [
+            {
+},
+{                "nombre": "Jesús Alba Rivas",
+                "titulo":"",
+                
+                "memoria": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                }
+            },
+            {
+                "nombre": "Arturo Borrero González",
+                "titulo": "Firewall en cluster de alta disponibilidad",
+                "memoria": {
+                    "info": "2010-11/proyecto_integrado_arturo_borrero_pdf.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2010-11/presentacion_ab.zip",
+                    "tipo": "tgz"
+                }
+            },
+            {
+                "nombre": "Mario Carrión Claro",
+                "titulo":"",
+                
+                "memoria": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                }
+            },
+            {
+                "nombre": "Sandra Castillo Mena",
+                "titulo": "OpenLDAP, Kerberos, NFS4",
+                "memoria": {
+                    "info": "2010-11/Documentacion_PI.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2010-11/Presentacion_KRB-NFS-GN.pdf",
+                    "tipo": "pdf"
+                }
+            },
+            {
+                "nombre": "Jesús Escacena Alanís",
+                "titulo":"",
+                
+                "memoria": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                }
+            },
+            {
+                "nombre": "José Manuel Ferrete Benítez",
+                "titulo": "Sistemas de Cuentas Centralizadas Heterogéneas",
+                "memoria": {
+                    "info": "2010-11/jmfb.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                }
+            },
+            {
+                "nombre": "Marina Moreda Rodríguez",
+                "titulo": "Nagios",
+                "memoria": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                }
+            }
+        ]
+    },
+    {
+        "curso": "2009-2010",
+        "campos": ["Alumno/a","Título","Memoria","Exposicion"],
+        "alumnos": [
+            {
+},
+{                "nombre": "Carlos Álvarez Martín",
+                "titulo": "Implantación de QoS",
+                "memoria": {
+                    "info": "2009-10/cam.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                }
+            },
+            {
+                "nombre": "Alejandro Campos Paredes",
+                "titulo": "Openbravo",
+                "memoria": {
+                    "info": "2009-10/acp.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                }
+            },
+            {
+                "nombre": "Daniel Ferrete Olarte",
+                "titulo": "Tairagestión",
+                "memoria": {
+                    "info": "2009-10/dfo.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                }
+            },
+            {
+                "nombre": "Raúl Lobo Medinilla",
+                "titulo": "Night of Silence",
+                "memoria": {
+                    "info": "2009-10/rlm.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                }
+            },
+            {
+                "nombre": "Jesús Lucas Flores",
+                "titulo": "Migración de servidores",
+                "memoria": {
+                    "info": "2009-10/jlf.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                }
+            },
+            {
+                "nombre": "Josué Monge Corrales",
+                "titulo": "VPN sobre KVM",
+                "memoria": {
+                    "info": "2009-10/jmc.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                }
+            },
+            {
+                "nombre": "Javier Monrové Morán",
+                "titulo": "Ensalada de AFS",
+                "memoria": {
+                    "info": "2009-10/jmm.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2009-10/presentacion-jmm.pdf",
+                    "tipo": "pdf"
+                }
+            },
+            {
+                "nombre": "Rafael Muñoz Gómez",
+                "titulo": "Gestión de proyectos con Redmine",
+                "memoria": {
+                    "info": "2009-10/rmg.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                }
+            },
+            {
+                "nombre": "Juan Javier Rodríguez Guisado",
+                "titulo": "Sistemas de detección de intrusos",
+                "memoria": {
+                    "info": "2009-10/jjrg.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                }
+            },
+            {
+                "nombre": "Isabel Terrero Gómez",
+                "titulo": "Clientes ligeros con TCOS",
+                "memoria": {
+                    "info": "2009-10/itg.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                }
+            },
+            {
+                "nombre": "Ángel David Vélez Aguilocho",
+                "titulo": "Administración del CPD del Hospital de Valme",
+                "memoria": {
+                    "info": "https://docs.google.com/uc?export=download&id=0B-_iAxJSzkSEOWZhZGM5NWYtMmUzZi00NWMxLWE2M2ItMzIyNTJiNDk4YzNl",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                }
+            }
+        ]
+    },
+    {
+        "curso": "2008-2009",
+        "campos": ["Alumno/a","Título","Memoria","Exposicion"],
+        "alumnos": [
+            {
+},
+{                "nombre": "Luis Barrio de Alarcón",
+                "titulo": "OpenCMS",
+                "memoria": {
+                    "info": "2008-09/memoria-lba.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2008-09/presentacion-lba.ppt",
+                    "tipo": "pdf"
+                }
+            },
+            {
+                "nombre": "David Díaz Delgado",
+                "titulo": "Proyecto empresarial: Crear empresa de hosting",
+                "memoria": {
+                    "info": "2008-09/memoria-ddd.tgz",
+                    "tipo": "tgz"
+                },
+                "exposicion": {
+                    "info": "2008-09/presentacion-ddd.ppt",
+                    "tipo": "tgz"
+                }
+            },
+            {
+                "nombre": "David Galván Gálvez",
+                "titulo": "Integración de GNU/Linux en Directorio Activo",
+                "memoria": {
+                    "info": "2008-09/memoria-dgg.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "",
+                    "tipo": ""
+                }
+            },
+            {
+                "nombre": "Alejandro González Pérez",
+                "titulo": "Cluster de Alta Disponibilidad",
+                "memoria": {
+                    "info": "2008-09/memoria-agp.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2008-09/presentacion-agp.pdf",
+                    "tipo": "pdf"
+                }
+            },
+            {
+                "nombre": "Eduardo Hernández Naranjo",
+                "titulo": "Asterisk. The Open Source PBX",
+                "memoria": {
+                    "info": "2008-09/memoria-ehn.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2008-09/presentacion-ehn.pdf",
+                    "tipo": "pdf"
+                }
+            },
+            {
+                "nombre": "Noemí Peña Portillo",
+                "titulo": "Gestión de un supermercado bajo un servidor Oracle",
+                "memoria": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "exposicion": {
+                    "info": "2008-09/presentacion-npp.pdf",
+                    "tipo": "pdf"
+                }
+            },
+            {
+                "nombre": "Ismael Rodríguez Sánchez",
+                "titulo": "Sistema de un cableado estructurado",
+                "memoria": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "exposicion": {
+                    "info": "2008-09/presentacion-irs.pdf",
+                    "tipo": "pdf"
+                }
+            },
+            {
+                "nombre": "Antonio Luis Román-Naranjo Varela",
+                "titulo": "Instalación, administración y gestión de LDAP",
+                "memoria": {
+                    "info": "2008-09/memoria-arv.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2008-09/presentacion-arv.ppt",
+                    "tipo": "pdf"
+                }
+            },
+            {
+                "nombre": "Alejandro Ruiz Prior",
+                "titulo": "Puntos de acceso Cisco",
+                "memoria": {
+                    "info": "2008-09/memoria-arp.pdf",
+                    "tipo": "pdf"
+                },
+                "exposicion": {
+                    "info": "2008-09/presentacion-arp.pdf",
+                    "tipo": "pdf"
+                }
+            },
+            {
+                "nombre": "Jesús Sánchez Sánchez",
+                "titulo": "FAVS",
+                "memoria": {
+                    "info": "",
+                    "tipo": ""
+                },
+                "exposicion": {
+                    "info": "2008-09/presentacion-jss.odp",
+                    "tipo": "odp"
+                }
+            }
+        ]
+    }
+]
