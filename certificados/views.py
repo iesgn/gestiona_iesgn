@@ -92,13 +92,23 @@ def handle_uploaded_file(f,nombre,tipo):
 	with open(path_file, 'wb') as destination:
 		destination.write(f.read())
 
+def _safe_path(base, *parts):
+	"""Construye una ruta y verifica que esté dentro de base. Devuelve None si hay path traversal."""
+	filename = os.path.realpath(os.path.join(base, *parts))
+	if not filename.startswith(os.path.realpath(base) + os.sep):
+		return None
+	return filename
+
 @login_required
 def download(request,usuario,direc="",file=""):
 	if usuario==request.session["username"]:
+		base = os.path.join(settings.BASE_DIR, 'cert', request.session["username"])
 		if direc=="":
-			filename = str(os.path.join(settings.BASE_DIR, 'cert/%s/usuario/%s'%(request.session["username"],file)))
+			filename = _safe_path(base, 'usuario', file)
 		else:
-			filename = str(os.path.join(settings.BASE_DIR, 'cert/%s/equipo/%s/%s'%(request.session["username"],direc,file)))
+			filename = _safe_path(base, 'equipo', direc, file)
+		if not filename:
+			return redirect(settings.SITE_URL+"/")
 		f=open(filename,'r')
 		wrapper = FileWrapper(f)
 		if "csr" in file:
@@ -108,19 +118,22 @@ def download(request,usuario,direc="",file=""):
 		response['Content-Disposition'] = 'attachment; filename=%s' % os.path.basename(filename)
 		response['Content-Length'] = os.path.getsize(filename)
 		return response
-	
+
 	else:
 		return redirect(settings.SITE_URL+"/")
 
 @login_required
 def revocar(request,usuario,direc="",file=""):
 	if usuario==request.session["username"]:
+		base = os.path.join(settings.BASE_DIR, 'cert', request.session["username"])
 		if direc=="":
-			filename = str(os.path.join(settings.BASE_DIR, 'cert/%s/usuario/%s'%(request.session["username"],file)))
+			filename = _safe_path(base, 'usuario', file)
 			tipo="usuario"
 		else:
-			filename = str(os.path.join(settings.BASE_DIR, 'cert/%s/equipo/%s/%s'%(request.session["username"],direc,file)))
+			filename = _safe_path(base, 'equipo', direc, file)
 			tipo="equipo"
+		if not filename:
+			return redirect(settings.SITE_URL+"/")
 		os.rename(filename,filename+"_revocar")
 		asunto="Petición de revocación de certificado de "+tipo+" de " + str(request.session["username"])
 		file=str(file)
