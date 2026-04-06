@@ -20,8 +20,9 @@ class LibLDAP(object):
     def __init__(self,username="",password=""):
         try:
             server = Server('ldap.gonzalonazareno.org')
-        except:
-            print("Error al conectar al servidor")
+        except Exception as e:
+            print(f"Error al conectar al servidor: {e}")
+            return
         try:
             if username!="":
                 username="uid=%s,ou=People,dc=gonzalonazareno,dc=org" % username
@@ -29,8 +30,8 @@ class LibLDAP(object):
             else:
                 self.conn = Connection(server,auto_bind=True)
             self.isbind=True;
-        except:
-            print("Error al realizar la conexión")
+        except Exception as e:
+            print(f"Error al realizar la conexión: {e}")
 
     def buscar(self,filter,attr=[],base_dn=base_dn):
         self.conn.search(base_dn,filter, search_scope=SUBTREE,attributes=attr)

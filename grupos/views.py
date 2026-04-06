@@ -36,8 +36,8 @@ def cursos(request,curso):
 						ldap.modUserGroup(str(usuario),"antiguosprofesores","del")
 			
 				ldap.modUserGroup(str(usuario),str(curso),"add")
-			except:
-				pass
+			except Exception as e:
+				print(f"Error modificando grupo para {usuario}: {e}")
 		ldap.logout()
 
 	ldap=LibLDAP()
@@ -55,8 +55,8 @@ def eliminar(request,curso,usuario):
 	ldap=LibLDAP(request.session["username"],request.session["password"])
 	try:
 		ldap.modUserGroup(str(usuario),str(curso),"del")
-	except:
-		pass
+	except Exception as e:
+		print(f"Error eliminando de grupo {curso} al usuario {usuario}: {e}")
 	ldap.logout()
 	ldap=LibLDAP()
 	grupos=ldap.memberOfGroup(usuario,key=True)

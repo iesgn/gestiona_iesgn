@@ -62,7 +62,7 @@ def salir(request):
     del request.session["password"]
     try:
         del request.session["profesor"]
-    except:
+    except KeyError:
         pass
     return redirect(settings.SITE_URL)
 
