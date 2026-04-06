@@ -1,4 +1,5 @@
 {% extends "t2bloque.html" %}
+{% load static %}
 
 {% block top %}
 {% if messages %}
@@ -36,7 +37,7 @@
     {% for enlace in enlaces %}
     <div class="col">
         <div class="card h-100">
-            <img src="{{ enlace.imagen }}" class="card-img-top p-3" alt="{{ enlace.titulo }}">
+            <img src="{% static enlace.imagen %}" class="card-img-top p-3" alt="{{ enlace.titulo }}">
             <div class="card-body">
                 <h5 class="card-title">{{ enlace.titulo }}</h5>
                 <p class="card-text text-muted">{{ enlace.descripcion }}</p>

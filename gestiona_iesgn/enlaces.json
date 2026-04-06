@@ -2,42 +2,42 @@
   {
     "titulo": "Moodle Centros",
     "descripcion": "Plataforma Educativa",
-    "imagen": "static/img/moodle.png",
+    "imagen": "img/moodle.png",
     "url": "https://educacionadistancia.juntadeandalucia.es/centros/sevilla/",
     "visible": true
   },
   {
     "titulo": "Redmine",
     "descripcion": "Gestor de proyectos",
-    "imagen": "static/img/redmine.png",
+    "imagen": "img/redmine.png",
     "url": "http://dit.gonzalonazareno.org/redmine",
     "visible": true
   },
   {
     "titulo": "OpenStack",
     "descripcion": "Cloud Computing",
-    "imagen": "static/img/openstack.png",
+    "imagen": "img/openstack.png",
     "url": "https://openstack.gonzalonazareno.org",
     "visible": true
   },
   {
     "titulo": "Proxmox",
     "descripcion": "Virtualización",
-    "imagen": "static/img/proxmox.png",
+    "imagen": "img/proxmox.png",
     "url": "https://proxmox.gonzalonazareno.org",
     "visible": true
   },
   {
     "titulo": "Guacamole",
     "descripcion": "SSH, RDP,...",
-    "imagen": "static/img/guacamole.png",
+    "imagen": "img/guacamole.png",
     "url": "https://remoto.gonzalonazareno.org/#/",
     "visible": true
   },
   {
     "titulo": "NAS",
     "descripcion": "Ficheros compartidos",
-    "imagen": "static/img/nas.png",
+    "imagen": "img/nas.png",
     "url": "https://nas.gonzalonazareno.org",
     "visible": true
   }
