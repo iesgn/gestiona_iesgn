@@ -1,10 +1,10 @@
 {% extends "t1bloque.html" %}
-{% block title %}Correo{% endblock %}
-{% block css%}
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
+{% block css %}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet">
 {% endblock %}
 {% block js %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 <script>
 $(document).ready(function() {
     $('.js-example-basic-multiple').select2();
@@ -12,19 +12,13 @@ $(document).ready(function() {
 </script>
 {% endblock %}
 
-
 {% block content %}
 <h3>Correo</h3>
-<form  method="post">
-
+<form method="post">
     {% csrf_token %}
-    <p>Busca los destinatarios de un grupo:</p>
-    {{ form2.as_p}}
-    
-    {{ form.as_p}}
-    
-<br/><input name ="correo" class="btn btn-primary" type="submit" value="Enviar" />
+    <p class="text-muted">Busca los destinatarios de un grupo:</p>
+    {{ form2.as_p }}
+    {{ form.as_p }}
+    <input name="correo" class="btn btn-primary" type="submit" value="Enviar">
 </form>
-<br/><br/>
-
 {% endblock %}

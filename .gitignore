@@ -1,5 +1,11 @@
 *.pyc
 *.swp
 db.sqlite3
+# Settings legacy (sustituido por settings/)
 settings.py
+# Entornos
+.env
+# Carpeta de statics de producción
+staticfiles/
+# Contenido externo
 static/content_iesgn/

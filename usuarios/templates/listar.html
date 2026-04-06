@@ -1,66 +1,56 @@
 {% extends "t1bloque.html" %}
 
-
 {% block content %}
-<div class="row">
-  {% if messages %}
-    {% for message in messages %}
-      <div class="alert alert-danger alert-dismissable fade in">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      {{ message }}</div>
-    {% endfor%}
-  {% endif %}
-</div>
-<div class="row">
 <h3>Búsqueda</h3>
-<form method="post" class="form-hotizontal">
-  <div class="col-md-6">
+<form method="post">
     {% csrf_token %}
-    <div class="form-group">
-        <label>Nombre:</label>
-        {{ form.nombre}}
+    <div class="row g-3 align-items-end mb-3">
+        <div class="col-md-3">
+            <label class="form-label">Nombre:</label>
+            {{ form.nombre }}
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">Apellidos:</label>
+            {{ form.apellidos }}
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">Grupo:</label>
+            {{ form.grupo }}
+        </div>
+        <div class="col-md-3">
+            {{ form.AP }}
+            <button type="submit" class="btn btn-primary w-100">Buscar</button>
+        </div>
     </div>
-    <div class="form-group">
-            <label>Apellidos:</label>
-            {{ form.apellidos}}
-    </div>
-    {{ form.AP}}
-    <button  type="submit" class="btn btn-primary">Buscar</button>
-
-    <div class="form-group">
-            <label>Grupo:</label>
-            {{ form.grupo}}
-    </div>
-</div>
 </form>
-</div>
-<div class="row">
-<h2>Listado de Usuarios</h2>
-  <div class="col-md-8">
-    <table class="table table-bordered table-hover">
-      <tr>
-        <td class="text-center"><strong>N.</strong></td>
-        <td class="text-center"><strong>Usuario</strong></td>
-        <td class="text-center"><strong>Grupo</strong></td>
-        <td class="text-center"><strong>Modificar</strong></td>
-      </tr>
-      {% for r in resultados %}
-      <tr>
-        <td class="text-center">{{forloop.counter}}</td>
-        <td>{{r.sn.0}}, {{r.givenName.0}} ({{r.uid.0}})</td>
-        {% autoescape off %}
-        <td class="text-center"><p class="small">{{r.grupo}}</p></td>
-        {% endautoescape %}
-        <td class="text-center"><a href="{{SITE_URL}}/usuarios/update/{{r.uid.0}}"><span class="glyphicon glyphicon-edit" style="color:green" aria-hidden="true"></span></a></td>
-      </tr>
 
-{% endfor %}
+<h4>Listado de Usuarios</h4>
+<div class="col-md-8">
+    <table class="table table-bordered table-hover table-sm">
+        <thead class="table-light">
+            <tr>
+                <th class="text-center">N.</th>
+                <th class="text-center">Usuario</th>
+                <th class="text-center">Grupo</th>
+                <th class="text-center">Modificar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for r in resultados %}
+            <tr>
+                <td class="text-center">{{ forloop.counter }}</td>
+                <td>{{ r.sn.0 }}, {{ r.givenName.0 }} ({{ r.uid.0 }})</td>
+                {% autoescape off %}
+                <td class="text-center"><small>{{ r.grupo }}</small></td>
+                {% endautoescape %}
+                <td class="text-center">
+                    <a href="{{SITE_URL}}/usuarios/update/{{r.uid.0}}">
+                        <i class="bi bi-pencil text-success"></i>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
     </table>
-    
-  </div>
 </div>
-
 {% endblock %}
-

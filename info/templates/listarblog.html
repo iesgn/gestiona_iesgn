@@ -1,28 +1,29 @@
 {% extends "t2bloque.html" %}
 
 {% block content %}
- 
-<h1>{{tipo|title}}</h1>
-<ul>
+<h1>{{ tipo|title }}</h1>
 
-{% for doc in datos%}
-<h3><a href="{{SITE_URL}}/info/{{tipo}}/{{doc.meta.url.0}}">{{doc.meta.title.0}}</a></h3>
-<p><strong>{{doc.meta.fecha.0}}</strong></p>
-<p>{{doc.html|slice:":250"|safe}}...</p>
-<hr/>
-{%endfor%}
+{% for doc in datos %}
+<h3><a href="{{SITE_URL}}/info/{{tipo}}/{{doc.meta.url.0}}">{{ doc.meta.title.0 }}</a></h3>
+<p><strong>{{ doc.meta.fecha.0 }}</strong></p>
+<p>{{ doc.html|slice:":250"|safe }}...</p>
+<hr>
+{% endfor %}
 
-<nav aria-label="Page navigation">
+<nav aria-label="Paginación">
     <ul class="pagination">
-      {% for pag in numpaginas%}
-        {% if pag == pagina%}
-            <li class="active"><a href="{{SITE_URL}}/info/blog/pagina/{{pag}}">{{pag}}</a></li>
-        {% else %}
-            <li ><a href="{{SITE_URL}}/info/blog/pagina/{{pag}}">{{pag}}</a></li>
-        {% endif %}
-
-      {%endfor%}
+        {% for pag in numpaginas %}
+            {% if pag == pagina %}
+                <li class="page-item active">
+                    <a class="page-link" href="{{SITE_URL}}/info/blog/pagina/{{pag}}">{{ pag }}</a>
+                </li>
+            {% else %}
+                <li class="page-item">
+                    <a class="page-link" href="{{SITE_URL}}/info/blog/pagina/{{pag}}">{{ pag }}</a>
+                </li>
+            {% endif %}
+        {% endfor %}
     </ul>
-  </nav>
+</nav>
 
 {% endblock %}

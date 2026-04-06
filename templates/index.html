@@ -1,145 +1,101 @@
 {% extends "t2bloque.html" %}
 
-
 {% block top %}
-  {% if messages %}
+{% if messages %}
     {% for message in messages %}
-      <div class="alert alert-danger alert-dismissable fade in">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      {{ message }}</div>
-    {% endfor%}
-  {% endif %}
-
-
-
-{% endblock%}
-
-
-
-{%block content%}
-{%for noticia in noticias %}
-
-  {% if noticia.meta.index.0 == "True" %}
-    <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title"><strong>Noticias: {{noticia.meta.title.0}}</strong> ({{noticia.meta.fecha.0}})</h3>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
         </div>
-        <div class="panel-body">
-          {{noticia.html|safe}}
-        </div>
-      </div>
-    {% endif %}
-    <!-- Jumbotron Header -->
-    <header class="page-header">
-        <h1>IES Gonzalo Nazareno</h1>
-        <h3>Departamento de Informática</h3>
-    </header>
-{%endfor%}
-
-           <!-- Title -->
-           <div class="row">
-               <div class="col-lg-12">
-                   <h3>Enlaces</h3>
-               </div>
-           </div>
-       <!-- /.row -->
-   <!-- Page Features -->
-   <div class="row text-center">
-       <div class="col-md-3 col-sm-6 hero-feature">
-           <div class="thumbnail">
-               <img src="static/img/moodle.png" alt="">
-               <div class="caption">
-                   <h3>Moodle Centros</h3>
-                   <p>Plataforma Educativa</p>
-                   <p><a href="https://educacionadistancia.juntadeandalucia.es/centros/sevilla/" class="btn btn-primary">Entra</a> 
-                   </p>
-               </div>
-           </div>
-       </div>
-       <div class="col-md-3 col-sm-6 hero-feature">
-           <div class="thumbnail">
-               <img src="static/img/redmine.png" alt="">
-               <div class="caption">
-                   <h3>Redmine</h3>
-                   <p>Gestor de proyectos</p>
-                   <p>
-                       <a href="http://dit.gonzalonazareno.org/redmine" class="btn btn-primary">Entra</a> 
-                   </p>
-               </div>
-           </div>
-       </div>
-       <div class="col-md-3 col-sm-6 hero-feature">
-           <div class="thumbnail">
-               <img src="static/img/openstack.png" alt="">
-               <div class="caption">
-                   <h3>OpenStack</h3>
-                   <p>Cloud Computing</p>
-                   <p>
-                       <a href="https://openstack.gonzalonazareno.org" class="btn btn-primary">Entra</a> 
-                   </p>
-               </div>
-           </div>
-       </div>
-   
-   </div>
-   <div class="row text-center">
-
-    <div class="col-md-3 col-sm-6 hero-feature">
-        <div class="thumbnail">
-            <img src="static/img/proxmox.png" alt="">
-            <div class="caption">
-                <h3>Proxmox</h3>
-                <p>Virtualización</p>
-                <p>
-                    <a href="https://proxmox.gonzalonazareno.org" class="btn btn-primary">Entra</a> 
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3 col-sm-6 hero-feature">
-        <div class="thumbnail">
-            <img src="static/img/guacamole.png" alt="">
-            <div class="caption">
-                <h3>Guacamole</h3>
-                <p>SSH, RDP,...</p>
-                <p><a href="https://remoto.gonzalonazareno.org/#/" class="btn btn-primary">Entra</a> 
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3 col-sm-6 hero-feature">
-        <div class="thumbnail">
-            <img src="static/img/nas.png" alt="">
-            <div class="caption">
-                <h3>NAS</h3>
-                <p>Ficheros compartidos</p>
-                <p>
-                    <a href="https://nas.gonzalonazareno.org" class="btn btn-primary">Entra</a> 
-                </p>
-            </div>
-        </div>
-    </div>
-    
-
-</div>
-<!--
-       <div class="row">
-           <h3>Últimas entradas del blog...</h3>
-           {%for entrada in blog%}
-           <div class="panel panel-default">
-               <div class="panel-heading"><a href="{{SITE_URL}}/info/blog/{{entrada.meta.url.0}}"><strong>{{entrada.meta.title.0}}</strong> <small>({{entrada.meta.fecha.0}})</small></small></a></div>
-               <div class="panel-body">
-                   {{entrada.html|slice:":250"|safe}}...
-               </div>
-             </div>
-         
-           {%endfor%}
-         
- </div>
-	-->
-
-
+    {% endfor %}
+{% endif %}
 {% endblock %}
 
+{% block content %}
+<header class="mb-4">
+    <h1>IES Gonzalo Nazareno</h1>
+    <h3 class="text-muted">Departamento de Informática</h3>
+</header>
+
+{% for noticia in noticias %}
+    {% if noticia.meta.index.0 == "True" %}
+        <div class="card mb-3">
+            <div class="card-header">
+                <strong>Noticias: {{noticia.meta.title.0}}</strong> <small class="text-muted">({{noticia.meta.fecha.0}})</small>
+            </div>
+            <div class="card-body">
+                {{noticia.html|safe}}
+            </div>
+        </div>
+    {% endif %}
+{% endfor %}
+
+<h4 class="mb-3">Enlaces</h4>
+
+<div class="row text-center">
+    <div class="col-md-3 col-sm-6 hero-feature">
+        <div class="card h-100">
+            <img src="static/img/moodle.png" class="card-img-top" alt="Moodle">
+            <div class="card-body">
+                <h5 class="card-title">Moodle Centros</h5>
+                <p class="card-text text-muted">Plataforma Educativa</p>
+                <a href="https://educacionadistancia.juntadeandalucia.es/centros/sevilla/" class="btn btn-primary btn-sm">Entra</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-6 hero-feature">
+        <div class="card h-100">
+            <img src="static/img/redmine.png" class="card-img-top" alt="Redmine">
+            <div class="card-body">
+                <h5 class="card-title">Redmine</h5>
+                <p class="card-text text-muted">Gestor de proyectos</p>
+                <a href="http://dit.gonzalonazareno.org/redmine" class="btn btn-primary btn-sm">Entra</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-6 hero-feature">
+        <div class="card h-100">
+            <img src="static/img/openstack.png" class="card-img-top" alt="OpenStack">
+            <div class="card-body">
+                <h5 class="card-title">OpenStack</h5>
+                <p class="card-text text-muted">Cloud Computing</p>
+                <a href="https://openstack.gonzalonazareno.org" class="btn btn-primary btn-sm">Entra</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-6 hero-feature">
+        <div class="card h-100">
+            <img src="static/img/proxmox.png" class="card-img-top" alt="Proxmox">
+            <div class="card-body">
+                <h5 class="card-title">Proxmox</h5>
+                <p class="card-text text-muted">Virtualización</p>
+                <a href="https://proxmox.gonzalonazareno.org" class="btn btn-primary btn-sm">Entra</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row text-center mt-2">
+    <div class="col-md-3 col-sm-6 hero-feature">
+        <div class="card h-100">
+            <img src="static/img/guacamole.png" class="card-img-top" alt="Guacamole">
+            <div class="card-body">
+                <h5 class="card-title">Guacamole</h5>
+                <p class="card-text text-muted">SSH, RDP,...</p>
+                <a href="https://remoto.gonzalonazareno.org/#/" class="btn btn-primary btn-sm">Entra</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-6 hero-feature">
+        <div class="card h-100">
+            <img src="static/img/nas.png" class="card-img-top" alt="NAS">
+            <div class="card-body">
+                <h5 class="card-title">NAS</h5>
+                <p class="card-text text-muted">Ficheros compartidos</p>
+                <a href="https://nas.gonzalonazareno.org" class="btn btn-primary btn-sm">Entra</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

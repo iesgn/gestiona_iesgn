@@ -1,9 +1,10 @@
 {% extends "t1bloque.html" %}
-{% block css%}
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
+{% block css %}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet">
 {% endblock %}
 {% block js %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 <script>
 $(document).ready(function() {
     $('.js-example-basic-multiple').select2();
@@ -12,46 +13,43 @@ $(document).ready(function() {
 {% endblock %}
 
 {% block content %}
- 
 <div class="row">
-  <div class="col-md-6">
-<h2>{{titulo}}</h2>
-
-    <table class="table table-bordered table-hover">
-      <tr>
-        <td class="text-center"><strong>N.</strong></td>
-        <td class="text-center"><strong>Alumno</strong></td>
-        
-      </tr>
-      {% for r in resultados %}
-      <tr>
-        <td class="text-center">{{forloop.counter}}</td>
-        <td>{{r.sn.0}}, {{r.givenName.0}} ({{r.uid.0}})</td>
-        <td class="text-center"><a href="{{SITE_URL}}/grupos/delete/{{form.grupo.data}}/{{r.uid.0}}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></a></td>
-        
-      </tr>
-
-
-{% endfor %}
-    </table>
-  </div>
-  <div class="col-md-6">
-    <strong>Selecciona usuarios:</strong>
-    <form method="post" class="form-hotizontal">
-  
-    {% csrf_token %}
-    <div class="form-group">
-        {{ form.usuarios}}
+    <div class="col-md-6">
+        <h2>{{ titulo }}</h2>
+        <table class="table table-bordered table-hover table-sm">
+            <thead class="table-light">
+                <tr>
+                    <th class="text-center">N.</th>
+                    <th class="text-center">Alumno</th>
+                    <th class="text-center">Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for r in resultados %}
+                <tr>
+                    <td class="text-center">{{ forloop.counter }}</td>
+                    <td>{{ r.sn.0 }}, {{ r.givenName.0 }} ({{ r.uid.0 }})</td>
+                    <td class="text-center">
+                        <a href="{{SITE_URL}}/grupos/delete/{{form.grupo.data}}/{{r.uid.0}}">
+                            <i class="bi bi-trash text-danger"></i>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
-    {{form.grupo}}
-  <button  type="submit" class="btn btn-primary">Añadir</button>
-  </form>
-  <br/><br/>
-  <p>Si un usuario se borra de todos los grupos, se le asignará automáticamente el grupo de <strong>Otros</strong> si es alumno, o el grupo de <strong>Antiguos profesores</strong> si es profesor.</p>
-  </div>
-
+    <div class="col-md-6">
+        <strong>Selecciona usuarios:</strong>
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3 mt-2">
+                {{ form.usuarios }}
+            </div>
+            {{ form.grupo }}
+            <button type="submit" class="btn btn-primary">Añadir</button>
+        </form>
+        <p class="mt-3 text-muted small">Si un usuario se borra de todos los grupos, se le asignará automáticamente el grupo de <strong>Otros</strong> si es alumno, o el grupo de <strong>Antiguos profesores</strong> si es profesor.</p>
+    </div>
 </div>
-
-
 {% endblock %}
-

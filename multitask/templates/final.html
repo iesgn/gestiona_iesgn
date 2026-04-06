@@ -1,15 +1,12 @@
-
 {% extends "t1bloque.html" %}
-{% block content %}
 
-        <div class="col-md-6">
-        <h2 class="form-signin-heading">Redmine Multitask</h2>
-        <strong>Nueva Tarea - Proyecto:{{nombreproyecto}}</strong>
-        <br>
-        {% autoescape off %}
-        <p>{{resultado}}</p>
-        {% endautoescape %}
-        
-  </div>
-  <br/>
-{% endblock  %}
+{% block content %}
+<div class="col-md-6">
+    <h2>Redmine Multitask</h2>
+    <strong>Nueva Tarea — Proyecto: {{ nombreproyecto }}</strong>
+    <br>
+    {% autoescape off %}
+    <p>{{ resultado }}</p>
+    {% endautoescape %}
+</div>
+{% endblock %}

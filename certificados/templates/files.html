@@ -1,123 +1,93 @@
 {% extends "t2bloque.html" %}
-{% block title %}Certificados{% endblock %}
-
 
 {% block content %}
 <h2>Gestión de Certificados</h2>
-<div class="row">
-  {% if messages %}
-    {% for message in messages %}
-      <div class="alert alert-danger alert-dismissable fade in">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      {{ message }}</div>
-    {% endfor%}
-  {% endif %}
-</div>
 
-<h3>Certificados de Equipos</h3>
+<h4 class="mt-4">Certificados de Equipos</h4>
 
-{%for num,fs in files.equipo.items%}
-
-<div class="panel panel-default">
-  <div class="panel-heading"><h3 class="panel-title">Certificado de equipo (#{{forloop.counter}})</h3></div>
-  <div class="panel-body">
-    <table class="table">
-      <tr>
-        <td>
-            Tu fichero csr: <strong>{{fs.0|last}}</strong><br/>
-            <a href="{{fs.0|first}}/{{fs.0|last}}" class="btn btn-primary">Descargar</a>
-        </td>
-  
-  {% if fs.1%}
-      {% if fs.1|last == "*" %}
-      <td>
-        <strong>Se está gestionando la revocación de tu certificado...</strong>
-      </td>
-      {%else%}
-      <td>
-          Tu fichero crt: <strong>{{fs.1|last}}</strong><br/>
-          <a href="{{fs.0|first}}/{{fs.1|last}}" class="btn btn-primary">Descargar</a>
-          <a href="{{fs.1|first}}/{{fs.1|last}}/del" class="btn btn-primary">Revocar</a>
-      </td>
-      {% endif %}
-  {%else%}
-      <td>
-        <strong>Se está gestionando la generación de tu certificado...</strong>
-      </td>
-  {% endif%}
-      </tr>
-    </table>
-  </div>
+{% for num,fs in files.equipo.items %}
+<div class="card mb-3">
+    <div class="card-header">
+        <strong>Certificado de equipo (#{{ forloop.counter }})</strong>
+    </div>
+    <div class="card-body">
+        <table class="table table-sm mb-0">
+            <tr>
+                <td>
+                    Tu fichero csr: <strong>{{ fs.0|last }}</strong><br>
+                    <a href="{{ fs.0|first }}/{{ fs.0|last }}" class="btn btn-primary btn-sm mt-1">Descargar</a>
+                </td>
+                {% if fs.1 %}
+                    {% if fs.1|last == "*" %}
+                    <td><strong>Se está gestionando la revocación de tu certificado...</strong></td>
+                    {% else %}
+                    <td>
+                        Tu fichero crt: <strong>{{ fs.1|last }}</strong><br>
+                        <a href="{{ fs.0|first }}/{{ fs.1|last }}" class="btn btn-primary btn-sm mt-1">Descargar</a>
+                        <a href="{{ fs.1|first }}/{{ fs.1|last }}/del" class="btn btn-secondary btn-sm mt-1">Revocar</a>
+                    </td>
+                    {% endif %}
+                {% else %}
+                <td><strong>Se está gestionando la generación de tu certificado...</strong></td>
+                {% endif %}
+            </tr>
+        </table>
+    </div>
 </div>
 {% endfor %}
 
-
-<div class="panel panel-default">
-  <div class="panel-heading"><h3 class="panel-title">Certificado de equipo</h3></div>
-  <div class="panel-body">
-    <form  method="post" enctype="multipart/form-data">
-
-    {% csrf_token %}
-    {{ form_equipo.as_p}}
-    <br/><input name ="certificados" class="btn btn-primary" type="submit" value="Enviar" />    
-  </form>    
+<div class="card mb-3">
+    <div class="card-header"><strong>Certificado de equipo</strong></div>
+    <div class="card-body">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form_equipo.as_p }}
+            <input name="certificados" class="btn btn-primary btn-sm mt-2" type="submit" value="Enviar">
+        </form>
+    </div>
 </div>
-</div>
-<hr class="hr-primary" />
-<h3>Certificado de Usuario</h3>
+
+<hr>
+<h4>Certificado de Usuario</h4>
 
 {% if files.usuario.0 %}
-
-<div class="panel panel-danger">
-  <div class="panel-heading"><h3 class="panel-title">Certificado de usuario</h3></div>
-  <div class="panel-body">
-    <table class="table">
-      <tr>
-        <td>
-            Tu fichero csr: <strong>{{files.usuario.0|last}}</strong><br/>
-            <a href="{{files.usuario.0|first}}/{{files.usuario.0|last}}" class="btn btn-danger">Descargar</a>
-        </td>
-  
-  {% if files.usuario.1%}
-    {% if files.usuario.1|last == "*" %}
-      <td>
-        <strong>Se está gestionando la revocación de tu certificado...</strong>
-      </td>
-      {%else%}
-      <td>
-          Tu fichero crt: <strong>{{files.usuario.1|last}}</strong><br/>
-          <a href="{{files.usuario.1|first}}/{{files.usuario.1|last}}" class="btn btn-danger">Descargar</a>
-          <a href="{{files.usuario.1|first}}/{{files.usuario.1|last}}/del" class="btn btn-danger">Revocar</a>
-
-      </td>
-      {%endif%}
-    
-  {%else%}
-      <td>
-        <strong>Se está gestionando la generación de tu certificado...</strong>
-      </td>
-  {% endif%}
-      </tr>
-    </table>
-  </div>
+<div class="card border-danger mb-3">
+    <div class="card-header text-white bg-danger"><strong>Certificado de usuario</strong></div>
+    <div class="card-body">
+        <table class="table table-sm mb-0">
+            <tr>
+                <td>
+                    Tu fichero csr: <strong>{{ files.usuario.0|last }}</strong><br>
+                    <a href="{{ files.usuario.0|first }}/{{ files.usuario.0|last }}" class="btn btn-danger btn-sm mt-1">Descargar</a>
+                </td>
+                {% if files.usuario.1 %}
+                    {% if files.usuario.1|last == "*" %}
+                    <td><strong>Se está gestionando la revocación de tu certificado...</strong></td>
+                    {% else %}
+                    <td>
+                        Tu fichero crt: <strong>{{ files.usuario.1|last }}</strong><br>
+                        <a href="{{ files.usuario.1|first }}/{{ files.usuario.1|last }}" class="btn btn-danger btn-sm mt-1">Descargar</a>
+                        <a href="{{ files.usuario.1|first }}/{{ files.usuario.1|last }}/del" class="btn btn-danger btn-sm mt-1">Revocar</a>
+                    </td>
+                    {% endif %}
+                {% else %}
+                <td><strong>Se está gestionando la generación de tu certificado...</strong></td>
+                {% endif %}
+            </tr>
+        </table>
+    </div>
 </div>
-
 {% else %}
-
-<div class="panel panel-danger">
-  <div class="panel-heading"><h3 class="panel-title">Certificado de usuario</h3></div>
-  <div class="panel-body">
-    <form  method="post" enctype="multipart/form-data">
-
-    {% csrf_token %}
-    {{ form_usuario.as_p}}
-    <br/><input name ="certificados" class="btn btn-danger" type="submit" value="Enviar" />    
-  </form>    
+<div class="card border-danger mb-3">
+    <div class="card-header text-white bg-danger"><strong>Certificado de usuario</strong></div>
+    <div class="card-body">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form_usuario.as_p }}
+            <input name="certificados" class="btn btn-danger btn-sm mt-2" type="submit" value="Enviar">
+        </form>
+    </div>
 </div>
-</div>
+{% endif %}
 
-<br/><br/>
-{% endif%}
 {% endblock %}

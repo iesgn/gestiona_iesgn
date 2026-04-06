@@ -1,46 +1,39 @@
 {% extends "t1bloque.html" %}
 
 {% block content %}
-<div class="row">
 <h3>Añadir nuevo usuario</h3>
-
-<form  method="post" class="form-hotizontal">
-  <div class="col-md-6">
+<form method="post">
     {% csrf_token %}
-    <div class="form-group">
-        <label>Nombre de usuario:</label>
-        {{ form.uid}}
+    <div class="col-md-6">
+        <div class="mb-3">
+            <label class="form-label">Nombre de usuario:</label>
+            {{ form.uid }}
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Contraseña:</label>
+            {{ form.userPassword }}
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Nombre:</label>
+            {{ form.givenName }}
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Apellidos:</label>
+            {{ form.sn }}
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Correo electrónico:</label>
+            {{ form.mail }}
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Ciudad:</label>
+            {{ form.l }}
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Grupo:</label>
+            {{ form.grupo }}
+        </div>
+        <button type="submit" class="btn btn-primary">Añadir</button>
     </div>
-    <div class="form-group">
-            <label>Contraseña:</label>
-            {{ form.userPassword}}
-    </div>
-    <div class="form-group">
-            <label>Nombre:</label>
-            {{ form.givenName}}
-    </div>
-    <div class="form-group">
-            <label>Apellidos:</label>
-            {{ form.sn}}
-    </div>
-    <div class="form-group">
-            <label>Correo electrónico:</label>
-            {{ form.mail}}
-    </div>
-    <div class="form-group">
-            <label>Ciudad:</label>
-            {{ form.l}}
-    </div>
-    <div class="form-group">
-            <label>Grupo:</label>
-            {{ form.grupo}}
-    </div>
-    
-        <button  type="submit" class="btn btn-primary">Añadir</button>
-    
-
-</div>
 </form>
-</div>
-
 {% endblock %}

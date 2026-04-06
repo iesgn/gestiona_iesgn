@@ -1,263 +1,200 @@
 {% extends "t1bloque.html" %}
 {% block content %}
 
-<div class="container mt-3">
-  <!-- Encabezado con botón -->
-  <div class="d-flex justify-content-between align-items-center mb-3">
+<div class="d-flex justify-content-between align-items-center mb-3">
     <h2 class="mb-0"><i class="bi bi-building"></i> Empresas</h2>
     <a href="{{SITE_URL}}/empresas/nueva/" class="btn btn-success">
-      <i class="bi bi-plus-lg"></i> Nueva empresa
+        <i class="bi bi-plus-lg"></i> Nueva empresa
     </a>
-  </div>
-<br/>
-  <!-- Filtros -->
-<!-- === FILTROS === -->
-<div class="panel panel-default" style="margin-bottom:20px;">
-  <div class="panel-heading">
-    <h4 class="panel-title">
-      <span class="glyphicon glyphicon-filter"></span>
-      Filtros de búsqueda
-    </h4>
-  </div>
-
-  <div class="panel-body">
-      <form method="get" class="form-horizontal" style="padding:15px;">
-      
-        <!-- Campo de búsqueda -->
-        <div class="row" style="margin-bottom:15px;">
-          <div class="col-md-12">
-            <label><strong>Buscar</strong></label>
-            <input type="text" name="q" value="{{ busqueda }}"
-                   class="form-control input-lg"
-                   style="font-size:1.1em; height:45px;"
-                   placeholder="Empresa, Alumno, Profesor, Localidad o CIF">
-          </div>
-        </div>
-      
-        <!-- Cuadros compactos en tabla -->
-        <table class="table table-bordered" style="background:#fcfcfc; margin-bottom:15px; border-radius:6px; overflow:hidden;">
-          <tr>
-            <!-- === Estado === -->
-            <td style="width:50%; vertical-align:top; padding:12px 15px;">
-              <strong style="font-size:1.05em;">Estado</strong>
-              <div style="margin-top:8px; padding-left:5px;">
-                {% for value,label in estados %}
-                  <div style="display:inline-block; width:45%; margin:2px 0;">
-                    <label style="margin:0; font-weight:normal;">
-                      <input type="checkbox" name="estado" value="{{ value }}"
-                             {% if value in estados_seleccionados %}checked{% endif %}>
-                      {{ label }}
-                    </label>
-                  </div>
-                {% endfor %}
-              </div>
-            </td>
-          
-            <!-- === Cursos === -->
-            <td style="width:50%; vertical-align:top; padding:12px 15px;">
-              <strong style="font-size:1.05em;">Cursos</strong>
-              <div style="margin-top:8px; padding-left:5px;">
-                {% for curso in cursos %}
-                  <div style="display:inline-block; width:45%; margin:2px 0;">
-                    <label style="margin:0; font-weight:normal;">
-                      <input type="checkbox" name="curso" value="{{ curso.code }}"
-                             {% if curso.code in cursos_seleccionados %}checked{% endif %}>
-                      {{ curso.nombre }}
-                    </label>
-                  </div>
-                {% endfor %}
-              </div>
-            </td>
-          </tr>
-        </table>
-      
-        <!-- Botones -->
-        <div class="text-right" style="margin-top:10px;">
-          <button type="submit" class="btn btn-primary btn-sm">
-            <span class="glyphicon glyphicon-search"></span> Filtrar
-          </button>
-          <a href="{{SITE_URL}}/empresas/" class="btn btn-default btn-sm" style="margin-left:10px;">
-            <span class="glyphicon glyphicon-remove"></span> Limpiar
-          </a>
-        </div>
-      
-      </form>
-
-
-
-  </div>
 </div>
 
-
-  <!-- Resumen de plazas y alumnos -->
-  {% if resumen_cursos %}
-<div class="panel panel-default" style="margin-bottom:20px;">
-  <div class="panel-heading">
-    <h4 class="panel-title">
-      <span class="glyphicon glyphicon-stats"></span>
-      Resumen de plazas y alumnos por curso
-    </h4>
-  </div>
-  <div class="panel-body">
-    <div class="row text-center">
-      {% for r in resumen_cursos %}
-        <div class="col-sm-3 col-xs-6" style="margin-bottom:10px;">
-          <div class="well well-sm" style="margin:0; border:1px solid #ddd;">
-            <strong>{{ r.nombre }}</strong><br>
-            <span class="label label-primary" style="font-size:90%;">
-              {{ r.plazas }} plazas
-            </span>
-            <span class="label label-success" style="font-size:90%;">
-              {{ r.alumnos }} alumnos
-            </span>
-          </div>
-        </div>
-      {% endfor %}
+<!-- Filtros -->
+<div class="card mb-4">
+    <div class="card-header">
+        <strong><i class="bi bi-funnel"></i> Filtros de búsqueda</strong>
     </div>
-  </div>
+    <div class="card-body">
+        <form method="get">
+            <div class="mb-3">
+                <label class="form-label fw-bold">Buscar</label>
+                <input type="text" name="q" value="{{ busqueda }}"
+                       class="form-control"
+                       placeholder="Empresa, Alumno, Profesor, Localidad o CIF">
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <strong>Estado</strong>
+                    <div class="mt-2">
+                        {% for value, label in estados %}
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="estado" value="{{ value }}"
+                                       id="estado_{{ value }}"
+                                       {% if value in estados_seleccionados %}checked{% endif %}>
+                                <label class="form-check-label" for="estado_{{ value }}">{{ label }}</label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <strong>Cursos</strong>
+                    <div class="mt-2">
+                        {% for curso in cursos %}
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="curso" value="{{ curso.code }}"
+                                       id="curso_{{ curso.code }}"
+                                       {% if curso.code in cursos_seleccionados %}checked{% endif %}>
+                                <label class="form-check-label" for="curso_{{ curso.code }}">{{ curso.nombre }}</label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="text-end">
+                <button type="submit" class="btn btn-primary btn-sm">
+                    <i class="bi bi-search"></i> Filtrar
+                </button>
+                <a href="{{SITE_URL}}/empresas/" class="btn btn-secondary btn-sm ms-2">
+                    <i class="bi bi-x"></i> Limpiar
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Resumen de plazas -->
+{% if resumen_cursos %}
+<div class="card mb-4">
+    <div class="card-header">
+        <strong><i class="bi bi-bar-chart"></i> Resumen de plazas y alumnos por curso</strong>
+    </div>
+    <div class="card-body">
+        <div class="row text-center">
+            {% for r in resumen_cursos %}
+                <div class="col-sm-3 mb-2">
+                    <div class="border rounded p-2 bg-light">
+                        <strong>{{ r.nombre }}</strong><br>
+                        <span class="badge bg-primary">{{ r.plazas }} plazas</span>
+                        <span class="badge bg-success">{{ r.alumnos }} alumnos</span>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 </div>
 {% endif %}
 
-
-  <!-- Lista de empresas -->
-  
-  <!-- === LISTA DE EMPRESAS === -->
-<div class="panel panel-default" style="margin-bottom:20px;">
-  <div class="panel-heading">
-    <h4 class="panel-title">
-      <span class="glyphicon glyphicon-briefcase"></span>
-      Lista de empresas
-    </h4>
-  </div>
-
-  <div class="panel-body" style="padding:0;">
-    {% if object_list %}
-      <div class="table-responsive">
-        <table class="table table-bordered table-hover table-condensed" style="margin-bottom:0;">
-          <thead>
-            <tr class="info">
-              <th class="text-center" style="width:40px;">#</th>
-              <th>Nombre</th>
-              <th>Localidad</th>
-              <th class="text-center" >Estado</th>
-              <th class="text-center" >Cursos</th>
-              <th class="text-center" >Alumnos</th>
-              <th class="text-center" >Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for e in object_list %}
-              <tr class="{% if e.estado == 'verde' %}success{% elif e.estado == 'naranja' %}warning{% else %}danger{% endif %}">
-                <td class="text-center">{{ forloop.counter }}</td>
-                <td>
-                  <strong>{{ e.nombre }}</strong>
-
-                  {% if e.profesor_responsable %}
-                    <br>
-                    <small class="text-primary">
-                      Profesor responsable: <i class="bi bi-person-badge"></i> {{ e.profesor_responsable }}
-                    </small>
-                  {% endif %}
-                  
-                  {% with e.contactos.all|first as c %}
-                    {% if c %}
-                      <br>
-                      <small class="text-muted">
-                        <i class="bi bi-person"></i> {{ c.nombre }}
-                        {% if c.telefono %}
-                          <i class="bi bi-telephone"></i> ({{ c.telefono }})
-                        {% endif %}
-                        {% if c.email %}
-                          <br><i class="bi bi-envelope"></i>
-                          {{ c.email }}
-                        {% endif %}
-                      </small>
-                    {% endif %}
-                  {% endwith %}
-                </td>
-                <td>{{ e.localidad }}</td>
-                <td class="text-center">
-                  {% if e.estado == 'verde' %}
-                    <span class="label label-success">Colabora</span>
-                  {% elif e.estado == 'naranja' %}
-                    <span class="label label-warning">En contacto</span>
-                  {% else %}
-                    <span class="label label-danger">No colabora</span>
-                  {% endif %}
-                </td>
-                <td class="text-center">
-                  {% for info in e.plazas_info %}
-                    <div style="display:inline-block; margin:3px; min-width:70px;">
-                      <span class="label label-primary" style="display:block; margin-bottom:2px;">
-                        {{ info.curso_nombre }}
-                      </span>
-                      <small class="text-muted">
-                        <strong>({{ info.ocupadas }} / {{ info.plazas }})</strong>
-                      </small>
-                    </div>
-                  {% empty %}
-                    <em>Sin cursos</em>
-                  {% endfor %}
-                </td>
-                <td>
-                {% for a in e.alumnos.all %}
-                  {% if a.estado == 'ASIGNADO' %}
-                    <a href="{{SITE_URL}}/empresas/alumno/{{ a.id }}/historial/""
-                       title="Ver seguimiento de {{ a.nombre }}"
-                       class="alumno-link text-success">
-                      {{ a.nombre|default:a.uid }}
-                    </a>
-                    <small class="text-muted">({{ a.curso }})</small>
-                  {% elif a.estado == 'PROCESO' %}
-                    <span class="text-info">{{ a.nombre|default:a.uid }}</span>
-                    <small class="text-muted">({{ a.curso }})</small>
-                    <br><span class="label label-warning">En proceso</span>
-                  {% else %}
-                    <span class="text-muted">{{ a.nombre|default:a.uid }}</span>
-                    <small class="text-muted">({{ a.curso }})</small>
-                    <br> <span class="label label-danger">Sin estado</span>
-                  {% endif %}
-                  <br>
-                {% empty %}
-                  <em>Sin alumnos</em>
-                {% endfor %}
-              </td>
-
-
-
-                <td class="text-center" style="white-space:nowrap;">
-                  <a href="{{SITE_URL}}/empresas/{{ e.pk }}/editar/" title="Editar">
-                    <span class="glyphicon glyphicon-edit text-success"></span>
-                  </a>
-                  &nbsp;
-                  <a href="{{SITE_URL}}/empresas/{{ e.pk }}/borrar/" title="Borrar">
-                    <span class="glyphicon glyphicon-trash text-danger"></span>
-                  </a>
-                  &nbsp;
-                  <a href="{{SITE_URL}}/empresas/{{ e.pk }}/historial/" title="Historial" class="btn btn-xs btn-success">
-                    <span class="glyphicon glyphicon-list-alt"></span>
-                  </a>
-                  <a href="{{SITE_URL}}/empresas/{{ e.pk }}/alumnos/" title="Alumnos" class="btn btn-xs btn-info">
-                    <span class="glyphicon glyphicon-education"></span>
-                  </a>
-                  <a href="{{SITE_URL}}/empresas/{{ e.pk }}/contactos/" title="Contactos" class="btn btn-xs btn-warning">
-                    <span class="glyphicon glyphicon-phone-alt"></span>
-                  </a>
-                </td>
-              </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
-    {% else %}
-      <div class="alert alert-info text-center" style="margin:0;">
-        No hay empresas registradas.
-      </div>
-    {% endif %}
-  </div>
+<!-- Lista de empresas -->
+<div class="card">
+    <div class="card-header">
+        <strong><i class="bi bi-briefcase"></i> Lista de empresas</strong>
+    </div>
+    <div class="card-body p-0">
+        {% if object_list %}
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-sm mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="text-center" style="width:40px;">#</th>
+                            <th>Nombre</th>
+                            <th>Localidad</th>
+                            <th class="text-center">Estado</th>
+                            <th class="text-center">Cursos</th>
+                            <th class="text-center">Alumnos</th>
+                            <th class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for e in object_list %}
+                            <tr class="{% if e.estado == 'verde' %}table-success{% elif e.estado == 'naranja' %}table-warning{% else %}table-danger{% endif %}">
+                                <td class="text-center">{{ forloop.counter }}</td>
+                                <td>
+                                    <strong>{{ e.nombre }}</strong>
+                                    {% if e.profesor_responsable %}
+                                        <br><small class="text-primary">
+                                            <i class="bi bi-person-badge"></i> {{ e.profesor_responsable }}
+                                        </small>
+                                    {% endif %}
+                                    {% with e.contactos.all|first as c %}
+                                        {% if c %}
+                                            <br><small class="text-muted">
+                                                <i class="bi bi-person"></i> {{ c.nombre }}
+                                                {% if c.telefono %}<i class="bi bi-telephone"></i> ({{ c.telefono }}){% endif %}
+                                                {% if c.email %}<br><i class="bi bi-envelope"></i> {{ c.email }}{% endif %}
+                                            </small>
+                                        {% endif %}
+                                    {% endwith %}
+                                </td>
+                                <td>{{ e.localidad }}</td>
+                                <td class="text-center">
+                                    {% if e.estado == 'verde' %}
+                                        <span class="badge bg-success">Colabora</span>
+                                    {% elif e.estado == 'naranja' %}
+                                        <span class="badge bg-warning text-dark">En contacto</span>
+                                    {% else %}
+                                        <span class="badge bg-danger">No colabora</span>
+                                    {% endif %}
+                                </td>
+                                <td class="text-center">
+                                    {% for info in e.plazas_info %}
+                                        <div class="d-inline-block m-1">
+                                            <span class="badge bg-primary d-block">{{ info.curso_nombre }}</span>
+                                            <small class="text-muted"><strong>({{ info.ocupadas }} / {{ info.plazas }})</strong></small>
+                                        </div>
+                                    {% empty %}
+                                        <em>Sin cursos</em>
+                                    {% endfor %}
+                                </td>
+                                <td>
+                                    {% for a in e.alumnos.all %}
+                                        {% if a.estado == 'ASIGNADO' %}
+                                            <a href="{{SITE_URL}}/empresas/alumno/{{ a.id }}/historial/"
+                                               title="Ver seguimiento de {{ a.nombre }}"
+                                               class="text-success">{{ a.nombre|default:a.uid }}</a>
+                                            <small class="text-muted">({{ a.curso }})</small>
+                                        {% elif a.estado == 'PROCESO' %}
+                                            <span class="text-info">{{ a.nombre|default:a.uid }}</span>
+                                            <small class="text-muted">({{ a.curso }})</small>
+                                            <br><span class="badge bg-warning text-dark">En proceso</span>
+                                        {% else %}
+                                            <span class="text-muted">{{ a.nombre|default:a.uid }}</span>
+                                            <small class="text-muted">({{ a.curso }})</small>
+                                            <br><span class="badge bg-secondary">Sin estado</span>
+                                        {% endif %}
+                                        <br>
+                                    {% empty %}
+                                        <em>Sin alumnos</em>
+                                    {% endfor %}
+                                </td>
+                                <td class="text-center" style="white-space:nowrap;">
+                                    <a href="{{SITE_URL}}/empresas/{{ e.pk }}/editar/" title="Editar">
+                                        <i class="bi bi-pencil text-success"></i>
+                                    </a>
+                                    &nbsp;
+                                    <a href="{{SITE_URL}}/empresas/{{ e.pk }}/borrar/" title="Borrar">
+                                        <i class="bi bi-trash text-danger"></i>
+                                    </a>
+                                    &nbsp;
+                                    <a href="{{SITE_URL}}/empresas/{{ e.pk }}/historial/" title="Historial" class="btn btn-sm btn-success">
+                                        <i class="bi bi-list-ul"></i>
+                                    </a>
+                                    <a href="{{SITE_URL}}/empresas/{{ e.pk }}/alumnos/" title="Alumnos" class="btn btn-sm btn-info">
+                                        <i class="bi bi-mortarboard"></i>
+                                    </a>
+                                    <a href="{{SITE_URL}}/empresas/{{ e.pk }}/contactos/" title="Contactos" class="btn btn-sm btn-warning">
+                                        <i class="bi bi-telephone"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="alert alert-info text-center m-0">
+                No hay empresas registradas.
+            </div>
+        {% endif %}
+    </div>
 </div>
-
-
-
 
 {% endblock %}

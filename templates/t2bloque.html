@@ -2,64 +2,29 @@
 
 {% block contenido %}
 
-{% block top%}{% endblock%}
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-9">
-            {% block content%}{% endblock%}
-        </div>
-    
-    
-        <div class="col-md-3">
-    
-            <h3>Menú</h3>
-		    <div class="list-group">
-                <li class="list-group-item list-group-item-action"><a href="/">Inicio</a></li>
-                <!--<li class="list-group-item list-group-item-action"><a href="http://dit.gonzalonazareno.org/moodle#">Aula virtual Moodle</a></li>-->
-                <li class="list-group-item list-group-item-action"><a href="https://educacionadistancia.juntadeandalucia.es/centros/sevilla/">Moodle Centros</a></li>
-                <li class="list-group-item list-group-item-action"><a href="http://dit.gonzalonazareno.org/redmine">Gestor de proyectos Redmine</a></li>
-                <!--<li class="list-group-item list-group-item-action"><a href="https://jupiter.gonzalonazareno.org/">OpenStack</a></li>-->
-                <li class="list-group-item list-group-item-action"><a href="https://dit.gonzalonazareno.org/gestiona/proyectos/">Proyectos Integrados</a></li>
-                <li class="list-group-item list-group-item-action"><a href="https://fibra.gonzalonazareno.org">Proyecto Fibra Óptica 2023</a></li>
-                <li class="list-group-item list-group-item-action"><a href="https://blogsaverroes.juntadeandalucia.es/iesgonzalonazareno/">IES Gonzalo Nazareno</a></li>
-                <li class="list-group-item list-group-item-action"><a href="https://dit.gonzalonazareno.org/gestiona/dual">FP Dual</a></li>
-                <li class="list-group-item list-group-item-action"><a href="https://fpdual.gonzalonazareno.org">Gestión FCT y FP Dual</a></li>
-                {% if request.session.profesor %}
-                <li class="list-group-item list-group-item-action"><a href="{{SITE_URL}}/info/actualizar">Actualizar Proyectos Integrados</a></li>
-                {%endif%}
-            </div>
-    <!--
-            <h3>Contenido</h3>
-		    <div class="list-group">
-                <li class="list-group-item list-group-item-action"><a href="{{SITE_URL}}/info/noticias">Noticias</a></li>
-                <li class="list-group-item list-group-item-action"><a href="{{SITE_URL}}/info/documentacion">Documentación</a></li>
-                <li class="list-group-item list-group-item-action"><a href="{{SITE_URL}}/info/blog">Blog</a></li>
-                <li class="list-group-item list-group-item-action"><a href="{{SITE_URL}}/proyectos/">Proyectos Integrados</a></li>
-            </div>
-        -->
-        <!--
-            <h3>Información</h3>
-		    <div class="list-group">
-                <li class="list-group-item list-group-item-action"><a href="{{SITE_URL}}/info/paginas/contacto">Contacto</a></li>
-                <li class="list-group-item list-group-item-action"><a href="{{SITE_URL}}/info/paginas/oferta">Oferta Educativa</a></li>
-                <li class="list-group-item list-group-item-action"><a href="{{SITE_URL}}/info/paginas/innovacion">Innovación</a></li>
-                <li class="list-group-item list-group-item-action"><a href="{{SITE_URL}}/info/paginas/instalaciones">Instalaciones</a></li>
-                <li class="list-group-item list-group-item-action"><a href="{{SITE_URL}}/info/paginas/reconocimientos">Reconocimientos</a></li>		
-            </div>
-        -->
-            <!--<h3>Enlaces</h3>
-		    <div class="list-group">
-			    <li class="list-group-item list-group-item-action"><a href="https://informatica.gonzalonazareno.org">Blog del departamento</a></li>
-			    <li class="list-group-item list-group-item-action"><a href="https://informatica.gonzalonazareno.org/plataforma">Antiguos cursos (moodle)</a></li>
-			    <li class="list-group-item list-group-item-action"><a href="https://informatica.gonzalonazareno.org/proyectos">Proyectos integrados</a></li>
-			    <li class="list-group-item list-group-item-action"><a href="https://www.gonzalonazareno.org">Web del IES Gonzalo Nazareno</a></li>
-		    </div>-->
-    
-            
-           <!-- <a class="twitter-timeline" data-width="400" data-dnt="true" data-tweet-limit="3" href="https://twitter.com/dit_GN?ref_src=twsrc%5Etfw">Tweets by dit_GN</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> -->
-            
+{% block top %}{% endblock %}
+
+<div class="row">
+    <div class="col-md-9">
+        {% block content %}{% endblock %}
+    </div>
+
+    <div class="col-md-3">
+        <h5 class="mt-2 mb-3 text-muted text-uppercase fw-bold" style="font-size:.75rem; letter-spacing:.05em;">Menú</h5>
+        <div class="list-group list-group-flush">
+            <a href="/" class="list-group-item list-group-item-action">Inicio</a>
+            <a href="https://educacionadistancia.juntadeandalucia.es/centros/sevilla/" class="list-group-item list-group-item-action">Moodle Centros</a>
+            <a href="http://dit.gonzalonazareno.org/redmine" class="list-group-item list-group-item-action">Gestor de proyectos Redmine</a>
+            <a href="https://dit.gonzalonazareno.org/gestiona/proyectos/" class="list-group-item list-group-item-action">Proyectos Integrados</a>
+            <a href="https://fibra.gonzalonazareno.org" class="list-group-item list-group-item-action">Proyecto Fibra Óptica 2023</a>
+            <a href="https://blogsaverroes.juntadeandalucia.es/iesgonzalonazareno/" class="list-group-item list-group-item-action">IES Gonzalo Nazareno</a>
+            <a href="https://dit.gonzalonazareno.org/gestiona/dual" class="list-group-item list-group-item-action">FP Dual</a>
+            <a href="https://fpdual.gonzalonazareno.org" class="list-group-item list-group-item-action">Gestión FCT y FP Dual</a>
+            {% if request.session.profesor %}
+                <a href="{{SITE_URL}}/info/actualizar" class="list-group-item list-group-item-action">Actualizar Proyectos Integrados</a>
+            {% endif %}
         </div>
     </div>
 </div>
-    
-{% endblock%}
+
+{% endblock %}

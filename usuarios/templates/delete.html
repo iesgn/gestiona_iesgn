@@ -1,38 +1,30 @@
 {% extends "t1bloque.html" %}
 
 {% block content %}
-<div class="row">
 <h3>Borrar usuario</h3>
-{% if not error and not grupo%}
-<strong>Este proceso es irreversible. Por favor, tenga cuidado al realizar esta operación.</strong><br/>
-
-<form  method="post" class="form-hotizontal">
-  <div class="col-md-6">
+{% if not error and not grupo %}
+<p class="text-danger"><strong>Este proceso es irreversible. Por favor, tenga cuidado al realizar esta operación.</strong></p>
+<form method="post">
     {% csrf_token %}
-    <div class="form-group">
-        <label>Nombre de usuario:</label>
-        {{ form.uid}}
+    <div class="col-md-6">
+        <div class="mb-3">
+            <label class="form-label">Nombre de usuario:</label>
+            {{ form.uid }}
+        </div>
+        <button type="submit" class="btn btn-danger">Borrar</button>
     </div>
-    <button  type="submit" class="btn btn-primary">Borrar</button>
-</div>
 </form>
 {% endif %}
 {% if error %}
-    <strong>{{error}}</strong><br/>
+    <p><strong>{{ error }}</strong></p>
 {% endif %}
 {% if grupo %}
-    <strong>¿Quieres borrar a {{nombre}} ({{grupo.0}})?</strong><br/>
-    <form  method="post" class="form-hotizontal">
-    <div class="col-md-6">
-    {% csrf_token %}
-    {{ form.uiddel}}
-    <br/>
-    <button  name="confirmar" type="submit" value="si" class="btn btn-primary">Si</button>
-    <button  name="confirmar" type="submit" value="no" class="btn btn-primary">No</button>
-</div>
-    
+    <p><strong>¿Quieres borrar a {{ nombre }} ({{ grupo.0 }})?</strong></p>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.uiddel }}
+        <button name="confirmar" type="submit" value="si" class="btn btn-danger">Sí</button>
+        <button name="confirmar" type="submit" value="no" class="btn btn-secondary ms-2">No</button>
+    </form>
 {% endif %}
-
-</div>
-
 {% endblock %}
