@@ -65,7 +65,7 @@
     },
     {
       "titulo": "FP Dual",
-      "descripcion": "Gestión FCT y FP Dual",
+      "descripcion": "Información sobre la FP Dual",
       "icono": "bi-briefcase",
       "url": "https://dit.gonzalonazareno.org/gestiona/dual",
       "visible": true
