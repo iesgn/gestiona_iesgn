@@ -1,4 +1,5 @@
 from ldap3 import Server, Connection, ALL,SUBTREE,  MODIFY_DELETE, MODIFY_ADD,MODIFY_REPLACE
+from ldap3.utils.conv import escape_filter_chars
 
 class LibLDAP(object):
     base_dn="ou=People,dc=gonzalonazareno,dc=org"
@@ -80,7 +81,7 @@ class LibLDAP(object):
                     cadena2+=")"
                     cadena+=cadena2
                 else:
-                    cadena+="(%s=%s*)" % (campo,valor)
+                    cadena+="(%s=%s*)" % (campo, escape_filter_chars(valor))
             cadena+=")"
         return cadena
 

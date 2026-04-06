@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 import json
 import os
 from usuarios.libldap import LibLDAP
+from ldap3.utils.conv import escape_filter_chars
 from django.conf import settings
 def _load_config():
     path = os.path.join(settings.BASE_DIR, 'gestiona_iesgn', 'enlaces.json')
@@ -40,7 +41,7 @@ def index(request):
         password = request.POST["password"]
         lldap=LibLDAP(username,password)
         if username!="" and lldap.isbind:
-                busqueda='(uid=%s)'%username
+                busqueda='(uid=%s)' % escape_filter_chars(username)
                 resultados=lldap.buscar(busqueda)
                 tipos=["asir1","asir2","smr1","smr2","profesores"]
                 if not lldap.isMemberOfGroups(request.POST["username"],tipos):
