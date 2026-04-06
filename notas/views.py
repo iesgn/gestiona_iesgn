@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from gestiona_iesgn.views import test_profesor
+from gestiona_iesgn.views import profesor_required
 from django.views.decorators.csrf import csrf_exempt
 import requests
 import json

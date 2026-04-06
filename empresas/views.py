@@ -2,7 +2,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.db.models import Q
-from gestiona_iesgn.views import test_profesor
+from gestiona_iesgn.views import profesor_required
 from .forms import EmpresaForm
 from .models import Empresa, PersonaContacto, AlumnoEmpresa, HistorialContacto,Curso, PlazaCurso,HistorialAlumno
 from .services import alumnos_de_empresa
@@ -16,12 +16,12 @@ from django.conf import settings
 
 
 @csrf_exempt
+@profesor_required
 def lista_empresas(request):
     """
     Muestra el listado de empresas con filtros por búsqueda, estado y cursos.
     Además calcula un resumen global de plazas y alumnos por curso.
     """
-    test_profesor(request)
 
     # === 1. Obtener filtros de la petición ===
     q = request.GET.get("q")
@@ -114,8 +114,8 @@ def lista_empresas(request):
 
 
 @csrf_exempt
+@profesor_required
 def nueva_empresa(request):
-    test_profesor(request)
     if request.method == "POST":
         form = EmpresaForm(request.POST)
         if form.is_valid():
@@ -127,8 +127,8 @@ def nueva_empresa(request):
 
 
 @csrf_exempt
+@profesor_required
 def editar_empresa(request, pk):
-    test_profesor(request)
     empresa = get_object_or_404(Empresa, pk=pk)
     if request.method == "POST":
         form = EmpresaForm(request.POST, instance=empresa)
@@ -140,8 +140,8 @@ def editar_empresa(request, pk):
     return render(request, "empresas/form.html", {"form": form})
 
 @csrf_exempt
+@profesor_required
 def borrar_empresa(request, pk):
-    test_profesor(request)
     empresa = get_object_or_404(Empresa, pk=pk)
 
     if request.method == "POST":
@@ -152,6 +152,7 @@ def borrar_empresa(request, pk):
 
 
 @csrf_exempt
+@profesor_required
 def historial_empresa(request, pk):
     """
     Muestra y gestiona el historial de contactos de una empresa.
@@ -159,7 +160,6 @@ def historial_empresa(request, pk):
     - Guardar el profesor logueado desde LDAP.
     - Permitir borrar entradas individuales.
     """
-    test_profesor(request)
     empresa = get_object_or_404(Empresa, pk=pk)
     ldap = LibLDAP()
 
@@ -245,8 +245,8 @@ def _guardar_alumnos(empresa, uids):
 
 # === Alumnos ===
 @csrf_exempt
+@profesor_required
 def gestionar_alumnos(request, pk):
-    test_profesor(request)
     empresa = get_object_or_404(Empresa, pk=pk)
     ldap = LibLDAP()
 
@@ -374,8 +374,8 @@ def gestionar_alumnos(request, pk):
 
 # === Contactos ===
 @csrf_exempt
+@profesor_required
 def gestionar_contactos(request, pk):
-    test_profesor(request)
     empresa = get_object_or_404(Empresa, pk=pk)
 
     if request.method == "POST":
@@ -399,8 +399,8 @@ def gestionar_contactos(request, pk):
     })
 
 @csrf_exempt
+@profesor_required
 def borrar_contacto(request, contacto_id):
-    test_profesor(request)
     contacto = get_object_or_404(PersonaContacto, pk=contacto_id)
     empresa = contacto.empresa
     contacto.delete()
@@ -409,6 +409,7 @@ def borrar_contacto(request, contacto_id):
 # ==seguimiento
 
 @csrf_exempt
+@profesor_required
 def historial_alumno(request, alumno_id):
     """
     Muestra y gestiona el historial de seguimiento de un alumno.
@@ -416,7 +417,6 @@ def historial_alumno(request, alumno_id):
     - Guardar el profesor logueado desde LDAP.
     - Permitir borrar entradas individuales.
     """
-    test_profesor(request)
     alumno = get_object_or_404(AlumnoEmpresa, pk=alumno_id)
     empresa = alumno.empresa
     ldap = LibLDAP()

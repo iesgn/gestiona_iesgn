@@ -4,11 +4,11 @@ from usuarios.libldap import LibLDAP
 
 from django.core.mail import EmailMessage
 from django.conf import settings
-from gestiona_iesgn.views import test_profesor
+from gestiona_iesgn.views import profesor_required
 
 # Create your views here.
+@profesor_required
 def add(request):
-	test_profesor(request)
 	if request.method=='POST' and "correo" not in request.POST:
 		form2 = BuscarDestinatariosForm(dest=SelectUsuarios(request.POST.get("usuarios")),alum=request.POST.get("usuarios"))
 		form = CorreoForm(request.POST)

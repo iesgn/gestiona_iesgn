@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from usuarios.libldap import LibLDAP
 from grupos.forms import BuscarUsuario
-from gestiona_iesgn.views import test_profesor
+from gestiona_iesgn.views import profesor_required
 from django.http import Http404
 from django.conf import settings
 import operator
@@ -9,6 +9,7 @@ import operator
 
 
 
+@profesor_required
 def cursos(request,curso):
 	grupos=(
     ('asir1', '1º ASIR'),
@@ -20,7 +21,6 @@ def cursos(request,curso):
     ('tituladosasir','Titulados ASIR'),
     ('tituladossmr','Titulados SMR'),
 	)
-	test_profesor(request)
 	
 	if not curso in [x[0] for x in grupos]:
 		raise Http404  
@@ -50,8 +50,8 @@ def cursos(request,curso):
 	ldap.logout()
 	return render(request,"listar_cursos.html",info)
 
+@profesor_required
 def eliminar(request,curso,usuario):
-	test_profesor(request)
 	ldap=LibLDAP(request.session["username"],request.session["password"])
 	try:
 		ldap.modUserGroup(str(usuario),str(curso),"del")

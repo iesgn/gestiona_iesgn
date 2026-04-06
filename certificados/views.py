@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect,HttpResponse
 from .forms import UploadFileFormEquipo,UploadFileFormUsuario
 from django.conf import settings
-from gestiona_iesgn.views import test_login
+from gestiona_iesgn.views import login_required
 from wsgiref.util import FileWrapper
 from django.core.mail import EmailMessage
 from django.contrib import messages
@@ -10,8 +10,8 @@ import os.path
 import re
 # Create your views here.
 
+@login_required
 def add(request):
-	test_login(request)
 	if request.method == 'POST':
 		if "csr_equipo" in request.FILES:
 			form = UploadFileFormEquipo(request.POST, request.FILES)
@@ -92,9 +92,8 @@ def handle_uploaded_file(f,nombre,tipo):
 	with open(path_file, 'wb') as destination:
 		destination.write(f.read())
 
+@login_required
 def download(request,usuario,direc="",file=""):
-	
-	test_login(request)
 	if usuario==request.session["username"]:
 		if direc=="":
 			filename = str(os.path.join(settings.BASE_DIR, 'cert/%s/usuario/%s'%(request.session["username"],file)))
@@ -113,9 +112,8 @@ def download(request,usuario,direc="",file=""):
 	else:
 		return redirect(settings.SITE_URL+"/")
 
+@login_required
 def revocar(request,usuario,direc="",file=""):
-	
-	test_login(request)
 	if usuario==request.session["username"]:
 		if direc=="":
 			filename = str(os.path.join(settings.BASE_DIR, 'cert/%s/usuario/%s'%(request.session["username"],file)))

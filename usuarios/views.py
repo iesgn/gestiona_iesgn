@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from usuarios.libldap import LibLDAP
 from usuarios.forms import BuscarUsuario,newUserForm,updateUserForm,deleteUserForm,deleteUserForm2
-from gestiona_iesgn.views import test_profesor,test_login
+from gestiona_iesgn.views import login_required, profesor_required
 from django.contrib import messages
 from django import forms
 from django.conf import settings
@@ -11,8 +11,8 @@ import hashlib
 import base64
 
 
+@profesor_required
 def listarUsuarios(request):
-    test_profesor(request)
     filtro={}
     ldap=LibLDAP()
     if request.method=="GET":
@@ -47,8 +47,8 @@ def getGrupo(lista):
 #############################################################################################################
 
 
+@profesor_required
 def add(request):
-    test_profesor(request)
     form=newUserForm() if request.method=="GET" else newUserForm(request.POST)
     
     if form.is_valid():
@@ -99,8 +99,9 @@ def add(request):
 #
 
 def update(request,usuario):
-    if not "perfil" in request.path: 
-        test_profesor(request)
+    if "perfil" not in request.path:
+        if not request.session.get("profesor"):
+            return redirect(settings.SITE_URL + "/")
     ldap=LibLDAP(request.session["username"],request.session["password"])
     lista=ldap.buscar("(uid=%s)"%usuario,["uid","cn","givenName","loginShell","userPassword","l","sn","homeDirectory","mail"])
     if len(lista)==0:
@@ -175,8 +176,8 @@ def quito_listas_en_resultado(datos):
         datos2[campo]=resultado
     return datos2#
 
+@login_required
 def perfil(request):
-    test_login(request)
     lldap=LibLDAP()
     busqueda='(uid=%s)'%(request.session["username"])
     datos=lldap.buscar(busqueda,["uid"])
@@ -185,8 +186,8 @@ def perfil(request):
 
 #############################################################################################################
 
+@login_required
 def delete(request):
-    test_login(request)
     if request.method=="POST" and request.POST.get("uid",False):
         uid=request.POST["uid"]
         ldap=LibLDAP()

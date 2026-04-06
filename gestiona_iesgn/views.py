@@ -1,12 +1,31 @@
-from django.shortcuts import render,redirect
+from functools import wraps
+from django.shortcuts import render, redirect
 import socket
 from usuarios.libldap import LibLDAP
 from django.conf import settings
-from django.http import Http404
 from info.views import getInfoVisibility
+
+
+def login_required(view_func):
+    @wraps(view_func)
+    def wrapper(request, *args, **kwargs):
+        if not request.session.get("username"):
+            return redirect(settings.SITE_URL + "/")
+        return view_func(request, *args, **kwargs)
+    return wrapper
+
+
+def profesor_required(view_func):
+    @wraps(view_func)
+    def wrapper(request, *args, **kwargs):
+        if not request.session.get("profesor"):
+            return redirect(settings.SITE_URL + "/")
+        return view_func(request, *args, **kwargs)
+    return wrapper
+
+
 def index(request):
     info={}
-    ## Generamos últimas noticias
     visibility="public"
     if request.session.get("username"):
         visibility="auth"
@@ -14,8 +33,6 @@ def index(request):
         visibility="profesor"
     datos=getInfoVisibility("noticias",visibility)
     info["noticias"]=datos
-    ####
-    ## Generamos últimas entradas del blog
     datos=getInfoVisibility("blog",visibility)
     info["blog"]=datos[:5]
 
@@ -28,11 +45,7 @@ def index(request):
         if username!="" and lldap.isbind:
                 busqueda='(uid=%s)'%username
                 resultados=lldap.buscar(busqueda)
-                
-                # Solo dejamos loguearse a los alumnos y profesores
-                # No dejamos a los AA y a los AP
                 tipos=["asir1","asir2","smr1","smr2","profesores"]
-
                 if not lldap.isMemberOfGroups(request.POST["username"],tipos):
                     info["error"]=True
                     return render(request,"index.html",info)
@@ -46,7 +59,6 @@ def index(request):
         else:
                info["error"]=True
                return render(request,"index.html",info)
-        ldap.logout()
 
 def salir(request):
     del request.session["username"]
@@ -56,15 +68,6 @@ def salir(request):
     except:
         pass
     return redirect(settings.SITE_URL)
-
-def test_profesor(request):
-    if not request.session.get("profesor",False):
-        raise Http404  
-
-
-def test_login(request):
-    if not request.session.get("username",False):
-        raise Http404  
 
 def dual(request):
     return redirect("/gestiona/info/paginas/dual")

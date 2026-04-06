@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
-from gestiona_iesgn.views import test_login
+from gestiona_iesgn.views import login_required
 
 
 HEADSCALE_URL = os.environ.get("HEADSCALE_URL", "https://vpn.gonzalonazareno.org")
@@ -110,8 +110,8 @@ def create_preauth_key(user_id):
     return preauth.get("key")
 
 
+@login_required
 def solicitar_vpn(request):
-    test_login(request)
     username = request.session["username"]
 
     if request.method == "POST":
