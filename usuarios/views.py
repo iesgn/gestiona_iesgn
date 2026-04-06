@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from usuarios.libldap import LibLDAP
+from ldap3.utils.conv import escape_filter_chars
 from usuarios.forms import BuscarUsuario,newUserForm,updateUserForm,deleteUserForm,deleteUserForm2
 from gestiona_iesgn.views import login_required, profesor_required
 from django.contrib import messages
@@ -103,7 +104,7 @@ def update(request,usuario):
         if not request.session.get("profesor"):
             return redirect(settings.SITE_URL + "/")
     ldap=LibLDAP(request.session["username"],request.session["password"])
-    lista=ldap.buscar("(uid=%s)"%usuario,["uid","cn","givenName","loginShell","userPassword","l","sn","homeDirectory","mail"])
+    lista=ldap.buscar("(uid=%s)" % escape_filter_chars(usuario),["uid","cn","givenName","loginShell","userPassword","l","sn","homeDirectory","mail"])
     if len(lista)==0:
         return redirect(settings.SITE_URL+"/")
     datos=quito_listas_en_resultado(lista[0])
@@ -179,7 +180,7 @@ def quito_listas_en_resultado(datos):
 @login_required
 def perfil(request):
     lldap=LibLDAP()
-    busqueda='(uid=%s)'%(request.session["username"])
+    busqueda='(uid=%s)' % escape_filter_chars(request.session["username"])
     datos=lldap.buscar(busqueda,["uid"])
     lldap.logout()
     return update(request,datos[0]["uid"][0])#
@@ -191,7 +192,7 @@ def delete(request):
     if request.method=="POST" and request.POST.get("uid",False):
         uid=request.POST["uid"]
         ldap=LibLDAP()
-        busqueda='(uid=%s)'%(uid)
+        busqueda='(uid=%s)' % escape_filter_chars(uid)
         datos=ldap.buscar(busqueda,["cn"])
         grupo=ldap.memberOfGroup(uid,key=True)
         

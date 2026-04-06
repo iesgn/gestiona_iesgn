@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from correos.forms import CorreoForm,BuscarDestinatariosForm
 from usuarios.libldap import LibLDAP
-
+from ldap3.utils.conv import escape_filter_chars
 from django.core.mail import EmailMessage
 from django.conf import settings
 from gestiona_iesgn.views import profesor_required
@@ -21,7 +21,7 @@ def add(request):
 			lldap=LibLDAP()
 			correos=[]
 			for usuario in request.POST.getlist("destinatarios"):
-				busqueda='(uid=%s)'%(usuario)
+				busqueda='(uid=%s)' % escape_filter_chars(usuario)
 				datos=lldap.buscar(busqueda,["mail"])
 				correos.append(datos[0]["mail"][0])
 			replayto="informatica.gonzalonazareno.org" if request.POST.get("replyto")=="" else request.POST.get("replyto")
