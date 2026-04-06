@@ -60,7 +60,7 @@ def lista_empresas(request):
         e.plazas_info = []
         for p in e.plazas_curso.all():
             if p.plazas > 0:
-                num_alumnos = e.alumnos.filter(curso=p.curso.nombre).count()
+                num_alumnos = sum(1 for a in e.alumnos.all() if a.curso == p.curso.nombre)
                 e.plazas_info.append({
                     "curso_nombre": p.curso.nombre,
                     "plazas": p.plazas,
