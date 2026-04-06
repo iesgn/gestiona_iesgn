@@ -4,6 +4,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 import requests
 import json
+import logging
+logger = logging.getLogger(__name__)
 url_base = settings.REDMINE_URL
 # Create your views here.
 
@@ -89,6 +91,7 @@ def inicio(request):
 
 	else:
 		r=requests.get(url_base+'projects.json',auth=(request.session["username"],request.session["password"]),verify=False)
+		logger.warning(f"Redmine projects.json → status={r.status_code} url={r.url} body={r.text[:200]}")
 		if r.status_code == 200:
 			doc=r.json()
 			info={"proyectos":doc["projects"]}

@@ -90,4 +90,4 @@ def proyectos_page(request):
                             v if v.startswith('http') else static + 'proyectos/' + v
                             for v in info if v
                         ]
-    return render(request, "proyectos.html", {"datos": datos})
+    return render(request, "proyectos_integrados.html", {"datos": datos})
