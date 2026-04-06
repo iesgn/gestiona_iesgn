@@ -1,9 +1,17 @@
 from functools import wraps
 from django.shortcuts import render, redirect
-import socket
+import json
+import os
 from usuarios.libldap import LibLDAP
 from django.conf import settings
 from info.views import getInfoVisibility
+
+
+def _load_enlaces():
+    path = os.path.join(settings.BASE_DIR, 'gestiona_iesgn', 'enlaces.json')
+    with open(path, encoding='utf-8') as f:
+        data = json.load(f)
+    return [e for e in data if e.get('visible', True)]
 
 
 def login_required(view_func):
@@ -35,6 +43,7 @@ def index(request):
     info["noticias"]=datos
     datos=getInfoVisibility("blog",visibility)
     info["blog"]=datos[:5]
+    info["enlaces"]=_load_enlaces()
 
     if request.method=="GET":
         return render(request,'index.html',info)
