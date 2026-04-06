@@ -16,7 +16,7 @@ INSTALLED_APPS = [
     "correos.apps.CorreosConfig",
     "certificados.apps.CertificadosConfig",
     #"proyectos.apps.ProyectosConfig",
-    "notas.apps.NotasConfig",
+    #"notas.apps.NotasConfig",
     "empresas.apps.EmpresasConfig",
     "vpn.apps.VpnConfig",
 ]
