@@ -41,40 +41,34 @@
       "imagen": "img/nas.png",
       "url": "https://nas.gonzalonazareno.org",
       "visible": true
-    }
-  ],
-  "menu": [
-    {
-      "titulo": "Inicio",
-      "url": "/"
-    },
-    {
-      "titulo": "Moodle Centros",
-      "url": "https://educacionadistancia.juntadeandalucia.es/centros/sevilla/"
-    },
-    {
-      "titulo": "Gestor de proyectos Redmine",
-      "url": "http://dit.gonzalonazareno.org/redmine"
     },
     {
       "titulo": "Proyectos Integrados",
-      "url": "https://dit.gonzalonazareno.org/gestiona/proyectos/"
+      "descripcion": "Proyectos del departamento",
+      "icono": "bi-kanban",
+      "url": "https://dit.gonzalonazareno.org/gestiona/proyectos/",
+      "visible": true
     },
     {
-      "titulo": "Proyecto Fibra Óptica 2023",
-      "url": "https://fibra.gonzalonazareno.org"
+      "titulo": "Proyecto Fibra Óptica",
+      "descripcion": "Fibra Óptica 2023",
+      "icono": "bi-ethernet",
+      "url": "https://fibra.gonzalonazareno.org",
+      "visible": true
     },
     {
       "titulo": "IES Gonzalo Nazareno",
-      "url": "https://blogsaverroes.juntadeandalucia.es/iesgonzalonazareno/"
+      "descripcion": "Web del instituto",
+      "icono": "bi-building",
+      "url": "https://blogsaverroes.juntadeandalucia.es/iesgonzalonazareno/",
+      "visible": true
     },
     {
       "titulo": "FP Dual",
-      "url": "https://dit.gonzalonazareno.org/gestiona/dual"
-    },
-    {
-      "titulo": "Gestión FCT y FP Dual",
-      "url": "https://fpdual.gonzalonazareno.org"
+      "descripcion": "Gestión FCT y FP Dual",
+      "icono": "bi-briefcase",
+      "url": "https://fpdual.gonzalonazareno.org",
+      "visible": true
     }
   ]
 }

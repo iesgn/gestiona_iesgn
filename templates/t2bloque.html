@@ -4,19 +4,6 @@
 
 {% block top %}{% endblock %}
 
-<div class="row">
-    <div class="col-md-9">
-        {% block content %}{% endblock %}
-    </div>
-
-    <div class="col-md-3">
-        <h5 class="mt-2 mb-3 text-muted text-uppercase fw-bold" style="font-size:.75rem; letter-spacing:.05em;">Menú</h5>
-        <div class="list-group list-group-flush">
-            {% for item in menu %}
-                <a href="{{ item.url }}" class="list-group-item list-group-item-action">{{ item.titulo }}</a>
-            {% endfor %}
-        </div>
-    </div>
-</div>
+{% block content %}{% endblock %}
 
 {% endblock %}
