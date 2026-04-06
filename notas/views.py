@@ -5,7 +5,7 @@ import requests
 import json
 import datetime
 url_base="https://dit.gonzalonazareno.org/redmine/"
-key="7c66d06567766f7f1412615eef7c48720de02ffa"
+key=""
 # Create your views here.
 
 
