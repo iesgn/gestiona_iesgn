@@ -7,11 +7,10 @@ from django.conf import settings
 from info.views import getInfoVisibility
 
 
-def _load_enlaces():
+def _load_config():
     path = os.path.join(settings.BASE_DIR, 'gestiona_iesgn', 'enlaces.json')
     with open(path, encoding='utf-8') as f:
-        data = json.load(f)
-    return [e for e in data if e.get('visible', True)]
+        return json.load(f)
 
 
 def login_required(view_func):
@@ -43,7 +42,8 @@ def index(request):
     info["noticias"]=datos
     datos=getInfoVisibility("blog",visibility)
     info["blog"]=datos[:5]
-    info["enlaces"]=_load_enlaces()
+    config = _load_config()
+    info["enlaces"] = [e for e in config["tarjetas"] if e.get("visible", True)]
 
     if request.method=="GET":
         return render(request,'index.html',info)

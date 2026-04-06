@@ -1,44 +1,80 @@
-[
-  {
-    "titulo": "Moodle Centros",
-    "descripcion": "Plataforma Educativa",
-    "imagen": "img/moodle.png",
-    "url": "https://educacionadistancia.juntadeandalucia.es/centros/sevilla/",
-    "visible": true
-  },
-  {
-    "titulo": "Redmine",
-    "descripcion": "Gestor de proyectos",
-    "imagen": "img/redmine.png",
-    "url": "http://dit.gonzalonazareno.org/redmine",
-    "visible": true
-  },
-  {
-    "titulo": "OpenStack",
-    "descripcion": "Cloud Computing",
-    "imagen": "img/openstack.png",
-    "url": "https://openstack.gonzalonazareno.org",
-    "visible": true
-  },
-  {
-    "titulo": "Proxmox",
-    "descripcion": "Virtualización",
-    "imagen": "img/proxmox.png",
-    "url": "https://proxmox.gonzalonazareno.org",
-    "visible": true
-  },
-  {
-    "titulo": "Guacamole",
-    "descripcion": "SSH, RDP,...",
-    "imagen": "img/guacamole.png",
-    "url": "https://remoto.gonzalonazareno.org/#/",
-    "visible": true
-  },
-  {
-    "titulo": "NAS",
-    "descripcion": "Ficheros compartidos",
-    "imagen": "img/nas.png",
-    "url": "https://nas.gonzalonazareno.org",
-    "visible": true
-  }
-]
+{
+  "tarjetas": [
+    {
+      "titulo": "Moodle Centros",
+      "descripcion": "Plataforma Educativa",
+      "imagen": "img/moodle.png",
+      "url": "https://educacionadistancia.juntadeandalucia.es/centros/sevilla/",
+      "visible": true
+    },
+    {
+      "titulo": "Redmine",
+      "descripcion": "Gestor de proyectos",
+      "imagen": "img/redmine.png",
+      "url": "http://dit.gonzalonazareno.org/redmine",
+      "visible": true
+    },
+    {
+      "titulo": "OpenStack",
+      "descripcion": "Cloud Computing",
+      "imagen": "img/openstack.png",
+      "url": "https://openstack.gonzalonazareno.org",
+      "visible": true
+    },
+    {
+      "titulo": "Proxmox",
+      "descripcion": "Virtualización",
+      "imagen": "img/proxmox.png",
+      "url": "https://proxmox.gonzalonazareno.org",
+      "visible": true
+    },
+    {
+      "titulo": "Guacamole",
+      "descripcion": "SSH, RDP,...",
+      "imagen": "img/guacamole.png",
+      "url": "https://remoto.gonzalonazareno.org/#/",
+      "visible": true
+    },
+    {
+      "titulo": "NAS",
+      "descripcion": "Ficheros compartidos",
+      "imagen": "img/nas.png",
+      "url": "https://nas.gonzalonazareno.org",
+      "visible": true
+    }
+  ],
+  "menu": [
+    {
+      "titulo": "Inicio",
+      "url": "/"
+    },
+    {
+      "titulo": "Moodle Centros",
+      "url": "https://educacionadistancia.juntadeandalucia.es/centros/sevilla/"
+    },
+    {
+      "titulo": "Gestor de proyectos Redmine",
+      "url": "http://dit.gonzalonazareno.org/redmine"
+    },
+    {
+      "titulo": "Proyectos Integrados",
+      "url": "https://dit.gonzalonazareno.org/gestiona/proyectos/"
+    },
+    {
+      "titulo": "Proyecto Fibra Óptica 2023",
+      "url": "https://fibra.gonzalonazareno.org"
+    },
+    {
+      "titulo": "IES Gonzalo Nazareno",
+      "url": "https://blogsaverroes.juntadeandalucia.es/iesgonzalonazareno/"
+    },
+    {
+      "titulo": "FP Dual",
+      "url": "https://dit.gonzalonazareno.org/gestiona/dual"
+    },
+    {
+      "titulo": "Gestión FCT y FP Dual",
+      "url": "https://fpdual.gonzalonazareno.org"
+    }
+  ]
+}

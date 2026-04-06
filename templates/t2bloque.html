@@ -12,17 +12,9 @@
     <div class="col-md-3">
         <h5 class="mt-2 mb-3 text-muted text-uppercase fw-bold" style="font-size:.75rem; letter-spacing:.05em;">Menú</h5>
         <div class="list-group list-group-flush">
-            <a href="/" class="list-group-item list-group-item-action">Inicio</a>
-            <a href="https://educacionadistancia.juntadeandalucia.es/centros/sevilla/" class="list-group-item list-group-item-action">Moodle Centros</a>
-            <a href="http://dit.gonzalonazareno.org/redmine" class="list-group-item list-group-item-action">Gestor de proyectos Redmine</a>
-            <a href="https://dit.gonzalonazareno.org/gestiona/proyectos/" class="list-group-item list-group-item-action">Proyectos Integrados</a>
-            <a href="https://fibra.gonzalonazareno.org" class="list-group-item list-group-item-action">Proyecto Fibra Óptica 2023</a>
-            <a href="https://blogsaverroes.juntadeandalucia.es/iesgonzalonazareno/" class="list-group-item list-group-item-action">IES Gonzalo Nazareno</a>
-            <a href="https://dit.gonzalonazareno.org/gestiona/dual" class="list-group-item list-group-item-action">FP Dual</a>
-            <a href="https://fpdual.gonzalonazareno.org" class="list-group-item list-group-item-action">Gestión FCT y FP Dual</a>
-            {% if request.session.profesor %}
-                <a href="{{SITE_URL}}/info/actualizar" class="list-group-item list-group-item-action">Actualizar Proyectos Integrados</a>
-            {% endif %}
+            {% for item in menu %}
+                <a href="{{ item.url }}" class="list-group-item list-group-item-action">{{ item.titulo }}</a>
+            {% endfor %}
         </div>
     </div>
 </div>
