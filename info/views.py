@@ -49,7 +49,7 @@ def show(request,tipo,url):
     dato=getDoc(tipo,url,request.session)
     if dato==None:
         try:
-            return serve(request, 'content_iesgn'+"/"+tipo+"/"+url)
+            return serve(request, 'content_iesgn'+"/"+tipo+"/"+url, insecure=True)
         except:
             raise Http404
     info={"dato":dato,"tipo":tipo}
