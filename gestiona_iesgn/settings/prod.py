@@ -20,5 +20,4 @@ DATABASES = {
     }
 }
 
-STATIC_URL = "/gestiona/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
