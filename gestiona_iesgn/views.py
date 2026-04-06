@@ -71,3 +71,9 @@ def dual(request):
 
 def dual_page(request):
     return render(request, "dual.html")
+
+def proyectos_page(request):
+    path = os.path.join(settings.BASE_DIR, 'gestiona_iesgn', 'proyectos.json')
+    with open(path, encoding='utf-8') as f:
+        datos = json.load(f)
+    return render(request, "proyectos.html", {"datos": datos})

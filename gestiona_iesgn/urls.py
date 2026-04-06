@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,re_path,include
-from gestiona_iesgn.views import index,salir,dual,dual_page
+from gestiona_iesgn.views import index,salir,dual,dual_page,proyectos_page
 
 urlpatterns = [
     re_path(r'^admin/', admin.site.urls),
@@ -27,9 +27,10 @@ urlpatterns = [
     re_path(r'^multitask/', include('multitask.urls')),
     re_path(r'^correos/', include('correos.urls')),
     re_path(r'^cert/', include('certificados.urls')),
-    re_path(r'^proyectos/', include('proyectos.urls')),
+    #re_path(r'^proyectos/', include('proyectos.urls')),
     re_path(r'^notas/', include('notas.urls')),
     path('dual',dual),
+    path('proyectos/', proyectos_page),
     re_path(r'^empresas/', include("empresas.urls")),
     path('vpn/', include('vpn.urls')),
     

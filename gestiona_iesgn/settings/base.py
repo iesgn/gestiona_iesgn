@@ -15,7 +15,7 @@ INSTALLED_APPS = [
     "multitask.apps.MultitaskConfig",
     "correos.apps.CorreosConfig",
     "certificados.apps.CertificadosConfig",
-    "proyectos.apps.ProyectosConfig",
+    #"proyectos.apps.ProyectosConfig",
     "notas.apps.NotasConfig",
     "empresas.apps.EmpresasConfig",
     "vpn.apps.VpnConfig",
