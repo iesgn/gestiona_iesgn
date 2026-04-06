@@ -64,6 +64,7 @@ def getInfo(tipo):
             if root==path:
                 with open(path+file, "r", encoding="utf-8") as input_file:
                     text = input_file.read()
+                text = text.replace('<center>', '<center markdown="1">')
                 md = markdown.Markdown(extensions = ['meta','extra'])
                 html = md.convert(text)
                 meta=md.Meta
