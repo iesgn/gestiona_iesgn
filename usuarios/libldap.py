@@ -1,8 +1,19 @@
+import unicodedata
 from ldap3 import Server, Connection, ALL,SUBTREE,  MODIFY_DELETE, MODIFY_ADD,MODIFY_REPLACE
 from ldap3.utils.conv import escape_filter_chars
 import logging
 
 logger = logging.getLogger(__name__)
+
+
+def normalizar_uid(uid):
+    """Convierte un uid a un nombre válido para Headscale (ASCII, sin acentos ni ñ).
+
+    Headscale rechaza caracteres no ASCII en el 'name' del usuario, así que
+    'gonzalo.peña' -> 'gonzalo.pena', 'alejandro.liañez' -> 'alejandro.lianez'.
+    """
+    nfkd = unicodedata.normalize('NFKD', uid)
+    return nfkd.encode('ascii', 'ignore').decode('ascii')
 
 class LibLDAP(object):
     base_dn="ou=People,dc=gonzalonazareno,dc=org"

@@ -1,7 +1,7 @@
 import os
 import requests
 from datetime import datetime, timedelta, timezone
-from usuarios.libldap import LibLDAP
+from usuarios.libldap import LibLDAP, normalizar_uid
 from django.shortcuts import render
 from django.contrib import messages
 from django.core.mail import send_mail
@@ -42,8 +42,11 @@ def get_headscale_user(username):
     if isinstance(users, dict):
         users = [users]
 
+    # Headscale guarda el nombre normalizado a ASCII (sin tildes ni ñ),
+    # así que comparamos contra el username normalizado.
+    nombre_hs = normalizar_uid(username)
     for user in users:
-        if user.get("name") == username or user.get("username") == username:
+        if user.get("name") == nombre_hs or user.get("username") == nombre_hs:
             return user
     return None
 
