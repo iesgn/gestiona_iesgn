@@ -9,3 +9,5 @@ settings.py
 staticfiles/
 # Contenido externo
 static/content_iesgn/
+# Informes de la Dual (datos personales de alumnos)
+historial_dual/

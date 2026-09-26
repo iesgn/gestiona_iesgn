@@ -68,6 +68,9 @@ USE_TZ = True
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
+# Informes estáticos de cierre de curso de la Dual (historial_<curso>.json)
+HISTORIAL_DUAL_DIR = BASE_DIR / "historial_dual"
+
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 EMAIL_HOST = "correo.gonzalonazareno.org"

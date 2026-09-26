@@ -22,10 +22,11 @@
                         {% for a in disponibles %}
                         <tr {% if a.fuera_de_curso %}class="table-secondary"{% endif %}>
                             <td class="text-center">
-                                <input type="checkbox" name="alumnos" value="{{ a.uid }}" {% if a.seleccionado %}checked{% endif %}>
+                                <input type="checkbox" name="alumnos" value="{{ a.uid }}" {% if a.seleccionado %}checked{% endif %}
+                                       {% if a.empresa_asignada %}data-otra-empresa="{{ a.empresa_asignada }}"{% endif %}>
                             </td>
                             <td style="width:170px;">
-                                <select name="estado_{{ a.uid }}" class="form-select form-select-sm">
+                                <select name="estado_{{ a.uid }}" class="form-select form-select-sm js-estado">
                                     <option value="" {% if not a.estado %}selected{% endif %}></option>
                                     <option value="PROCESO" {% if a.estado == 'PROCESO' %}selected{% endif %}>En proceso</option>
                                     <option value="ASIGNADO" {% if a.estado == 'ASIGNADO' %}selected{% endif %}>Asignado</option>
@@ -44,7 +45,7 @@
                             </td>
                             <td style="white-space:nowrap;">{{ a.curso }}</td>
                             <td>{{ a.email }}</td>
-                            <td>{% if a.empresa_asignada %}{{ a.empresa_asignada }}{% endif %}</td>
+                            <td>{% if a.empresa_asignada %}<span class="badge bg-warning text-dark"><i class="bi bi-exclamation-triangle"></i> {{ a.empresa_asignada }}</span>{% endif %}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -61,5 +62,31 @@
         </form>
     </div>
 </div>
+
+<script>
+    // Pedir confirmación al marcar un alumno que ya está en otra empresa
+    function confirmarOtraEmpresa(check) {
+        var otra = check.dataset.otraEmpresa;
+        if (check.checked && otra &&
+            !confirm("Este alumno ya está asignado a " + otra + ". ¿Asignarlo también a esta empresa?")) {
+            check.checked = false;
+        }
+        return check.checked;
+    }
+    document.querySelectorAll('input[name="alumnos"]').forEach(function (check) {
+        check.addEventListener("change", function () { confirmarOtraEmpresa(check); });
+    });
+
+    // Al elegir un estado, marcar el alumno (si no, el estado no se guarda)
+    document.querySelectorAll(".js-estado").forEach(function (select) {
+        select.addEventListener("change", function () {
+            var check = select.closest("tr").querySelector('input[name="alumnos"]');
+            if (select.value && !check.checked) {
+                check.checked = true;
+                if (!confirmarOtraEmpresa(check)) { select.value = ""; }
+            }
+        });
+    });
+</script>
 
 {% endblock %}

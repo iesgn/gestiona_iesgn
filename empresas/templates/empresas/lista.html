@@ -1,12 +1,37 @@
 {% extends "t1bloque.html" %}
 {% block content %}
 
-<div class="d-flex justify-content-between align-items-center mb-3">
+<div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
     <h2 class="mb-0"><i class="bi bi-building"></i> Empresas</h2>
-    <a href="{{SITE_URL}}/empresas/nueva/" class="btn btn-success">
-        <i class="bi bi-plus-lg"></i> Nueva empresa
-    </a>
+    <div class="d-flex flex-wrap gap-2">
+        <a href="{{SITE_URL}}/empresas/sin-empresa/" class="btn btn-outline-primary">
+            <i class="bi bi-person-exclamation"></i> Alumnos sin empresa
+        </a>
+        <a href="{{SITE_URL}}/empresas/listado/?{{ request.GET.urlencode }}" class="btn btn-outline-primary"
+           title="Informe con la información completa de las empresas filtradas">
+            <i class="bi bi-file-earmark-text"></i> Listado de empresas
+        </a>
+        {% if hay_historial_dual %}
+        <a href="{{SITE_URL}}/empresas/historial-dual/" class="btn btn-outline-secondary">
+            <i class="bi bi-clock-history"></i> Historial por años
+        </a>
+        {% endif %}
+        <a href="{{SITE_URL}}/empresas/nueva/" class="btn btn-success">
+            <i class="bi bi-plus-lg"></i> Nueva empresa
+        </a>
+    </div>
 </div>
+
+{% if alumnos_repetidos %}
+<div class="alert alert-warning">
+    <strong><i class="bi bi-exclamation-triangle"></i> Alumnos asignados a más de una empresa:</strong>
+    <ul class="mb-0">
+        {% for a in alumnos_repetidos %}
+            <li>{{ a.nombre }}: {{ a.empresas|join:", " }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
 
 <!-- Filtros -->
 <div class="card mb-4">
@@ -49,11 +74,32 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="profesor" class="form-label fw-bold">Profesor responsable</label>
+                    <select name="profesor" id="profesor" class="form-select form-select-sm">
+                        <option value="">Todos</option>
+                        {% for p in profesores %}
+                            <option value="{{ p }}" {% if p == profesor_seleccionado %}selected{% endif %}>{{ p }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-6 mb-3 d-flex align-items-end">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="libres" value="1" id="libres"
+                               {% if libres %}checked{% endif %}>
+                        <label class="form-check-label" for="libres">
+                            Solo con plazas libres
+                            <small class="text-muted">(en los cursos marcados, o en cualquiera)</small>
+                        </label>
+                    </div>
+                </div>
+            </div>
             <div class="text-end">
                 <button type="submit" class="btn btn-primary btn-sm">
                     <i class="bi bi-search"></i> Filtrar
                 </button>
-                <a href="{{SITE_URL}}/empresas/" class="btn btn-secondary btn-sm ms-2">
+                <a href="{{SITE_URL}}/empresas/?limpiar=1" class="btn btn-secondary btn-sm ms-2">
                     <i class="bi bi-x"></i> Limpiar
                 </a>
             </div>
@@ -191,7 +237,7 @@
             </div>
         {% else %}
             <div class="alert alert-info text-center m-0">
-                No hay empresas registradas.
+                {% if hay_filtros %}Ninguna empresa coincide con los filtros.{% else %}No hay empresas registradas.{% endif %}
             </div>
         {% endif %}
     </div>

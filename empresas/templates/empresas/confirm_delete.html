@@ -1,9 +1,30 @@
 {% extends "t1bloque.html" %}
 {% block content %}
-  <h1>Borrar empresa</h1>
-  <p>¿Seguro que quieres borrar <strong>{{ object }}</strong>? Se eliminará también su historial.</p>
-  <form method="post">{% csrf_token %}
-    <button type="submit">Sí, borrar</button>
-    <a href="{{SITE_URL}}/empresas/">Cancelar</a>
-  </form>
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="card mt-3 border-danger">
+            <div class="card-header bg-danger text-white">
+                <h5 class="mb-0"><i class="bi bi-trash"></i> Borrar empresa</h5>
+            </div>
+            <div class="card-body">
+                <p>¿Seguro que quieres borrar <strong>{{ object }}</strong>?</p>
+                <p class="text-muted mb-0">
+                    Se eliminarán también su historial de contactos, sus personas de contacto,
+                    sus plazas por curso y sus alumnos asignados (con su seguimiento).
+                </p>
+                <form method="post" class="text-center mt-4">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-lg">
+                        <i class="bi bi-trash"></i> Sí, borrar
+                    </button>
+                    <a href="{{SITE_URL}}/empresas/" class="btn btn-secondary btn-lg ms-2">
+                        <i class="bi bi-x"></i> Cancelar
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}

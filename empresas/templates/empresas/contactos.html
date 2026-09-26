@@ -5,33 +5,46 @@
     <div class="col-md-8 offset-md-2">
         <h3>Personas de contacto de {{ empresa.nombre }}</h3>
 
-        <form method="post" class="mb-4">
+        {% if editando %}
+        <div class="alert alert-info py-2"><i class="bi bi-pencil"></i> Editando a <strong>{{ editando.nombre }}</strong></div>
+        {% endif %}
+        <form method="post" class="mb-4"
+              {% if editando %}action="{{SITE_URL}}/empresas/contacto/{{ editando.id }}/editar/"{% endif %}>
             {% csrf_token %}
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label">Nombre</label>
                 <div class="col-sm-8">
-                    <input type="text" name="nombre" placeholder="Nombre completo" class="form-control" required>
+                    <input type="text" name="nombre" placeholder="Nombre completo" class="form-control" required value="{{ editando.nombre|default:'' }}">
                 </div>
             </div>
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label">Teléfono</label>
                 <div class="col-sm-4">
-                    <input type="text" name="telefono" placeholder="Teléfono" class="form-control">
+                    <input type="text" name="telefono" placeholder="Teléfono" class="form-control" value="{{ editando.telefono|default:'' }}">
                 </div>
             </div>
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label">Correo</label>
                 <div class="col-sm-6">
-                    <input type="email" name="email" placeholder="Correo electrónico" class="form-control">
+                    <input type="email" name="email" placeholder="Correo electrónico" class="form-control" value="{{ editando.email|default:'' }}">
                 </div>
             </div>
             <div class="text-center">
+                {% if editando %}
+                <button type="submit" class="btn btn-success btn-lg">
+                    <i class="bi bi-check"></i> Guardar cambios
+                </button>
+                <a href="{{SITE_URL}}/empresas/{{ empresa.pk }}/contactos/" class="btn btn-secondary btn-lg ms-2">
+                    <i class="bi bi-x"></i> Cancelar
+                </a>
+                {% else %}
                 <button type="submit" class="btn btn-success btn-lg">
                     <i class="bi bi-plus"></i> Añadir contacto
                 </button>
                 <a href="{{SITE_URL}}/empresas/" class="btn btn-secondary btn-lg ms-2">
                     <i class="bi bi-arrow-left"></i> Volver
                 </a>
+                {% endif %}
             </div>
         </form>
 
@@ -41,21 +54,26 @@
                     <th>Nombre</th>
                     <th>Teléfono</th>
                     <th>Email</th>
-                    <th class="text-center" style="width:80px;">Acciones</th>
+                    <th class="text-center" style="width:110px;">Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 {% for c in contactos %}
-                <tr>
+                <tr {% if editando.id == c.id %}class="table-info"{% endif %}>
                     <td>{{ c.nombre }}</td>
                     <td>{{ c.telefono }}</td>
                     <td>{{ c.email }}</td>
-                    <td class="text-center">
-                        <a href="{{SITE_URL}}/empresas/contacto/{{ c.id }}/borrar/"
-                           class="btn btn-danger btn-sm"
-                           onclick="return confirm('¿Seguro que deseas eliminar este contacto?');">
-                            <i class="bi bi-trash"></i>
+                    <td class="text-center" style="white-space:nowrap;">
+                        <a href="{{SITE_URL}}/empresas/contacto/{{ c.id }}/editar/" class="btn btn-primary btn-sm" title="Editar">
+                            <i class="bi bi-pencil"></i>
                         </a>
+                        <form method="post" action="{{SITE_URL}}/empresas/contacto/{{ c.id }}/borrar/" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger btn-sm"
+                                    onclick="return confirm('¿Seguro que deseas eliminar este contacto?');">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </form>
                     </td>
                 </tr>
                 {% empty %}
