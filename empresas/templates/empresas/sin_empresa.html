@@ -1,0 +1,44 @@
+{% extends "t1bloque.html" %}
+{% block content %}
+
+<div class="row">
+    <div class="col-md-10 offset-md-1">
+        <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+            <h3 class="mb-0"><i class="bi bi-person-exclamation"></i> Alumnos sin empresa</h3>
+            <a href="{{SITE_URL}}/empresas/" class="btn btn-secondary">
+                <i class="bi bi-arrow-left"></i> Volver
+            </a>
+        </div>
+        <p class="text-muted">
+            Alumnos de cada grupo que no están asignados a ninguna empresa (ni «En proceso» ni «Asignado»).
+            Total: {{ total_sin_empresa }}.
+        </p>
+
+        {% for b in bloques %}
+        <h4 class="mt-4">{{ b.curso.nombre }}
+            <small class="text-muted">({{ b.alumnos|length }} sin empresa · {{ b.asignados }} de {{ b.total }} con empresa)</small>
+        </h4>
+        {% if b.alumnos %}
+        <table class="table table-bordered table-sm">
+            <thead class="table-light">
+                <tr><th style="width:50%;">Nombre</th><th>Email</th></tr>
+            </thead>
+            <tbody>
+                {% for a in b.alumnos %}
+                <tr>
+                    <td>{{ a.nombre }}</td>
+                    <td>{{ a.email }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% elif b.total %}
+        <div class="alert alert-success py-2"><i class="bi bi-check-circle"></i> Todos los alumnos tienen empresa.</div>
+        {% else %}
+        <div class="alert alert-light py-2"><em>El grupo no tiene alumnos.</em></div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "t1bloque.html" %}
+{% block content %}
+
+<div class="row">
+    <div class="col-md-10 offset-md-1">
+        <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+            <h3 class="mb-0"><i class="bi bi-clock-history"></i> Historial de la Dual {{ curso }}</h3>
+            <form method="get" class="d-flex align-items-center gap-2">
+                <label for="curso" class="form-label mb-0">Curso</label>
+                <select name="curso" id="curso" class="form-select form-select-sm" onchange="this.form.submit()">
+                    {% for c in disponibles %}
+                    <option value="{{ c }}" {% if c == curso %}selected{% endif %}>{{ c }}</option>
+                    {% endfor %}
+                </select>
+                <noscript><button type="submit" class="btn btn-sm btn-primary">Ver</button></noscript>
+            </form>
+        </div>
+
+        <p class="text-muted">
+            {{ total_alumnos }} alumno{{ total_alumnos|pluralize }} en total.
+            Informe generado el {{ datos.generado|slice:":10" }}.
+        </p>
+
+        {% for bloque in datos.cursos %}
+        <h4 class="mt-4">{{ bloque.nombre }}
+            <small class="text-muted">({{ bloque.empresas|length }} empresa{{ bloque.empresas|length|pluralize }}, {{ bloque.total_alumnos }} alumno{{ bloque.total_alumnos|pluralize }})</small>
+        </h4>
+        {% if bloque.empresas %}
+        <table class="table table-bordered table-sm">
+            <thead class="table-light">
+                <tr>
+                    <th style="width:35%;">Empresa</th>
+                    <th style="width:20%;">Localidad</th>
+                    <th>Alumnos</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for e in bloque.empresas %}
+                <tr>
+                    <td>{{ e.nombre }}</td>
+                    <td>{{ e.localidad }}</td>
+                    <td>
+                        {% for a in e.alumnos %}{{ a.nombre }}{% if not forloop.last %}<br>{% endif %}{% endfor %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="alert alert-light"><em>Sin alumnos en este curso.</em></div>
+        {% endif %}
+        {% endfor %}
+
+        <div class="text-center mt-4">
+            <a href="{{SITE_URL}}/empresas/" class="btn btn-secondary">
+                <i class="bi bi-arrow-left"></i> Volver
+            </a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

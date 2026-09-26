@@ -1,0 +1,104 @@
+{% extends "t1bloque.html" %}
+{% block css %}
+<style>
+    .ficha-empresa { break-inside: avoid; page-break-inside: avoid; }
+    .ficha-empresa dt { font-weight: 600; }
+    @media print {
+        @page { size: A4; margin: 1cm; }
+        body { font-size: 9.5pt; }
+        nav.navbar, footer, .d-print-none { display: none !important; }
+        main, .container, .container-fluid { max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
+        .cabecera-listado { margin-bottom: 0.3cm !important; }
+        .cabecera-listado h2 { font-size: 14pt; }
+        .ficha-empresa { border: 1px solid #999 !important; margin-bottom: 0.4cm !important; }
+        .ficha-empresa .card-header { padding: 0.15cm 0.3cm; }
+        .ficha-empresa .card-header h5 { font-size: 11.5pt; }
+        .ficha-empresa .card-body { padding: 0.2cm 0.3cm; }
+        .ficha-empresa dd, .ficha-empresa dt { margin-bottom: 0.05cm; }
+        /* Columnas lado a lado (A4 queda por debajo del punto de corte "md") */
+        .ficha-empresa .col-md-6 { flex: 0 0 50%; max-width: 50%; }
+        a { color: inherit; text-decoration: none; }
+    }
+</style>
+{% endblock %}
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-start mb-3 flex-wrap gap-2 cabecera-listado">
+    <div>
+        <h2 class="mb-1"><i class="bi bi-file-earmark-text"></i> Listado de empresas</h2>
+        <p class="text-muted mb-0">
+            {{ empresas|length }} empresa{{ empresas|length|pluralize }} · generado el {{ ahora|date:"d/m/Y H:i" }}
+            <br>
+            {% if filtros %}{{ filtros|join:" · " }}{% else %}Sin filtros: todas las empresas{% endif %}
+        </p>
+    </div>
+    <div class="d-print-none">
+        <button type="button" class="btn btn-primary" onclick="window.print()">
+            <i class="bi bi-printer"></i> Imprimir
+        </button>
+        <a href="{{SITE_URL}}/empresas/" class="btn btn-secondary ms-2">
+            <i class="bi bi-arrow-left"></i> Volver
+        </a>
+    </div>
+</div>
+
+{% for e in empresas %}
+<div class="card mb-3 ficha-empresa">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0">{{ e.nombre }}</h5>
+        {% if e.estado == 'verde' %}
+            <span class="badge bg-success">Colabora</span>
+        {% elif e.estado == 'naranja' %}
+            <span class="badge bg-warning text-dark">En contacto</span>
+        {% else %}
+            <span class="badge bg-danger">No colabora</span>
+        {% endif %}
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <dl class="row mb-0">
+                    <dt class="col-5">CIF</dt><dd class="col-7">{{ e.cif|default:"—" }}</dd>
+                    <dt class="col-5">Dirección</dt><dd class="col-7">{{ e.direccion|default:"—" }}</dd>
+                    <dt class="col-5">Localidad</dt><dd class="col-7">{{ e.localidad|default:"—" }}</dd>
+                    <dt class="col-5">Responsable legal</dt>
+                    <dd class="col-7">{{ e.nombre_responsable|default:"—" }}{% if e.nif_responsable %} ({{ e.nif_responsable }}){% endif %}</dd>
+                    <dt class="col-5">Profesor responsable</dt><dd class="col-7">{{ e.profesor_responsable|default:"—" }}</dd>
+                    <dt class="col-5">Plazas</dt>
+                    <dd class="col-7">
+                        {% for info in e.plazas_info %}
+                            {{ info.curso_nombre }}: {{ info.ocupadas }}/{{ info.plazas }}{% if not forloop.last %}<br>{% endif %}
+                        {% empty %}—{% endfor %}
+                    </dd>
+                </dl>
+            </div>
+            <div class="col-md-6">
+                <strong>Personas de contacto</strong>
+                {% for c in e.contactos.all %}
+                    <div>
+                        {{ c.nombre }}
+                        {% if c.telefono %}<span class="text-muted"> · <i class="bi bi-telephone"></i> {{ c.telefono }}</span>{% endif %}
+                        {% if c.email %}<span class="text-muted"> · <i class="bi bi-envelope"></i> {{ c.email }}</span>{% endif %}
+                    </div>
+                {% empty %}
+                    <div class="text-muted"><em>Sin personas de contacto</em></div>
+                {% endfor %}
+
+                <strong class="d-block mt-2">Alumnos</strong>
+                {% for a in e.alumnos.all %}
+                    <div>
+                        {{ a.nombre|default:a.uid }} <span class="text-muted">({{ a.curso }})</span>
+                        {% if a.estado %}<span class="badge bg-light text-dark border">{{ a.get_estado_display }}</span>{% endif %}
+                    </div>
+                {% empty %}
+                    <div class="text-muted"><em>Sin alumnos</em></div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% empty %}
+<div class="alert alert-info text-center">Ninguna empresa coincide con los filtros.</div>
+{% endfor %}
+
+{% endblock %}
